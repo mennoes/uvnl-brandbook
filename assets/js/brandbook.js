@@ -24,7 +24,8 @@
     /* ── KLEUREN ──────────────────────────────────────── */
     { t: 'Varsity Green', cat: 'Kleur', type: 'color', kw: 'groen green varsity primair hoofdkleur 004B36', href: 'pages/colors.html', thumb: 'color:#004B36', hex: '#004B36', dl: null },
     { t: 'Electric Purple', cat: 'Kleur', type: 'color', kw: 'paars purple accent D6ACFF', href: 'pages/colors.html', thumb: 'color:#D6ACFF', hex: '#D6ACFF', dl: null },
-    { t: 'Deep Indigo', cat: 'Kleur', type: 'color', kw: 'indigo donkerblauw collegenacht 1B0757 paars', href: 'pages/colors.html', thumb: 'color:#1B0757', hex: '#1B0757', dl: null },
+    { t: 'Ballpoint (Deep Indigo)', cat: 'Kleur', type: 'color', kw: 'ballpoint indigo donkerblauw collegenacht 1B0757 paars pantone', href: 'pages/colors.html', thumb: 'color:#1B0757', hex: '#1B0757', dl: null },
+    { t: 'Printer Ink', cat: 'Kleur', type: 'color', kw: 'printer ink zwart bijna-zwart 2B2B2B neutraal', href: 'pages/colors.html', thumb: 'color:#2B2B2B', hex: '#2B2B2B', dl: null },
     { t: 'Electric Blue', cat: 'Kleur', type: 'color', kw: 'blauw blue secundair 585FF1', href: 'pages/colors.html', thumb: 'color:#585FF1', hex: '#585FF1', dl: null },
     { t: 'Electric Green', cat: 'Kleur', type: 'color', kw: 'groen electric secundair 00A879', href: 'pages/colors.html', thumb: 'color:#00A879', hex: '#00A879', dl: null },
     { t: 'Electric Yellow', cat: 'Kleur', type: 'color', kw: 'geel yellow highlight markeer FBF07A', href: 'pages/colors.html', thumb: 'color:#FBF07A', hex: '#FBF07A', dl: null },

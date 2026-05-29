@@ -36,16 +36,16 @@
   <header class="page-head">
     <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Hoe we eruitzien <span class="sep">/</span> Kleuren</div>
     <h1>Kleuren</h1>
-    <p class="lead"><b>Varsity Green</b> is dé merkkleur — sterk, academisch, betrouwbaar. Zo'n 30–50% van elke lay-out is groen. <b>Paper</b> is het warme canvas eronder. De verzadigde set (paars, blauw, geel, rood) gebruik je <b>één per vlak</b> als accent — nooit twee schreeuwende kleuren naast elkaar. Klik op een waarde om te kopiëren.</p>
+    <p class="lead"><b>Varsity Green</b> is dé merkkleur — sterk, academisch, betrouwbaar. Zo'n 30–50% van elke lay-out is groen. <b>Paper</b> is het warme canvas eronder. De verzadigde set gebruik je <b>één per vlak</b> als accent — nooit twee schreeuwende kleuren naast elkaar. Waarden komen rechtstreeks uit de officiële huisstijl, inclusief Pantone. Klik op een waarde om te kopiëren.</p>
   </header>
 
-  <div class="index-col" style="margin-bottom:18px"><h2>Primair</h2></div>
+  <div class="index-col" style="margin-bottom:18px"><h2>Primary colors</h2></div>
   <div class="gallery" id="pri"></div>
 
-  <div class="index-col" style="margin:48px 0 18px"><h2>Secundair · accenten</h2></div>
+  <div class="index-col" style="margin:48px 0 18px"><h2>Secondary colors</h2></div>
   <div class="gallery" id="sec"></div>
 
-  <div class="index-col" style="margin:48px 0 18px"><h2>Basis · papier &amp; neutraal</h2></div>
+  <div class="index-col" style="margin:48px 0 18px"><h2>Base tones</h2></div>
   <div class="gallery" id="base"></div>
 </div>
 
@@ -58,23 +58,22 @@
 <script src="../assets/js/brandbook.js"></script>
 <script>
 (function () {
+  // Official UvNL palette — values & Pantone straight from the Figma huisstijl
   var pri  = [
-    { t:'Varsity Green', hex:'#004B36', note:'Primair' },
-    { t:'Paper',         hex:'#F4F0ED', note:'Canvas' }
+    { t:'Varsity Green',  hex:'#004B36', note:'Primair',  pantone:'3435 C' },
+    { t:'Electric Purple',hex:'#D6ACFF', note:'Accent',   pantone:'2567 C' }
   ];
   var sec = [
-    { t:'Electric Purple', hex:'#D6ACFF', note:'Accent' },
-    { t:'Deep Indigo',     hex:'#1B0757', note:'Collegenacht' },
-    { t:'Electric Blue',   hex:'#585FF1', note:'Secundair' },
-    { t:'Electric Green',  hex:'#00A879', note:'Secundair' },
-    { t:'Electric Yellow', hex:'#FBF07A', note:'Highlight' },
-    { t:'Electric Red',    hex:'#EE5245', note:'Accent' },
-    { t:'Additional Pink', hex:'#FFC9D7', note:'Zachte tint' }
+    { t:'Electric Green', hex:'#00A879', note:'Secundair', pantone:'Green C' },
+    { t:'Electric Red',   hex:'#EE5245', note:'Accent',    pantone:'Warm Red C' },
+    { t:'Electric Yellow',hex:'#FBF07A', note:'Highlight', pantone:'100 C' },
+    { t:'Electric Blue',  hex:'#585FF1', note:'Secundair', pantone:'2727 C' }
   ];
   var base = [
-    { t:'White',      hex:'#FFFFFF', note:'Surface' },
-    { t:'Paper Mid',  hex:'#ECE4DF', note:'Tint' },
-    { t:'Printer Ink',hex:'#1B1B1B', note:'Bijna-zwart' }
+    { t:'Ballpoint',   hex:'#1B0757', note:'Deep indigo · Collegenacht' },
+    { t:'Printer Ink', hex:'#2B2B2B', note:'Bijna-zwart' },
+    { t:'Paper',       hex:'#F4F0ED', note:'Canvas' },
+    { t:'White',       hex:'#FFFFFF', note:'Surface' }
   ];
   function hexToRgb(h){h=h.replace('#','');var n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255];}
   function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;var mx=Math.max(r,g,b),mn=Math.min(r,g,b),h,s,l=(mx+mn)/2;if(mx===mn){h=s=0;}else{var d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h/=6;}return[Math.round(h*360),Math.round(s*100),Math.round(l*100)];}
@@ -95,6 +94,7 @@
           '<button data-copy="' + c.hex + '" data-copy-label="HEX"><b>HEX</b>&nbsp;&nbsp;' + c.hex + '</button>' +
           '<button data-copy="' + rgbS + '" data-copy-label="RGB"><b>RGB</b>&nbsp;&nbsp;' + rgb.join(' ') + '</button>' +
           '<button data-copy="' + hslS + '" data-copy-label="HSL"><b>HSL</b>&nbsp;&nbsp;' + hsl[0] + ' ' + hsl[1] + ' ' + hsl[2] + '</button>' +
+          (c.pantone ? '<button data-copy="Pantone ' + c.pantone + '" data-copy-label="Pantone"><b>PMS</b>&nbsp;&nbsp;Pantone ' + c.pantone + '</button>' : '') +
           '<button class="mini-btn" style="margin-top:10px" data-add data-add-title="' + c.t + '" data-add-hex="' + c.hex + '">+ Selecteer</button>' +
         '</div>';
       box.appendChild(el);
