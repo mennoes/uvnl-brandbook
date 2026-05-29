@@ -225,6 +225,19 @@
   }, { passive: true });
   update();
 })();
+/* nav transparant/groen boven de hero, lichte balk zodra je op wit scrolt */
+(function () {
+  var nav = document.querySelector('.bbnav');
+  var hero = document.querySelector('.bb-hero');
+  if (!nav || !hero) return;
+  function upd() {
+    var threshold = hero.offsetHeight - nav.offsetHeight - 8;
+    nav.classList.toggle('is-hero', (window.pageYOffset || 0) < threshold);
+  }
+  window.addEventListener('scroll', upd, { passive: true });
+  window.addEventListener('resize', upd);
+  upd();
+})();
 </script>
 </body>
 </html>

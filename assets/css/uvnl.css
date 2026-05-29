@@ -647,19 +647,20 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 .bbnav .navdrop-menu a:hover { color: var(--fg); background: var(--bg-3); }
 .bbnav .navdrop-label { font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-mute); padding: 11px 12px 4px; }
 .bbnav .navdrop-label:first-child { padding-top: 4px; }
-/* groene navigatiebalk */
-.bbnav { background: var(--uvnl-green); border-bottom-color: rgba(244,240,237,0.14); }
-.bbnav .home, .bbnav .home b, .bbnav .home svg { color: var(--uvnl-paper); }
-.bbnav .links a { color: rgba(244,240,237,0.82); }
-.bbnav .links a:hover, .bbnav .links a.active { color: var(--uvnl-paper); background: rgba(244,240,237,0.12); }
-.bbnav .navdrop-btn { color: rgba(244,240,237,0.82); }
-.bbnav .navdrop-btn:hover, .bbnav .navdrop.open .navdrop-btn { color: var(--uvnl-paper); background: rgba(244,240,237,0.12); }
-.bbnav .mini-search { background: rgba(244,240,237,0.12); border-color: rgba(244,240,237,0.22); }
-.bbnav .mini-search input { color: var(--uvnl-paper); }
-.bbnav .mini-search input::placeholder { color: rgba(244,240,237,0.6); }
-.bbnav .mini-search svg { color: rgba(244,240,237,0.7); }
-.bbnav .links .cta { background: var(--uvnl-paper); color: var(--uvnl-green); }
-.bbnav .links .cta:hover { background: #fff; color: var(--uvnl-green); }
+/* nav wisselt: transparant/groen bóven de hero, lichte balk zodra je op wit scrolt */
+.bbnav { transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.bbnav.is-hero { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom-color: transparent; }
+.bbnav.is-hero .home, .bbnav.is-hero .home b, .bbnav.is-hero .home svg { color: var(--uvnl-paper); }
+.bbnav.is-hero .links > a { color: rgba(244,240,237,0.82); }
+.bbnav.is-hero .links > a:hover, .bbnav.is-hero .links > a.active { color: var(--uvnl-paper); background: rgba(244,240,237,0.12); }
+.bbnav.is-hero .navdrop-btn { color: rgba(244,240,237,0.82); }
+.bbnav.is-hero .navdrop-btn:hover, .bbnav.is-hero .navdrop.open .navdrop-btn { color: var(--uvnl-paper); background: rgba(244,240,237,0.12); }
+.bbnav.is-hero .mini-search { background: rgba(244,240,237,0.12); border-color: rgba(244,240,237,0.22); }
+.bbnav.is-hero .mini-search input { color: var(--uvnl-paper); }
+.bbnav.is-hero .mini-search input::placeholder { color: rgba(244,240,237,0.6); }
+.bbnav.is-hero .mini-search svg { color: rgba(244,240,237,0.7); }
+.bbnav.is-hero .links .cta { background: var(--uvnl-paper); color: var(--uvnl-green); }
+.bbnav.is-hero .links .cta:hover { background: #fff; color: var(--uvnl-green); }
 /* per-page accent ornament in the page header */
 .page-head { position: relative; }
 .page-head .ph-orn { position: absolute; right: 0; top: 4px; width: 88px; pointer-events: none; z-index: 0; }
