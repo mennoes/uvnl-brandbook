@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Tools — UvNL Merkboek</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tools om zelf merk-getrouw materiaal te maken: quote-card generator en WCAG contrast-checker, plus de download-pakketten.">
+<link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
+<link rel="stylesheet" href="../assets/css/uvnl.css">
+<script>window.BB_BASE = '../';</script>
+<style>
+  .tool-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; }
+  .tool-card { display:flex; flex-direction:column; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .tool-card:hover { transform:translateY(-2px); border-color:var(--line-strong); }
+  .tool-card .stage { aspect-ratio:16/9; background:var(--uvnl-green); color:var(--uvnl-paper); display:flex; align-items:center; justify-content:center; padding:24px; position:relative; overflow:hidden; }
+  .tool-card .stage .disp { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-.02em; line-height:.9; font-size:clamp(22px,3.4vw,30px); text-align:center; }
+  .tool-card .stage .u { position:absolute; right:-12px; bottom:-18px; width:120px; opacity:.18; }
+  .tool-card .stage .u path { fill:var(--uvnl-paper); }
+  .tool-card .body { padding:18px 20px 20px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .tool-card .body h3 { margin:0; font-family:var(--font-sans); font-weight:700; font-size:18px; color:var(--fg); }
+  .tool-card .body p { margin:0; font-size:14px; color:var(--fg-mute); line-height:1.5; }
+  .tool-card .body ul { margin:2px 0 0; padding-left:18px; font-size:13px; color:var(--fg-mute); display:flex; flex-direction:column; gap:5px; }
+  .tool-card .acts { margin-top:auto; padding-top:6px; }
+  .dl-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-top:18px; }
+  .dl-card { display:block; text-decoration:none; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:16px 18px; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .dl-card:hover { transform:translateY(-2px); border-color:var(--line-strong); }
+  .dl-card .t { font-family:var(--font-sans); font-weight:700; font-size:15px; color:var(--fg); display:flex; justify-content:space-between; gap:8px; }
+  .dl-card .t::after { content:"↓"; color:var(--fg-mute); }
+  .dl-card .d { font-size:12px; color:var(--fg-mute); margin-top:4px; }
+</style>
+</head>
+<body>
+
+<nav class="bbnav">
+  <div class="bbnav-inner">
+    <a class="home" href="../index.html">
+      <svg viewBox="0 0 156 140"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+      <b>UvNL<br>Merkboek</b>
+    </a>
+    <label class="mini-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="bb-nav-search" type="text" placeholder="Zoek…" autocomplete="off">
+      <div class="search-results" id="bb-nav-results" style="top:calc(100% + 10px)"></div>
+    </label>
+    <div class="links">
+      <a href="about.html">Over</a>
+      <a href="logos.html">Logo's</a>
+      <a href="colors.html">Kleuren</a>
+      <a href="typography.html">Type</a>
+      <a href="icons.html">Iconen</a>
+      <a href="tools.html" aria-current="page">Tools</a>
+      <a class="btn primary cta" style="padding:7px 14px" href="../downloads/uvnl-brand-kit.zip" download>Download kit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="page-head">
+    <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Tools</div>
+    <h1>Tools</h1>
+    <p class="lead">Maak zelf merk-getrouw materiaal. Deze tools gebruiken het officiële palet en de huisstijl-lettertypes, zodat wat je maakt meteen als UvNL voelt.</p>
+  </header>
+
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="stage">
+        <span class="disp">"Een goede<br>vraag is het<br>halve werk"</span>
+        <svg class="u" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+      </div>
+      <div class="body">
+        <h3>Quote-card generator</h3>
+        <p>Typ een citaat en een naam, kies een merkkleur, en exporteer een kant-en-klare quote-card voor social.</p>
+        <ul>
+          <li>Tiempos-italic op een verzadigd merkvlak</li>
+          <li>Kies de achtergrondkleur uit het palet</li>
+          <li>Download als beeld, klaar om te plaatsen</li>
+        </ul>
+        <div class="acts"><a class="btn primary" href="../tools/uvnl-quote.html">Open quote-card generator →</a></div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="stage" style="background:var(--uvnl-purple);color:var(--uvnl-green)">
+        <span class="disp" style="color:var(--uvnl-green)">AA · AAA<br>contrast</span>
+        <svg class="u" viewBox="0 0 156 140" style="opacity:.22"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z" fill="#004B36"/></svg>
+      </div>
+      <div class="body">
+        <h3>Contrast-checker</h3>
+        <p>Controleer of een combinatie van twee merkkleuren genoeg contrast heeft voor leesbare, toegankelijke tekst.</p>
+        <ul>
+          <li>WCAG AA/AAA-uitslag voor elk kleurpaar</li>
+          <li>Werkt met het volledige UvNL-palet</li>
+          <li>Sluit aan op de regels uit Do's &amp; don'ts</li>
+        </ul>
+        <div class="acts"><a class="btn primary" href="../tools/uvnl-contrast.html">Open contrast-checker →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <section style="margin:56px 0 80px">
+    <div class="index-col" style="margin-bottom:6px"><h2>Downloads als startpunt</h2></div>
+    <p class="lead" style="font-size:15px;margin:0 0 4px">De officiële bestanden om mee te ontwerpen — altijd de laatste versie.</p>
+    <div class="dl-row">
+      <a class="dl-card" href="../downloads/uvnl-brand-kit.zip" download><span class="t">Volledige kit</span><span class="d">Logo's, formats, iconen, fonts &amp; kleuren · ZIP</span></a>
+      <a class="dl-card" href="../downloads/uvnl-logo-pack.zip" download><span class="t">Logo pack</span><span class="d">Alle logo's als SVG (NL + Vlaanderen)</span></a>
+      <a class="dl-card" href="../downloads/uvnl-font-pack.zip" download><span class="t">Font pack</span><span class="d">Oldschool Grotesk, OSG Condensed &amp; Tiempos</span></a>
+    </div>
+  </section>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+  <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">UvNL Merkboek · De HEMA van de wetenschap.</p></div>
+  <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px"><p>© 2026 Universiteiten van Nederland</p><p><a href="../index.html" style="color:var(--uvnl-green-bright)">Terug naar het merkboek</a></p></div>
+</div></footer>
+
+<script src="../assets/js/uvnl.js"></script>
+<script src="../assets/js/brandbook.js"></script>
+</body>
+</html>

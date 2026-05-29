@@ -74,7 +74,12 @@
     { t: 'Over UvNL', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
     { t: 'Tone of voice', cat: 'Hoe we spreken', type: 'page', kw: 'tone of voice schrijfstijl tekst stem taal nederlands toon', href: 'pages/tone-of-voice.html', thumb: 'mark', dl: null },
     { t: "Do's & don'ts", cat: 'Richtlijnen', type: 'page', kw: 'dos donts richtlijnen regels correct fout gebruik', href: 'pages/guidelines.html', thumb: 'mark', dl: null },
-    { t: 'Kleur in context', cat: 'Richtlijnen', type: 'page', kw: 'kleur context toegankelijkheid contrast accessibility electric purple op donker varsity green op licht botsende kleuren combinatie wcag', href: 'pages/guidelines.html', thumb: 'mark', dl: null }
+    { t: 'Kleur in context', cat: 'Richtlijnen', type: 'page', kw: 'kleur context toegankelijkheid contrast accessibility electric purple op donker varsity green op licht botsende kleuren combinatie wcag', href: 'pages/guidelines.html', thumb: 'mark', dl: null },
+
+    /* ── TOOLS ────────────────────────────────────────── */
+    { t: 'Tools', cat: 'Tools', type: 'page', kw: 'tools maken gereedschap generator hulpmiddel design ontwerp', href: 'pages/tools.html', thumb: 'mark', dl: null },
+    { t: 'Quote-card generator', cat: 'Tools', type: 'page', kw: 'quote card citaat generator maken tool social tiempos export beeld', href: 'tools/uvnl-quote.html', thumb: 'mark', dl: null },
+    { t: 'Contrast-checker', cat: 'Tools', type: 'page', kw: 'contrast checker wcag toegankelijkheid kleur leesbaarheid aa aaa tool', href: 'tools/uvnl-contrast.html', thumb: 'mark', dl: null }
   ];
 
   window.BB_INDEX = INDEX;

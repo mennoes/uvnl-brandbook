@@ -8,6 +8,24 @@
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css">
 <script>window.BB_BASE = '';</script>
+<style>
+  .hub-section { margin-top:64px; }
+  .section-head { display:flex; align-items:baseline; gap:12px; margin:0 0 6px; }
+  .section-head h2 { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-.01em; font-size:clamp(22px,3.6vw,32px); margin:0; line-height:1; }
+  .section-head .num { font-family:var(--font-sans); font-weight:700; font-size:12px; color:var(--fg-mute); letter-spacing:.14em; }
+  .hub-lead { color:var(--fg-mute); margin:0 0 20px; max-width:62ch; }
+  .hub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(232px,1fr)); gap:14px; }
+  .hub-card { display:block; text-decoration:none; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .hub-card:hover { transform:translateY(-2px); border-color:var(--line-strong); }
+  .hub-card .t { font-family:var(--font-sans); font-weight:700; font-size:16px; color:var(--fg); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .hub-card .t::after { content:"→"; color:var(--fg-mute); transition:transform var(--dur) var(--ease); }
+  .hub-card:hover .t::after { transform:translateX(3px); }
+  .hub-card .d { font-size:13px; color:var(--fg-mute); margin-top:6px; line-height:1.45; }
+  /* tools-zone: groen geaccentueerd, duidelijk anders dan 'bekijken' */
+  .hub-card.tool { background:var(--uvnl-green); border-color:transparent; }
+  .hub-card.tool .t, .hub-card.tool .d { color:var(--uvnl-paper); }
+  .hub-card.tool .t::after { color:var(--uvnl-paper); }
+</style>
 </head>
 <body>
 
@@ -29,6 +47,7 @@
       <a href="pages/colors.html">Kleuren</a>
       <a href="pages/typography.html">Type</a>
       <a href="pages/icons.html">Iconen</a>
+      <a href="pages/tools.html">Tools</a>
       <a class="btn primary cta" style="padding:7px 14px" href="downloads/uvnl-brand-kit.zip" download>Download kit</a>
     </div>
   </div>
@@ -38,7 +57,7 @@
 <header class="bb-hero">
   <p class="kicker">Universiteiten van Nederland · Merkboek</p>
   <h1>Het merk,<br>op één plek</h1>
-  <p class="sub">Alles wat je nodig hebt om met UvNL te werken — logo's, kleuren, lettertypes, iconen en richtlijnen. Voor redacteuren én partners.</p>
+  <p class="sub">Twee dingen op één plek: <b>bekijk het merk</b> — logo's, kleuren, type, iconen en richtlijnen — én <b>maak er direct iets mee</b> met de tools. Voor redacteuren én partners.</p>
 
   <div class="search-wrap">
     <div class="search-box">
@@ -55,45 +74,34 @@
   </div>
 </header>
 
-<!-- INDEX COLUMNS -->
-<section class="index-grid">
-  <div class="index-col">
-    <h2>Wie we zijn</h2>
-    <ul>
-      <li><a href="pages/about.html">Over UvNL</a></li>
-      <li><a href="pages/about.html#missie">Missie</a></li>
-      <li><a href="pages/about.html#persoonlijkheid">Persoonlijkheid</a></li>
-    </ul>
+<!-- ZONE 1 — BEKIJK HET MERK -->
+<section class="wrap hub-section">
+  <div class="section-head"><span class="num">01</span><h2>Bekijk het merk</h2></div>
+  <p class="hub-lead">Alle merkelementen om te bekijken, kopiëren en downloaden — wie we zijn, hoe we eruitzien en hoe we klinken.</p>
+  <div class="hub-grid">
+    <a class="hub-card" href="pages/about.html"><span class="t">Over UvNL</span><span class="d">Missie, verhaal &amp; persoonlijkheid</span></a>
+    <a class="hub-card" href="pages/logos.html"><span class="t">Logo's</span><span class="d">Beeldmerk, wordmark, lockups, vaandel + Vlaamse variant</span></a>
+    <a class="hub-card" href="pages/colors.html"><span class="t">Kleuren</span><span class="d">Volledig palet met HEX/RGB/HSL &amp; Pantone</span></a>
+    <a class="hub-card" href="pages/typography.html"><span class="t">Typografie</span><span class="d">Oldschool Grotesk, OSG Condensed &amp; Tiempos</span></a>
+    <a class="hub-card" href="pages/icons.html"><span class="t">Iconen</span><span class="d">Bliksem, pijl, snaps, spark, circle, grid</span></a>
+    <a class="hub-card" href="pages/photography.html"><span class="t">Fotografie</span><span class="d">Beeldstijl &amp; richtlijnen</span></a>
+    <a class="hub-card" href="pages/formats.html"><span class="t">Formats &amp; submerken</span><span class="d">Wetensnap, Collegenacht … + partners (NL &amp; Vlaanderen)</span></a>
+    <a class="hub-card" href="pages/examples.html"><span class="t">Voorbeelden</span><span class="d">Echte campagne-uitingen + recreaties + 3D-set</span></a>
+    <a class="hub-card" href="pages/tone-of-voice.html"><span class="t">Tone of voice</span><span class="d">Hoe we schrijven</span></a>
+    <a class="hub-card" href="pages/guidelines.html"><span class="t">Do's &amp; don'ts</span><span class="d">Richtlijnen, kleur-in-context &amp; toegankelijkheid</span></a>
   </div>
-  <div class="index-col">
-    <h2>Hoe we eruitzien</h2>
-    <ul>
-      <li><a href="pages/logos.html">Logo's</a></li>
-      <li><a href="pages/colors.html">Kleuren</a></li>
-      <li><a href="pages/typography.html">Typografie</a></li>
-      <li><a href="pages/icons.html">Iconen</a></li>
-      <li><a href="pages/photography.html">Fotografie</a></li>
-      <li><a href="pages/formats.html">Formats &amp; submerken</a></li>
-      <li><a href="pages/examples.html">Voorbeelden</a></li>
-    </ul>
-  </div>
-  <div class="index-col">
-    <h2>Hoe we spreken</h2>
-    <ul>
-      <li><a href="pages/tone-of-voice.html">Tone of voice</a></li>
-      <li><a href="pages/guidelines.html">Do's &amp; don'ts</a></li>
-    </ul>
-  </div>
-  <div class="index-col">
-    <h2>Resources</h2>
-    <ul>
-      <li><a href="downloads/uvnl-brand-kit.zip" download>Volledige kit (ZIP)</a></li>
-      <li><a href="downloads/uvnl-logo-pack.zip" download>Logo pack</a></li>
-      <li><a href="downloads/uvnl-font-pack.zip" download>Font pack</a></li>
-      <li><a href="pages/formats.html#partners">Partners</a></li>
-      <li><a href="tools/uvnl-quote.html">Quote-card tool</a></li>
-      <li><a href="tools/uvnl-contrast.html">Contrast-checker</a></li>
-    </ul>
+</section>
+
+<!-- ZONE 2 — TOOLS -->
+<section class="wrap hub-section" id="tools">
+  <div class="section-head"><span class="num">02</span><h2>Tools — maak iets in de huisstijl</h2></div>
+  <p class="hub-lead">Hulpmiddelen om zelf merk-getrouw materiaal te maken, plus de download-pakketten als startpunt.</p>
+  <div class="hub-grid">
+    <a class="hub-card tool" href="tools/uvnl-quote.html"><span class="t">Quote-card generator</span><span class="d">Maak een merk-getrouwe quote-card en exporteer ’m als beeld.</span></a>
+    <a class="hub-card tool" href="tools/uvnl-contrast.html"><span class="t">Contrast-checker</span><span class="d">Check het WCAG-contrast van elk kleurpaar uit het palet.</span></a>
+    <a class="hub-card" href="downloads/uvnl-brand-kit.zip" download><span class="t">Volledige kit</span><span class="d">Logo's, formats, iconen, fonts &amp; kleuren (ZIP)</span></a>
+    <a class="hub-card" href="downloads/uvnl-logo-pack.zip" download><span class="t">Logo pack</span><span class="d">Alle logo's als SVG (NL + Vlaanderen)</span></a>
+    <a class="hub-card" href="downloads/uvnl-font-pack.zip" download><span class="t">Font pack</span><span class="d">De drie merklettertypes</span></a>
   </div>
 </section>
 
@@ -142,7 +150,10 @@
       <li><a href="pages/tone-of-voice.html">Tone of voice</a></li>
       <li><a href="pages/guidelines.html">Do's &amp; don'ts</a></li>
     </ul></div>
-    <div><h5>Resources</h5><ul>
+    <div><h5>Tools &amp; downloads</h5><ul>
+      <li><a href="pages/tools.html">Alle tools</a></li>
+      <li><a href="tools/uvnl-quote.html">Quote-card generator</a></li>
+      <li><a href="tools/uvnl-contrast.html">Contrast-checker</a></li>
       <li><a href="downloads/uvnl-brand-kit.zip" download>Volledige kit</a></li>
       <li><a href="downloads/uvnl-logo-pack.zip" download>Logo pack</a></li>
       <li><a href="downloads/uvnl-font-pack.zip" download>Font pack</a></li>
