@@ -31,6 +31,27 @@
   .hub-row .d { font-size:13px; color:var(--fg-mute); margin-top:1px; }
   .hub-row .arr { flex:0 0 auto; color:var(--fg-mute); font-size:17px; transition:transform var(--dur) var(--ease); }
   .hub-row:hover .arr { transform:translateX(4px); }
+
+  /* hero = vol Varsity Green met grote U erachter (zoals de site) */
+  .bb-hero { background:var(--uvnl-green); color:var(--uvnl-paper); }
+  .bb-hero .kicker { color:rgba(244,240,237,.66); }
+  .bb-hero h1 { color:var(--uvnl-paper); }
+  .bb-hero .sub { color:rgba(244,240,237,.88); }
+  .bb-hero .search-hint { color:rgba(244,240,237,.72); }
+  .bb-hero .search-hint b { color:var(--uvnl-paper); }
+  .bb-hero .bgu { position:absolute; left:50%; top:47%; transform:translate(-50%,-50%); width:min(560px,76%); z-index:0; pointer-events:none; }
+  .bb-hero .bgu path { fill:#0A5A41; }
+  /* full-bleed paarse band voor de Tools-zone */
+  .band { width:100%; }
+  .band--purple { background:var(--uvnl-purple); margin-top:64px; padding:6px 0 60px; }
+  .band--purple .hub-section { margin-top:0; padding-top:54px; }
+  .band--purple .section-head .num, .band--purple .section-head h2 { color:var(--uvnl-green); }
+  .band--purple .hub-lead { color:#3a2b63; }
+  .band--purple .hub-list, .band--purple .hub-row { border-color:rgba(27,7,87,.16); }
+  .band--purple .hub-row .ic, .band--purple .hub-row .t { color:var(--uvnl-green); }
+  .band--purple .hub-row .d { color:#3a2b63; }
+  .band--purple .hub-row .arr { color:rgba(27,7,87,.55); }
+  .band--purple .hub-row:hover { background:rgba(255,255,255,.42); }
 </style>
 </head>
 <body>
@@ -74,6 +95,7 @@
 
 <!-- HERO -->
 <header class="bb-hero">
+  <svg class="bgu" viewBox="0 0 156 140" aria-hidden="true"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
   <img class="orn" src="assets/illustration-3d/gezondheid.png" style="top:18px;left:4%;width:152px;transform:rotate(-8deg)" alt="">
   <img class="orn" src="assets/illustration-3d/techniek.png" style="top:34px;right:5%;width:150px;transform:rotate(7deg)" alt="">
   <img class="orn" src="assets/illustration-3d/economie-bedrijf.png" style="bottom:8px;left:7%;width:124px" alt="">
@@ -116,6 +138,7 @@
 </section>
 
 <!-- ZONE 2 — TOOLS -->
+<div class="band band--purple">
 <section class="wrap hub-section" id="tools">
   <div class="section-head"><span class="num">02</span><h2>Tools — maak iets in de huisstijl</h2></div>
   <p class="hub-lead">Hulpmiddelen om zelf merk-getrouw materiaal te maken, plus de download-pakketten als startpunt.</p>
@@ -127,6 +150,7 @@
     <a class="hub-row" href="downloads/uvnl-font-pack.zip" download><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg></span><span class="txt"><span class="t">Font pack</span><span class="d">De drie merklettertypes</span></span><span class="arr">→</span></a>
   </div>
 </section>
+</div>
 
 
 <!-- FOOTER -->
