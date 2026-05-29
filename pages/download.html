@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Download — UvNL Merkboek</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Download de UvNL-merkkit: logo's, formats, iconen, lettertypes en kleurwaarden. Zie precies wat erin zit.">
+<link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
+<link rel="stylesheet" href="../assets/css/uvnl.css">
+<script>window.BB_BASE = '../';</script>
+<style>
+  /* groene download-kop met grote U */
+  .dl-hero { position:relative; overflow:hidden; background:var(--uvnl-green); color:var(--uvnl-paper); border-radius:var(--r-4); padding:40px 36px; margin:8px 0 36px; display:flex; gap:28px; align-items:center; flex-wrap:wrap; }
+  .dl-hero .bgu { position:absolute; right:-30px; bottom:-60px; width:300px; opacity:.12; pointer-events:none; }
+  .dl-hero .bgu path { fill:var(--uvnl-paper); }
+  .dl-hero .info { position:relative; z-index:1; flex:1; min-width:260px; }
+  .dl-hero h1 { font-family:var(--font-display); text-transform:uppercase; letter-spacing:-.015em; font-size:clamp(34px,5vw,56px); line-height:.95; margin:0 0 10px; color:var(--uvnl-paper); }
+  .dl-hero p { margin:0; color:rgba(244,240,237,.88); font-size:16px; max-width:48ch; }
+  .dl-hero .meta { margin-top:14px; font-family:var(--font-sans); font-size:13px; color:rgba(244,240,237,.7); }
+  .dl-hero .cta-wrap { position:relative; z-index:1; }
+  .dl-hero .bigbtn { display:inline-flex; align-items:center; gap:10px; background:var(--uvnl-paper); color:var(--uvnl-green); font-family:var(--font-sans); font-weight:700; font-size:16px; padding:16px 26px; border-radius:var(--r-pill); text-decoration:none; transition:transform var(--dur) var(--ease); }
+  .dl-hero .bigbtn:hover { transform:translateY(-2px); }
+
+  .dl-contents { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+  .dlc { border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:20px; }
+  .dlc .h { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:10px; }
+  .dlc .h b { font-family:var(--font-display); text-transform:uppercase; letter-spacing:-.01em; font-size:20px; color:var(--fg); }
+  .dlc .h .count { font-family:var(--font-sans); font-weight:700; font-size:12px; color:var(--uvnl-green-bright); white-space:nowrap; }
+  .dlc ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .dlc li { font-size:13.5px; color:var(--fg-dim); display:flex; gap:8px; align-items:flex-start; }
+  .dlc li::before { content:"·"; color:var(--uvnl-green-bright); font-weight:700; }
+  .dlc .fmt { margin-top:12px; font-family:var(--font-sans); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--fg-mute); }
+
+  .dl-packs { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin-top:16px; }
+  .pack { display:block; text-decoration:none; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 20px; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .pack:hover { transform:translateY(-2px); border-color:var(--line-strong); }
+  .pack .t { font-family:var(--font-sans); font-weight:700; font-size:16px; color:var(--fg); display:flex; justify-content:space-between; gap:8px; }
+  .pack .t::after { content:"↓"; color:var(--uvnl-green-bright); }
+  .pack .d { font-size:12.5px; color:var(--fg-mute); margin-top:5px; }
+  .dl-note { margin:30px 0 80px; font-size:13px; color:var(--fg-mute); border-left:3px solid var(--line-strong); padding:6px 0 6px 14px; max-width:70ch; }
+</style>
+</head>
+<body>
+
+<nav class="bbnav">
+  <div class="bbnav-inner">
+    <a class="home" href="../index.html">
+      <svg viewBox="0 0 156 140"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+      <b>UvNL<br>Merkboek</b>
+    </a>
+    <label class="mini-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="bb-nav-search" type="text" placeholder="Zoek…" autocomplete="off">
+      <div class="search-results" id="bb-nav-results" style="top:calc(100% + 10px)"></div>
+    </label>
+    <div class="links">
+      <div class="navdrop">
+        <button class="navdrop-btn" aria-expanded="false">Het merk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="navdrop-menu">
+          <div class="navdrop-label">Wie we zijn</div>
+          <a href="about.html">Over UvNL</a>
+          <div class="navdrop-label">Hoe we eruitzien</div>
+          <a href="logos.html">Logo's</a>
+          <a href="colors.html">Kleuren</a>
+          <a href="typography.html">Typografie</a>
+          <a href="icons.html">Iconen</a>
+          <a href="photography.html">Fotografie</a>
+          <a href="formats.html">Formats &amp; submerken</a>
+          <a href="examples.html">Voorbeelden</a>
+          <div class="navdrop-label">Hoe we spreken</div>
+          <a href="tone-of-voice.html">Tone of voice</a>
+          <a href="guidelines.html">Do's &amp; don'ts</a>
+        </div>
+      </div>
+      <a href="tools.html">Tools</a>
+      <a class="btn primary cta" style="padding:7px 14px" href="download.html" aria-current="page">Download kit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb" style="margin-top:34px"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Download</div>
+
+  <div class="dl-hero">
+    <svg class="bgu" viewBox="0 0 156 140" aria-hidden="true"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+    <div class="info">
+      <h1>De volledige<br>merkkit</h1>
+      <p>Alles wat je nodig hebt om met UvNL te werken — logo's, formats, iconen, lettertypes en kleurwaarden in één ZIP. Altijd de laatste versie.</p>
+      <p class="meta">ZIP · ~30 MB · logo's (SVG) · formats &amp; iconen (PNG) · fonts · colors.txt</p>
+    </div>
+    <div class="cta-wrap"><a class="bigbtn" href="../downloads/uvnl-brand-kit.zip" download>Download volledige kit ↓</a></div>
+  </div>
+
+  <div class="index-col" style="margin-bottom:16px"><h2>Wat zit erin?</h2></div>
+  <div class="dl-contents">
+    <div class="dlc">
+      <div class="h"><b>Logo's</b><span class="count">9 · SVG</span></div>
+      <ul>
+        <li>Beeldmerk (U) &amp; wordmark</li>
+        <li>Staand logo &amp; vierkant lockup</li>
+        <li>Vaandel &amp; U-outline</li>
+        <li>Vlaamse variant (UvVL): logo, wordmark, vierkant</li>
+      </ul>
+      <div class="fmt">Vector · recolorbaar (currentColor)</div>
+    </div>
+    <div class="dlc">
+      <div class="h"><b>Formats</b><span class="count">12 · PNG</span></div>
+      <ul>
+        <li>Programmaformats: Wetensnap, Collegenacht, De Werkplaats, Onderzoekt, Legt uit, Even Denken!, Voorkennis, Hey U</li>
+        <li>U-lockups: Live, &amp;, +, Studio+</li>
+      </ul>
+      <div class="fmt">Transparant PNG</div>
+    </div>
+    <div class="dlc">
+      <div class="h"><b>Iconen</b><span class="count">28 · PNG</span></div>
+      <ul>
+        <li>Bliksem, spark, snaps, pijn</li>
+        <li>Pijlen (geel/groen/paars/rood)</li>
+        <li>Circle &amp; grid</li>
+      </ul>
+      <div class="fmt">Transparant PNG</div>
+    </div>
+    <div class="dlc">
+      <div class="h"><b>Lettertypes</b><span class="count">4 families</span></div>
+      <ul>
+        <li>Oldschool Grotesk (Regular &amp; Bold)</li>
+        <li>OSG Condensed Bold</li>
+        <li>Tiempos Text (Regular &amp; italics)</li>
+      </ul>
+      <div class="fmt">TTF / OTF / WOFF</div>
+    </div>
+    <div class="dlc">
+      <div class="h"><b>Kleuren</b><span class="count">colors.txt</span></div>
+      <ul>
+        <li>Primary: Varsity Green, Electric Purple</li>
+        <li>Secondary: Green, Red, Yellow, Blue</li>
+        <li>Base tones + HEX / RGB / HSL / Pantone</li>
+      </ul>
+      <div class="fmt">Platte tekst</div>
+    </div>
+    <div class="dlc">
+      <div class="h"><b>Fotografie</b><span class="count">richtlijn</span></div>
+      <ul>
+        <li>Voorbeeldbeeld als richtlijn voor beeldstijl</li>
+        <li>Geen vrij te gebruiken stock</li>
+      </ul>
+      <div class="fmt">PNG</div>
+    </div>
+  </div>
+
+  <div class="index-col" style="margin:44px 0 14px"><h2>Of download per onderdeel</h2></div>
+  <div class="dl-packs">
+    <a class="pack" href="../downloads/uvnl-logo-pack.zip" download><span class="t">Logo pack</span><span class="d">Alle logo's als SVG (NL + Vlaanderen)</span></a>
+    <a class="pack" href="../downloads/uvnl-font-pack.zip" download><span class="t">Font pack</span><span class="d">Oldschool Grotesk, OSG Condensed &amp; Tiempos</span></a>
+    <a class="pack" href="../downloads/uvnl-brand-kit.zip" download><span class="t">Volledige kit</span><span class="d">Alles in één ZIP (~30 MB)</span></a>
+  </div>
+
+  <p class="dl-note">Partnerlogo's en de 3D-elementen worden in het merkboek getoond ter referentie, maar zitten niet in de download-kit: dat zijn merken/beelden van derden of campagne-assets met aparte rechten. Vragen over merkgebruik? <a href="about.html#contact" style="color:var(--uvnl-green-bright)">merk@universiteitenvannederland.nl</a></p>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+  <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">UvNL Merkboek · De HEMA van de wetenschap.</p></div>
+  <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px"><p>© 2026 Universiteiten van Nederland</p><p><a href="../index.html" style="color:var(--uvnl-green-bright)">Terug naar het merkboek</a></p></div>
+</div></footer>
+
+<script src="../assets/js/uvnl.js"></script>
+<script src="../assets/js/brandbook.js"></script>
+</body>
+</html>
