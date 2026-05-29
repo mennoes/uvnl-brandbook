@@ -56,6 +56,7 @@
     { t: 'Wetensnap', cat: 'Formats', type: 'page', kw: 'wetensnap snap kort format blauw', href: 'pages/formats.html', thumb: 'mark', dl: null },
     { t: 'De Werkplaats', cat: 'Formats', type: 'page', kw: 'werkplaats maken format rood', href: 'pages/formats.html', thumb: 'mark', dl: null },
     { t: 'Partners', cat: 'Resources', type: 'page', kw: 'partners universiteiten leden samenwerking co-branding', href: 'pages/formats.html#partners', thumb: 'mark', dl: null },
+    { t: 'Voorbeelden', cat: 'Hoe we eruitzien', type: 'page', kw: 'voorbeelden examples poster thumbnail quote slide story toepassing in het wild posters social', href: 'pages/examples.html', thumb: 'mark', dl: null },
 
     /* ── PAGINA'S ─────────────────────────────────────── */
     { t: 'Over UvNL', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
