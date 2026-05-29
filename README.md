@@ -34,7 +34,7 @@ pages/
 tools/
   uvnl-quote.html       Quote-card generator
   uvnl-contrast.html    WCAG contrast-checker
-assets/                 css, js, fonts, logos, icons, photos
+assets/                 css, js, fonts, logos, icons, photos, formats, partners
 downloads/              uvnl-brand-kit.zip · uvnl-logo-pack.zip · uvnl-font-pack.zip
 ```
 
@@ -56,9 +56,10 @@ de U-outline en het vaandel zijn echte paden. Ze gebruiken `fill="currentColor"`
 zodat het merkboek ze on-the-fly groen, paper of wit kan kleuren (zie de
 SVG-inliner in `assets/js/brandbook.js`).
 
-De formats/submerken (Wetensnap, Collegenacht, …) op `pages/formats.html` blijven
-merk-getrouwe CSS-recreaties met het OSGC-font; hun bronvectoren staan in dezelfde
-Figma-huisstijl.
+De **formats/submerken** (Wetensnap, Collegenacht, De Werkplaats, …) en de
+**U-lockups** op `pages/formats.html` zijn nu de officiële format-artwork uit de
+Figma-huisstijl (transparante PNG's in `assets/formats/`). De **partnerlogo's**
+(`assets/partners/`, wit) staan in dezelfde huisstijl en vullen de partnermuur.
 
 ---
 © 2026 Universiteiten van Nederland · Vragen: merk@universiteitenvannederland.nl

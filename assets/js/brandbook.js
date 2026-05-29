@@ -52,9 +52,18 @@
 
     /* ── FORMATS / SUBMERKEN ──────────────────────────── */
     { t: 'Formats & submerken', cat: 'Formats', type: 'page', kw: 'format submerk sub-brand lockup wetensnap collegenacht werkplaats onderzoekt legt uit hey u live voorkennis even denken', href: 'pages/formats.html', thumb: 'mark', dl: null },
-    { t: 'Collegenacht', cat: 'Formats', type: 'page', kw: 'collegenacht college nacht format avond live indigo', href: 'pages/formats.html', thumb: 'mark', dl: null },
-    { t: 'Wetensnap', cat: 'Formats', type: 'page', kw: 'wetensnap snap kort format blauw', href: 'pages/formats.html', thumb: 'mark', dl: null },
-    { t: 'De Werkplaats', cat: 'Formats', type: 'page', kw: 'werkplaats maken format rood', href: 'pages/formats.html', thumb: 'mark', dl: null },
+    { t: 'Collegenacht', cat: 'Formats', type: 'logo', kw: 'collegenacht college nacht format avond live indigo', href: 'pages/formats.html', thumb: 'img:assets/formats/collegenacht.png', preview: 'paper', dl: 'assets/formats/collegenacht.png' },
+    { t: 'Wetensnap', cat: 'Formats', type: 'logo', kw: 'wetensnap snap kort format blauw', href: 'pages/formats.html', thumb: 'img:assets/formats/wetensnap.png', preview: 'paper', dl: 'assets/formats/wetensnap.png' },
+    { t: 'De Werkplaats', cat: 'Formats', type: 'logo', kw: 'werkplaats maken format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/werkplaats.png', preview: 'paper', dl: 'assets/formats/werkplaats.png' },
+    { t: 'UvNL onderzoekt', cat: 'Formats', type: 'logo', kw: 'onderzoekt onderzoek format groen', href: 'pages/formats.html', thumb: 'img:assets/formats/onderzoekt.png', preview: 'paper', dl: 'assets/formats/onderzoekt.png' },
+    { t: 'UvNL legt uit', cat: 'Formats', type: 'logo', kw: 'legt uit uitleg format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/legtuit.png', preview: 'paper', dl: 'assets/formats/legtuit.png' },
+    { t: 'Even Denken!', cat: 'Formats', type: 'logo', kw: 'even denken vraag prikkel format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/evendenken.png', preview: 'paper', dl: 'assets/formats/evendenken.png' },
+    { t: 'Voorkennis', cat: 'Formats', type: 'logo', kw: 'voorkennis achtergrond context format paars purple', href: 'pages/formats.html', thumb: 'img:assets/formats/voorkennis.png', preview: 'paper', dl: 'assets/formats/voorkennis.png' },
+    { t: 'Hey U', cat: 'Formats', type: 'logo', kw: 'hey u aanspreek format groen', href: 'pages/formats.html', thumb: 'img:assets/formats/heyu.png', preview: 'paper', dl: 'assets/formats/heyu.png' },
+    { t: 'UvNL Live', cat: 'Formats', type: 'logo', kw: 'live lockup evenement u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-live.png', preview: 'paper', dl: 'assets/formats/uvnl-live.png' },
+    { t: 'UvNL &', cat: 'Formats', type: 'logo', kw: 'ampersand samenwerking lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-amp.png', preview: 'paper', dl: 'assets/formats/uvnl-amp.png' },
+    { t: 'UvNL +', cat: 'Formats', type: 'logo', kw: 'plus extra lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-plus.png', preview: 'paper', dl: 'assets/formats/uvnl-plus.png' },
+    { t: 'UvNL Studio+', cat: 'Formats', type: 'logo', kw: 'studio plus productie lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-studio.png', preview: 'paper', dl: 'assets/formats/uvnl-studio.png' },
     { t: 'Partners', cat: 'Resources', type: 'page', kw: 'partners universiteiten leden samenwerking co-branding', href: 'pages/formats.html#partners', thumb: 'mark', dl: null },
     { t: 'Voorbeelden', cat: 'Hoe we eruitzien', type: 'page', kw: 'voorbeelden examples poster thumbnail quote slide story toepassing in het wild posters social', href: 'pages/examples.html', thumb: 'mark', dl: null },
 
