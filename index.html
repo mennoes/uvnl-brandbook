@@ -34,7 +34,7 @@
   .hub-card:hover .arr { transform:translateX(4px); }
 
   /* hero = vol Varsity Green met grote U erachter (zoals de site) */
-  .bb-hero { background:var(--uvnl-green); color:var(--uvnl-paper); padding:118px 28px 92px; perspective:1100px; }
+  .bb-hero { background:var(--uvnl-green); color:var(--uvnl-paper); margin-top:-68px; padding:128px 28px 92px; perspective:1100px; }
   .bb-hero .kicker { color:rgba(244,240,237,.66); }
   .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(34px,5vw,60px); }
   .bb-hero .sub { color:rgba(244,240,237,.88); }
@@ -49,6 +49,12 @@
   .bb-hero .bgu-wrap .back { transform:translateZ(-32px); } .bb-hero .bgu-wrap .back path { fill:#063D2C; }
   .bb-hero .hero-logo { display:inline-flex; margin:0 0 22px; }
   .bb-hero .hero-logo img { height:42px; filter:brightness(0) invert(1); }
+  /* over-ons teaser in de hero */
+  .hero-about { position:relative; z-index:2; max-width:600px; margin:2px auto 0; }
+  .hero-about p { color:rgba(244,240,237,.9); font-size:16px; line-height:1.6; margin:0; }
+  .hero-about p:not(.open) { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .hero-about .ha-btn { margin-top:12px; background:rgba(244,240,237,.14); color:var(--uvnl-paper); border:1px solid rgba(244,240,237,.34); border-radius:var(--r-pill); padding:8px 18px; font-family:var(--font-sans); font-weight:700; font-size:13px; cursor:pointer; transition:background var(--dur) var(--ease); }
+  .hero-about .ha-btn:hover { background:rgba(244,240,237,.24); }
   /* grote 3D-elementen in de hoeken, deels uit beeld */
   .orn.tl { top:-46px; left:-34px; }
   .orn.tr { top:-40px; right:-44px; }
@@ -115,7 +121,10 @@
   <span class="orn br" data-depth="-0.22"><img class="orn-img" src="assets/illustration-3d/gedrag-maatschappij.png" style="width:380px;--rot:-6deg;--fd:7.5s;--fdel:-2s" alt=""></span>
   <a class="hero-logo" href="index.html" aria-label="Universiteit van Nederland"><img src="assets/logos/uvnl-logo.svg" alt="Universiteit van Nederland"></a>
   <h1>Het merk op één plek</h1>
-  <p class="sub">Bekijk het merk en maak er direct iets mee.</p>
+  <div class="hero-about">
+    <p id="haText">Universiteiten van Nederland maakt complexe wetenschap toegankelijk via verhalende video, de website, tv en live events. We maken van ingewikkelde onderwerpen een verhaal dat je wél begrijpt — als een slimme vriend die iets uitlegt op een borrel, niet als een leerboek. <span id="haMore">Nieuwsgierig, slim, toegankelijk. Het merk heeft karakter: gedurfd, academisch maar toegankelijk, met een collage-achtige energie — redactionele collage, geen gladde SaaS. <a href="pages/about.html" style="color:var(--uvnl-paper);text-decoration:underline">Lees alles over ons →</a></span></p>
+    <button class="ha-btn" id="haBtn" aria-expanded="false">Lees meer</button>
+  </div>
 
   <div class="search-wrap">
     <div class="search-box">
@@ -271,6 +280,16 @@
   function reset() { wrap.style.transform = 'translate(-50%,-50%)'; }
   hero.addEventListener('mousemove', move);
   hero.addEventListener('mouseleave', reset);
+})();
+/* "Lees meer": toon de volledige over-ons-tekst */
+(function () {
+  var t = document.getElementById('haText'), b = document.getElementById('haBtn');
+  if (!t || !b) return;
+  b.addEventListener('click', function () {
+    var open = t.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.textContent = open ? 'Lees minder' : 'Lees meer';
+  });
 })();
 </script>
 </body>
