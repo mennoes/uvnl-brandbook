@@ -46,16 +46,19 @@ Zet Pages één keer aan: **Settings → Pages → Build and deployment → Depl
 branch → `main` / `(root)`**. De `.nojekyll` zorgt dat alle bestanden ongemoeid
 geserveerd worden.
 
-## Let op — logobestanden
+## Logobestanden
 
-De logo's en formats worden **gerenderd met het officiële OSGC-font**, dus op het
-scherm zien ze er merk-getrouw uit (gecheckt tegen de Figma-huisstijl). De
-*downloadbare* `assets/logos/*.svg` zijn echter font-afhankelijke reconstructies,
-geen uitgelijnde vectoren. De officiële vector-/AI-bestanden staan in de
-[Figma-huisstijl](https://www.figma.com/design/ADqwKZfUgT3jGZ16bGFoom/) — in deze
-buildomgeving blokkeert de network-allowlist het automatisch ophalen van
-Figma-assets. Exporteer ze daar één keer en vervang `assets/logos/*` (en eventueel
-de format-vectoren); de rest van het merkboek blijft werken.
+De `assets/logos/*.svg` zijn de **officiële vectoren uit de
+[Figma-huisstijl](https://www.figma.com/design/ADqwKZfUgT3jGZ16bGFoom/)** —
+rechtstreeks geëxporteerd, geen font-reconstructies meer. Het beeldmerk, de
+wordmark (uitgelijnde letter­contouren), het staande logo, het vierkante lockup,
+de U-outline en het vaandel zijn echte paden. Ze gebruiken `fill="currentColor"`,
+zodat het merkboek ze on-the-fly groen, paper of wit kan kleuren (zie de
+SVG-inliner in `assets/js/brandbook.js`).
+
+De formats/submerken (Wetensnap, Collegenacht, …) op `pages/formats.html` blijven
+merk-getrouwe CSS-recreaties met het OSGC-font; hun bronvectoren staan in dezelfde
+Figma-huisstijl.
 
 ---
 © 2026 Universiteiten van Nederland · Vragen: merk@universiteitenvannederland.nl
