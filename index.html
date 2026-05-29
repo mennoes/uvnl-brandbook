@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>UvNL Merkboek — alle merkelementen op één plek</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Het merkboek van Universiteiten van Nederland. Zoek, bekijk en download logo's, kleuren, lettertypes, iconen en richtlijnen — voor redacteuren én partners.">
+<meta name="description" content="Het merkboek van Universiteit van Nederland. Zoek, bekijk en download logo's, kleuren, lettertypes, iconen en richtlijnen — voor redacteuren én partners.">
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css">
 <script>window.BB_BASE = '';</script>
@@ -17,13 +17,13 @@
   @media (max-width:980px){ .orn { display:none; } }
   @media (prefers-reduced-motion:reduce){ .orn-img { animation:none; } }
 
-  .hub-section { margin-top:60px; }
-  .section-head { display:flex; align-items:center; gap:14px; margin:0 0 4px; }
+  .hub-section { margin-top:88px; }
+  .section-head { display:flex; align-items:center; gap:14px; margin:0 0 12px; }
   .section-head .num { font-family:var(--font-display); font-weight:700; font-size:clamp(20px,3.4vw,28px); line-height:1; color:var(--uvnl-green-bright); }
   .section-head h2 { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-.01em; font-size:clamp(20px,3.4vw,28px); margin:0; line-height:1; }
-  .hub-lead { color:var(--fg-mute); margin:0 0 14px; max-width:62ch; font-size:15px; }
+  .hub-lead { color:var(--fg-mute); margin:0 0 24px; max-width:62ch; font-size:15px; }
   /* schone kaarten in kolommen, met icoon */
-  .hub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:14px; }
+  .hub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:18px; }
   .hub-card { position:relative; display:flex; flex-direction:column; min-height:158px; background:var(--bg-2); border:1px solid var(--line); border-radius:var(--r-4); padding:20px; text-decoration:none; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease); }
   .hub-card:hover { transform:translateY(-3px); border-color:var(--line-strong); box-shadow:0 14px 30px rgba(0,0,0,.10); }
   .hub-card .ic { width:30px; height:30px; color:var(--uvnl-green-bright); margin:0 0 auto; }
@@ -34,12 +34,10 @@
   .hub-card:hover .arr { transform:translateX(4px); }
 
   /* hero = vol Varsity Green met grote U erachter (zoals de site) */
-  .bb-hero { background:var(--uvnl-green); color:var(--uvnl-paper); margin-top:-68px; padding:128px 28px 92px; perspective:1100px; }
+  .bb-hero { background:var(--uvnl-green); color:var(--uvnl-paper); margin-top:-68px; padding:140px 28px 120px; perspective:1100px; }
   .bb-hero .kicker { color:rgba(244,240,237,.66); }
   .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(34px,5vw,60px); }
   .bb-hero .sub { color:rgba(244,240,237,.88); }
-  .bb-hero .search-hint { color:rgba(244,240,237,.72); }
-  .bb-hero .search-hint b { color:var(--uvnl-paper); }
   /* pseudo-3D U die met de cursor meedraait */
   .bb-hero .bgu-wrap { position:absolute; left:50%; top:50%; width:min(380px,42%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
   .bb-hero .bgu-wrap svg { width:100%; height:auto; display:block; }
@@ -68,11 +66,18 @@
   .orn.br { bottom:-44px; right:-30px; }
   /* full-bleed paarse band voor de Tools-zone */
   .band { width:100%; }
-  .band--purple { background:var(--uvnl-purple); margin-top:64px; padding:6px 0 60px; }
-  .band--purple .hub-section { margin-top:0; padding-top:54px; }
+  .band--purple { background:var(--uvnl-purple); margin-top:88px; padding:8px 0 78px; }
+  .band--purple .hub-section { margin-top:0; padding-top:70px; }
   .band--purple .section-head h2 { color:var(--uvnl-green); }
   .band--purple .hub-lead { color:#3a2b63; }
   .band--purple .hub-card { border-color:transparent; }
+  /* 01: samenvatting links, kaarten rechts */
+  .wie-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1.25fr); gap:32px; align-items:start; }
+  .wie-grid .about-summary { margin:0; max-width:none; }
+  @media (max-width:880px){ .wie-grid { grid-template-columns:1fr; gap:24px; } }
+  /* nav-zoekbalk fadet in zodra je voorbij de hero bent */
+  .bbnav .mini-search { transition:opacity var(--dur) var(--ease); }
+  .bbnav.is-hero .mini-search { opacity:0; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -134,25 +139,21 @@
       <input id="bb-search" type="text" placeholder="Zoek naar het groene logo, een kleur, een font…" autocomplete="off" autofocus>
     </div>
     <div class="search-results" id="bb-results"></div>
-    <p class="search-hint">Probeer
-      <b onclick="document.getElementById('bb-search').value='groen logo';document.getElementById('bb-search').dispatchEvent(new Event('input'));document.getElementById('bb-search').focus()">groen logo</b>,
-      <b onclick="document.getElementById('bb-search').value='paars';document.getElementById('bb-search').dispatchEvent(new Event('input'));document.getElementById('bb-search').focus()">paars</b>,
-      <b onclick="document.getElementById('bb-search').value='font';document.getElementById('bb-search').dispatchEvent(new Event('input'));document.getElementById('bb-search').focus()">font</b> of
-      <b onclick="document.getElementById('bb-search').value='bliksem';document.getElementById('bb-search').dispatchEvent(new Event('input'));document.getElementById('bb-search').focus()">bliksem</b>.
-    </p>
   </div>
 </header>
 
 <!-- 01 WIE WE ZIJN -->
 <section class="wrap hub-section">
   <div class="section-head"><span class="num">01</span><h2>Wie we zijn</h2></div>
+  <div class="wie-grid">
   <div class="about-summary">
-    <p id="haText">Universiteiten van Nederland maakt complexe wetenschap toegankelijk — via verhalende video op YouTube, Instagram en TikTok, de website, tv en live events. We nemen ingewikkelde onderwerpen en maken er een verhaal van dat je wél begrijpt: als een slimme vriend die iets uitlegt op een borrel, niet als een leerboek. <span id="haMore">Nieuwsgierig, slim en toegankelijk — gedurfd en academisch, met een collage-achtige energie. Redactionele collage, geen gladde SaaS; het systeem durft een beetje onaf te ogen en dat maakt het geloofwaardig. <a href="pages/about.html" style="color:var(--uvnl-green-bright);font-weight:700">Lees alles over ons →</a></span></p>
+    <p id="haText">Universiteit van Nederland maakt complexe wetenschap toegankelijk — via verhalende video op YouTube, Instagram en TikTok, de website, tv en live events. We nemen ingewikkelde onderwerpen en maken er een verhaal van dat je wél begrijpt: als een slimme vriend die iets uitlegt op een borrel, niet als een leerboek. <span id="haMore">Nieuwsgierig, slim en toegankelijk — gedurfd en academisch, met een collage-achtige energie. Redactionele collage, geen gladde SaaS; het systeem durft een beetje onaf te ogen en dat maakt het geloofwaardig. <a href="pages/about.html" style="color:var(--uvnl-green-bright);font-weight:700">Lees alles over ons →</a></span></p>
     <button class="ha-btn" id="haBtn" aria-expanded="false">Lees verder</button>
   </div>
-  <div class="hub-grid">
+  <div class="hub-grid wie-cards">
     <a class="hub-card" href="pages/tone-of-voice.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a3 3 0 01-3 3H8l-5 3V6a3 3 0 013-3h12a3 3 0 013 3z"/></svg></span><span class="t">Tone of voice</span><span class="d">Hoe we schrijven</span><span class="arr">→</span></a>
     <a class="hub-card" href="pages/guidelines.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><span class="t">Do's &amp; don'ts</span><span class="d">Richtlijnen, kleur-in-context &amp; toegankelijkheid</span><span class="arr">→</span></a>
+  </div>
   </div>
 </section>
 

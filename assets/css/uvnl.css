@@ -639,14 +639,14 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 .bbnav .navdrop-btn:hover, .bbnav .navdrop.open .navdrop-btn { color: var(--fg); background: var(--bg-3); }
 .bbnav .navdrop-btn svg { width: 11px; height: 11px; transition: transform var(--dur) var(--ease); }
 .bbnav .navdrop.open .navdrop-btn svg { transform: rotate(180deg); }
-.bbnav .navdrop-menu { position: absolute; top: calc(100% + 4px); right: 0; min-width: 224px; background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--r-4); padding: 6px; box-shadow: 0 14px 34px rgba(0,0,0,0.13); display: none; flex-direction: column; gap: 2px; }
+.bbnav .navdrop-menu { position: absolute; top: calc(100% + 4px); right: 0; min-width: 236px; background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--r-4); padding: 8px; box-shadow: 0 14px 34px rgba(0,0,0,0.13); display: none; flex-direction: column; gap: 1px; }
 /* bridge the gap between button and menu so hover doesn't drop while moving the cursor */
 .bbnav .navdrop-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
 .bbnav .navdrop.open .navdrop-menu, .bbnav .navdrop:hover .navdrop-menu, .bbnav .navdrop:focus-within .navdrop-menu { display: flex; }
-.bbnav .navdrop-menu a { display: block; font-family: var(--font-sans); font-weight: 600; font-size: 13.5px; color: var(--fg-dim); padding: 8px 12px; border-radius: var(--r-2); text-decoration: none; white-space: nowrap; }
-.bbnav .navdrop-menu a:hover { color: var(--fg); background: var(--bg-3); }
-.bbnav .navdrop-label { font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-mute); padding: 11px 12px 4px; }
-.bbnav .navdrop-label:first-child { padding-top: 4px; }
+.bbnav .navdrop-menu a { display: block; font-family: var(--font-sans); font-weight: 400; font-size: 14.5px; color: var(--fg); padding: 8px 12px; border-radius: var(--r-2); text-decoration: none; white-space: nowrap; }
+.bbnav .navdrop-menu a:hover { color: var(--uvnl-green-bright); background: var(--bg-3); }
+.bbnav .navdrop-label { font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-mute); padding: 16px 12px 6px; margin-top: 6px; border-top: 1px solid var(--line); }
+.bbnav .navdrop-label:first-child { padding-top: 6px; margin-top: 0; border-top: 0; }
 /* nav wisselt: transparant/groen bóven de hero, lichte balk zodra je op wit scrolt */
 .bbnav { transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease); }
 .bbnav.is-hero { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom-color: transparent; }
