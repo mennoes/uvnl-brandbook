@@ -684,3 +684,7 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
   .page-head .lead { font-size: 16px; }
   .page-head .ph-orn { display: none; }
 }
+
+/* volledig logo linksboven in de nav */
+.bbnav .home .navlogo { height: 30px; width: auto; color: var(--uvnl-green); }
+.bbnav.is-hero .home .navlogo { color: var(--uvnl-paper); }
