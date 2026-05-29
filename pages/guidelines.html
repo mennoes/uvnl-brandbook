@@ -7,6 +7,27 @@
 <link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
+<style>
+  /* kleur-in-context (uit de Figma 'Usage'-richtlijn) */
+  .ctx { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:6px; }
+  .ctx-card { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
+  .ctx-strip { display:grid; grid-template-columns:repeat(4,1fr); }
+  .ctx-cell { aspect-ratio:3/4; display:flex; align-items:flex-end; justify-content:center; padding-bottom:20%; }
+  .ring { width:40%; aspect-ratio:1; border-radius:50%; border:0.46rem solid var(--rc); box-sizing:border-box; }
+  .ctx-cap { font-family:var(--font-sans); font-weight:700; font-size:12.5px; padding:12px 16px; border-top:1px solid var(--line); color:var(--fg); display:flex; align-items:center; gap:8px; }
+  .ctx-cap .dot { width:9px; height:9px; border-radius:50%; flex:0 0 auto; }
+  /* botsende kleuren → toegankelijk alternatief */
+  .fixrow { display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap; margin:18px 0; }
+  .fixitem { flex:1 1 150px; min-width:140px; }
+  .conn { align-self:center; color:var(--fg-mute); font-size:20px; flex:0 0 auto; padding-top:6px; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; aspect-ratio:16/10; border-radius:10px; overflow:hidden; position:relative; }
+  .pair .c { display:flex; align-items:center; justify-content:center; }
+  .ring2 { width:42%; aspect-ratio:1; border-radius:50%; border:0.4rem solid var(--rc); box-sizing:border-box; }
+  .pair .strike { position:absolute; inset:0; color:var(--fg); pointer-events:none; }
+  .cap { font-family:var(--font-sans); font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:9px; color:var(--fg-mute); }
+  .cap.bad { color:var(--uvnl-red); } .cap.good { color:var(--uvnl-green-bright); }
+  @media (max-width:640px){ .ctx { grid-template-columns:1fr; } }
+</style>
 </head>
 <body>
 
@@ -52,6 +73,68 @@
     <div class="dd do"><div class="dd-vis" style="background:var(--uvnl-paper)"><img src="../assets/photos/scientist1.png" style="max-width:60%;border-radius:8px" alt=""></div><div class="dd-body"><span class="dd-tag">Wel</span><p>Echte wetenschappers, warm en licht korrelig, tight gecropt.</p></div></div>
     <div class="dd dont"><div class="dd-vis" style="background:var(--uvnl-paper)"><img src="../assets/photos/scientist1.png" style="max-width:60%;filter:grayscale(1);border-radius:8px" alt=""></div><div class="dd-body"><span class="dd-tag">Niet</span><p>Niet ontkleuren tot grijswaarden en geen stockfotografie.</p></div></div>
   </div>
+
+  <section style="margin:56px 0 0">
+    <div class="index-col" style="margin-bottom:14px"><h2>Kleur in context</h2></div>
+    <p class="lead" style="margin-bottom:22px">De stelregel uit de huisstijl: op <b>donkere</b> vlakken is Electric Purple je accent, op <b>lichte</b> vlakken Varsity Green. Zo blijven merktekens altijd leesbaar.</p>
+    <div class="ctx">
+      <div class="ctx-card">
+        <div class="ctx-strip">
+          <div class="ctx-cell" style="background:#004B36"><div class="ring" style="--rc:#D6ACFF"></div></div>
+          <div class="ctx-cell" style="background:#2B2B2B"><div class="ring" style="--rc:#D6ACFF"></div></div>
+          <div class="ctx-cell" style="background:#1B0757"><div class="ring" style="--rc:#D6ACFF"></div></div>
+          <div class="ctx-cell" style="background:#585FF1"><div class="ring" style="--rc:#D6ACFF"></div></div>
+        </div>
+        <div class="ctx-cap"><span class="dot" style="background:#D6ACFF"></span>Electric Purple op donker</div>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-strip">
+          <div class="ctx-cell" style="background:#FFC9D7"><div class="ring" style="--rc:#004B36"></div></div>
+          <div class="ctx-cell" style="background:#F4F0ED"><div class="ring" style="--rc:#004B36"></div></div>
+          <div class="ctx-cell" style="background:#D6ACFF"><div class="ring" style="--rc:#004B36"></div></div>
+          <div class="ctx-cell" style="background:#FFFFFF"><div class="ring" style="--rc:#004B36"></div></div>
+        </div>
+        <div class="ctx-cap"><span class="dot" style="background:#004B36"></span>Varsity Green op licht</div>
+      </div>
+    </div>
+
+    <h3 style="margin:38px 0 4px;font-family:var(--font-display);font-weight:700">Botsende kleuren → toegankelijk alternatief</h3>
+    <p class="lead" style="font-size:15px;margin-bottom:6px">Zet nooit twee even verzadigde kleuren tegen elkaar (slecht voor contrast en kleurenblinden). Vervang er één door Electric Purple en geef merktekens een ring met hoog contrast (Printer Ink of Paper).</p>
+
+    <div class="fixrow">
+      <div class="fixitem">
+        <div class="pair no"><div class="c" style="background:#004B36"><div class="ring2" style="--rc:#EE5245"></div></div><div class="c" style="background:#EE5245"><div class="ring2" style="--rc:#004B36"></div></div><svg class="strike" viewBox="0 0 100 62" preserveAspectRatio="none"><line x1="7" y1="7" x2="93" y2="55" stroke="currentColor" stroke-width="2.5"/></svg></div>
+        <div class="cap bad">Niet · groen + rood</div>
+      </div>
+      <span class="conn">→</span>
+      <div class="fixitem">
+        <div class="pair"><div class="c" style="background:#D6ACFF"><div class="ring2" style="--rc:#2B2B2B"></div></div><div class="c" style="background:#EE5245"><div class="ring2" style="--rc:#2B2B2B"></div></div></div>
+        <div class="cap">Alternatief</div>
+      </div>
+      <span class="conn">/</span>
+      <div class="fixitem">
+        <div class="pair"><div class="c" style="background:#D6ACFF"><div class="ring2" style="--rc:#2B2B2B"></div></div><div class="c" style="background:#EE5245"><div class="ring2" style="--rc:#F4F0ED"></div></div></div>
+        <div class="cap good">Toegankelijk</div>
+      </div>
+    </div>
+
+    <div class="fixrow">
+      <div class="fixitem">
+        <div class="pair no"><div class="c" style="background:#004B36"><div class="ring2" style="--rc:#FBF07A"></div></div><div class="c" style="background:#FBF07A"><div class="ring2" style="--rc:#004B36"></div></div><svg class="strike" viewBox="0 0 100 62" preserveAspectRatio="none"><line x1="7" y1="7" x2="93" y2="55" stroke="currentColor" stroke-width="2.5"/></svg></div>
+        <div class="cap bad">Niet · groen + geel</div>
+      </div>
+      <span class="conn">→</span>
+      <div class="fixitem">
+        <div class="pair"><div class="c" style="background:#D6ACFF"><div class="ring2" style="--rc:#2B2B2B"></div></div><div class="c" style="background:#FBF07A"><div class="ring2" style="--rc:#2B2B2B"></div></div></div>
+        <div class="cap">Alternatief</div>
+      </div>
+      <span class="conn">/</span>
+      <div class="fixitem">
+        <div class="pair"><div class="c" style="background:#D6ACFF"><div class="ring2" style="--rc:#F4F0ED"></div></div><div class="c" style="background:#FBF07A"><div class="ring2" style="--rc:#2B2B2B"></div></div></div>
+        <div class="cap good">Toegankelijk</div>
+      </div>
+    </div>
+  </section>
 
   <section class="prose" style="margin:56px 0 80px">
     <h2>Snel-checklist</h2>
