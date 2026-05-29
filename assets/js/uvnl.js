@@ -117,9 +117,35 @@ window.UVNL = (function () {
     } catch (e) {}
   })();
 
+  function mountNavDrop() {
+    var drops = document.querySelectorAll('.bbnav .navdrop');
+    drops.forEach(function (d) {
+      var btn = d.querySelector('.navdrop-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = d.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.bbnav .navdrop.open').forEach(function (d) {
+        d.classList.remove('open');
+        var b = d.querySelector('.navdrop-btn');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.bbnav .navdrop.open').forEach(function (d) { d.classList.remove('open'); });
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     wireCopy();
     mountThemeToggle();
+    mountNavDrop();
   });
 
   return { toast: toast, copy: copy, hexToRgb: hexToRgb, rgbToHsl: rgbToHsl, contrast: contrast, urlParam: urlParam, setTheme: setTheme, getTheme: getTheme };
