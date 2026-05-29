@@ -28,6 +28,11 @@
   .tape { position:absolute; width:84px; height:26px; background:rgba(251,240,122,.7); transform:rotate(-6deg); }
   .photo-fill { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .wash { position:absolute; inset:0; mix-blend-mode:multiply; }
+  /* 3D-elementen set (uit de Figma-huisstijl) */
+  .el3d-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:14px; margin-top:18px; }
+  .el3d { border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 10px 12px; text-align:center; }
+  .el3d img { width:84px; height:84px; object-fit:contain; }
+  .el3d span { display:block; margin-top:10px; font-family:var(--font-sans); font-weight:700; font-size:11px; color:var(--fg-mute); }
 </style>
 </head>
 <body>
@@ -157,6 +162,25 @@
     </div>
 
   </div>
+
+  <section style="margin:60px 0 0">
+    <div class="index-col" style="margin-bottom:8px"><h2>3D-elementen per vakgebied</h2></div>
+    <p class="lead" style="font-size:15px;margin-bottom:4px">Naast de platte iconen heeft UvNL een set 3D-objecten — één per onderzoeksgebied — als sfeermaker in thumbnails, posters en slides.</p>
+    <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">Beeld © UvNL · alleen ter referentie getoond, niet opgenomen in de download-kit.</p>
+    <div class="el3d-grid">
+      <div class="el3d"><img src="../assets/illustration-3d/informatie.png" alt="3D-element informatie"><span>Informatie</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/aarde-milieu.png" alt="3D-element aarde &amp; milieu"><span>Aarde &amp; milieu</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/gedrag-maatschappij.png" alt="3D-element gedrag &amp; maatschappij"><span>Gedrag &amp; maatschappij</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/kunst-cultuur.png" alt="3D-element kunst &amp; cultuur"><span>Kunst &amp; cultuur</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/taal-communicatie.png" alt="3D-element taal &amp; communicatie"><span>Taal &amp; communicatie</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/economie-bedrijf.png" alt="3D-element economie &amp; bedrijf"><span>Economie &amp; bedrijf</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/recht-bestuur.png" alt="3D-element recht &amp; bestuur"><span>Recht &amp; bestuur</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/gezondheid.png" alt="3D-element gezondheid"><span>Gezondheid</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/techniek.png" alt="3D-element techniek"><span>Techniek</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/onderwijs.png" alt="3D-element onderwijs"><span>Onderwijs</span></div>
+      <div class="el3d"><img src="../assets/illustration-3d/zon.png" alt="3D-element zon"><span>Zon</span></div>
+    </div>
+  </section>
 
   <section class="prose" style="margin:56px 0 80px">
     <h2>De ingrediënten</h2>
