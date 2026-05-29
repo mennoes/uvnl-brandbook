@@ -20,6 +20,9 @@
     { t: 'Vaandel', cat: 'Logo', type: 'logo', kw: 'vaandel pennant vlag banner u', href: 'pages/logos.html', thumb: 'img:assets/logos/vaandel.svg', preview: 'paper', dl: 'assets/logos/vaandel.svg' },
     { t: 'U-outline', cat: 'Logo', type: 'logo', kw: 'outline lijn u contour open', href: 'pages/logos.html', thumb: 'img:assets/logos/u-outline.svg', preview: 'paper', dl: 'assets/logos/u-outline.svg' },
     { t: 'Logo op groen (wit/paper)', cat: 'Logo', type: 'logo', kw: 'wit logo paper logo op groen donkere achtergrond invers diap negatief', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-logo.svg', preview: 'dark', dl: 'assets/logos/uvnl-logo.svg' },
+    { t: 'UvVL logo — Vlaanderen', cat: 'Logo', type: 'logo', kw: 'vlaanderen vlaams universiteit van vlaanderen uvvl belgie staand logo', href: 'pages/logos.html', thumb: 'img:assets/logos/uvvl-logo.svg', preview: 'paper', dl: 'assets/logos/uvvl-logo.svg' },
+    { t: 'UvVL wordmark — Vlaanderen', cat: 'Logo', type: 'logo', kw: 'vlaanderen vlaams wordmark woordmerk universiteit van vlaanderen uvvl', href: 'pages/logos.html', thumb: 'img:assets/logos/uvvl-wordmark.svg', preview: 'paper', dl: 'assets/logos/uvvl-wordmark.svg' },
+    { t: 'UvVL vierkant — Vlaanderen', cat: 'Logo', type: 'logo', kw: 'vlaanderen vlaams vierkant square lockup uvvl belgie', href: 'pages/logos.html', thumb: 'img:assets/logos/uvvl-logo-square.svg', preview: 'paper', dl: 'assets/logos/uvvl-logo-square.svg' },
 
     /* ── KLEUREN ──────────────────────────────────────── */
     { t: 'Varsity Green', cat: 'Kleur', type: 'color', kw: 'groen green varsity primair hoofdkleur 004B36', href: 'pages/colors.html', thumb: 'color:#004B36', hex: '#004B36', dl: null },
