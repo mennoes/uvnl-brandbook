@@ -28,6 +28,7 @@ pages/
   typography.html       Lettertypes + specimens + hiërarchie
   icons.html            Alle merkiconen (PNG)
   photography.html      Fotografie-richtlijnen + voorbeelden
+  formats.html          Formats & submerken (Wetensnap, Collegenacht, …) + partners
   tone-of-voice.html    Schrijfstijl & wel/niet
   guidelines.html       Do's & don'ts (visueel)
 tools/
@@ -47,10 +48,14 @@ geserveerd worden.
 
 ## Let op — logobestanden
 
-De logo-SVG's zijn een *best-effort* reconstructie uit de huisstijl (de officiële
-Figma had geen uitgewerkte vectorgeometrie voor woordmerk/beeldmerk). Vervang
-`assets/logos/*.svg` door de officiële AI/SVG-bestanden zodra die er zijn; de rest
-van het merkboek blijft werken.
+De logo's en formats worden **gerenderd met het officiële OSGC-font**, dus op het
+scherm zien ze er merk-getrouw uit (gecheckt tegen de Figma-huisstijl). De
+*downloadbare* `assets/logos/*.svg` zijn echter font-afhankelijke reconstructies,
+geen uitgelijnde vectoren. De officiële vector-/AI-bestanden staan in de
+[Figma-huisstijl](https://www.figma.com/design/ADqwKZfUgT3jGZ16bGFoom/) — in deze
+buildomgeving blokkeert de network-allowlist het automatisch ophalen van
+Figma-assets. Exporteer ze daar één keer en vervang `assets/logos/*` (en eventueel
+de format-vectoren); de rest van het merkboek blijft werken.
 
 ---
 © 2026 Universiteiten van Nederland · Vragen: merk@universiteitenvannederland.nl

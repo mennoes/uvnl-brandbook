@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Formats &amp; submerken — UvNL Merkboek</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
+<link rel="stylesheet" href="../assets/css/uvnl.css">
+<script>window.BB_BASE = '../';</script>
+<style>
+  .fmt-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; }
+  .fmt { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .fmt:hover { transform:translateY(-2px); border-color:var(--line-strong); }
+  .fmt .stage { aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; padding:28px; background:var(--uvnl-paper); }
+  .fmt .info { padding:14px 18px; border-top:1px solid var(--line); }
+  .fmt .info .name { font-family:var(--font-sans); font-weight:700; font-size:14px; color:var(--fg); }
+  .fmt .info .desc { font-size:12px; color:var(--fg-mute); margin-top:2px; }
+  /* format wordmark recreations — OSGC + brand colors */
+  .fw { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; line-height:.86; display:flex; align-items:center; gap:.18em; }
+  .fw .box { padding:0 .12em; display:inline-block; transform:rotate(-3deg); }
+  .fw .u { width:.62em; height:.56em; flex:0 0 auto; }
+  .fw .u path { fill:currentColor; }
+  .uoutline path { fill:none; stroke:currentColor; stroke-width:7; }
+  .serif-it { font-family:var(--font-serif); font-style:italic; text-transform:none; letter-spacing:0; }
+</style>
+</head>
+<body>
+
+<nav class="bbnav">
+  <div class="bbnav-inner">
+    <a class="home" href="../index.html">
+      <svg viewBox="0 0 156 140"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+      <b>UvNL<br>Merkboek</b>
+    </a>
+    <label class="mini-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="bb-nav-search" type="text" placeholder="Zoek…" autocomplete="off">
+      <div class="search-results" id="bb-nav-results" style="top:calc(100% + 10px)"></div>
+    </label>
+    <div class="links">
+      <a href="about.html">Over</a>
+      <a href="logos.html">Logo's</a>
+      <a href="colors.html">Kleuren</a>
+      <a href="typography.html">Type</a>
+      <a href="icons.html">Iconen</a>
+      <a class="btn primary cta" style="padding:7px 14px" href="../downloads/uvnl-brand-kit.zip" download>Download kit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="page-head">
+    <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Hoe we eruitzien <span class="sep">/</span> Formats</div>
+    <h1>Formats &amp; submerken</h1>
+    <p class="lead">Onze formats zijn korte, verzonnen samenstellingen die als bijnamen voelen. Elk format is een lockup van de <b>U</b> met OSGC-tekst en één merkkleur — speels, licht geroteerd, een beetje rommelig. Eén accentkleur per format, nooit twee die vechten.</p>
+    <p class="lead" style="font-size:14px;margin-top:10px;color:var(--fg-mute)">De weergaven hieronder zijn merk-getrouwe recreaties met het officiële OSGC-font. Officiële format-vectorbestanden staan in de Figma-huisstijl.</p>
+  </header>
+
+  <div class="index-col" style="margin-bottom:18px"><h2>Programmaformats</h2></div>
+  <div class="fmt-grid">
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:42px;color:var(--uvnl-purple-deep,#1B0757);flex-direction:column;align-items:flex-start;gap:0"><span>College</span><span>Nacht</span></div></div><div class="info"><span class="name">Collegenacht</span><span class="desc">Wetenschap by night · Deep Indigo</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:38px;color:#585FF1">Weten<span class="box" style="background:#585FF1;color:var(--uvnl-paper)">snap</span></div></div><div class="info"><span class="name">Wetensnap</span><span class="desc">Korte kennis-snaps · Electric Blue</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:34px;color:#EE5245">De<span class="box" style="background:#EE5245;color:var(--uvnl-paper)">werk</span>plaats</div></div><div class="info"><span class="name">De Werkplaats</span><span class="desc">Maken &amp; experimenteren · Electric Red</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:38px;color:var(--uvnl-green)">Onder<span class="box" style="background:var(--uvnl-green);color:var(--uvnl-paper)">zoekt</span></div></div><div class="info"><span class="name">UvNL onderzoekt</span><span class="desc">Diepgaand onderzoek · Varsity Green</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:40px;color:#EE5245"><span class="box" style="background:#EE5245;color:var(--uvnl-paper)">Legt</span>uit</div></div><div class="info"><span class="name">UvNL legt uit</span><span class="desc">Uitleg-format · Electric Red</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:40px;color:#EE5245"><span class="serif-it" style="font-weight:700">Even</span>&nbsp;Denken!</div></div><div class="info"><span class="name">Even Denken!</span><span class="desc">Prikkelende vragen · Electric Red</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:40px;color:var(--uvnl-purple);align-items:center"><span class="box" style="background:var(--uvnl-purple);color:var(--uvnl-green)">Voor</span>kennis</div></div><div class="info"><span class="name">Voorkennis</span><span class="desc">Achtergrond &amp; context · Electric Purple</span></div></div>
+
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:46px;color:var(--uvnl-green)">Hey&nbsp;<svg class="u" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg></div></div><div class="info"><span class="name">Hey U</span><span class="desc">Directe aanspreekvorm · Varsity Green</span></div></div>
+
+  </div>
+
+  <div class="index-col" style="margin:48px 0 18px"><h2>U-lockups</h2></div>
+  <div class="fmt-grid">
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:46px;color:var(--uvnl-green);align-items:center"><svg class="u" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>&nbsp;Live</div></div><div class="info"><span class="name">UvNL Live</span><span class="desc">Live-evenementen</span></div></div>
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:46px;color:var(--uvnl-green);align-items:center"><svg class="u" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>&nbsp;&amp;</div></div><div class="info"><span class="name">UvNL &amp;</span><span class="desc">Samenwerkingen</span></div></div>
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:46px;color:var(--uvnl-green);align-items:center"><svg class="u" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>&nbsp;+</div></div><div class="info"><span class="name">UvNL +</span><span class="desc">Extra / plus-content</span></div></div>
+    <div class="fmt"><div class="stage"><div class="fw" style="font-size:40px;color:var(--uvnl-green);align-items:center"><svg class="u" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>&nbsp;Studio+</div></div><div class="info"><span class="name">UvNL Studio+</span><span class="desc">Productie / studio</span></div></div>
+  </div>
+
+  <!-- PARTNERS -->
+  <section id="partners" style="margin:64px 0 80px">
+    <div class="index-col" style="margin-bottom:8px"><h2>Aangesloten partners</h2></div>
+    <p class="lead" style="font-size:15px;margin-bottom:24px">UvNL is het samenwerkingsverband van de Nederlandse universiteiten. Partners gebruiken hun eigen huisstijl naast die van UvNL — neem voor co-branding contact op met het merkteam.</p>
+    <div class="prose" style="max-width:none">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+        <div class="card" style="padding:14px 16px">Universiteit van Amsterdam</div>
+        <div class="card" style="padding:14px 16px">Universiteit Leiden</div>
+        <div class="card" style="padding:14px 16px">Universiteit Utrecht</div>
+        <div class="card" style="padding:14px 16px">Vrije Universiteit Amsterdam</div>
+        <div class="card" style="padding:14px 16px">Rijksuniversiteit Groningen</div>
+        <div class="card" style="padding:14px 16px">Radboud Universiteit</div>
+        <div class="card" style="padding:14px 16px">Maastricht University</div>
+        <div class="card" style="padding:14px 16px">Tilburg University</div>
+        <div class="card" style="padding:14px 16px">Erasmus University Rotterdam</div>
+        <div class="card" style="padding:14px 16px">TU Delft</div>
+        <div class="card" style="padding:14px 16px">TU Eindhoven</div>
+        <div class="card" style="padding:14px 16px">University of Twente</div>
+        <div class="card" style="padding:14px 16px">Wageningen University &amp; Research</div>
+        <div class="card" style="padding:14px 16px">Open Universiteit</div>
+        <div class="card" style="padding:14px 16px">Nationale Wetenschapsagenda</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+  <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">UvNL Merkboek · De HEMA van de wetenschap.</p></div>
+  <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px"><p>© 2026 Universiteiten van Nederland</p><p><a href="../index.html" style="color:var(--uvnl-green-bright)">Terug naar het merkboek</a></p></div>
+</div></footer>
+
+<script src="../assets/js/uvnl.js"></script>
+<script src="../assets/js/brandbook.js"></script>
+</body>
+</html>

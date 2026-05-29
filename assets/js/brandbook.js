@@ -49,6 +49,13 @@
     /* ── FOTOGRAFIE ───────────────────────────────────── */
     { t: 'Fotografie-richtlijnen', cat: 'Fotografie', type: 'photo', kw: 'foto fotografie beeld echte mensen wetenschappers stijl', href: 'pages/photography.html', thumb: 'img:assets/photos/scientist1.png', preview: 'photo', dl: null },
 
+    /* ── FORMATS / SUBMERKEN ──────────────────────────── */
+    { t: 'Formats & submerken', cat: 'Formats', type: 'page', kw: 'format submerk sub-brand lockup wetensnap collegenacht werkplaats onderzoekt legt uit hey u live voorkennis even denken', href: 'pages/formats.html', thumb: 'mark', dl: null },
+    { t: 'Collegenacht', cat: 'Formats', type: 'page', kw: 'collegenacht college nacht format avond live indigo', href: 'pages/formats.html', thumb: 'mark', dl: null },
+    { t: 'Wetensnap', cat: 'Formats', type: 'page', kw: 'wetensnap snap kort format blauw', href: 'pages/formats.html', thumb: 'mark', dl: null },
+    { t: 'De Werkplaats', cat: 'Formats', type: 'page', kw: 'werkplaats maken format rood', href: 'pages/formats.html', thumb: 'mark', dl: null },
+    { t: 'Partners', cat: 'Resources', type: 'page', kw: 'partners universiteiten leden samenwerking co-branding', href: 'pages/formats.html#partners', thumb: 'mark', dl: null },
+
     /* ── PAGINA'S ─────────────────────────────────────── */
     { t: 'Over UvNL', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
     { t: 'Tone of voice', cat: 'Hoe we spreken', type: 'page', kw: 'tone of voice schrijfstijl tekst stem taal nederlands toon', href: 'pages/tone-of-voice.html', thumb: 'mark', dl: null },
