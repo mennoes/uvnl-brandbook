@@ -674,3 +674,12 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
   .dl-banner { padding: 28px; }
 }
 @media (max-width: 560px) { .index-grid { grid-template-columns: 1fr; } }
+
+/* ── mobiel compacter ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .bbnav-inner { padding: 10px 16px; gap: 12px; }
+  .page-head { padding: 30px 0 18px; margin-bottom: 26px; }
+  .page-head h1 { font-size: clamp(32px, 9vw, 48px); margin-bottom: 10px; }
+  .page-head .lead { font-size: 16px; }
+  .page-head .ph-orn { display: none; }
+}
