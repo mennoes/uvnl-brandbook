@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Contrast Checker · UvNL Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/css/uvnl.css">
+<style>
+  body { background: var(--bg); }
+  .shell-wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+  .stage-top { padding: 16px 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .stage-top .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); font-family: var(--font-display); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: -0.005em; line-height: 1; }
+  .stage-top .brand svg { width: 22px; height: 20px; color: var(--uvnl-paper); }
+  .stage-top .tool-name { font-family: var(--font-display); font-size: 18px; text-transform: uppercase; line-height: 1; margin: 0 0 0 8px; padding-left: 18px; border-left: 1px solid var(--line); }
+  .stage-top .tool-name small { font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; color: var(--fg-mute); display: block; font-weight: 400; margin-top: 2px; }
+  .stage-top .actions { margin-left: auto; }
+
+  .top-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: end;
+    margin-bottom: 32px;
+  }
+  .top-grid h1 { font-family: var(--font-display); font-size: clamp(48px, 6vw, 88px); line-height: 0.92; text-transform: uppercase; letter-spacing: -0.02em; margin: 0; color: var(--fg); }
+  .top-grid p { font-family: var(--font-sans); font-size: 16px; line-height: 1.5; color: var(--fg-dim); margin: 0; max-width: 460px; }
+
+  /* Main check area */
+  .check {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-3);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .check .col { padding: 24px; border-right: 1px solid var(--line); }
+  .check .col:last-child { border-right: 0; }
+  .check .col label { display: block; font-family: var(--font-sans); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--fg-mute); margin-bottom: 10px; }
+  .check .hex-input {
+    display: flex; gap: 10px; align-items: center;
+    background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-2);
+    padding: 10px 12px;
+  }
+  .check .hex-input .picker {
+    width: 32px; height: 32px; border-radius: var(--r-1);
+    border: 1px solid var(--line); padding: 0; flex-shrink: 0;
+    cursor: pointer; overflow: hidden; appearance: none; -webkit-appearance: none;
+    background: transparent;
+  }
+  .check .hex-input .picker::-webkit-color-swatch-wrapper { padding: 0; }
+  .check .hex-input .picker::-webkit-color-swatch { border: 0; border-radius: 0; }
+  .check .hex-input input[type="text"] {
+    background: transparent; border: 0; color: var(--fg); font: inherit; outline: none;
+    font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.04em;
+    text-transform: uppercase; flex: 1; min-width: 0;
+  }
+
+  .check .preview {
+    margin-top: 18px; aspect-ratio: 16 / 9; border-radius: var(--r-2);
+    display: flex; flex-direction: column; justify-content: center; padding: 24px;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+  }
+  .check .preview .big { font-family: var(--font-display); font-size: 38px; line-height: 0.95; text-transform: uppercase; letter-spacing: -0.005em; margin-bottom: 8px; }
+  .check .preview .small { font-family: var(--font-sans); font-size: 13px; line-height: 1.4; opacity: 0.85; }
+
+  /* Result */
+  .result {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: var(--r-3); padding: 28px;
+    display: grid; grid-template-columns: auto 1fr 1fr; gap: 32px; align-items: center;
+    margin-bottom: 32px;
+  }
+  .result .ratio {
+    font-family: var(--font-display); font-size: 88px; line-height: 0.92;
+    text-transform: uppercase; letter-spacing: -0.02em; color: var(--fg);
+  }
+  .result .ratio small { font-family: var(--font-mono); font-size: 14px; color: var(--fg-mute); letter-spacing: 0.08em; display: block; margin-top: 6px; }
+  .result .grades { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .result .grade {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-2);
+  }
+  .result .grade .badge {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 14px;
+  }
+  .result .grade.pass .badge { background: var(--uvnl-green); color: var(--uvnl-paper); }
+  .result .grade.fail .badge { background: var(--uvnl-red); color: white; }
+  .result .grade .info { flex: 1; }
+  .result .grade .info .name { font-family: var(--font-display); font-size: 22px; line-height: 1; text-transform: uppercase; }
+  .result .grade .info .desc { font-family: var(--font-sans); font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; font-weight: 700; }
+
+  .result .summary {
+    font-family: var(--font-serif); font-style: italic; font-size: 17px; line-height: 1.4; color: var(--fg-dim);
+    border-left: 3px solid currentColor; padding-left: 16px; max-width: 420px;
+  }
+
+  /* Quick combos */
+  .combos {
+    margin-bottom: 32px;
+  }
+  .combos h3 { font-family: var(--font-display); font-size: 28px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 16px; }
+  .combo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  .combo {
+    all: unset; cursor: pointer;
+    aspect-ratio: 16 / 9; border-radius: var(--r-2);
+    padding: 14px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--font-display); font-size: 18px; text-transform: uppercase; letter-spacing: -0.005em; line-height: 1;
+    position: relative;
+    transition: transform var(--dur) var(--ease);
+  }
+  .combo:hover { transform: scale(1.03); }
+  .combo .name { font-family: var(--font-display); }
+  .combo .score { font-family: var(--font-mono); font-size: 10px; opacity: 0.7; letter-spacing: 0.06em; }
+  .combo .grade-pill {
+    align-self: flex-start;
+    font-family: var(--font-sans); font-weight: 700; font-size: 9px;
+    padding: 3px 6px; border-radius: var(--r-1);
+    background: rgba(255,255,255,0.18); letter-spacing: 0.12em;
+  }
+  .combo.fail .grade-pill { background: rgba(238,82,69,0.85); color: white; }
+
+  /* WCAG explainer */
+  .explain {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-3);
+    padding: 24px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .explain .item h4 { font-family: var(--font-display); font-size: 20px; line-height: 1; text-transform: uppercase; margin: 0 0 6px; }
+  .explain .item p { font-family: var(--font-sans); font-size: 13px; color: var(--fg-dim); line-height: 1.45; margin: 0; }
+  .explain .item .threshold { font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-top: 6px; }
+
+  @media (max-width: 900px) {
+    .check { grid-template-columns: 1fr; }
+    .check .col { border-right: 0; border-bottom: 1px solid var(--line); }
+    .result { grid-template-columns: 1fr; }
+    .top-grid { grid-template-columns: 1fr; }
+    .explain { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="shell-wrap">
+
+    <div class="stage-top">
+      <a class="brand" href="../index.html">
+        <svg viewBox="0 0 156 140" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+        <span>UvNL</span>
+      </a>
+      <div class="tool-name">Contrast Checker<small>WCAG AA / AAA · v1.0</small></div>
+      <div class="actions">
+        <a class="btn ghost" href="../index.html">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Alle tools
+        </a>
+      </div>
+    </div>
+
+    <div class="top-grid">
+      <h1>Lees baar of niet?</h1>
+      <p>Test elke twee­kleuren­combinatie tegen WCAG-richtlijnen. Pak een merkkleur, kies een tweede — de tool zegt direct of het door AA en AAA komt.</p>
+    </div>
+
+    <!-- INPUT -->
+    <div class="check">
+      <div class="col">
+        <label>Achtergrond</label>
+        <div class="hex-input">
+          <input type="color" id="bg-color" class="picker" value="#004B36">
+          <input type="text" id="bg-hex" value="#004B36" maxlength="7">
+        </div>
+        <div class="preview" id="bg-preview" style="background: #004B36; color: #F4F0ED;">
+          <div class="big">Trump uit<br>de NAVO?</div>
+          <div class="small">Een proefzin in de typografie van het merk. 14 px paragraaftekst over twee regels om de combinatie te checken.</div>
+        </div>
+      </div>
+      <div class="col">
+        <label>Tekstkleur</label>
+        <div class="hex-input">
+          <input type="color" id="fg-color" class="picker" value="#F4F0ED">
+          <input type="text" id="fg-hex" value="#F4F0ED" maxlength="7">
+        </div>
+        <div class="preview" id="fg-preview" style="background: #F4F0ED; color: #004B36;">
+          <div class="big">Trump uit<br>de NAVO?</div>
+          <div class="small">Een proefzin in de typografie van het merk. 14 px paragraaftekst over twee regels om de combinatie te checken.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result">
+      <div class="ratio"><span id="ratio-val">10.4</span>:1<small id="ratio-meta">CONTRAST RATIO</small></div>
+      <div class="grades" id="grades">
+        <!-- filled by JS -->
+      </div>
+      <div class="summary" id="summary">"Stevig contrast — geschikt voor alle tekstgroottes."</div>
+    </div>
+
+    <!-- COMBOS -->
+    <section class="combos">
+      <div class="strip-head" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line);">
+        <h3>Merk-kleurenparen</h3>
+        <span style="font-family: var(--font-sans); font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Klik om te testen</span>
+      </div>
+      <div class="combo-grid" id="combo-grid"></div>
+    </section>
+
+    <!-- EXPLAIN -->
+    <section class="explain">
+      <div class="item">
+        <h4>AA · Body</h4>
+        <p>Standaard­tekst (16-18 px). De minimale norm voor publieke websites.</p>
+        <div class="threshold">≥ 4.5 : 1</div>
+      </div>
+      <div class="item">
+        <h4>AA · Large</h4>
+        <p>Grote tekst (24 px+ of 18 px+ bold). Mag iets minder contrast.</p>
+        <div class="threshold">≥ 3.0 : 1</div>
+      </div>
+      <div class="item">
+        <h4>AAA · Body</h4>
+        <p>Strengste norm. Voor publicaties die echt gelezen moeten worden.</p>
+        <div class="threshold">≥ 7.0 : 1</div>
+      </div>
+      <div class="item">
+        <h4>AAA · Large</h4>
+        <p>Grote tekst onder de AAA-norm.</p>
+        <div class="threshold">≥ 4.5 : 1</div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="../assets/js/uvnl.js"></script>
+  <script>
+  (function () {
+    var BRAND = [
+      { name: 'Varsity Green',   hex: '#004B36' },
+      { name: 'Paper',           hex: '#F4F0ED' },
+      { name: 'Electric Purple', hex: '#D6ACFF' },
+      { name: 'Electric Yellow', hex: '#FBF07A' },
+      { name: 'Electric Blue',   hex: '#5BA5FE' },
+      { name: 'Electric Red',    hex: '#EE5245' },
+      { name: 'Deep Indigo',     hex: '#1B0757' },
+      { name: 'White',           hex: '#FFFFFF' },
+      { name: 'Black',           hex: '#0A0E0C' }
+    ];
+    // Curated combos
+    var COMBOS = [
+      ['Varsity Green', 'Paper'],
+      ['Paper', 'Varsity Green'],
+      ['Varsity Green', 'Electric Yellow'],
+      ['Deep Indigo', 'Electric Yellow'],
+      ['Deep Indigo', 'Electric Purple'],
+      ['Electric Purple', 'Varsity Green'],
+      ['Electric Yellow', 'Varsity Green'],
+      ['Electric Red', 'Paper'],
+      ['Paper', 'Electric Red'],
+      ['Black', 'Paper'],
+      ['White', 'Varsity Green'],
+      ['Varsity Green', 'Electric Purple']
+    ];
+
+    function hexToRgb(hex) {
+      hex = hex.replace('#',''); if (hex.length === 3) hex = hex.split('').map(function(c){return c+c;}).join('');
+      var n = parseInt(hex, 16); return { r: (n>>16)&255, g: (n>>8)&255, b: n&255 };
+    }
+    function relLum(rgb) {
+      var s = [rgb.r, rgb.g, rgb.b].map(function (v) {
+        v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * s[0] + 0.7152 * s[1] + 0.0722 * s[2];
+    }
+    function contrast(h1, h2) {
+      var L1 = relLum(hexToRgb(h1));
+      var L2 = relLum(hexToRgb(h2));
+      var hi = Math.max(L1, L2), lo = Math.min(L1, L2);
+      return (hi + 0.05) / (lo + 0.05);
+    }
+
+    function validateHex(v) {
+      v = v.trim();
+      if (!v.startsWith('#')) v = '#' + v;
+      return /^#[0-9A-F]{6}$/i.test(v) ? v.toUpperCase() : null;
+    }
+
+    function findByHex(hex) {
+      return BRAND.find(function (b) { return b.hex.toLowerCase() === hex.toLowerCase(); });
+    }
+
+    var state = { bg: '#004B36', fg: '#F4F0ED' };
+
+    // Read params
+    function readParams() {
+      var p = new URLSearchParams(location.search);
+      if (p.has('srcmap')) return;
+      if (p.get('bg')) { var b = validateHex(p.get('bg')); if (b) state.bg = b; }
+      if (p.get('fg')) { var f = validateHex(p.get('fg')); if (f) state.fg = f; }
+    }
+    readParams();
+
+    function update() {
+      var ratio = contrast(state.bg, state.fg);
+      var r = ratio.toFixed(2);
+
+      document.getElementById('ratio-val').textContent = r;
+      document.getElementById('bg-preview').style.background = state.bg;
+      document.getElementById('bg-preview').style.color = state.fg;
+      document.getElementById('fg-preview').style.background = state.fg;
+      document.getElementById('fg-preview').style.color = state.bg;
+
+      document.getElementById('bg-color').value = state.bg;
+      document.getElementById('bg-hex').value = state.bg;
+      document.getElementById('fg-color').value = state.fg;
+      document.getElementById('fg-hex').value = state.fg;
+
+      // Grades
+      var aa = ratio >= 4.5;
+      var aaLg = ratio >= 3.0;
+      var aaa = ratio >= 7.0;
+      var aaaLg = ratio >= 4.5;
+      var grades = [
+        { name: 'AA',  pass: aa,    sub: 'Body 16 px' },
+        { name: 'AA Lg', pass: aaLg, sub: 'Large ≥24 px' },
+        { name: 'AAA', pass: aaa,   sub: 'Body strict' },
+        { name: 'AAA Lg', pass: aaaLg, sub: 'Large strict' }
+      ];
+      document.getElementById('grades').innerHTML = grades.map(function (g) {
+        var sym = g.pass ? '✓' : '✕';
+        return '<div class="grade ' + (g.pass ? 'pass' : 'fail') + '">' +
+          '<div class="badge">' + sym + '</div>' +
+          '<div class="info"><div class="name">' + g.name + '</div><div class="desc">' + g.sub + '</div></div>' +
+        '</div>';
+      }).join('');
+
+      // Summary
+      var sum;
+      if (ratio >= 12) sum = '"Bom-stevig contrast — werkt overal."';
+      else if (ratio >= 7) sum = '"Stevig contrast — geschikt voor alle tekst, ook bodycopy."';
+      else if (ratio >= 4.5) sum = '"Net genoeg voor bodycopy. Voor lange leesteksten kies iets contrastrijker."';
+      else if (ratio >= 3) sum = '"Alleen geschikt voor grote tekst (≥24 px) of vetgedrukt 18 px+."';
+      else sum = '"Niet leesbaar voor lopende tekst. Alleen decoratief gebruiken."';
+      document.getElementById('summary').textContent = sum;
+
+      // Share via URL
+      var url = location.origin + location.pathname + '?bg=' + encodeURIComponent(state.bg) + '&fg=' + encodeURIComponent(state.fg);
+      history.replaceState(null, '', url);
+    }
+
+    function renderCombos() {
+      var grid = document.getElementById('combo-grid');
+      grid.innerHTML = COMBOS.map(function (pair) {
+        var bg = BRAND.find(function (b) { return b.name === pair[0]; });
+        var fg = BRAND.find(function (b) { return b.name === pair[1]; });
+        var ratio = contrast(bg.hex, fg.hex);
+        var grade = ratio >= 7 ? 'AAA' : ratio >= 4.5 ? 'AA' : ratio >= 3 ? 'AA-LG' : 'FAIL';
+        var fail = ratio < 3;
+        return '<button class="combo ' + (fail ? 'fail' : '') + '" data-bg="' + bg.hex + '" data-fg="' + fg.hex + '" style="background:' + bg.hex + '; color:' + fg.hex + ';">' +
+          '<span class="grade-pill">' + grade + '</span>' +
+          '<span class="name">' + bg.name.split(' ')[0] + '<br>+ ' + fg.name.split(' ')[0] + '</span>' +
+          '<span class="score">' + ratio.toFixed(1) + ' : 1</span>' +
+        '</button>';
+      }).join('');
+      grid.onclick = function (e) {
+        var b = e.target.closest('button[data-bg]');
+        if (!b) return;
+        state.bg = b.getAttribute('data-bg');
+        state.fg = b.getAttribute('data-fg');
+        update();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    }
+
+    // INPUTS
+    document.getElementById('bg-color').addEventListener('input', function (e) { state.bg = e.target.value.toUpperCase(); update(); });
+    document.getElementById('fg-color').addEventListener('input', function (e) { state.fg = e.target.value.toUpperCase(); update(); });
+    document.getElementById('bg-hex').addEventListener('input', function (e) {
+      var v = validateHex(e.target.value); if (v) { state.bg = v; update(); }
+    });
+    document.getElementById('fg-hex').addEventListener('input', function (e) {
+      var v = validateHex(e.target.value); if (v) { state.fg = v; update(); }
+    });
+
+    update();
+    renderCombos();
+  })();
+  </script>
+</body>
+</html>

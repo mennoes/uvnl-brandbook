@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Quote Card Generator · UvNL Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/css/uvnl.css">
+<style>
+  body { background: var(--bg); overflow-x: hidden; }
+  .tool-shell { display: grid; grid-template-columns: 1fr 380px; min-height: 100vh; }
+  .stage { background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.015) 12px 13px), var(--bg); display: flex; flex-direction: column; position: relative; min-height: 100vh; }
+  .stage-top { padding: 16px 24px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 16px; background: var(--bg-1); }
+  .stage-top .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); font-family: var(--font-display); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: -0.005em; line-height: 1; }
+  .stage-top .brand svg { width: 22px; height: 20px; color: var(--uvnl-paper); }
+  .stage-top .tool-name { font-family: var(--font-display); font-size: 18px; text-transform: uppercase; line-height: 1; margin: 0 0 0 8px; padding-left: 18px; border-left: 1px solid var(--line); }
+  .stage-top .tool-name small { font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; color: var(--fg-mute); display: block; font-weight: 400; margin-top: 2px; }
+  .stage-top .actions { margin-left: auto; display: flex; gap: 8px; }
+
+  .canvas-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; overflow: hidden; }
+  .canvas-stage {
+    position: relative; max-width: 100%; max-height: 100%;
+    aspect-ratio: 1 / 1;
+    width: min(800px, 70%);
+    border-radius: 6px; overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.4);
+    background: var(--uvnl-paper);
+  }
+  .canvas-stage.story { aspect-ratio: 9 / 16; width: min(480px, 60%); }
+  .canvas-stage.landscape { aspect-ratio: 16 / 9; width: min(1200px, 100%); }
+  .canvas-stage.portrait { aspect-ratio: 4 / 5; width: min(640px, 65%); }
+
+  .quote {
+    width: 100%; height: 100%;
+    padding: 8% 9%; display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    color: var(--uvnl-green);
+  }
+  .quote .top {
+    font-family: var(--font-sans); font-weight: 700; font-size: 1.6em; letter-spacing: 0.16em; text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .quote .body {
+    flex: 1; display: flex; align-items: var(--qalign, center); padding: 1em 0;
+  }
+  .quote .body blockquote {
+    margin: 0;
+    font-family: 'Tiempos Text', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 4.2em; line-height: 1.18;
+    letter-spacing: -0.005em;
+    max-width: 100%;
+  }
+  .quote .body blockquote::before { content: '"'; display: inline; }
+  .quote .body blockquote::after { content: '"'; }
+  .quote .cite {
+    font-family: var(--font-sans); font-weight: 700; font-size: 1.6em;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    display: flex; align-items: center; gap: 14px;
+    opacity: 0.8;
+  }
+  .quote .cite::before { content: ''; width: 28px; height: 2px; background: currentColor; }
+
+  /* Decorative corner brand mark */
+  .quote .corner-mark { position: absolute; bottom: 6%; right: 6%; width: 7%; opacity: 0.5; }
+
+  /* Background variants */
+  .quote.paper { background: var(--uvnl-paper); color: var(--uvnl-green); }
+  .quote.green { background: var(--uvnl-green); color: var(--uvnl-paper); }
+  .quote.indigo { background: var(--uvnl-purple-deep); color: var(--uvnl-paper); }
+  .quote.purple { background: var(--uvnl-purple); color: var(--uvnl-green); }
+  .quote.white { background: #ffffff; color: var(--uvnl-green); }
+
+  /* Sizing tweaks */
+  .canvas-stage.story .quote blockquote { font-size: 3em; }
+  .canvas-stage.landscape .quote { padding: 6% 8%; }
+  .canvas-stage.landscape .quote blockquote { font-size: 3.8em; }
+
+  .stage-meta { position: absolute; bottom: 24px; left: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-mute); display: flex; gap: 16px; }
+  .stage-meta .l { color: var(--fg-faint); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; }
+
+  /* PANEL */
+  .panel { background: var(--bg-1); border-left: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 22px; overflow-y: auto; min-height: 100vh; }
+  .panel h2 { font-family: var(--font-display); font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: -0.005em; margin: 0; padding-bottom: 14px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+  .panel h2 small { font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; color: var(--fg-mute); font-weight: 400; }
+  .section { display: flex; flex-direction: column; gap: 10px; }
+  .section .sec-title { font-family: var(--font-sans); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--fg-mute); display: flex; justify-content: space-between; align-items: center; }
+  .section .sec-title .val { color: var(--fg); font-family: var(--font-mono); font-size: 11px; }
+  textarea, input[type="text"] { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-2); padding: 10px 12px; color: var(--fg); font: inherit; outline: none; font-family: var(--font-sans); font-size: 14px; }
+  textarea:focus, input[type="text"]:focus { border-color: var(--accent); }
+  textarea.quote-input { min-height: 110px; resize: vertical; font-family: var(--font-serif); font-style: italic; font-size: 16px; line-height: 1.4; }
+
+  .bg-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .bg-row button { all: unset; cursor: pointer; aspect-ratio: 1; border-radius: var(--r-2); border: 2px solid transparent; transition: all var(--dur) var(--ease); position: relative; }
+  .bg-row button:hover { transform: scale(1.06); }
+  .bg-row button.active { border-color: var(--fg); }
+  .bg-row button.active::after { content: ''; position: absolute; inset: -5px; border: 1px dashed var(--accent); border-radius: var(--r-3); }
+
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .grid-4 button { all: unset; cursor: pointer; padding: 10px 6px; text-align: center; border: 1px solid var(--line); border-radius: var(--r-2); font-family: var(--font-sans); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-dim); }
+  .grid-4 button.active { background: var(--uvnl-green); color: var(--uvnl-paper); border-color: var(--uvnl-green); }
+  .grid-4 button .r { font-family: var(--font-mono); font-size: 9px; opacity: 0.7; display: block; margin-top: 2px; font-weight: 400; letter-spacing: 0.04em; }
+
+  .seg { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; padding: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-pill); }
+  .seg button { all: unset; cursor: pointer; padding: 7px 6px; text-align: center; font-family: var(--font-sans); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-dim); border-radius: var(--r-pill); }
+  .seg button.active { background: var(--uvnl-green); color: var(--uvnl-paper); }
+
+  input[type="range"] { width: 100%; appearance: none; background: transparent; height: 24px; }
+  input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: var(--bg-3); border-radius: 999px; }
+  input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); margin-top: -6px; cursor: pointer; box-shadow: 0 0 0 4px rgba(214,172,255,0.12); }
+
+  .export-row { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+  .share { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-2); padding: 10px 12px; display: flex; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim); }
+  .share input { flex: 1; background: transparent; border: 0; color: var(--fg); font: inherit; outline: none; min-width: 0; }
+  .share button { all: unset; cursor: pointer; padding: 4px 8px; border-radius: var(--r-1); color: var(--fg-mute); }
+  .share button:hover { color: var(--accent); background: var(--bg-3); }
+
+  #export-canvas { display: none; }
+
+  @media (max-width: 980px) {
+    .tool-shell { grid-template-columns: 1fr; }
+    .panel { border-left: 0; border-top: 1px solid var(--line); min-height: auto; }
+  }
+</style>
+</head>
+<body data-no-theme-toggle>
+  <div class="tool-shell">
+    <div class="stage">
+      <div class="stage-top">
+        <a class="brand" href="../index.html">
+          <svg viewBox="0 0 156 140" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+          <span>UvNL</span>
+        </a>
+        <div class="tool-name">Quote Card<small>TIEMPOS ITALIC · v1.0</small></div>
+        <div class="actions">
+          <a class="btn ghost" href="../index.html">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Alle tools
+          </a>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <div class="canvas-stage" id="stage">
+          <div class="quote paper" id="quote">
+            <div class="top" id="top-line">UVNL · CITAAT 04</div>
+            <div class="body"><blockquote id="quote-text">Als je het niet kunt uitleggen aan je oma, snap je het niet.</blockquote></div>
+            <div class="cite" id="cite-line">Richard Feynman</div>
+            <svg class="corner-mark" viewBox="0 0 156 140" id="corner-mark"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-meta">
+        <div><span class="l">Formaat</span><div><span id="meta-size">1080 × 1080</span></div></div>
+        <div><span class="l">Achtergrond</span><div><span id="meta-bg">Paper</span></div></div>
+        <div><span class="l">Type­grootte</span><div><span id="meta-type">100%</span></div></div>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <h2>Quote card <small>06 controls</small></h2>
+
+      <div class="section">
+        <div class="sec-title">Citaat <span class="val">Tiempos Italic</span></div>
+        <textarea id="i-quote" class="quote-input">Als je het niet kunt uitleggen aan je oma, snap je het niet.</textarea>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Auteur / Bron <span class="val">Sans</span></div>
+        <input type="text" id="i-cite" value="Richard Feynman">
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Topline <span class="val">eyebrow</span></div>
+        <input type="text" id="i-top" value="UVNL · CITAAT 04">
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Achtergrond <span class="val" id="bg-val">Paper</span></div>
+        <div class="bg-row" id="bg-swatches"></div>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Formaat <span class="val" id="size-label">Vierkant · 1:1</span></div>
+        <div class="grid-4">
+          <button class="active" data-size="square">Square<span class="r">1080²</span></button>
+          <button data-size="portrait">Portrait<span class="r">1080×1350</span></button>
+          <button data-size="story">Story<span class="r">1080×1920</span></button>
+          <button data-size="landscape">Land.<span class="r">1920×1080</span></button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Uitlijning</div>
+        <div class="seg" id="align-seg">
+          <button data-align="flex-start">Boven</button>
+          <button class="active" data-align="center">Midden</button>
+          <button data-align="flex-end">Onder</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Type­grootte <span class="val" id="type-val">100%</span></div>
+        <input type="range" id="type-scale" min="60" max="160" value="100" step="5">
+      </div>
+
+      <div class="section">
+        <label style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-2); cursor: pointer;">
+          <input type="checkbox" id="i-corner" checked style="accent-color: var(--accent);">
+          <span style="font-family: var(--font-sans); font-size: 13px; color: var(--fg);">UvNL-merkmark in hoek</span>
+        </label>
+      </div>
+
+      <div class="export-row">
+        <button class="btn primary lg" id="download" style="justify-content: center;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Download PNG
+        </button>
+        <div class="share">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>
+          <input id="share-url" readonly>
+          <button id="copy-url">Kopieer</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <canvas id="export-canvas"></canvas>
+
+  <script src="../assets/js/uvnl.js"></script>
+  <script>
+  (function () {
+    var BGS = [
+      { key: 'paper',  name: 'Paper',         hex: '#F4F0ED', fg: '#004B36' },
+      { key: 'green',  name: 'Varsity Green', hex: '#004B36', fg: '#F4F0ED' },
+      { key: 'indigo', name: 'Deep Indigo',   hex: '#1B0757', fg: '#F4F0ED' },
+      { key: 'purple', name: 'Electric Purple',hex:'#D6ACFF', fg: '#004B36' },
+      { key: 'white',  name: 'White',         hex: '#FFFFFF', fg: '#004B36' }
+    ];
+    var SIZES = {
+      square:    { w: 1080, h: 1080, label: 'Vierkant · 1:1',   cssClass: '' },
+      portrait:  { w: 1080, h: 1350, label: 'Portrait · 4:5',   cssClass: 'portrait' },
+      story:     { w: 1080, h: 1920, label: 'Story · 9:16',     cssClass: 'story' },
+      landscape: { w: 1920, h: 1080, label: 'Landscape · 16:9', cssClass: 'landscape' }
+    };
+
+    var state = {
+      text: 'Als je het niet kunt uitleggen aan je oma, snap je het niet.',
+      cite: 'Richard Feynman',
+      top: 'UVNL · CITAAT 04',
+      bg: 'paper',
+      size: 'square',
+      align: 'center',
+      scale: 1.0,
+      corner: true
+    };
+
+    function readParams() {
+      var p = new URLSearchParams(location.search);
+      if (p.has('srcmap')) return;
+      if (p.get('t')) state.text = p.get('t');
+      if (p.get('a')) state.cite = p.get('a');
+      if (p.get('top')) state.top = p.get('top');
+      if (p.get('bg') && BGS.find(function(b){return b.key===p.get('bg');})) state.bg = p.get('bg');
+      if (p.get('size') && SIZES[p.get('size')]) state.size = p.get('size');
+      if (p.get('align')) state.align = p.get('align');
+      if (p.get('scale')) state.scale = parseFloat(p.get('scale'));
+      if (p.get('corner') === '0') state.corner = false;
+    }
+    readParams();
+
+    function bg() { return BGS.find(function (b) { return b.key === state.bg; }); }
+
+    function renderSwatches() {
+      var el = document.getElementById('bg-swatches');
+      el.innerHTML = BGS.map(function (b) {
+        return '<button title="' + b.name + '" data-key="' + b.key + '" class="' + (b.key === state.bg ? 'active' : '') + '" style="background:' + b.hex + '; border-color: ' + (b.hex === '#FFFFFF' || b.hex === '#F4F0ED' ? '#ccc' : 'transparent') + '"></button>';
+      }).join('');
+      el.onclick = function (e) { var btn = e.target.closest('button[data-key]'); if (!btn) return; state.bg = btn.getAttribute('data-key'); apply(); };
+    }
+
+    function apply() {
+      var stage = document.getElementById('stage');
+      stage.classList.remove('portrait', 'story', 'landscape');
+      var sc = SIZES[state.size].cssClass; if (sc) stage.classList.add(sc);
+
+      var q = document.getElementById('quote');
+      q.className = 'quote ' + state.bg;
+      q.style.setProperty('--qalign', state.align);
+
+      document.getElementById('top-line').textContent = state.top;
+      document.getElementById('quote-text').textContent = state.text;
+      document.getElementById('cite-line').textContent = state.cite;
+      document.getElementById('corner-mark').style.display = state.corner ? '' : 'none';
+
+      // Scale text
+      var stageW = stage.clientWidth;
+      stage.style.fontSize = (stageW / 60) * state.scale + 'px';
+
+      // Hide topline if empty
+      document.getElementById('top-line').style.display = state.top ? '' : 'none';
+      document.getElementById('cite-line').style.display = state.cite ? '' : 'none';
+
+      // Meta
+      document.getElementById('meta-size').textContent = SIZES[state.size].w + ' × ' + SIZES[state.size].h;
+      document.getElementById('meta-bg').textContent = bg().name;
+      document.getElementById('meta-type').textContent = Math.round(state.scale * 100) + '%';
+      document.getElementById('size-label').textContent = SIZES[state.size].label;
+      document.getElementById('bg-val').textContent = bg().name;
+      document.getElementById('type-val').textContent = Math.round(state.scale * 100) + '%';
+
+      document.querySelectorAll('.grid-4 button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-size') === state.size); });
+      document.querySelectorAll('#bg-swatches button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-key') === state.bg); });
+      document.querySelectorAll('#align-seg button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-align') === state.align); });
+
+      var params = new URLSearchParams();
+      params.set('t', state.text);
+      if (state.cite) params.set('a', state.cite);
+      if (state.top) params.set('top', state.top);
+      if (state.bg !== 'paper') params.set('bg', state.bg);
+      if (state.size !== 'square') params.set('size', state.size);
+      if (state.align !== 'center') params.set('align', state.align);
+      if (state.scale !== 1) params.set('scale', state.scale);
+      if (!state.corner) params.set('corner', '0');
+      document.getElementById('share-url').value = location.origin + location.pathname + '?' + params.toString();
+    }
+
+    document.getElementById('i-quote').value = state.text;
+    document.getElementById('i-cite').value = state.cite;
+    document.getElementById('i-top').value = state.top;
+    document.getElementById('i-corner').checked = state.corner;
+    document.getElementById('type-scale').value = state.scale * 100;
+
+    document.getElementById('i-quote').addEventListener('input', function (e) { state.text = e.target.value; apply(); });
+    document.getElementById('i-cite').addEventListener('input', function (e) { state.cite = e.target.value; apply(); });
+    document.getElementById('i-top').addEventListener('input', function (e) { state.top = e.target.value; apply(); });
+    document.getElementById('i-corner').addEventListener('change', function (e) { state.corner = e.target.checked; apply(); });
+    document.getElementById('type-scale').addEventListener('input', function (e) { state.scale = parseFloat(e.target.value) / 100; apply(); });
+
+    document.querySelector('.grid-4').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-size]'); if (!b) return;
+      state.size = b.getAttribute('data-size'); apply();
+    });
+    document.getElementById('align-seg').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-align]'); if (!b) return;
+      state.align = b.getAttribute('data-align'); apply();
+    });
+    document.getElementById('copy-url').addEventListener('click', function () { UVNL.copy(document.getElementById('share-url').value, 'link'); });
+
+    // EXPORT
+    document.getElementById('download').addEventListener('click', function () {
+      document.fonts.ready.then(exportPng);
+    });
+
+    function wrapTextLines(ctx, text, maxWidth) {
+      var words = text.split(' ');
+      var lines = []; var line = '';
+      for (var i = 0; i < words.length; i++) {
+        var test = line ? line + ' ' + words[i] : words[i];
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line); line = words[i];
+        } else {
+          line = test;
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    function exportPng() {
+      var s = SIZES[state.size];
+      var b = bg();
+      var canvas = document.getElementById('export-canvas');
+      canvas.width = s.w; canvas.height = s.h;
+      var ctx = canvas.getContext('2d');
+
+      // background
+      ctx.fillStyle = b.hex; ctx.fillRect(0, 0, s.w, s.h);
+
+      var fg = b.fg;
+      var pad = s.w * 0.09;
+
+      // Topline
+      if (state.top) {
+        ctx.fillStyle = fg; ctx.globalAlpha = 0.7;
+        ctx.font = '700 ' + (s.w * 0.022) + 'px "Oldschool Grotesk", sans-serif';
+        ctx.textBaseline = 'top';
+        ctx.fillText(state.top, pad, pad);
+        ctx.globalAlpha = 1;
+      }
+
+      // Body
+      ctx.fillStyle = fg;
+      var baseFs = s.w * 0.06 * state.scale;
+      // For landscape adjust
+      if (state.size === 'landscape') baseFs = s.h * 0.082 * state.scale;
+      if (state.size === 'story') baseFs = s.w * 0.075 * state.scale;
+      ctx.font = 'italic 400 ' + baseFs + 'px "Tiempos Text", Georgia, serif';
+      var quoteText = '\u201C' + state.text + '\u201D';
+      var maxW = s.w - pad * 2;
+      var lines = wrapTextLines(ctx, quoteText, maxW);
+      var lineHeight = baseFs * 1.18;
+      var textH = lineHeight * lines.length;
+
+      var areaTop = pad + (state.top ? s.w * 0.04 + s.w * 0.022 : 0);
+      var areaBottom = s.h - pad - (state.cite ? s.w * 0.04 + s.w * 0.022 : 0);
+      var areaH = areaBottom - areaTop;
+
+      var startY;
+      if (state.align === 'flex-start') startY = areaTop;
+      else if (state.align === 'flex-end') startY = areaBottom - textH;
+      else startY = areaTop + (areaH - textH) / 2;
+
+      ctx.textBaseline = 'top';
+      lines.forEach(function (ln, i) {
+        ctx.fillText(ln, pad, startY + i * lineHeight);
+      });
+
+      // Cite
+      if (state.cite) {
+        ctx.fillStyle = fg; ctx.globalAlpha = 0.8;
+        ctx.font = '700 ' + (s.w * 0.022) + 'px "Oldschool Grotesk", sans-serif';
+        ctx.textBaseline = 'bottom';
+        // Draw small line
+        var lineW = s.w * 0.032;
+        ctx.fillRect(pad, s.h - pad - s.w * 0.011, lineW, 2);
+        // Cite text
+        ctx.fillText(state.cite.toUpperCase(), pad + lineW + s.w * 0.018, s.h - pad);
+        ctx.globalAlpha = 1;
+      }
+
+      // Corner brand mark — drawn as path
+      if (state.corner) {
+        ctx.save();
+        ctx.fillStyle = fg; ctx.globalAlpha = 0.5;
+        var markW = s.w * 0.07;
+        var markH = markW * (140/156);
+        var bx = s.w - pad - markW * 0.6;
+        var by = s.h - pad - markH;
+        // Scale the U path
+        ctx.translate(bx, by);
+        ctx.scale(markW/156, markH/140);
+        var path = new Path2D('M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z');
+        ctx.fill(path);
+        ctx.restore();
+      }
+
+      canvas.toBlob(function (blob) {
+        var u = URL.createObjectURL(blob);
+        var a = document.createElement('a'); a.href = u; a.download = 'uvnl-quote-' + Date.now() + '.png';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(u);
+        UVNL.toast('PNG opgeslagen');
+      });
+    }
+
+    renderSwatches();
+    apply();
+    window.addEventListener('resize', apply);
+  })();
+  </script>
+</body>
+</html>

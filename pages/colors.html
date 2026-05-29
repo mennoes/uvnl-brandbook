@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Kleuren — UvNL Merkboek</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
+<link rel="stylesheet" href="../assets/css/uvnl.css">
+<script>window.BB_BASE = '../';</script>
+</head>
+<body>
+
+<nav class="bbnav">
+  <div class="bbnav-inner">
+    <a class="home" href="../index.html">
+      <svg viewBox="0 0 156 140"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
+      <b>UvNL<br>Merkboek</b>
+    </a>
+    <label class="mini-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="bb-nav-search" type="text" placeholder="Zoek…" autocomplete="off">
+      <div class="search-results" id="bb-nav-results" style="top:calc(100% + 10px)"></div>
+    </label>
+    <div class="links">
+      <a href="about.html">Over</a>
+      <a href="logos.html">Logo's</a>
+      <a class="active" href="colors.html">Kleuren</a>
+      <a href="typography.html">Type</a>
+      <a href="icons.html">Iconen</a>
+      <a class="btn primary cta" style="padding:7px 14px" href="../downloads/uvnl-brand-kit.zip" download>Download kit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="page-head">
+    <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Hoe we eruitzien <span class="sep">/</span> Kleuren</div>
+    <h1>Kleuren</h1>
+    <p class="lead"><b>Varsity Green</b> is dé merkkleur — sterk, academisch, betrouwbaar. Zo'n 30–50% van elke lay-out is groen. <b>Paper</b> is het warme canvas eronder. De verzadigde set (paars, blauw, geel, rood) gebruik je <b>één per vlak</b> als accent — nooit twee schreeuwende kleuren naast elkaar. Klik op een waarde om te kopiëren.</p>
+  </header>
+
+  <div class="index-col" style="margin-bottom:18px"><h2>Primair</h2></div>
+  <div class="gallery" id="pri"></div>
+
+  <div class="index-col" style="margin:48px 0 18px"><h2>Secundair · accenten</h2></div>
+  <div class="gallery" id="sec"></div>
+
+  <div class="index-col" style="margin:48px 0 18px"><h2>Basis · papier &amp; neutraal</h2></div>
+  <div class="gallery" id="base"></div>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+  <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">UvNL Merkboek · De HEMA van de wetenschap.</p></div>
+  <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px"><p>© 2026 Universiteiten van Nederland</p><p><a href="../index.html" style="color:var(--uvnl-green-bright)">Terug naar het merkboek</a></p></div>
+</div></footer>
+
+<script src="../assets/js/uvnl.js"></script>
+<script src="../assets/js/brandbook.js"></script>
+<script>
+(function () {
+  var pri  = [
+    { t:'Varsity Green', hex:'#004B36', note:'Primair' },
+    { t:'Paper',         hex:'#F4F0ED', note:'Canvas' }
+  ];
+  var sec = [
+    { t:'Electric Purple', hex:'#D6ACFF', note:'Accent' },
+    { t:'Deep Indigo',     hex:'#1B0757', note:'Collegenacht' },
+    { t:'Electric Blue',   hex:'#585FF1', note:'Secundair' },
+    { t:'Electric Green',  hex:'#00A879', note:'Secundair' },
+    { t:'Electric Yellow', hex:'#FBF07A', note:'Highlight' },
+    { t:'Electric Red',    hex:'#EE5245', note:'Accent' },
+    { t:'Additional Pink', hex:'#FFC9D7', note:'Zachte tint' }
+  ];
+  var base = [
+    { t:'White',      hex:'#FFFFFF', note:'Surface' },
+    { t:'Paper Mid',  hex:'#ECE4DF', note:'Tint' },
+    { t:'Printer Ink',hex:'#1B1B1B', note:'Bijna-zwart' }
+  ];
+  function hexToRgb(h){h=h.replace('#','');var n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255];}
+  function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;var mx=Math.max(r,g,b),mn=Math.min(r,g,b),h,s,l=(mx+mn)/2;if(mx===mn){h=s=0;}else{var d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h/=6;}return[Math.round(h*360),Math.round(s*100),Math.round(l*100)];}
+  function render(list, id) {
+    var box = document.getElementById(id);
+    list.forEach(function (c) {
+      var rgb = hexToRgb(c.hex), hsl = rgbToHsl(rgb[0],rgb[1],rgb[2]);
+      var rgbS = 'rgb(' + rgb.join(', ') + ')';
+      var hslS = 'hsl(' + hsl[0] + ', ' + hsl[1] + '%, ' + hsl[2] + '%)';
+      var light = (0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2]) > 150;
+      var nameColor = light ? '#1B1B1B' : '#F4F0ED';
+      var el = document.createElement('div');
+      el.className = 'swatch';
+      el.innerHTML =
+        '<div class="well" style="background:' + c.hex + '"><span class="name" style="mix-blend-mode:normal;color:' + nameColor + '">' + c.t + '</span>' +
+          '<span style="font-family:var(--font-sans);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:' + nameColor + ';opacity:.7">' + c.note + '</span></div>' +
+        '<div class="meta">' +
+          '<button data-copy="' + c.hex + '" data-copy-label="HEX"><b>HEX</b>&nbsp;&nbsp;' + c.hex + '</button>' +
+          '<button data-copy="' + rgbS + '" data-copy-label="RGB"><b>RGB</b>&nbsp;&nbsp;' + rgb.join(' ') + '</button>' +
+          '<button data-copy="' + hslS + '" data-copy-label="HSL"><b>HSL</b>&nbsp;&nbsp;' + hsl[0] + ' ' + hsl[1] + ' ' + hsl[2] + '</button>' +
+          '<button class="mini-btn" style="margin-top:10px" data-add data-add-title="' + c.t + '" data-add-hex="' + c.hex + '">+ Selecteer</button>' +
+        '</div>';
+      box.appendChild(el);
+    });
+  }
+  render(pri,'pri'); render(sec,'sec'); render(base,'base');
+})();
+</script>
+</body>
+</html>
