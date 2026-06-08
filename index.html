@@ -10,7 +10,7 @@
 <script>window.BB_BASE = '';</script>
 <style>
   /* hero met grote, zwevende 3D-elementen rondom de tekst */
-  .bb-hero .kicker, .bb-hero h1, .bb-hero .sub, .bb-hero .search-wrap, .bb-hero .hero-index { position:relative; z-index:2; }
+  .bb-hero .kicker, .bb-hero h1, .bb-hero .sub, .bb-hero .search-wrap, .bb-hero .hero-index, .bb-hero .hero-logo { position:relative; z-index:2; }
   .orn { position:absolute; z-index:1; pointer-events:none; will-change:transform; }
   .orn-img { display:block; filter:drop-shadow(0 14px 24px rgba(0,0,0,.18)); animation:float var(--fd,7s) ease-in-out infinite; animation-delay:var(--fdel,0s); transform:rotate(var(--rot,0deg)); }
   @keyframes float { 0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); } 50%{ transform:translateY(-40px) rotate(var(--rot,0deg)); } }
@@ -34,12 +34,17 @@
   .hub-card:hover .arr { transform:translateX(4px); }
 
   /* hero = vol Varsity Green met grote U erachter (zoals de site) */
-  .bb-hero { background-color:var(--uvnl-green); background-image:linear-gradient(rgba(2,46,33,.66), rgba(2,46,33,.66)), url('assets/photos/event-u.jpg'); background-size:cover; background-position:center; color:var(--uvnl-paper); margin-top:-68px; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding:120px 28px 80px; perspective:1100px; }
+  .bb-hero { position:relative; overflow:hidden; background-color:var(--uvnl-green); color:var(--uvnl-paper); margin-top:-68px; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding:120px 28px 80px; perspective:1100px; }
+  /* roterende achtergrondfoto's met crossfade */
+  .bb-hero .hero-bg { position:absolute; inset:0; z-index:0; }
+  .bb-hero .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease; }
+  .bb-hero .hero-slide.is-on { opacity:1; }
+  .bb-hero .hero-bg::after { content:""; position:absolute; inset:0; background:rgba(2,46,33,.66); }
   .bb-hero .kicker { color:rgba(244,240,237,.66); }
   .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(48px,9vw,124px); margin:0 0 48px; text-align:center; }
   .bb-hero .sub { color:rgba(244,240,237,.88); }
   /* pseudo-3D U die met de cursor meedraait */
-  .bb-hero .bgu-wrap { display:none; position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
+  .bb-hero .bgu-wrap { position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:1; pointer-events:none; transform:translate(-50%,-50%); }
   .bb-hero .bgu-wrap svg { width:100%; height:auto; display:block; }
   .bb-hero .bgu-wrap .ext { position:absolute; inset:0; }
   .bb-hero .bgu-wrap .front { position:relative; }
@@ -154,6 +159,11 @@
 
 <!-- HERO -->
 <header class="bb-hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-slide is-on" style="background-image:url('assets/photos/event-u.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/photos/lowlands.JPG')"></div>
+    <div class="hero-slide" style="background-image:url('assets/photos/event-globe.jpg')"></div>
+  </div>
   <div class="bgu-wrap" aria-hidden="true">
     <svg class="bgu front" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
   </div>
@@ -279,42 +289,43 @@
   var hero = document.querySelector('.bb-hero');
   var wrap = hero && hero.querySelector('.bgu-wrap');
   if (!wrap) return;
-  /* bouw een diepe, massieve extrusie achter het front-vlak op */
+  /* rechtopstaande, massieve extrusie: elke laag iets naar rechtsonder + donkerder */
   var front = wrap.querySelector('.bgu.front');
   var d = front.querySelector('path').getAttribute('d');
-  var N = 22, depth = 78;          // aantal lagen + totale diepte (px in U-coördinaten)
-  var top = [21, 122, 85], bot = [3, 38, 26];   // licht front -> donkere achterkant
+  var N = 24, depth = 30;          // aantal lagen + totale verschuiving (px)
+  var top = [19, 110, 77], bot = [3, 40, 28];   // licht front -> donkere zijkant
   function mix(i) { var t = i / N; return 'rgb(' + Math.round(top[0] + (bot[0] - top[0]) * t) + ',' + Math.round(top[1] + (bot[1] - top[1]) * t) + ',' + Math.round(top[2] + (bot[2] - top[2]) * t) + ')'; }
   var ns = 'http://www.w3.org/2000/svg', frag = document.createDocumentFragment();
   for (var i = N; i >= 1; i--) {
+    var off = (depth * i / N).toFixed(2);
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttribute('viewBox', '0 0 156 140');
     svg.setAttribute('class', 'bgu ext');
-    svg.style.transform = 'translateZ(' + (-(depth * i / N)).toFixed(1) + 'px)';
+    svg.style.transform = 'translate(' + off + 'px,' + off + 'px)';
     var p = document.createElementNS(ns, 'path');
     p.setAttribute('d', d); p.setAttribute('fill', mix(i));
     svg.appendChild(p); frag.appendChild(svg);
   }
   wrap.insertBefore(frag, front);
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var BASE_RY = -22, BASE_RX = 13;  // rust-kanteling zodat de extrusie altijd zichtbaar is
-  var rx = 0, ry = 0, sy = 0;
-  function apply() {
-    wrap.style.transform = 'translate(-50%, calc(-50% + ' + sy.toFixed(1) + 'px)) rotateY(' + (BASE_RY + ry).toFixed(1) + 'deg) rotateX(' + (BASE_RX + rx).toFixed(1) + 'deg)';
+  /* lichte parallax bij scrollen, rechtop (geen kanteling) */
+  function onScroll() {
+    var sy = (window.pageYOffset || 0) * 0.22;
+    wrap.style.transform = 'translate(-50%, calc(-50% + ' + sy.toFixed(1) + 'px))';
   }
-  function onScroll() { sy = (window.pageYOffset || 0) * 0.28; apply(); }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  if (!reduce) {
-    hero.addEventListener('mousemove', function (e) {
-      var r = hero.getBoundingClientRect();
-      ry = ((e.clientX - r.left) / r.width - 0.5) * 30;
-      rx = -((e.clientY - r.top) / r.height - 0.5) * 24;
-      apply();
-    });
-    hero.addEventListener('mouseleave', function () { rx = 0; ry = 0; apply(); });
-  }
+})();
+/* hero-achtergrond elke 4s wisselen met crossfade */
+(function () {
+  var slides = document.querySelectorAll('.bb-hero .hero-slide');
+  if (slides.length < 2) return;
+  var i = 0;
+  setInterval(function () {
+    slides[i].classList.remove('is-on');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-on');
+  }, 4000);
 })();
 /* "Lees meer": toon de volledige over-ons-tekst */
 (function () {
