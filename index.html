@@ -71,20 +71,16 @@
   .hero-index a { color:var(--uvnl-paper); font-family:var(--font-sans); font-weight:500; font-size:17px; text-decoration:none; opacity:.9; transition:opacity var(--dur) var(--ease); }
   .hero-index a:hover { opacity:1; text-decoration:underline; }
   @media (max-width:760px){
-    .bb-hero { padding:92px 18px 56px; min-height:100svh; justify-content:flex-start; }
-    .bb-hero h1 { font-size:clamp(34px,8.5vw,52px); margin:0 0 26px; }
-    .bb-hero .hero-logo { max-width:148px; margin-bottom:28px; }
-    .bb-hero .search-box { padding:13px 18px; }
+    .bb-hero { padding:84px 20px 60px; min-height:100svh; justify-content:flex-start; }
+    .bb-hero h1 { font-size:clamp(34px,8.5vw,52px); margin:0 0 22px; }
+    .bb-hero .hero-logo { max-width:140px; margin-bottom:22px; }
+    .bb-hero .search-box { padding:14px 18px; }
     .bb-hero .search-box input { font-size:16px; }
-    .hero-index { grid-template-columns:repeat(2,1fr); gap:24px 20px; margin-top:30px; max-width:430px; }
-    .hero-index .hi-col { gap:7px; }
-    .hero-index .hi-label { font-size:12px; margin-bottom:3px; }
-    .hero-index a { font-size:14px; }
-  }
-  @media (max-width:380px){
-    .hero-index { gap:20px 14px; }
-    .hero-index .hi-label { font-size:11px; }
-    .hero-index a { font-size:13px; }
+    /* één leesbare kolom met fijne tikdoelen i.p.v. drie smalle kolommen */
+    .hero-index { grid-template-columns:1fr; gap:24px; margin-top:30px; max-width:340px; text-align:left; }
+    .hero-index .hi-col { gap:2px; }
+    .hero-index .hi-label { font-size:12.5px; letter-spacing:.08em; margin-bottom:6px; color:rgba(244,240,237,.6); }
+    .hero-index a { font-size:17px; opacity:.95; padding:7px 0; }
   }
   /* over-ons samenvatting in sectie 01 */
   .about-summary { max-width:66ch; margin:2px 0 24px; }
