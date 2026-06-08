@@ -1,5 +1,5 @@
 /* ──────────────────────────────────────────────────────────
-   UvNL Merkboek — search index, live search & selection tray
+   Universiteit van Nederland Merkboek — search index, live search & selection tray
    Root-relative paths are prefixed with window.BB_BASE so the
    same index works from / and /pages/ and /tools/.
    ────────────────────────────────────────────────────────── */
@@ -13,10 +13,10 @@
      dl:    downloadable file (root-relative) or null        */
   var INDEX = [
     /* ── LOGO'S ───────────────────────────────────────── */
-    { t: 'UvNL logo — staand', cat: 'Logo', type: 'logo', kw: 'logo staand vertical hoofdlogo groen lockup beeldmerk', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-logo.svg', preview: 'paper', dl: 'assets/logos/uvnl-logo.svg' },
-    { t: 'UvNL beeldmerk (U)', cat: 'Logo', type: 'logo', kw: 'beeldmerk brandmark icoon u mark favicon symbool groen', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-brandmark.svg', preview: 'paper', dl: 'assets/logos/uvnl-brandmark.svg' },
-    { t: 'UvNL wordmark', cat: 'Logo', type: 'logo', kw: 'wordmark woordmerk universiteit van nederland tekst', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-wordmark.svg', preview: 'paper', dl: 'assets/logos/uvnl-wordmark.svg' },
-    { t: 'UvNL vierkant lockup', cat: 'Logo', type: 'logo', kw: 'vierkant square social avatar profielfoto lockup', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-logo-square.svg', preview: 'paper', dl: 'assets/logos/uvnl-logo-square.svg' },
+    { t: 'Universiteit van Nederland logo — staand', cat: 'Logo', type: 'logo', kw: 'logo staand vertical hoofdlogo groen lockup beeldmerk', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-logo.svg', preview: 'paper', dl: 'assets/logos/uvnl-logo.svg' },
+    { t: 'Universiteit van Nederland beeldmerk (U)', cat: 'Logo', type: 'logo', kw: 'beeldmerk brandmark icoon u mark favicon symbool groen', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-brandmark.svg', preview: 'paper', dl: 'assets/logos/uvnl-brandmark.svg' },
+    { t: 'Universiteit van Nederland wordmark', cat: 'Logo', type: 'logo', kw: 'wordmark woordmerk universiteit van nederland tekst', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-wordmark.svg', preview: 'paper', dl: 'assets/logos/uvnl-wordmark.svg' },
+    { t: 'Universiteit van Nederland vierkant lockup', cat: 'Logo', type: 'logo', kw: 'vierkant square social avatar profielfoto lockup', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-logo-square.svg', preview: 'paper', dl: 'assets/logos/uvnl-logo-square.svg' },
     { t: 'Vaandel', cat: 'Logo', type: 'logo', kw: 'vaandel pennant vlag banner u', href: 'pages/logos.html', thumb: 'img:assets/logos/vaandel.svg', preview: 'paper', dl: 'assets/logos/vaandel.svg' },
     { t: 'U-outline', cat: 'Logo', type: 'logo', kw: 'outline lijn u contour open', href: 'pages/logos.html', thumb: 'img:assets/logos/u-outline.svg', preview: 'paper', dl: 'assets/logos/u-outline.svg' },
     { t: 'Logo op groen (wit/paper)', cat: 'Logo', type: 'logo', kw: 'wit logo paper logo op groen donkere achtergrond invers diap negatief', href: 'pages/logos.html', thumb: 'img:assets/logos/uvnl-logo.svg', preview: 'dark', dl: 'assets/logos/uvnl-logo.svg' },
@@ -58,20 +58,20 @@
     { t: 'Collegenacht', cat: 'Formats', type: 'logo', kw: 'collegenacht college nacht format avond live indigo', href: 'pages/formats.html', thumb: 'img:assets/formats/collegenacht.png', preview: 'paper', dl: 'assets/formats/collegenacht.png' },
     { t: 'Wetensnap', cat: 'Formats', type: 'logo', kw: 'wetensnap snap kort format blauw', href: 'pages/formats.html', thumb: 'img:assets/formats/wetensnap.png', preview: 'paper', dl: 'assets/formats/wetensnap.png' },
     { t: 'De Werkplaats', cat: 'Formats', type: 'logo', kw: 'werkplaats maken format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/werkplaats.png', preview: 'paper', dl: 'assets/formats/werkplaats.png' },
-    { t: 'UvNL onderzoekt', cat: 'Formats', type: 'logo', kw: 'onderzoekt onderzoek format groen', href: 'pages/formats.html', thumb: 'img:assets/formats/onderzoekt.png', preview: 'paper', dl: 'assets/formats/onderzoekt.png' },
-    { t: 'UvNL legt uit', cat: 'Formats', type: 'logo', kw: 'legt uit uitleg format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/legtuit.png', preview: 'paper', dl: 'assets/formats/legtuit.png' },
+    { t: 'Universiteit van Nederland onderzoekt', cat: 'Formats', type: 'logo', kw: 'onderzoekt onderzoek format groen', href: 'pages/formats.html', thumb: 'img:assets/formats/onderzoekt.png', preview: 'paper', dl: 'assets/formats/onderzoekt.png' },
+    { t: 'Universiteit van Nederland legt uit', cat: 'Formats', type: 'logo', kw: 'legt uit uitleg format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/legtuit.png', preview: 'paper', dl: 'assets/formats/legtuit.png' },
     { t: 'Even Denken!', cat: 'Formats', type: 'logo', kw: 'even denken vraag prikkel format rood', href: 'pages/formats.html', thumb: 'img:assets/formats/evendenken.png', preview: 'paper', dl: 'assets/formats/evendenken.png' },
     { t: 'Voorkennis', cat: 'Formats', type: 'logo', kw: 'voorkennis achtergrond context format paars purple', href: 'pages/formats.html', thumb: 'img:assets/formats/voorkennis.png', preview: 'paper', dl: 'assets/formats/voorkennis.png' },
     { t: 'Hey U', cat: 'Formats', type: 'logo', kw: 'hey u aanspreek format groen', href: 'pages/formats.html', thumb: 'img:assets/formats/heyu.png', preview: 'paper', dl: 'assets/formats/heyu.png' },
-    { t: 'UvNL Live', cat: 'Formats', type: 'logo', kw: 'live lockup evenement u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-live.png', preview: 'paper', dl: 'assets/formats/uvnl-live.png' },
-    { t: 'UvNL &', cat: 'Formats', type: 'logo', kw: 'ampersand samenwerking lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-amp.png', preview: 'paper', dl: 'assets/formats/uvnl-amp.png' },
-    { t: 'UvNL +', cat: 'Formats', type: 'logo', kw: 'plus extra lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-plus.png', preview: 'paper', dl: 'assets/formats/uvnl-plus.png' },
-    { t: 'UvNL Studio+', cat: 'Formats', type: 'logo', kw: 'studio plus productie lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-studio.png', preview: 'paper', dl: 'assets/formats/uvnl-studio.png' },
+    { t: 'Universiteit van Nederland Live', cat: 'Formats', type: 'logo', kw: 'live lockup evenement u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-live.png', preview: 'paper', dl: 'assets/formats/uvnl-live.png' },
+    { t: 'Universiteit van Nederland &', cat: 'Formats', type: 'logo', kw: 'ampersand samenwerking lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-amp.png', preview: 'paper', dl: 'assets/formats/uvnl-amp.png' },
+    { t: 'Universiteit van Nederland +', cat: 'Formats', type: 'logo', kw: 'plus extra lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-plus.png', preview: 'paper', dl: 'assets/formats/uvnl-plus.png' },
+    { t: 'Universiteit van Nederland Studio+', cat: 'Formats', type: 'logo', kw: 'studio plus productie lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-studio.png', preview: 'paper', dl: 'assets/formats/uvnl-studio.png' },
     { t: 'Partners', cat: 'Resources', type: 'page', kw: 'partners universiteiten leden samenwerking co-branding', href: 'pages/formats.html#partners', thumb: 'mark', dl: null },
     { t: 'Voorbeelden', cat: 'Hoe we eruitzien', type: 'page', kw: 'voorbeelden examples poster thumbnail quote slide story toepassing in het wild posters social', href: 'pages/examples.html', thumb: 'mark', dl: null },
 
     /* ── PAGINA'S ─────────────────────────────────────── */
-    { t: 'Over UvNL', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
+    { t: 'Over Universiteit van Nederland', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
     { t: 'Tone of voice', cat: 'Wie we zijn', type: 'page', kw: 'tone of voice schrijfstijl tekst stem taal nederlands toon', href: 'pages/tone-of-voice.html', thumb: 'mark', dl: null },
 
     /* ── TOOLS ────────────────────────────────────────── */
@@ -182,16 +182,16 @@
   function downloadSelection() {
     var arr = load();
     var files = arr.filter(function (x) { return x.dl; });
-    if (!files.length) { UVNL.toast('Geen downloadbare bestanden in selectie'); return; }
+    if (!files.length) { Universiteit van Nederland.toast('Geen downloadbare bestanden in selectie'); return; }
     files.forEach(function (x, i) {
       setTimeout(function () { downloadFile(p(x.dl), x.dl.split('/').pop()); }, i * 350);
     });
-    UVNL.toast(files.length + ' bestanden gedownload');
+    Universiteit van Nederland.toast(files.length + ' bestanden gedownload');
   }
   function copySelection() {
     var arr = load();
     var lines = arr.map(function (x) { return '• ' + x.t + (x.hex ? '  ' + x.hex : '') + (x.dl ? '  ' + x.dl : ''); });
-    UVNL.copy(lines.join('\n'), 'Selectie');
+    Universiteit van Nederland.copy(lines.join('\n'), 'Selectie');
   }
 
   function renderTray() {

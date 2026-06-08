@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UvNL Titelbalk Generator</title>
+<title>Universiteit van Nederland Titelbalk Generator</title>
 <script>/* direct geopend → toon met de merkboek-navigatie; in een iframe → laat zoals het is */
 if (window.top === window.self) { location.replace('../pages/titelbalk.html'); }</script>
 <style>
@@ -90,7 +90,7 @@ textarea:focus{border-color:var(--accent)}
 <body>
 
 <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem">
-  <h1 style="margin-bottom:0">UvNL Titelbalk Generator <span>&#8212; titelbalken voor video &amp; socials</span></h1>
+  <h1 style="margin-bottom:0">Universiteit van Nederland Titelbalk Generator <span>&#8212; titelbalken voor video &amp; socials</span></h1>
   <button onclick="toggleTheme()" id="themeBtn" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);padding:.4rem .8rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .12s,color .12s;white-space:nowrap;flex-shrink:0;margin-left:1rem" onmouseover="this.style.borderColor='var(--lavender)';this.style.color='var(--fg)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">&#9788; Licht</button>
 </div>
 
@@ -183,7 +183,7 @@ const FMTS = [{id:'916',w:1080,h:1920},{id:'34',w:1080,h:1440},{id:'169',w:1920,
 
 // ── Brand-switch NL/VL ────────────────────────────────────────
 let BRAND = 'NL';
-const brandLabel  = () => BRAND === 'VL' ? 'UvVL' : 'UvNL';
+const brandLabel  = () => BRAND === 'VL' ? 'Universiteit van Vlaanderen' : 'Universiteit van Nederland';
 const brandPrefix = () => BRAND === 'VL' ? 'UVVL' : 'UVNL';
 
 function applyBrand() {

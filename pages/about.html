@@ -2,13 +2,13 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<title>Over UvNL — Merkboek</title>
+<title>Over Universiteit van Nederland — Merkboek</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
 <style>
-  .wie-video { position:relative; display:block; margin:6px 0 40px; border-radius:var(--r-4); overflow:hidden; aspect-ratio:16/9; background:var(--uvnl-purple); max-width:none; }
+  .wie-video { position:relative; display:block; margin:6px 0 40px; border-radius:var(--r-4); overflow:hidden; aspect-ratio:16/9; background:var(--uvnl-purple); max-width:none; cursor:pointer; }
   .wrap > .prose { max-width:none; }
   .wrap > .prose p, .wrap > .prose ul { max-width:none; }
   .wie-video img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
@@ -35,7 +35,7 @@
         <button class="navdrop-btn" aria-expanded="false">Het merk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="navdrop-menu">
           <div class="navdrop-label">Wie we zijn</div>
-          <a href="about.html">Over UvNL</a>
+          <a href="about.html">Over Universiteit van Nederland</a>
           <a href="tone-of-voice.html">Tone of voice</a>
           <div class="navdrop-label">Hoe we eruitzien</div>
           <a href="logos.html">Logo's</a>
@@ -56,20 +56,30 @@
 <div class="wrap">
   <header class="page-hero">
     <div class="ph-text">
-      <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Over UvNL</div>
-      <h1>Over UvNL</h1>
+      <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Over Universiteit van Nederland</div>
+      <h1>Over Universiteit van Nederland</h1>
       <p class="lead">Universiteiten van Nederland maakt complexe wetenschap toegankelijk via verhalende video op YouTube, Instagram, TikTok, de website, tv en live events.</p>
     </div>
     <div class="ph-visual ph-photo">
-      <img src="../assets/photos/globe-talk.jpg" alt="UvNL-lezing onder een geprojecteerde wereldbol">
+      <img src="../assets/photos/globe-talk.jpg" alt="Universiteit van Nederland-lezing onder een geprojecteerde wereldbol">
     </div>
   </header>
 
-  <a class="wie-video" href="https://www.universiteitvannederland.nl/ons-manifest" target="_blank" rel="noopener">
-    <img src="https://img.youtube.com/vi/ZG4WQpWd4fE/maxresdefault.jpg" alt="Bekijk de UvNL-manifestvideo" loading="lazy">
+  <div class="wie-video" id="manifestVideo" role="button" tabindex="0" aria-label="Speel de manifestvideo af">
+    <img src="https://img.youtube.com/vi/ZG4WQpWd4fE/maxresdefault.jpg" alt="Bekijk de manifestvideo van Universiteit van Nederland" loading="lazy">
     <span class="vlabel">Bekijk het manifest · video</span>
     <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-  </a>
+  </div>
+  <script>
+  (function(){
+    var v = document.getElementById('manifestVideo'); if (!v) return;
+    function play(){
+      v.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/ZG4WQpWd4fE?autoplay=1&rel=0" title="Manifestvideo Universiteit van Nederland" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';
+    }
+    v.addEventListener('click', play);
+    v.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' '){ e.preventDefault(); play(); } });
+  })();
+  </script>
 
   <div class="prose">
     <blockquote>We zijn de HEMA van de wetenschap. Eerlijk, echt, een beetje rommelig. Kennis in wording, geen corporate glanslaag.</blockquote>
@@ -87,7 +97,7 @@
     </ul>
 
     <h2>Formats</h2>
-    <p>Formatnamen zijn korte, verzonnen samenstellingen die als bijnamen voelen: <i>Wetensnap, Collegenacht, De Werkplaats, Hey U, UvNL Live</i>.</p>
+    <p>Formatnamen zijn korte, verzonnen samenstellingen die als bijnamen voelen: <i>Wetensnap, Collegenacht, De Werkplaats, Hey U, Universiteit van Nederland Live</i>.</p>
 
     <h2 id="contact">Merkgebruik &amp; contact</h2>
     <p>Vragen over merkgebruik of goedkeuring nodig voor een partnertoepassing? Mail <a href="mailto:info@studioyoko.nl">info@studioyoko.nl</a>. Download de volledige kit hieronder of blader per onderdeel via het merkboek.</p>
@@ -97,7 +107,7 @@
 </div>
 
 <footer class="footer"><div class="footer-inner">
-  <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">UvNL Merkboek · De HEMA van de wetenschap.</p></div>
+  <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">Universiteit van Nederland Merkboek · De HEMA van de wetenschap.</p></div>
   <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px"><p>© 2026 Universiteiten van Nederland</p><p><a href="../index.html" style="color:var(--uvnl-green-bright)">Terug naar het merkboek</a></p></div>
 </div></footer>
 
