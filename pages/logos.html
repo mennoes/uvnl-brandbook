@@ -91,7 +91,17 @@
     </div>
   </header>
 
-  <div class="gallery" id="logo-gallery"></div>
+  <section class="logo-section">
+    <h2>Nederland — UvNL</h2>
+    <p class="ls-sub">Klik een logo aan, kies een kleurcombinatie en download als SVG, PNG of JPG.</p>
+    <div class="logo-grid" id="nl-grid"></div>
+  </section>
+
+  <section class="logo-section">
+    <h2>Vlaanderen — UvVL</h2>
+    <p class="ls-sub">De Vlaamse variant. Zelfde bouw, ander woordmerk. Niet door elkaar gebruiken met de Nederlandse set.</p>
+    <div class="logo-grid" id="vl-grid"></div>
+  </section>
 
   <section style="margin:64px 0 80px">
     <div class="index-col" style="margin-bottom:18px"><h2>Logogebruik</h2></div>
@@ -116,6 +126,32 @@
   </section>
 </div>
 
+<!-- logo editor modal -->
+<div class="lgm" id="lgm" role="dialog" aria-modal="true" aria-labelledby="lgm-title">
+  <div class="lgm-box">
+    <div class="lgm-head">
+      <h3 id="lgm-title">Logo</h3>
+      <button class="lgm-close" id="lgm-close" aria-label="Sluiten">&times;</button>
+    </div>
+    <div class="lgm-preview" id="lgm-preview"><img id="lgm-img" alt=""></div>
+    <div class="lgm-body">
+      <div class="lgm-label">Kleurcombinatie</div>
+      <div class="swatches" id="lgm-sw"></div>
+      <div class="lgm-row">
+        <div class="fmt">
+          <div class="lgm-label" style="margin:0 0 9px">Bestandsformaat</div>
+          <select id="lgm-fmt">
+            <option value="svg">SVG · vector</option>
+            <option value="png">PNG · transparant</option>
+            <option value="jpg">JPG · witte achtergrond</option>
+          </select>
+        </div>
+        <button class="btn primary" id="lgm-dl">Download</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="footer"><div class="footer-inner">
   <div style="flex-basis:300px"><p style="color:var(--fg-mute);font-size:13px;max-width:280px">UvNL Merkboek · De HEMA van de wetenschap.</p></div>
   <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px"><p>© 2026 Universiteiten van Nederland</p><p><a href="../index.html" style="color:var(--uvnl-green-bright)">Terug naar het merkboek</a></p></div>
@@ -125,32 +161,148 @@
 <script src="../assets/js/brandbook.js"></script>
 <script>
 (function () {
-  var logos = [
-    { t:'UvNL logo — staand', file:'uvnl-logo.svg', desc:'Hoofdlogo · SVG', bg:'paper' },
-    { t:'Logo op groen', file:'uvnl-logo.svg', desc:'Paper-versie · SVG', bg:'dark' },
-    { t:'UvNL beeldmerk (U)', file:'uvnl-brandmark.svg', desc:'Icoon / favicon · SVG', bg:'paper' },
-    { t:'UvNL wordmark', file:'uvnl-wordmark.svg', desc:'Woordmerk · SVG', bg:'paper' },
-    { t:'UvNL vierkant lockup', file:'uvnl-logo-square.svg', desc:'Social / avatar · SVG', bg:'paper' },
-    { t:'Vaandel', file:'vaandel.svg', desc:'Pennant · SVG', bg:'paper' },
-    { t:'U-outline', file:'u-outline.svg', desc:'Open contour · SVG', bg:'paper' },
-    { t:'UvVL logo (Vlaanderen)', file:'uvvl-logo.svg', desc:'Vlaamse variant · SVG', bg:'paper' },
-    { t:'UvVL wordmark (Vlaanderen)', file:'uvvl-wordmark.svg', desc:'Vlaamse woordmerk · SVG', bg:'paper' },
-    { t:'UvVL vierkant (Vlaanderen)', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar · SVG', bg:'paper' }
+  var BASE = '../assets/logos/';
+  var NL = [
+    { t:'UvNL logo — staand', file:'uvnl-logo.svg', desc:'Hoofdlogo' },
+    { t:'Beeldmerk — de U', file:'uvnl-brandmark.svg', desc:'Icoon / favicon' },
+    { t:'Vierkant lockup', file:'uvnl-logo-square.svg', desc:'Social / avatar' },
+    { t:'Vaandel', file:'vaandel.svg', desc:'Pennant' },
+    { t:'U-outline', file:'u-outline.svg', desc:'Open contour' },
+    { t:'Wordmark', file:'uvnl-wordmark.svg', desc:'Niet los downloadbaar', nodl:true }
   ];
-  var box = document.getElementById('logo-gallery');
-  logos.forEach(function (l) {
-    var dl = 'assets/logos/' + l.file;
-    var imgStyle = l.bg === 'dark' ? 'color:#F4F0ED' : 'color:#004B36';
-    var el = document.createElement('div');
-    el.className = 'asset';
+  var VL = [
+    { t:'UvVL logo', file:'uvvl-logo.svg', desc:'Vlaamse variant' },
+    { t:'Vierkant lockup', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar' },
+    { t:'Wordmark', file:'uvvl-wordmark.svg', desc:'Niet los downloadbaar', nodl:true }
+  ];
+  var COMBOS = [
+    { id:'green-paper',  name:'Groen op Paper',            fg:'#004B36', bg:'#F4F0ED' },
+    { id:'paper-green',  name:'Paper op Groen',            fg:'#F4F0ED', bg:'#004B36' },
+    { id:'white-green',  name:'Wit op Groen',              fg:'#FFFFFF', bg:'#004B36' },
+    { id:'green-purple', name:'Groen op Electric Purple',  fg:'#004B36', bg:'#D6ACFF' },
+    { id:'purple-green', name:'Electric Purple op Groen',  fg:'#D6ACFF', bg:'#004B36' },
+    { id:'paper-none',   name:'Paper · transparant',       fg:'#F4F0ED', bg:null }
+  ];
+
+  // --- SVG fetch + recolor helpers ---
+  var cache = {};
+  function load(file) {
+    if (cache[file]) return Promise.resolve(cache[file]);
+    return fetch(BASE + file).then(function (r) { return r.text(); }).then(function (t) { cache[file] = t; return t; });
+  }
+  function build(text, combo) {
+    var m = text.match(/viewBox\s*=\s*"([\-\d.\s]+)"/);
+    var vb = m ? m[1].trim().split(/\s+/).map(Number) : [0, 0, 100, 100];
+    var x = vb[0], y = vb[1], w = vb[2], h = vb[3];
+    var pad = Math.round(Math.max(w, h) * 0.14);
+    var inner = text.replace(/[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+    inner = inner.replace(/currentColor/g, combo.fg);
+    var nx = x - pad, ny = y - pad, nw = w + pad * 2, nh = h + pad * 2;
+    var rect = combo.bg ? '<rect x="' + nx + '" y="' + ny + '" width="' + nw + '" height="' + nh + '" fill="' + combo.bg + '"/>' : '';
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + nx + ' ' + ny + ' ' + nw + ' ' + nh + '" width="' + nw + '" height="' + nh + '">' + rect + '<g fill="' + combo.fg + '">' + inner + '</g></svg>';
+    return { svg: svg, w: nw, h: nh };
+  }
+  function dataURI(svg) { return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); }
+  function dl(blob, name) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  }
+  function raster(built, type, name) {
+    var img = new Image();
+    img.onload = function () {
+      var maxDim = 1600, scale = Math.min(maxDim / built.w, maxDim / built.h, 6);
+      if (!isFinite(scale) || scale <= 0) scale = 2;
+      var c = document.createElement('canvas');
+      c.width = Math.round(built.w * scale); c.height = Math.round(built.h * scale);
+      var ctx = c.getContext('2d');
+      if (type === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, c.width, c.height); }
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(function (b) { dl(b, name); }, type, 0.95);
+    };
+    img.src = dataURI(built.svg);
+  }
+
+  // --- render cards ---
+  function card(item) {
+    var el = document.createElement(item.nodl ? 'div' : 'button');
+    el.className = 'lg-card' + (item.nodl ? ' nodl' : '');
+    if (!item.nodl) { el.type = 'button'; el.setAttribute('data-file', item.file); el.setAttribute('data-title', item.t); }
     el.innerHTML =
-      '<div class="preview ' + l.bg + '"><img src="../' + dl + '" alt="' + l.t + '" style="' + imgStyle + '"></div>' +
-      '<div class="info"><span class="name">' + l.t + '</span><span class="desc">' + l.desc + '</span></div>' +
-      '<div class="acts">' +
-        '<a class="mini-btn" href="../' + dl + '" download>Download SVG</a>' +
-        '<button class="mini-btn" data-add data-add-title="' + l.t + '" data-add-dl="' + dl + '">+ Selecteer</button>' +
+      '<div class="vis"><img alt="' + item.t + '"></div>' +
+      '<div class="meta"><span class="nm">' + item.t + '</span>' +
+        (item.nodl ? '<span class="ref">' + item.desc + '</span>' : '<span class="dl">Aanpassen →</span>') +
       '</div>';
-    box.appendChild(el);
+    var img = el.querySelector('img');
+    load(item.file).then(function (t) { img.src = dataURI(build(t, { fg: '#004B36', bg: null }).svg); });
+    return el;
+  }
+  var nlGrid = document.getElementById('nl-grid'), vlGrid = document.getElementById('vl-grid');
+  NL.forEach(function (i) { nlGrid.appendChild(card(i)); });
+  VL.forEach(function (i) { vlGrid.appendChild(card(i)); });
+
+  // --- modal editor ---
+  var modal = document.getElementById('lgm');
+  var mTitle = document.getElementById('lgm-title');
+  var mPrev = document.getElementById('lgm-preview');
+  var mImg = document.getElementById('lgm-img');
+  var mSw = document.getElementById('lgm-sw');
+  var mFmt = document.getElementById('lgm-fmt');
+  var mDl = document.getElementById('lgm-dl');
+  var cur = { file: null, title: '', combo: COMBOS[0], text: '' };
+
+  COMBOS.forEach(function (cb, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'sw' + (i === 0 ? ' active' : ''); b.setAttribute('data-i', i);
+    var dotBg = cb.bg || cb.fg;
+    b.innerHTML = '<span class="dot" style="background:' + dotBg + '"></span>' + cb.name;
+    b.addEventListener('click', function () {
+      cur.combo = cb;
+      Array.prototype.forEach.call(mSw.children, function (c) { c.classList.remove('active'); });
+      b.classList.add('active');
+      renderPreview();
+    });
+    mSw.appendChild(b);
+  });
+
+  function renderPreview() {
+    if (!cur.text) return;
+    var built = build(cur.text, cur.combo);
+    mImg.src = dataURI(built.svg);
+    mPrev.classList.toggle('checker', !cur.combo.bg);
+    mPrev.style.background = cur.combo.bg ? '#fff' : '';
+  }
+  function open(file, title) {
+    cur.file = file; cur.title = title; cur.combo = COMBOS[0];
+    Array.prototype.forEach.call(mSw.children, function (c, i) { c.classList.toggle('active', i === 0); });
+    mTitle.textContent = title;
+    modal.classList.add('open'); document.body.style.overflow = 'hidden';
+    load(file).then(function (t) { cur.text = t; renderPreview(); });
+  }
+  function close() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.addEventListener('click', function (e) {
+    var c = e.target.closest && e.target.closest('.lg-card:not(.nodl)');
+    if (c) open(c.getAttribute('data-file'), c.getAttribute('data-title'));
+  });
+  document.getElementById('lgm-close').addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+  mDl.addEventListener('click', function () {
+    if (!cur.text) return;
+    var built = build(cur.text, cur.combo);
+    var slug = cur.file.replace(/\.svg$/, '') + '-' + cur.combo.id;
+    var fmt = mFmt.value;
+    if (fmt === 'svg') {
+      dl(new Blob([built.svg], { type: 'image/svg+xml' }), slug + '.svg');
+    } else if (fmt === 'png') {
+      raster(built, 'image/png', slug + '.png');
+    } else {
+      raster(built, 'image/jpeg', slug + '.jpg');
+    }
   });
 })();
 </script>
