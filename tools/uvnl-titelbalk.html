@@ -192,37 +192,16 @@ function applyBrand() {
   }
 }
 
-async function detectBrand() {
-  // 1. URL override wint altijd
+function detectBrand() {
+  // Vast op NL. Optioneel handmatig overschrijven via ?land=VL (geen geo-lookup).
   const land = new URLSearchParams(location.search).get('land');
   if (land) {
     const up = land.toUpperCase();
     if (up === 'NL' || up === 'VL' || up === 'BE') {
       BRAND = up === 'BE' ? 'VL' : up;
-      applyBrand();
-      return;
     }
   }
-  // 2. Cache uit vorige bezoek (voorkomt flash)
-  try {
-    const cached = localStorage.getItem('uvnl_brand');
-    if (cached === 'NL' || cached === 'VL') {
-      BRAND = cached;
-      applyBrand();
-    }
-  } catch (e) {}
-  // 3. Verse geo-detectie via ipapi.co
-  try {
-    const r = await fetch('https://ipapi.co/json/', {cache: 'no-store'});
-    if (!r.ok) return;
-    const j = await r.json();
-    const detected = j.country_code === 'BE' ? 'VL' : 'NL';
-    if (detected !== BRAND) {
-      BRAND = detected;
-      applyBrand();
-    }
-    try { localStorage.setItem('uvnl_brand', detected); } catch (e) {}
-  } catch (e) { /* geen netwerk → blijft NL of cache */ }
+  applyBrand();
 }
 detectBrand();
 
