@@ -77,7 +77,7 @@
     /* ── TOOLS ────────────────────────────────────────── */
     { t: 'Tools', cat: 'Tools', type: 'page', kw: 'tools maken gereedschap generator hulpmiddel design ontwerp', href: 'pages/tools.html', thumb: 'mark', dl: null },
     { t: 'Quote-card generator', cat: 'Tools', type: 'page', kw: 'quote card citaat generator maken tool social tiempos export beeld', href: 'tools/uvnl-quote.html', thumb: 'mark', dl: null },
-    { t: 'Titelbalk-generator', cat: 'Tools', type: 'page', kw: 'titelbalk titel balk generator thumbnail video social condensed osgc export png kop headline', href: 'tools/uvnl-titelbalk.html', thumb: 'mark', dl: null },
+    { t: 'Titelbalk-generator', cat: 'Tools', type: 'page', kw: 'titelbalk titel balk generator thumbnail video social condensed osgc export png kop headline', href: 'pages/titelbalk.html', thumb: 'mark', dl: null },
     { t: 'Contrast-checker', cat: 'Tools', type: 'page', kw: 'contrast checker wcag toegankelijkheid kleur leesbaarheid aa aaa tool', href: 'tools/uvnl-contrast.html', thumb: 'mark', dl: null }
   ];
 
