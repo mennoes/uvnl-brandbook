@@ -38,6 +38,8 @@
   .swatches { display:flex; flex-wrap:wrap; gap:8px; }
   .sw { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line-strong); background:var(--bg-2); color:var(--fg); border-radius:var(--r-pill); padding:7px 13px 7px 8px; font-family:var(--font-sans); font-weight:700; font-size:12.5px; cursor:pointer; }
   .sw.active { border-color:var(--uvnl-green-bright); box-shadow:0 0 0 1px var(--uvnl-green-bright) inset; }
+  .sw.tr { border-style:dashed; }
+  .sw .dot { box-sizing:border-box; }
   .sw .dot { width:18px; height:18px; border-radius:50%; border:1px solid rgba(0,0,0,.15); }
   .lgm-row { display:flex; gap:12px; align-items:flex-end; margin-top:20px; flex-wrap:wrap; }
   .lgm-row .fmt { display:flex; flex-direction:column; }
@@ -135,8 +137,10 @@
     </div>
     <div class="lgm-preview" id="lgm-preview"><img id="lgm-img" alt=""></div>
     <div class="lgm-body">
-      <div class="lgm-label">Kleurcombinatie</div>
-      <div class="swatches" id="lgm-sw"></div>
+      <div class="lgm-label">Op achtergrond</div>
+      <div class="swatches" id="lgm-sw-bg"></div>
+      <div class="lgm-label" style="margin-top:18px">Transparant · zonder achtergrond</div>
+      <div class="swatches" id="lgm-sw-tr"></div>
       <div class="lgm-row">
         <div class="fmt">
           <div class="lgm-label" style="margin:0 0 9px">Bestandsformaat</div>
@@ -167,21 +171,26 @@
     { t:'Beeldmerk — de U', file:'uvnl-brandmark.svg', desc:'Icoon / favicon' },
     { t:'Vierkant lockup', file:'uvnl-logo-square.svg', desc:'Social / avatar' },
     { t:'Vaandel', file:'vaandel.svg', desc:'Pennant' },
-    { t:'U-outline', file:'u-outline.svg', desc:'Open contour' },
-    { t:'Wordmark', file:'uvnl-wordmark.svg', desc:'Niet los downloadbaar', nodl:true }
+    { t:'U-outline', file:'u-outline.svg', desc:'Open contour' }
   ];
   var VL = [
     { t:'UvVL logo', file:'uvvl-logo.svg', desc:'Vlaamse variant' },
-    { t:'Vierkant lockup', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar' },
-    { t:'Wordmark', file:'uvvl-wordmark.svg', desc:'Niet los downloadbaar', nodl:true }
+    { t:'Vierkant lockup', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar' }
   ];
   var COMBOS = [
-    { id:'green-paper',  name:'Groen op Paper',            fg:'#004B36', bg:'#F4F0ED' },
-    { id:'paper-green',  name:'Paper op Groen',            fg:'#F4F0ED', bg:'#004B36' },
-    { id:'white-green',  name:'Wit op Groen',              fg:'#FFFFFF', bg:'#004B36' },
-    { id:'green-purple', name:'Groen op Electric Purple',  fg:'#004B36', bg:'#D6ACFF' },
-    { id:'purple-green', name:'Electric Purple op Groen',  fg:'#D6ACFF', bg:'#004B36' },
-    { id:'paper-none',   name:'Paper · transparant',       fg:'#F4F0ED', bg:null }
+    // op een gekleurd vlak
+    { id:'green-paper',  name:'Groen op Paper',            fg:'#004B36', bg:'#F4F0ED', group:'bg' },
+    { id:'paper-green',  name:'Paper op Groen',            fg:'#F4F0ED', bg:'#004B36', group:'bg' },
+    { id:'white-green',  name:'Wit op Groen',              fg:'#FFFFFF', bg:'#004B36', group:'bg' },
+    { id:'green-purple', name:'Groen op Electric Purple',  fg:'#004B36', bg:'#D6ACFF', group:'bg' },
+    { id:'purple-green', name:'Electric Purple op Groen',  fg:'#D6ACFF', bg:'#004B36', group:'bg' },
+    // één kleur, zonder achtergrond
+    { id:'t-green',  name:'Groen',           fg:'#004B36', bg:null, group:'tr' },
+    { id:'t-paper',  name:'Paper',           fg:'#F4F0ED', bg:null, group:'tr' },
+    { id:'t-white',  name:'Wit',             fg:'#FFFFFF', bg:null, group:'tr' },
+    { id:'t-purple', name:'Electric Purple', fg:'#D6ACFF', bg:null, group:'tr' },
+    { id:'t-ball',   name:'Ballpoint',       fg:'#1B0757', bg:null, group:'tr' },
+    { id:'t-red',    name:'Electric Red',    fg:'#EE5245', bg:null, group:'tr' }
   ];
 
   // --- SVG fetch + recolor helpers ---
@@ -248,23 +257,21 @@
   var mTitle = document.getElementById('lgm-title');
   var mPrev = document.getElementById('lgm-preview');
   var mImg = document.getElementById('lgm-img');
-  var mSw = document.getElementById('lgm-sw');
+  var mSwBg = document.getElementById('lgm-sw-bg');
+  var mSwTr = document.getElementById('lgm-sw-tr');
   var mFmt = document.getElementById('lgm-fmt');
   var mDl = document.getElementById('lgm-dl');
   var cur = { file: null, title: '', combo: COMBOS[0], text: '' };
 
+  var swBtns = [];
+  function setActive(cb) { swBtns.forEach(function (x) { x.el.classList.toggle('active', x.cb === cb); }); }
   COMBOS.forEach(function (cb, i) {
     var b = document.createElement('button');
-    b.type = 'button'; b.className = 'sw' + (i === 0 ? ' active' : ''); b.setAttribute('data-i', i);
-    var dotBg = cb.bg || cb.fg;
-    b.innerHTML = '<span class="dot" style="background:' + dotBg + '"></span>' + cb.name;
-    b.addEventListener('click', function () {
-      cur.combo = cb;
-      Array.prototype.forEach.call(mSw.children, function (c) { c.classList.remove('active'); });
-      b.classList.add('active');
-      renderPreview();
-    });
-    mSw.appendChild(b);
+    b.type = 'button'; b.className = 'sw' + (cb.group === 'tr' ? ' tr' : '') + (i === 0 ? ' active' : '');
+    b.innerHTML = '<span class="dot" style="background:' + (cb.bg || cb.fg) + '"></span>' + cb.name;
+    b.addEventListener('click', function () { cur.combo = cb; setActive(cb); renderPreview(); });
+    (cb.group === 'tr' ? mSwTr : mSwBg).appendChild(b);
+    swBtns.push({ el: b, cb: cb });
   });
 
   function renderPreview() {
@@ -276,7 +283,7 @@
   }
   function open(file, title) {
     cur.file = file; cur.title = title; cur.combo = COMBOS[0];
-    Array.prototype.forEach.call(mSw.children, function (c, i) { c.classList.toggle('active', i === 0); });
+    setActive(COMBOS[0]);
     mTitle.textContent = title;
     modal.classList.add('open'); document.body.style.overflow = 'hidden';
     load(file).then(function (t) { cur.text = t; renderPreview(); });

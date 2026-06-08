@@ -488,7 +488,7 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
    ══════════════════════════════════════════════════════════ */
 
 /* Make light the comfortable default reading surface */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 28px; }
 .wrap-narrow { max-width: 860px; margin: 0 auto; padding: 0 28px; }
 
 /* ── HERO (Polarsteps-style) ─────────────────────────── */
@@ -623,7 +623,7 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 /* ── SIMPLE TOP NAV for brandbook ────────────────────── */
 .bbnav { position: sticky; top: 0; z-index: 50; background: rgba(244,240,237,0.82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid var(--line); }
 :root[data-theme="dark"] .bbnav { background: rgba(10,14,12,0.72); }
-.bbnav-inner { max-width: 1180px; margin: 0 auto; padding: 14px 28px; display: flex; align-items: center; gap: 20px; }
+.bbnav-inner { max-width: 1440px; margin: 0 auto; padding: 14px 28px; display: flex; align-items: center; gap: 20px; }
 .bbnav .home { display: flex; align-items: center; gap: 10px; color: var(--fg); text-decoration: none; }
 .bbnav .home svg { width: 26px; height: 24px; color: var(--fg); }
 .bbnav .home b { font-family: var(--font-display); text-transform: uppercase; font-size: 15px; letter-spacing: -0.01em; line-height: 0.95; }

@@ -39,7 +39,7 @@
   .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(48px,9vw,124px); margin:0 0 48px; text-align:center; }
   .bb-hero .sub { color:rgba(244,240,237,.88); }
   /* pseudo-3D U die met de cursor meedraait */
-  .bb-hero .bgu-wrap { position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
+  .bb-hero .bgu-wrap { display:none; position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
   .bb-hero .bgu-wrap svg { width:100%; height:auto; display:block; }
   .bb-hero .bgu-wrap .ext { position:absolute; inset:0; }
   .bb-hero .bgu-wrap .front { position:relative; }
