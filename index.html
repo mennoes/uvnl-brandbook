@@ -36,27 +36,27 @@
   /* hero = vol Varsity Green met grote U erachter (zoals de site) */
   .bb-hero { background-color:var(--uvnl-green); background-image:linear-gradient(rgba(2,46,33,.66), rgba(2,46,33,.66)), url('assets/photos/hero.jpg'); background-size:cover; background-position:center; color:var(--uvnl-paper); margin-top:-68px; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding:120px 28px 80px; perspective:1100px; }
   .bb-hero .kicker { color:rgba(244,240,237,.66); }
-  .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(48px,9vw,124px); margin:0 0 48px; }
+  .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(48px,9vw,124px); margin:0 0 48px; text-align:center; }
   .bb-hero .sub { color:rgba(244,240,237,.88); }
   /* pseudo-3D U die met de cursor meedraait */
-  .bb-hero .bgu-wrap { position:absolute; left:50%; top:50%; width:min(380px,42%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
+  .bb-hero .bgu-wrap { position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
   .bb-hero .bgu-wrap svg { width:100%; height:auto; display:block; }
   .bb-hero .bgu-wrap .mid, .bb-hero .bgu-wrap .back { position:absolute; inset:0; }
   .bb-hero .bgu-wrap .front path { fill:#11724F; }
   .bb-hero .bgu-wrap .mid { transform:translateZ(-16px); } .bb-hero .bgu-wrap .mid path { fill:#0A5A41; }
   .bb-hero .bgu-wrap .back { transform:translateZ(-32px); } .bb-hero .bgu-wrap .back path { fill:#063D2C; }
-  .bb-hero .hero-logo { display:inline-flex; margin:0 0 36px; }
-  .bb-hero .hero-logo img { height:42px; filter:brightness(0) invert(1); }
+  .bb-hero .hero-logo { display:flex; justify-content:center; margin:0 auto 34px; width:100%; max-width:1124px; }
+  .bb-hero .hero-logo .navlogo { width:100%; height:auto; color:var(--uvnl-paper); }
   /* zoekbalk blendt met de groene hero */
-  .bb-hero .search-wrap { max-width:600px; }
+  .bb-hero .search-wrap { max-width:600px; margin-left:auto; margin-right:auto; width:100%; }
   .bb-hero .search-box { background:rgba(244,240,237,.12); border-color:rgba(244,240,237,.32); box-shadow:none; padding:16px 24px; }
   .bb-hero .search-box:focus-within { border-color:rgba(244,240,237,.6); background:rgba(244,240,237,.18); }
   .bb-hero .search-box svg { color:rgba(244,240,237,.72); width:18px; height:18px; }
   .bb-hero .search-box input { color:var(--uvnl-paper); font-size:18px; }
   .bb-hero .search-box input::placeholder { color:rgba(244,240,237,.62); }
   /* kolom-overzicht onder de kop (à la brand book) */
-  .hero-index { max-width:1000px; margin:44px auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:28px; text-align:center; justify-items:center; }
-  .hero-index .hi-col { display:flex; flex-direction:column; align-items:center; gap:11px; }
+  .hero-index { max-width:1000px; margin:44px auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:28px; text-align:left; }
+  .hero-index .hi-col { display:flex; flex-direction:column; align-items:flex-start; gap:11px; }
   .hero-index .hi-label { font-family:var(--font-sans); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:rgba(244,240,237,.5); margin-bottom:5px; }
   .hero-index a { color:var(--uvnl-paper); font-family:var(--font-sans); font-weight:700; font-size:17px; text-decoration:none; opacity:.9; transition:opacity var(--dur) var(--ease); }
   .hero-index a:hover { opacity:1; text-decoration:underline; }
@@ -133,6 +133,7 @@
         <div class="navdrop-menu">
           <div class="navdrop-label">Wie we zijn</div>
           <a href="pages/about.html">Over UvNL</a>
+          <a href="pages/tone-of-voice.html">Tone of voice</a>
           <div class="navdrop-label">Hoe we eruitzien</div>
           <a href="pages/logos.html">Logo's</a>
           <a href="pages/colors.html">Kleuren</a>
@@ -141,9 +142,6 @@
           <a href="pages/photography.html">Fotografie</a>
           <a href="pages/formats.html">Formats &amp; submerken</a>
           <a href="pages/examples.html">Voorbeelden</a>
-          <div class="navdrop-label">Hoe we spreken</div>
-          <a href="pages/tone-of-voice.html">Tone of voice</a>
-          <a href="pages/guidelines.html">Do's &amp; don'ts</a>
         </div>
       </div>
       <a href="pages/tools.html">Tools</a>
@@ -163,6 +161,9 @@
   <span class="orn tr" data-depth="-0.14"><img class="orn-img" src="assets/illustration-3d/onderwijs.png" style="width:400px;--rot:8deg;--fd:6.5s;--fdel:-1.2s" alt=""></span>
   <span class="orn bl" data-depth="0.12"><img class="orn-img" src="assets/illustration-3d/economie-bedrijf.png" style="width:360px;--rot:0deg;--fd:9s;--fdel:-.6s" alt=""></span>
   <span class="orn br" data-depth="-0.22"><img class="orn-img" src="assets/illustration-3d/gedrag-maatschappij.png" style="width:380px;--rot:-6deg;--fd:7.5s;--fdel:-2s" alt=""></span>
+  <div class="hero-logo">
+    <svg class="navlogo" viewBox="0 0 638 140" fill="currentColor" aria-label="Universiteit van Nederland"><g><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></g><g transform="translate(188.0186,9.0020)"><g transform="translate(41.7150,1.1067) scale(0.999754,1.000047)"><path d="M10.577 18.5705L22.488 52.9644H34.9736V0H24.4315V34.4738L12.5205 0H0V52.9644H10.577V18.5705Z"/></g><g transform="translate(82.6650,1.1067) scale(0.997250,0.999917)"><path d="M11.4164 0H0V52.9594H11.4164V0Z"/></g><g transform="translate(96.9300,1.1067) scale(0.999435,1.000047)"><path d="M26.5599 0L19.5602 40.7122L12.2508 0H0L11.6062 52.9644H26.5599L37.8664 0H26.5599Z"/></g><g transform="translate(137.7000,1.1067) scale(1.000189,1.000047)"><path d="M26.41 43.2995H11.3015V30.8975H23.4773V21.5723H11.3015V9.66485H25.8005V0H0V52.9644H26.41V43.2995Z"/></g><g transform="translate(239.0400,1.1067) scale(1.001191,0.999917)"><path d="M11.4164 0H0V52.9594H11.4164V0Z"/></g><g transform="translate(253.6200,1.1067) scale(0.999645,1.000047)"><path d="M10.0474 52.9644H21.4638V9.66485H31.5112V0H0V9.66485H10.0474V52.9644Z"/></g><g transform="translate(288.2700,1.1067) scale(1.000186,1.000047)"><path d="M26.4101 43.2995H11.3015V30.8975H23.4823V21.5723H11.3015V9.66485H25.8005V0H0V52.9644H26.4101V43.2995Z"/></g><g transform="translate(319.0050,1.1067) scale(1.001191,0.999917)"><path d="M11.4164 0H0V52.9594H11.4164V0Z"/></g><g transform="translate(333.5850,1.1067) scale(1.001073,1.000047)"><path d="M10.0475 52.9644H21.4638V9.66485H31.5112V0H0V9.66485H10.0475V52.9644Z"/></g><g transform="translate(0.0000,66.0331) scale(0.999435,1.000047)"><path d="M26.5649 0L19.5652 40.7122L12.2557 0H0L11.6112 52.9644H26.5649L37.8664 0H26.5649Z"/></g><g transform="translate(35.2800,66.0331) scale(1.000623,1.000142)"><path d="M10.9617 0L0 52.9594H11.5313L13.6647 41.1668H23.5972L25.7306 52.9594H37.9114L26.6099 0H10.9667H10.9617ZM14.7688 32.6457L18.6509 8.41117L22.5729 32.6457H14.7688Z"/></g><g transform="translate(76.0500,66.0331) scale(0.999754,1.000047)"><path d="M24.4316 34.4738L12.5205 0H0V52.9644H10.577V18.5705L22.493 52.9644H34.9736V0H24.4316V34.4738Z"/></g><g transform="translate(129.6900,66.0331) scale(0.999754,1.000047)"><path d="M24.4315 34.4738L12.5205 0H0V52.9644H10.577V18.5705L22.493 52.9644H34.9736V0H24.4315V34.4738Z"/></g><g transform="translate(170.6850,66.0331) scale(1.000186,1.000047)"><path d="M11.3015 30.8975H23.4823V21.5723H11.3015V9.66485H25.8005V0H0V52.9644H26.4101V43.2995H11.3015V30.8975Z"/></g><g transform="translate(239.7600,66.0331) scale(1.000189,1.000047)"><path d="M11.3015 30.8975H23.4823V21.5723H11.3015V9.66485H25.8005V0H0V52.9644H26.41V43.2995H11.3015V30.8975Z"/></g><g transform="translate(307.6200,66.0331) scale(1.000165,1.000047)"><path d="M11.4164 0H0V52.9644H25.4208V43.2596H11.4164V0Z"/></g><g transform="translate(334.8450,66.0331) scale(0.999436,1.000142)"><path d="M10.9617 0L0 52.9594H11.5313L13.6647 41.1668H23.5972L25.7306 52.9594H37.9114L26.6099 0H10.9667H10.9617ZM14.7688 32.6457L18.6509 8.41117L22.5729 32.6457H14.7688Z"/></g><g transform="translate(375.5700,66.0331) scale(0.999754,1.000047)"><path d="M24.4366 34.4738L12.5206 0H0V52.9644H10.582V18.5705L22.493 52.9644H34.9736V0H24.4366V34.4738Z"/></g><g transform="translate(201.8250,66.0331) scale(0.999845,1.000047)"><path d="M16.3726 0.00499201H0V52.9644H16.3726C28.9331 52.9644 32.9451 45.0527 32.9451 26.4822C32.9451 7.91169 28.9282 0 16.3726 0V0.00499201ZM19.9649 43.3794H10.9168V9.59493H19.9649V43.3794V43.3794Z"/></g><g transform="translate(2.8800,1.1067) scale(1.000000,0.999880)"><path d="M16.5125 54.0632C26.445 54.0632 33.03 48.584 33.03 37.2459V0H21.6137V41.9709H11.4414L11.4164 0.00499391H0V37.2509C0 48.589 6.58502 54.0682 16.5175 54.0682L16.5125 54.0632Z"/></g><g transform="translate(168.3450,1.1067) scale(1.000757,1.000142)"><path d="M31.9708 14.0752C31.9708 4.68009 27.1745 0 17.5467 0H0V52.9594H11.3814V31.1123H19.905V52.9594H30.9816V33.6097C30.9816 30.1284 28.1587 27.3063 24.6764 27.3113V26.0476H24.9212C24.8862 26.0426 24.8562 26.0327 24.8163 26.0227C29.5377 24.4643 31.9708 20.2787 31.9708 14.0752V14.0752ZM16.1029 23.1307H11.3814V9.20533H16.0229C19.2555 9.20533 20.5895 11.2232 20.5895 16.0931C20.5895 21.2277 19.2555 23.1307 16.0979 23.1307H16.1029Z"/></g><g transform="translate(203.4000,0.0000) scale(1.000817,0.999935)"><path d="M18.574 22.2217C13.4379 19.065 12.1039 17.4667 12.1039 13.8504V9.9995H20.2677V16.208H30.6799C30.6399 5.59412 25.5437 0 15.951 0C6.35824 0 0.767462 5.51421 0.767462 14.5347C0.767462 22.3365 4.38475 27.0116 13.4029 31.427C18.7289 34.3189 20.1378 36.4867 20.1378 40.7872V44.8829H10.4402V37.4407H0.00305505C-0.146832 48.1694 5.21911 55.172 15.986 55.172C25.6886 55.172 31.4743 49.3532 31.4743 39.993C31.3594 31.6617 27.7471 27.1315 18.574 22.2267V22.2217Z"/></g><g transform="translate(270.4050,66.0450) scale(1.000757,0.999917)"><path d="M31.9708 14.0752C31.9708 4.68008 27.1745 0 17.5467 0H0V52.9594H11.3814V31.1123H19.905V52.9594H30.9816V33.6097C30.9816 30.1283 28.1587 27.3063 24.6764 27.3113V26.0476H24.9212C24.8862 26.0426 24.8562 26.0326 24.8162 26.0227C29.5377 24.4643 31.9708 20.2787 31.9708 14.0752V14.0752ZM16.1028 23.1307H11.3814V9.20533H16.0229C19.2555 9.20533 20.5895 11.2232 20.5895 16.0931C20.5895 21.2277 19.2555 23.1307 16.0979 23.1307H16.1028Z"/></g><g transform="translate(417.0600,66.0331) scale(0.999845,1.000047)"><path d="M16.3726 0.00499201H0V52.9644H16.3726C28.9331 52.9644 32.9451 45.0527 32.9451 26.4822C32.9451 7.91169 28.9282 0 16.3726 0V0.00499201ZM19.9649 43.3794H10.9167V9.59493H19.9649V43.3794V43.3794Z"/></g></g></svg>
+  </div>
   <h1>Het merk op één plek</h1>
 
   <div class="search-wrap">
@@ -179,6 +180,7 @@
       <a href="pages/about.html">Over UvNL</a>
       <a href="pages/about.html#missie">Missie &amp; visie</a>
       <a href="pages/about.html#persoonlijkheid">Persoonlijkheid</a>
+      <a href="pages/tone-of-voice.html">Tone of voice</a>
     </div>
     <div class="hi-col">
       <span class="hi-label">Hoe we eruitzien</span>
@@ -189,11 +191,6 @@
       <a href="pages/photography.html">Fotografie</a>
       <a href="pages/formats.html">Formats &amp; submerken</a>
       <a href="pages/examples.html">Voorbeelden</a>
-    </div>
-    <div class="hi-col">
-      <span class="hi-label">Hoe we spreken</span>
-      <a href="pages/tone-of-voice.html">Tone of voice</a>
-      <a href="pages/guidelines.html">Do's &amp; don'ts</a>
     </div>
     <div class="hi-col">
       <span class="hi-label">Tools &amp; downloads</span>
@@ -224,10 +221,9 @@
       <li><a href="pages/formats.html">Formats &amp; submerken</a></li>
       <li><a href="pages/examples.html">Voorbeelden</a></li>
     </ul></div>
-    <div><h5>Hoe we spreken</h5><ul>
+    <div><h5>Wie we zijn</h5><ul>
       <li><a href="pages/about.html">Over UvNL</a></li>
       <li><a href="pages/tone-of-voice.html">Tone of voice</a></li>
-      <li><a href="pages/guidelines.html">Do's &amp; don'ts</a></li>
     </ul></div>
     <div><h5>Tools &amp; downloads</h5><ul>
       <li><a href="pages/tools.html">Alle tools</a></li>

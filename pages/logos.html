@@ -7,6 +7,43 @@
 <link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
+<style>
+  .logo-section { margin-bottom:44px; }
+  .logo-section h2 { font-family:var(--font-display); text-transform:uppercase; letter-spacing:-.01em; font-size:clamp(22px,3vw,30px); margin:0 0 4px; color:var(--fg); }
+  .logo-section .ls-sub { color:var(--fg-mute); font-size:14px; margin:0 0 18px; }
+  .logo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(238px,1fr)); gap:16px; }
+  .lg-card { display:flex; flex-direction:column; text-align:left; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); cursor:pointer; padding:0; font:inherit; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .lg-card:hover { transform:translateY(-2px); border-color:var(--line-strong); }
+  .lg-card.nodl { cursor:default; }
+  .lg-card.nodl:hover { transform:none; border-color:var(--line); }
+  .lg-card .vis { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; padding:26px; background:var(--uvnl-paper); }
+  .lg-card .vis img { max-width:76%; max-height:70%; display:block; }
+  .lg-card .meta { padding:13px 16px; border-top:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .lg-card .nm { font-family:var(--font-sans); font-weight:700; font-size:14px; color:var(--fg); }
+  .lg-card .ds { font-size:11.5px; color:var(--fg-mute); }
+  .lg-card .dl { color:var(--uvnl-green-bright); font-size:12px; font-weight:700; white-space:nowrap; }
+  .lg-card .ref { color:var(--fg-mute); font-size:11px; white-space:nowrap; }
+  /* modal editor */
+  .lgm { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(10,14,12,.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+  .lgm.open { display:flex; }
+  .lgm-box { background:var(--bg); border:1px solid var(--line-strong); border-radius:var(--r-4); width:min(720px,100%); max-height:90vh; overflow:auto; box-shadow:0 30px 80px rgba(0,0,0,.45); }
+  .lgm-head { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid var(--line); }
+  .lgm-head h3 { margin:0; font-family:var(--font-display); text-transform:uppercase; font-size:22px; color:var(--fg); }
+  .lgm-close { background:none; border:0; color:var(--fg-mute); font-size:26px; line-height:1; cursor:pointer; }
+  .lgm-preview { aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; padding:30px; margin:22px; border-radius:var(--r-3); background:#fff; }
+  .lgm-preview.checker { background-image:linear-gradient(45deg,#e7e2dc 25%,transparent 25%),linear-gradient(-45deg,#e7e2dc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e7e2dc 75%),linear-gradient(-45deg,transparent 75%,#e7e2dc 75%); background-size:18px 18px; background-position:0 0,0 9px,9px -9px,-9px 0; background-color:#fff; }
+  .lgm-preview img { max-width:82%; max-height:82%; display:block; }
+  .lgm-body { padding:0 22px 24px; }
+  .lgm-label { font-family:var(--font-sans); font-weight:700; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-mute); margin:14px 0 9px; }
+  .swatches { display:flex; flex-wrap:wrap; gap:8px; }
+  .sw { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line-strong); background:var(--bg-2); color:var(--fg); border-radius:var(--r-pill); padding:7px 13px 7px 8px; font-family:var(--font-sans); font-weight:700; font-size:12.5px; cursor:pointer; }
+  .sw.active { border-color:var(--uvnl-green-bright); box-shadow:0 0 0 1px var(--uvnl-green-bright) inset; }
+  .sw .dot { width:18px; height:18px; border-radius:50%; border:1px solid rgba(0,0,0,.15); }
+  .lgm-row { display:flex; gap:12px; align-items:flex-end; margin-top:20px; flex-wrap:wrap; }
+  .lgm-row .fmt { display:flex; flex-direction:column; }
+  .lgm-row select { font:inherit; font-weight:700; padding:11px 14px; border-radius:var(--r-2); border:1px solid var(--line-strong); background:var(--bg-2); color:var(--fg); }
+  .lgm-row .btn { flex:1; min-width:170px; }
+</style>
 </head>
 <body>
 
@@ -26,6 +63,7 @@
         <div class="navdrop-menu">
           <div class="navdrop-label">Wie we zijn</div>
           <a href="about.html">Over UvNL</a>
+          <a href="tone-of-voice.html">Tone of voice</a>
           <div class="navdrop-label">Hoe we eruitzien</div>
           <a href="logos.html">Logo's</a>
           <a href="colors.html">Kleuren</a>
@@ -34,9 +72,6 @@
           <a href="photography.html">Fotografie</a>
           <a href="formats.html">Formats &amp; submerken</a>
           <a href="examples.html">Voorbeelden</a>
-          <div class="navdrop-label">Hoe we spreken</div>
-          <a href="tone-of-voice.html">Tone of voice</a>
-          <a href="guidelines.html">Do's &amp; don'ts</a>
         </div>
       </div>
       <a href="tools.html">Tools</a>
@@ -53,7 +88,6 @@
     <p class="lead">Het UvNL-beeldmerk is de <b>U</b> — kort voor Universiteit. Gebruik bij voorkeur de staande variant in Varsity Green op Paper. Op donkere of drukke achtergronden gebruik je de Paper-versie. Geef het logo altijd ademruimte: minimaal de hoogte van de U als marge rondom.</p>
     <div class="head-actions">
       <a class="btn primary" href="../downloads/uvnl-logo-pack.zip" download>Download logo pack (ZIP)</a>
-      <a class="btn ghost" href="guidelines.html">Do's &amp; don'ts</a>
     </div>
   </header>
 
