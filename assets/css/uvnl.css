@@ -112,6 +112,7 @@ body {
     radial-gradient(1200px 800px at -10% 20%, rgba(0,75,54,0.18), transparent 60%),
     var(--bg);
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -550,20 +551,21 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 .page-head .lead { font-size: 19px; line-height: 1.5; color: var(--fg-dim); max-width: 680px; margin: 0; }
 .page-head .head-actions { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
 
-/* ===== Grote, gevulde paginakop ===== */
-.page-hero { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: 44px; align-items: stretch; padding: 40px 0 0; margin-bottom: 48px; border-bottom: 1px solid var(--line); }
-.page-hero .ph-text { align-self: center; padding-bottom: 44px; }
-.page-hero .crumb { margin-bottom: 18px; }
-.page-hero h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(52px,7.5vw,104px); line-height: 0.88; letter-spacing: -0.015em; margin: 0 0 18px; color: var(--fg); }
-.page-hero .lead { font-size: 19px; line-height: 1.5; color: var(--fg-dim); max-width: 560px; margin: 0; }
+/* ===== Beeldvullende paginakop (Polarsteps-stijl: brede band boven, titel eronder) ===== */
+.page-hero { display: flex; flex-direction: column-reverse; margin: 0 calc(50% - 50vw) 46px; }
+.page-hero .ph-visual { width: 100%; height: clamp(220px,36vh,400px); min-height: 0; border-radius: 0; overflow: hidden; position: relative; display: block; background: var(--uvnl-green); }
+.page-hero .ph-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.page-hero .ph-text { width: 100%; max-width: 1440px; margin: 30px auto 0; padding: 0 28px; box-sizing: border-box; }
+.page-hero .crumb { margin-bottom: 14px; }
+.page-hero h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(48px,7vw,96px); line-height: 0.9; letter-spacing: -0.015em; margin: 0 0 16px; color: var(--fg); }
+.page-hero .lead { font-size: 19px; line-height: 1.5; color: var(--fg-dim); max-width: 720px; margin: 0; }
 .page-hero .lead + .lead { margin-top: 10px; }
-.page-hero .head-actions { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
-.page-hero .ph-visual { position: relative; border-radius: var(--r-4); overflow: hidden; min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--uvnl-green); }
+.page-hero .head-actions { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
 @media (max-width: 900px) {
-  .page-hero { grid-template-columns: 1fr; gap: 0; margin-bottom: 34px; padding-top: 26px; }
-  .page-hero .ph-text { padding-bottom: 22px; order: 2; }
-  .page-hero .ph-visual { min-height: 230px; order: 1; margin-bottom: 26px; }
-  .page-hero h1 { font-size: clamp(40px,11vw,68px); }
+  .page-hero { margin-bottom: 32px; }
+  .page-hero .ph-visual { height: clamp(150px,28vh,240px); }
+  .page-hero .ph-text { margin-top: 22px; padding: 0 16px; }
+  .page-hero h1 { font-size: clamp(38px,11vw,64px); }
 }
 
 /* kleuren-palet */

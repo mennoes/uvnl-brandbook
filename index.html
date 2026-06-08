@@ -40,7 +40,7 @@
   .bb-hero .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease; transform:scale(1.05); transform-origin:center; animation:kenburns 16s ease-out infinite alternate; will-change:transform,opacity; }
   .bb-hero .hero-slide.is-on { opacity:1; }
   /* event-u: blije menigte met de paarse U — altijd als eerste, ingezoomd en op de U gecentreerd */
-  .bb-hero .hero-slide.eu { background-position:44% 46%; transform-origin:44% 46%; animation-name:kenburns-u; }
+  .bb-hero .hero-slide.eu { background-position:center; transform-origin:center; animation-name:kenburns-u; }
   @keyframes kenburns { from{ transform:scale(1.05); } to{ transform:scale(1.2); } }
   @keyframes kenburns-u { from{ transform:scale(1.18); } to{ transform:scale(1.32); } }
   @media (prefers-reduced-motion:reduce){ .bb-hero .hero-slide{ animation:none; } }
@@ -165,14 +165,13 @@
 <!-- HERO -->
 <header class="bb-hero">
   <div class="hero-bg" aria-hidden="true">
-    <div class="hero-slide eu is-on" style="background-image:url('assets/photos/event-u.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('assets/photos/stage-purple.jpg')"></div>
+    <div class="hero-slide eu is-on" style="background-image:url('assets/photos/event-u-c.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/photos/dome.jpg')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/lowlands.JPG')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/globe-talk.jpg')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/event-globe.jpg')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/shoot-setup.jpg')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/shoot-u.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('assets/photos/dome.jpg')"></div>
   </div>
   <div class="bgu-wrap" aria-hidden="true">
     <svg class="bgu front" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
