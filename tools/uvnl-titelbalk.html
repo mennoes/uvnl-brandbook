@@ -8,9 +8,12 @@
 if (window.top === window.self) { location.replace('../pages/titelbalk.html'); }</script>
 <style>
 :root{--bg:#090909;--surface:#141414;--border:#363636;--accent:#004B36;--accent-fg:#00c278;--lavender:#D6ACFF;--fg:#f0f0f0;--muted:#999;--input-bg:#080808;--hover-bg:#1e1e1e;--gap:1rem}
-body.light{--bg:#eeede6;--surface:#ffffff;--border:#c8c7c0;--accent:#004B36;--accent-fg:#004B36;--lavender:#6b2fa0;--fg:#1a1a1a;--muted:#777;--input-bg:#f5f4ed;--hover-bg:#ebebE3}
+body.light{--bg:#F4F0ED;--surface:#ffffff;--border:#c8c7c0;--accent:#004B36;--accent-fg:#004B36;--lavender:#6b2fa0;--fg:#1a1a1a;--muted:#777;--input-bg:#f5f4ed;--hover-bg:#ebebE3}
+@font-face{font-family:"Oldschool Grotesk";src:url("../assets/fonts/OldschoolGrotesk-Regular.woff") format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"Oldschool Grotesk";src:url("../assets/fonts/OldschoolGrotesk-Bold.woff") format("woff");font-weight:700;font-display:swap}
+@font-face{font-family:"Oldschool Grotesk Condensed";src:url("../assets/fonts/OldschoolGroteskCondensed-Bold.woff") format("woff");font-weight:700;font-display:swap}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;min-height:100vh;padding:2rem;transition:background .2s,color .2s}
+body{background:var(--bg);color:var(--fg);font-family:"Oldschool Grotesk",system-ui,-apple-system,sans-serif;font-size:14px;min-height:100vh;padding:2rem;transition:background .2s,color .2s}
 h1{font-size:1.1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lavender);margin-bottom:1.5rem}
 h1 span{color:var(--muted);font-weight:400;letter-spacing:.04em;text-transform:none;font-size:.9rem}
 .layout{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;max-width:1400px;margin:0 auto}
@@ -87,11 +90,11 @@ textarea:focus{border-color:var(--accent)}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.preview-grid{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<body class="light">
 
 <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem">
   <h1 style="margin-bottom:0">Universiteit van Nederland Titelbalk Generator <span>&#8212; titelbalken voor video &amp; socials</span></h1>
-  <button onclick="toggleTheme()" id="themeBtn" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);padding:.4rem .8rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .12s,color .12s;white-space:nowrap;flex-shrink:0;margin-left:1rem" onmouseover="this.style.borderColor='var(--lavender)';this.style.color='var(--fg)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">&#9788; Licht</button>
+  <button onclick="toggleTheme()" id="themeBtn" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);padding:.4rem .8rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .12s,color .12s;white-space:nowrap;flex-shrink:0;margin-left:1rem" onmouseover="this.style.borderColor='var(--lavender)';this.style.color='var(--fg)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">&#9790; Donker</button>
 </div>
 
 <div class="layout">
@@ -166,7 +169,7 @@ Promise.all([ff.load(), ff2.load()]).then(([f1, f2]) => {
   renderGallery();
   generate();
   addEditOverlays();
-  try { if (localStorage.getItem('uvnl_theme') === 'light') { document.body.classList.add('light'); G('themeBtn').textContent = '☾ Donker'; } } catch(e){}
+  try { if (localStorage.getItem('uvnl_theme') === 'dark') { document.body.classList.remove('light'); G('themeBtn').textContent = '☼ Licht'; } } catch(e){}
   updateBtnLabels();
 }).catch(() => {
   renderItemList();
