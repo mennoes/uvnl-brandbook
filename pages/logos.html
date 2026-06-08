@@ -45,6 +45,15 @@
   .lgm-row .fmt { display:flex; flex-direction:column; }
   .lgm-row select { font:inherit; font-weight:700; padding:11px 14px; border-radius:var(--r-2); border:1px solid var(--line-strong); background:var(--bg-2); color:var(--fg); }
   .lgm-row .btn { flex:1; min-width:170px; }
+  /* inline kleurkeuze op de kaart zelf */
+  .lg-card .vis.checker { background-image:linear-gradient(45deg,#e7e2dc 25%,transparent 25%),linear-gradient(-45deg,#e7e2dc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e7e2dc 75%),linear-gradient(-45deg,transparent 75%,#e7e2dc 75%); background-size:16px 16px; background-position:0 0,0 8px,8px -8px,-8px 0; background-color:#fff; }
+  .lg-swatches { display:flex; flex-wrap:wrap; gap:6px; padding:12px 16px 0; }
+  .lg-ball { width:20px; height:20px; border-radius:50%; border:1px solid rgba(0,0,0,.18); cursor:pointer; padding:0; }
+  .lg-ball.tr { border-style:dashed; border-color:var(--line-strong); }
+  .lg-ball.active { box-shadow:0 0 0 2px var(--uvnl-green-bright); }
+  .lg-acts { display:flex; gap:8px; padding:12px 16px 16px; align-items:center; }
+  .lg-acts select { flex:1; min-width:0; font:inherit; font-weight:700; font-size:12px; padding:7px 8px; border-radius:var(--r-2); border:1px solid var(--line-strong); background:var(--bg-2); color:var(--fg); }
+  .lg-acts .btn { padding:7px 14px; white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -99,7 +108,7 @@
 
   <section class="logo-section">
     <h2>Nederland</h2>
-    <p class="ls-sub">Klik een logo aan, kies een kleurcombinatie en download als SVG, PNG of JPG.</p>
+    <p class="ls-sub">Kies een kleurcombinatie en download als SVG, PNG of JPG.</p>
     <div class="logo-grid" id="nl-grid"></div>
   </section>
 
@@ -130,34 +139,6 @@
       </div>
     </div>
   </section>
-</div>
-
-<!-- logo editor modal -->
-<div class="lgm" id="lgm" role="dialog" aria-modal="true" aria-labelledby="lgm-title">
-  <div class="lgm-box">
-    <div class="lgm-head">
-      <h3 id="lgm-title">Logo</h3>
-      <button class="lgm-close" id="lgm-close" aria-label="Sluiten">&times;</button>
-    </div>
-    <div class="lgm-preview" id="lgm-preview"><img id="lgm-img" alt=""></div>
-    <div class="lgm-body">
-      <div class="lgm-label">Op achtergrond</div>
-      <div class="swatches" id="lgm-sw-bg"></div>
-      <div class="lgm-label" style="margin-top:18px">Transparant · zonder achtergrond</div>
-      <div class="swatches" id="lgm-sw-tr"></div>
-      <div class="lgm-row">
-        <div class="fmt">
-          <div class="lgm-label" style="margin:0 0 9px">Bestandsformaat</div>
-          <select id="lgm-fmt">
-            <option value="svg">SVG · vector</option>
-            <option value="png">PNG · transparant</option>
-            <option value="jpg">JPG · witte achtergrond</option>
-          </select>
-        </div>
-        <button class="btn primary" id="lgm-dl">Download</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <footer class="footer"><div class="footer-inner">
@@ -238,83 +219,61 @@
     img.src = dataURI(built.svg);
   }
 
-  // --- render cards ---
+  // --- render cards met inline kleurkeuze ---
   function card(item) {
-    var el = document.createElement(item.nodl ? 'div' : 'button');
-    el.className = 'lg-card' + (item.nodl ? ' nodl' : '');
-    if (!item.nodl) { el.type = 'button'; el.setAttribute('data-file', item.file); el.setAttribute('data-title', item.t); }
+    var el = document.createElement('div');
+    el.className = 'lg-card';
     el.innerHTML =
       '<div class="vis"><img alt="' + item.t + '"></div>' +
-      '<div class="meta"><span class="nm">' + item.t + '</span>' +
-        (item.nodl ? '<span class="ref">' + item.desc + '</span>' : '<span class="dl">Aanpassen →</span>') +
+      '<div class="meta"><span class="nm">' + item.t + '</span><span class="ref">' + item.desc + '</span></div>' +
+      '<div class="lg-swatches"></div>' +
+      '<div class="lg-acts">' +
+        '<select class="lg-fmt" aria-label="Bestandsformaat"><option value="svg">SVG</option><option value="png">PNG</option><option value="jpg">JPG</option></select>' +
+        '<button class="btn primary lg-dl" type="button">Download</button>' +
       '</div>';
-    var img = el.querySelector('img');
-    load(item.file).then(function (t) { img.src = dataURI(build(t, { fg: '#004B36', bg: null }).svg); });
+    var img = el.querySelector('img'),
+        vis = el.querySelector('.vis'),
+        sw = el.querySelector('.lg-swatches'),
+        fmtSel = el.querySelector('.lg-fmt'),
+        dlBtn = el.querySelector('.lg-dl');
+    var state = { combo: COMBOS[0], text: '' };
+
+    function renderPreview() {
+      if (!state.text) return;
+      var built = build(state.text, state.combo);
+      img.src = dataURI(built.svg);
+      vis.classList.toggle('checker', !state.combo.bg);
+      vis.style.background = state.combo.bg ? state.combo.bg : '';
+    }
+    COMBOS.forEach(function (cb, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lg-ball' + (cb.group === 'tr' ? ' tr' : '') + (i === 0 ? ' active' : '');
+      b.title = cb.name;
+      b.style.background = cb.bg || cb.fg;
+      b.addEventListener('click', function () {
+        state.combo = cb;
+        sw.querySelectorAll('.lg-ball').forEach(function (x) { x.classList.toggle('active', x === b); });
+        renderPreview();
+      });
+      sw.appendChild(b);
+    });
+    load(item.file).then(function (t) { state.text = t; renderPreview(); });
+
+    dlBtn.addEventListener('click', function () {
+      if (!state.text) return;
+      var built = build(state.text, state.combo);
+      var slug = item.file.replace(/\.svg$/, '') + '-' + state.combo.id;
+      var fmt = fmtSel.value;
+      if (fmt === 'svg') dl(new Blob([built.svg], { type: 'image/svg+xml' }), slug + '.svg');
+      else if (fmt === 'png') raster(built, 'image/png', slug + '.png');
+      else raster(built, 'image/jpeg', slug + '.jpg');
+    });
     return el;
   }
   var nlGrid = document.getElementById('nl-grid'), vlGrid = document.getElementById('vl-grid');
   NL.forEach(function (i) { nlGrid.appendChild(card(i)); });
   VL.forEach(function (i) { vlGrid.appendChild(card(i)); });
-
-  // --- modal editor ---
-  var modal = document.getElementById('lgm');
-  var mTitle = document.getElementById('lgm-title');
-  var mPrev = document.getElementById('lgm-preview');
-  var mImg = document.getElementById('lgm-img');
-  var mSwBg = document.getElementById('lgm-sw-bg');
-  var mSwTr = document.getElementById('lgm-sw-tr');
-  var mFmt = document.getElementById('lgm-fmt');
-  var mDl = document.getElementById('lgm-dl');
-  var cur = { file: null, title: '', combo: COMBOS[0], text: '' };
-
-  var swBtns = [];
-  function setActive(cb) { swBtns.forEach(function (x) { x.el.classList.toggle('active', x.cb === cb); }); }
-  COMBOS.forEach(function (cb, i) {
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'sw' + (cb.group === 'tr' ? ' tr' : '') + (i === 0 ? ' active' : '');
-    b.innerHTML = '<span class="dot" style="background:' + (cb.bg || cb.fg) + '"></span>' + cb.name;
-    b.addEventListener('click', function () { cur.combo = cb; setActive(cb); renderPreview(); });
-    (cb.group === 'tr' ? mSwTr : mSwBg).appendChild(b);
-    swBtns.push({ el: b, cb: cb });
-  });
-
-  function renderPreview() {
-    if (!cur.text) return;
-    var built = build(cur.text, cur.combo);
-    mImg.src = dataURI(built.svg);
-    mPrev.classList.toggle('checker', !cur.combo.bg);
-    mPrev.style.background = cur.combo.bg ? '#fff' : '';
-  }
-  function open(file, title) {
-    cur.file = file; cur.title = title; cur.combo = COMBOS[0];
-    setActive(COMBOS[0]);
-    mTitle.textContent = title;
-    modal.classList.add('open'); document.body.style.overflow = 'hidden';
-    load(file).then(function (t) { cur.text = t; renderPreview(); });
-  }
-  function close() { modal.classList.remove('open'); document.body.style.overflow = ''; }
-
-  document.addEventListener('click', function (e) {
-    var c = e.target.closest && e.target.closest('.lg-card:not(.nodl)');
-    if (c) open(c.getAttribute('data-file'), c.getAttribute('data-title'));
-  });
-  document.getElementById('lgm-close').addEventListener('click', close);
-  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-
-  mDl.addEventListener('click', function () {
-    if (!cur.text) return;
-    var built = build(cur.text, cur.combo);
-    var slug = cur.file.replace(/\.svg$/, '') + '-' + cur.combo.id;
-    var fmt = mFmt.value;
-    if (fmt === 'svg') {
-      dl(new Blob([built.svg], { type: 'image/svg+xml' }), slug + '.svg');
-    } else if (fmt === 'png') {
-      raster(built, 'image/png', slug + '.png');
-    } else {
-      raster(built, 'image/jpeg', slug + '.jpg');
-    }
-  });
 })();
 </script>
 </body>
