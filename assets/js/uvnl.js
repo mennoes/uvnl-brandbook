@@ -142,10 +142,25 @@ window.UVNL = (function () {
     });
   }
 
+  // nav transparant zolang de beeldvullende paginakop achter de nav loopt; lichte balk zodra je eronder scrolt
+  function mountHeroNav() {
+    var nav = document.querySelector('.bbnav');
+    var band = document.querySelector('.page-hero .ph-visual');
+    if (!nav || !band) return;
+    function upd() {
+      var b = band.getBoundingClientRect();
+      nav.classList.toggle('is-hero', b.bottom > nav.offsetHeight + 6);
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     wireCopy();
     mountThemeToggle();
     mountNavDrop();
+    mountHeroNav();
   });
 
   return { toast: toast, copy: copy, hexToRgb: hexToRgb, rgbToHsl: rgbToHsl, contrast: contrast, urlParam: urlParam, setTheme: setTheme, getTheme: getTheme };

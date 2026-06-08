@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
 <style>
-  .wie-video { position:relative; display:block; margin:6px 0 40px; border-radius:var(--r-4); overflow:hidden; aspect-ratio:16/9; background:var(--uvnl-purple); max-width:760px; }
+  .wie-video { position:relative; display:block; margin:6px 0 40px; border-radius:var(--r-4); overflow:hidden; aspect-ratio:16/9; background:var(--uvnl-purple); max-width:none; }
+  .wrap > .prose { max-width:none; }
+  .wrap > .prose p, .wrap > .prose ul { max-width:72ch; }
   .wie-video img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .wie-video .play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:78px; height:78px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.25); transition:transform var(--dur) var(--ease); }
   .wie-video .play svg { width:30px; height:30px; margin-left:4px; color:var(--uvnl-green); }
