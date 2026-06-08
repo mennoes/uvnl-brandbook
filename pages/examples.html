@@ -30,9 +30,30 @@
   .wash { position:absolute; inset:0; mix-blend-mode:multiply; }
   /* 3D-elementen set (uit de Figma-huisstijl) */
   .el3d-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:14px; margin-top:18px; }
-  .el3d { border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 10px 12px; text-align:center; }
+  .el3d { display:block; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 10px 12px; text-align:center; text-decoration:none; color:inherit; cursor:pointer; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  a.el3d:hover { transform:translateY(-2px); border-color:var(--line-strong); }
   .el3d img { width:84px; height:84px; object-fit:contain; }
   .el3d span { display:block; margin-top:10px; font-family:var(--font-sans); font-weight:700; font-size:11px; color:var(--fg-mute); }
+  .el3d .dlhint { display:block; margin-top:3px; font-family:var(--font-sans); font-style:normal; font-weight:700; font-size:10px; letter-spacing:.04em; color:var(--uvnl-green-bright); opacity:0; transition:opacity var(--dur) var(--ease); }
+  a.el3d:hover .dlhint { opacity:1; }
+  /* 3D-compositie banner */
+  .comp3d { margin:0 0 22px; border-radius:var(--r-4); overflow:hidden; }
+  .comp3d img { display:block; width:100%; height:auto; }
+  /* beeldmerk-plaatsing (vaandel) */
+  .vaandel-ctl { display:flex; align-items:center; gap:8px; margin:14px 0 16px; }
+  .vaandel-ctl .vc-lab { font-size:13px; color:var(--fg-mute); margin-right:2px; }
+  .vaandel-ctl .vc { width:26px; height:26px; border-radius:50%; border:1px solid var(--line-strong); cursor:pointer; padding:0; }
+  .vaandel-ctl .vc.active { box-shadow:0 0 0 2px var(--uvnl-green-bright); }
+  .vf-row { display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start; }
+  .vf { position:relative; border-radius:var(--r-3); overflow:hidden; background:var(--uvnl-green); flex:0 0 auto; }
+  .vf .bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .vf .um { position:absolute; top:7%; right:6%; width:15%; z-index:2; }
+  .vf .um path { fill:var(--vu,#F4F0ED); transition:fill var(--dur) var(--ease); }
+  .vf .rl { position:absolute; left:9px; bottom:7px; z-index:2; font-family:var(--font-sans); font-weight:700; font-size:11px; color:#fff; text-shadow:0 1px 5px rgba(0,0,0,.55); }
+  .vf.r169 { width:264px; aspect-ratio:16/9; }
+  .vf.r916 { width:150px; aspect-ratio:9/16; }
+  .vf.r45  { width:200px; aspect-ratio:4/5; }
+  .vf.r11  { width:232px; aspect-ratio:1/1; }
   /* echte toepassingen — collage van campagne-uitingen */
   .app-collage { columns:4 210px; column-gap:16px; margin-top:18px; }
   .app { break-inside:avoid; margin:0 0 16px; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
@@ -80,54 +101,57 @@
     <div class="ph-text">
       <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Voorbeelden</div>
       <h1>Voorbeelden</h1>
-      <p class="lead">Het systeem in actie: posters, thumbnails, quote-cards en slides. Groen op Paper, een gecondenseerde kop die een vraag stelt, één merkkleur als accent, een echt portret en een licht geroteerd ornament. <b>Redactionele collage, geen gladde SaaS.</b></p>
-      <p class="lead" style="font-size:14px;margin-top:10px;color:var(--fg-mute)">Hieronder eerst de <b>échte campagne-uitingen</b> uit de huisstijl; daarna merk-getrouwe recreaties die je zelf kunt namaken met het OSGC-font en de huisstijl-kleuren.</p>
+      <p class="lead">Het systeem in actie. Groen op Paper, een gecondenseerde kop die een vraag stelt, één merkkleur als accent, een echt portret en een licht geroteerd ornament. <b>Redactionele collage, geen gladde SaaS.</b></p>
     </div>
     <div class="ph-visual ph-photo">
       <img src="../assets/photos/speaker-3d.jpg" alt="Spreker met zwevende 3D-objecten op het podium">
     </div>
   </header>
 
-  <section style="margin:0 0 8px">
-    <div class="index-col" style="margin-bottom:6px"><h2>Echte toepassingen uit de huisstijl</h2></div>
-    <p class="lead" style="font-size:13px;margin:0 0 2px;color:var(--fg-mute)">Posters, audio-thumbnails en Instagram-reels uit de Figma-huisstijl.</p>
-    <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">Beeldrechten bij Universiteit van Nederland en haar partners · alleen ter referentie getoond, niet in de download-kit.</p>
-    <div class="app-collage">
-      <div class="app"><img src="../assets/applications/poster-kopje-onder.png" alt="Poster Kopje Onder — Universiteit van Nederland × Artis" loading="lazy"><div class="cap">Poster · Collegenacht × Artis</div></div>
-      <div class="app"><img src="../assets/applications/thumb-bel-angst.png" alt="Audio-thumbnail Bel Angst?" loading="lazy"><div class="cap">Audio-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/reel-stress.png" alt="Instagram-reel: Wat weet jij over stress?" loading="lazy"><div class="cap">Instagram-reel</div></div>
-      <div class="app"><img src="../assets/applications/poster-tijd-stopt.png" alt="Poster: Wat als de tijd stopt?" loading="lazy"><div class="cap">Poster · 9:16</div></div>
-      <div class="app"><img src="../assets/applications/thumb-2-dagen-effect.png" alt="Audio-thumbnail 2 dagen effect" loading="lazy"><div class="cap">Audio-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/poster-rare-jongens.png" alt="Poster: Rare jongens" loading="lazy"><div class="cap">Poster · cover</div></div>
-      <div class="app"><img src="../assets/applications/thumb-depri-kunde.png" alt="Audio-thumbnail Depri Kunde" loading="lazy"><div class="cap">Audio-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/reel-navo.png" alt="Instagram-reel: Trump uit de NAVO?" loading="lazy"><div class="cap">Instagram-reel</div></div>
-      <div class="app"><img src="../assets/applications/thumb-red-je-plant.png" alt="Audio-thumbnail Red je plant!" loading="lazy"><div class="cap">Audio-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/thumb-altijd-op-tijd.png" alt="Audio-thumbnail Altijd op tijd!" loading="lazy"><div class="cap">Audio-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/thumb-brein.png" alt="Audio-thumbnail brein" loading="lazy"><div class="cap">Audio-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/website-laptop.png" alt="Website op laptop" loading="lazy"><div class="cap">Website · device-mockup</div></div>
-      <div class="app"><img src="../assets/applications/book-slaap.png" alt="Boek: Alles over slaap" loading="lazy"><div class="cap">Boek · Alles over slaap</div></div>
-      <div class="app"><img src="../assets/applications/thumb-news-beter.png" alt="YouTube-thumbnail: Is dit beter?" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
-      <div class="app"><img src="../assets/applications/thumb-news-america.png" alt="YouTube-thumbnail: America First" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
+  <section class="vaandel" style="margin:0 0 8px">
+    <div class="index-col" style="margin-bottom:6px"><h2>Beeldmerk-plaatsing</h2></div>
+    <p class="lead" style="font-size:15px;margin:0 0 2px">De U als vaandel rechtsboven — in elk formaat, in drie kleuren.</p>
+    <div class="vaandel-ctl" id="vaandelCtl">
+      <span class="vc-lab">U-kleur</span>
+      <button class="vc active" data-c="#F4F0ED" style="background:#F4F0ED" title="Paper" aria-label="Paper"></button>
+      <button class="vc" data-c="#D6ACFF" style="background:#D6ACFF" title="Electric Purple" aria-label="Electric Purple"></button>
+      <button class="vc" data-c="#004B36" style="background:#004B36" title="Varsity Green" aria-label="Varsity Green"></button>
+    </div>
+    <div class="vf-row" id="vaandelFrames" style="--vu:#F4F0ED">
+      <div class="vf r169"><img class="bg" src="../assets/photos/lowlands.JPG" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">16:9</span></div>
+      <div class="vf r916"><img class="bg" src="../assets/photos/globe-talk.jpg" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">9:16</span></div>
+      <div class="vf r45"><img class="bg" src="../assets/photos/stage-green.jpg" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">4:5</span></div>
+      <div class="vf r11"><img class="bg" src="../assets/photos/event-globe.jpg" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">1:1</span></div>
     </div>
   </section>
-
+  <script>
+  (function(){
+    var f=document.getElementById('vaandelFrames'), c=document.getElementById('vaandelCtl');
+    if(!f||!c) return;
+    c.addEventListener('click',function(e){ var b=e.target.closest('.vc'); if(!b) return;
+      f.style.setProperty('--vu', b.dataset.c);
+      c.querySelectorAll('.vc').forEach(function(x){ x.classList.toggle('active', x===b); });
+    });
+  })();
+  </script>
 
   <section style="margin:60px 0 0">
+    <figure class="comp3d"><img src="../assets/applications/3d-compositie-2.png" alt="Compositie van de 3D-elementen met de tagline 'de universiteit voor iedereén'" loading="lazy"></figure>
     <div class="index-col" style="margin-bottom:8px"><h2>3D-elementen per vakgebied</h2></div>
     <p class="lead" style="font-size:15px;margin-bottom:4px">Naast de platte iconen heeft Universiteit van Nederland een set 3D-objecten — één per onderzoeksgebied — als sfeermaker in thumbnails, posters en slides.</p>
     <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">Beeld © Universiteit van Nederland · alleen ter referentie getoond, niet opgenomen in de download-kit.</p>
     <div class="el3d-grid">
-      <div class="el3d"><img src="../assets/illustration-3d/informatie.png" alt="3D-element informatie"><span>Informatie</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/aarde-milieu.png" alt="3D-element aarde &amp; milieu"><span>Aarde &amp; milieu</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/gedrag-maatschappij.png" alt="3D-element gedrag &amp; maatschappij"><span>Gedrag &amp; maatschappij</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/kunst-cultuur.png" alt="3D-element kunst &amp; cultuur"><span>Kunst &amp; cultuur</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/taal-communicatie.png" alt="3D-element taal &amp; communicatie"><span>Taal &amp; communicatie</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/economie-bedrijf.png" alt="3D-element economie &amp; bedrijf"><span>Economie &amp; bedrijf</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/recht-bestuur.png" alt="3D-element recht &amp; bestuur"><span>Recht &amp; bestuur</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/gezondheid.png" alt="3D-element gezondheid"><span>Gezondheid</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/techniek.png" alt="3D-element techniek"><span>Techniek</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/onderwijs.png" alt="3D-element onderwijs"><span>Onderwijs</span></div>
-      <div class="el3d"><img src="../assets/illustration-3d/zon.png" alt="3D-element zon"><span>Zon</span></div>
+      <a class="el3d" href="../assets/illustration-3d/informatie.png" download title="Download Informatie (PNG)"><img src="../assets/illustration-3d/informatie.png" alt="3D-element informatie" loading="lazy"><span>Informatie</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/aarde-milieu.png" download title="Download Aarde &amp; milieu (PNG)"><img src="../assets/illustration-3d/aarde-milieu.png" alt="3D-element aarde &amp; milieu" loading="lazy"><span>Aarde &amp; milieu</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/gedrag-maatschappij.png" download title="Download Gedrag &amp; maatschappij (PNG)"><img src="../assets/illustration-3d/gedrag-maatschappij.png" alt="3D-element gedrag &amp; maatschappij" loading="lazy"><span>Gedrag &amp; maatschappij</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/kunst-cultuur.png" download title="Download Kunst &amp; cultuur (PNG)"><img src="../assets/illustration-3d/kunst-cultuur.png" alt="3D-element kunst &amp; cultuur" loading="lazy"><span>Kunst &amp; cultuur</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/taal-communicatie.png" download title="Download Taal &amp; communicatie (PNG)"><img src="../assets/illustration-3d/taal-communicatie.png" alt="3D-element taal &amp; communicatie" loading="lazy"><span>Taal &amp; communicatie</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/economie-bedrijf.png" download title="Download Economie &amp; bedrijf (PNG)"><img src="../assets/illustration-3d/economie-bedrijf.png" alt="3D-element economie &amp; bedrijf" loading="lazy"><span>Economie &amp; bedrijf</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/recht-bestuur.png" download title="Download Recht &amp; bestuur (PNG)"><img src="../assets/illustration-3d/recht-bestuur.png" alt="3D-element recht &amp; bestuur" loading="lazy"><span>Recht &amp; bestuur</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/gezondheid.png" download title="Download Gezondheid (PNG)"><img src="../assets/illustration-3d/gezondheid.png" alt="3D-element gezondheid" loading="lazy"><span>Gezondheid</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/techniek.png" download title="Download Techniek (PNG)"><img src="../assets/illustration-3d/techniek.png" alt="3D-element techniek" loading="lazy"><span>Techniek</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/onderwijs.png" download title="Download Onderwijs (PNG)"><img src="../assets/illustration-3d/onderwijs.png" alt="3D-element onderwijs" loading="lazy"><span>Onderwijs</span><em class="dlhint">↓ PNG</em></a>
+      <a class="el3d" href="../assets/illustration-3d/zon.png" download title="Download Zon (PNG)"><img src="../assets/illustration-3d/zon.png" alt="3D-element zon" loading="lazy"><span>Zon</span><em class="dlhint">↓ PNG</em></a>
     </div>
   </section>
 
