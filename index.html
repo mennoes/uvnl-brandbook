@@ -11,6 +11,7 @@
 <style>
   /* hero met grote, zwevende 3D-elementen rondom de tekst */
   .bb-hero .kicker, .bb-hero h1, .bb-hero .sub, .bb-hero .search-wrap, .bb-hero .hero-index, .bb-hero .hero-logo { position:relative; z-index:2; }
+  .bb-hero .search-wrap { z-index:20; } /* zoekresultaten boven de index-links, anders vangen die de klik */
   .orn { position:absolute; z-index:1; pointer-events:none; will-change:transform; }
   .orn-img { display:block; filter:drop-shadow(0 14px 24px rgba(0,0,0,.18)); animation:float var(--fd,7s) ease-in-out infinite; animation-delay:var(--fdel,0s); transform:rotate(var(--rot,0deg)); }
   @keyframes float { 0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); } 50%{ transform:translateY(-40px) rotate(var(--rot,0deg)); } }
@@ -210,7 +211,6 @@
     <div class="hi-col">
       <span class="hi-label">Tools &amp; downloads</span>
       <a href="pages/tools.html">Tools</a>
-      <a href="tools/uvnl-quote.html">Quote-card generator</a>
       <a href="tools/uvnl-titelbalk.html">Titelbalk-generator</a>
       <a href="tools/uvnl-contrast.html">Contrast-checker</a>
       <a href="pages/download.html">Download kit</a>
@@ -243,7 +243,6 @@
     </ul></div>
     <div><h5>Tools &amp; downloads</h5><ul>
       <li><a href="pages/tools.html">Alle tools</a></li>
-      <li><a href="tools/uvnl-quote.html">Quote-card generator</a></li>
       <li><a href="tools/uvnl-titelbalk.html">Titelbalk-generator</a></li>
       <li><a href="tools/uvnl-contrast.html">Contrast-checker</a></li>
       <li><a href="downloads/uvnl-brand-kit.zip" download>Volledige kit</a></li>
