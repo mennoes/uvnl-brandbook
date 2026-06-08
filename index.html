@@ -284,13 +284,38 @@
 <script>
 /* hero-index: kopjes als uitklapknoppen (mobiel) */
 (function () {
-  document.querySelectorAll('.hero-index .hi-label').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var col = btn.parentElement;
-      var open = col.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  var idx = document.querySelector('.hero-index');
+  if (!idx) return;
+  var cols = Array.prototype.slice.call(idx.querySelectorAll('.hi-col'));
+
+  // reserveer alvast de hoogte van de hoogst mogelijke open-stand,
+  // zodat uitklappen de paginahoogte niet verandert
+  function reserve() {
+    if (window.innerWidth > 760) { idx.style.minHeight = ''; return; }
+    var labels = 0, maxList = 0, gap = 12;
+    cols.forEach(function (c) {
+      labels += c.querySelector('.hi-label').offsetHeight;
+      var lh = c.querySelector('.hi-links').scrollHeight;
+      if (lh > maxList) maxList = lh;
+    });
+    idx.style.minHeight = (labels + gap * (cols.length - 1) + maxList) + 'px';
+  }
+
+  cols.forEach(function (col) {
+    col.querySelector('.hi-label').addEventListener('click', function () {
+      var willOpen = !col.classList.contains('open');
+      // maar één tegelijk open → hoogte blijft binnen de gereserveerde ruimte
+      cols.forEach(function (c) {
+        var on = (c === col && willOpen);
+        c.classList.toggle('open', on);
+        c.querySelector('.hi-label').setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
     });
   });
+
+  window.addEventListener('resize', reserve);
+  window.addEventListener('load', reserve);
+  reserve();
 })();
 /* parallax: 3D-hero-elementen op verschillende dieptes mee laten scrollen */
 (function () {
