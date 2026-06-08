@@ -41,11 +41,10 @@
   /* pseudo-3D U die met de cursor meedraait */
   .bb-hero .bgu-wrap { position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:0; pointer-events:none; transform-style:preserve-3d; transform:translate(-50%,-50%); transition:transform .25s cubic-bezier(.2,.8,.2,1); }
   .bb-hero .bgu-wrap svg { width:100%; height:auto; display:block; }
-  .bb-hero .bgu-wrap .mid, .bb-hero .bgu-wrap .back { position:absolute; inset:0; }
-  .bb-hero .bgu-wrap .front path { fill:#11724F; }
-  .bb-hero .bgu-wrap .mid { transform:translateZ(-16px); } .bb-hero .bgu-wrap .mid path { fill:#0A5A41; }
-  .bb-hero .bgu-wrap .back { transform:translateZ(-32px); } .bb-hero .bgu-wrap .back path { fill:#063D2C; }
-  .bb-hero .hero-logo { display:flex; justify-content:center; margin:0 auto 48px; width:100%; max-width:340px; }
+  .bb-hero .bgu-wrap .ext { position:absolute; inset:0; }
+  .bb-hero .bgu-wrap .front { position:relative; }
+  .bb-hero .bgu-wrap .front path { fill:#157A55; }
+  .bb-hero .hero-logo { display:flex; justify-content:center; margin:0 auto 60px; width:100%; max-width:270px; }
   .bb-hero .hero-logo .navlogo { width:100%; height:auto; color:var(--uvnl-paper); }
   /* zoekbalk blendt met de groene hero */
   .bb-hero .search-wrap { max-width:600px; margin-left:auto; margin-right:auto; width:100%; }
@@ -156,8 +155,6 @@
 <!-- HERO -->
 <header class="bb-hero">
   <div class="bgu-wrap" aria-hidden="true">
-    <svg class="bgu back" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
-    <svg class="bgu mid" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
     <svg class="bgu front" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
   </div>
   <span class="orn tl" data-depth="0.18"><img class="orn-img" src="assets/illustration-3d/informatie.png" style="width:380px;--rot:-6deg;--fd:8s" alt=""></span>
@@ -215,6 +212,10 @@
       </a>
       <p style="color:var(--fg-mute);font-size:13px;max-width:280px">De HEMA van de wetenschap. Eerlijk, echt, een beetje rommelig. Kennis in wording, geen corporate glanslaag.</p>
     </div>
+    <div><h5>Wie we zijn</h5><ul>
+      <li><a href="pages/about.html">Over UvNL</a></li>
+      <li><a href="pages/tone-of-voice.html">Tone of voice</a></li>
+    </ul></div>
     <div><h5>Hoe we eruitzien</h5><ul>
       <li><a href="pages/logos.html">Logo's</a></li>
       <li><a href="pages/colors.html">Kleuren</a></li>
@@ -223,10 +224,6 @@
       <li><a href="pages/photography.html">Fotografie</a></li>
       <li><a href="pages/formats.html">Formats &amp; submerken</a></li>
       <li><a href="pages/examples.html">Voorbeelden</a></li>
-    </ul></div>
-    <div><h5>Wie we zijn</h5><ul>
-      <li><a href="pages/about.html">Over UvNL</a></li>
-      <li><a href="pages/tone-of-voice.html">Tone of voice</a></li>
     </ul></div>
     <div><h5>Tools &amp; downloads</h5><ul>
       <li><a href="pages/tools.html">Alle tools</a></li>
@@ -238,7 +235,7 @@
     </ul></div>
     <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px">
       <p>© 2026 Universiteiten van Nederland</p>
-      <p>Vragen over merkgebruik?<br><a href="pages/about.html#contact" style="color:var(--uvnl-green-bright)">merk@universiteitenvannederland.nl</a></p>
+      <p>Vragen over merkgebruik?<br><a href="mailto:info@studioyoko.nl" style="color:var(--uvnl-green-bright)">info@studioyoko.nl</a></p>
     </div>
   </div>
 </footer>
@@ -282,10 +279,29 @@
   var hero = document.querySelector('.bb-hero');
   var wrap = hero && hero.querySelector('.bgu-wrap');
   if (!wrap) return;
+  /* bouw een diepe, massieve extrusie achter het front-vlak op */
+  var front = wrap.querySelector('.bgu.front');
+  var d = front.querySelector('path').getAttribute('d');
+  var N = 22, depth = 78;          // aantal lagen + totale diepte (px in U-coördinaten)
+  var top = [21, 122, 85], bot = [3, 38, 26];   // licht front -> donkere achterkant
+  function mix(i) { var t = i / N; return 'rgb(' + Math.round(top[0] + (bot[0] - top[0]) * t) + ',' + Math.round(top[1] + (bot[1] - top[1]) * t) + ',' + Math.round(top[2] + (bot[2] - top[2]) * t) + ')'; }
+  var ns = 'http://www.w3.org/2000/svg', frag = document.createDocumentFragment();
+  for (var i = N; i >= 1; i--) {
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 156 140');
+    svg.setAttribute('class', 'bgu ext');
+    svg.style.transform = 'translateZ(' + (-(depth * i / N)).toFixed(1) + 'px)';
+    var p = document.createElementNS(ns, 'path');
+    p.setAttribute('d', d); p.setAttribute('fill', mix(i));
+    svg.appendChild(p); frag.appendChild(svg);
+  }
+  wrap.insertBefore(frag, front);
+
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var BASE_RY = -22, BASE_RX = 13;  // rust-kanteling zodat de extrusie altijd zichtbaar is
   var rx = 0, ry = 0, sy = 0;
   function apply() {
-    wrap.style.transform = 'translate(-50%, calc(-50% + ' + sy.toFixed(1) + 'px)) rotateY(' + ry.toFixed(1) + 'deg) rotateX(' + rx.toFixed(1) + 'deg)';
+    wrap.style.transform = 'translate(-50%, calc(-50% + ' + sy.toFixed(1) + 'px)) rotateY(' + (BASE_RY + ry).toFixed(1) + 'deg) rotateX(' + (BASE_RX + rx).toFixed(1) + 'deg)';
   }
   function onScroll() { sy = (window.pageYOffset || 0) * 0.28; apply(); }
   window.addEventListener('scroll', onScroll, { passive: true });
