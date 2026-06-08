@@ -7,6 +7,10 @@
 <link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
+<style>
+  .preview.photo.ph-missing { background:var(--uvnl-paper); position:relative; }
+  .preview.photo.ph-missing::after { content:"Nog te uploaden"; font-family:var(--font-sans); font-weight:700; font-size:12px; color:var(--fg-mute); position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+</style>
 </head>
 <body>
 
@@ -75,19 +79,20 @@
 <script>
 (function () {
   var photos = [
-    ['scientist1.png','Wetenschapper 1'],['scientist2.png','Wetenschapper 2'],
-    ['scientist3.png','Wetenschapper 3'],['scientist4.png','Wetenschapper 4'],
-    ['poster-person1.png','Poster-portret 1'],['poster-person2.png','Poster-portret 2'],
-    ['thumb-bg1.png','Thumb-achtergrond 1'],['thumb-bg2.png','Thumb-achtergrond 2']
+    ['event-globe.jpg','Event · wereldbol in het park'],
+    ['event-u.jpg','Event · publiek met paarse U'],
+    ['thumb-bg1.png','Thumb-achtergrond 1'],
+    ['thumb-bg2.png','Thumb-achtergrond 2']
   ];
   var box = document.getElementById('photo-gallery');
   photos.forEach(function (ph) {
     var dl = 'assets/photos/' + ph[0];
+    var ext = ph[0].split('.').pop().toUpperCase();
     var el = document.createElement('div');
     el.className = 'asset';
     el.innerHTML =
-      '<div class="preview photo"><img src="../' + dl + '" alt="' + ph[1] + '"></div>' +
-      '<div class="info"><span class="name">' + ph[1] + '</span><span class="desc">PNG · voorbeeldbeeld</span></div>' +
+      '<div class="preview photo"><img src="../' + dl + '" alt="' + ph[1] + '" onerror="this.parentNode.classList.add(\'ph-missing\');this.remove()"></div>' +
+      '<div class="info"><span class="name">' + ph[1] + '</span><span class="desc">' + ext + ' · voorbeeldbeeld</span></div>' +
       '<div class="acts">' +
         '<a class="mini-btn" href="../' + dl + '" download>Download</a>' +
         '<button class="mini-btn" data-add data-add-title="' + ph[1] + '" data-add-dl="' + dl + '">+ Selecteer</button>' +
