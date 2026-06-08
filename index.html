@@ -36,9 +36,14 @@
   /* hero = vol Varsity Green met grote U erachter (zoals de site) */
   .bb-hero { position:relative; overflow:hidden; background-color:var(--uvnl-green); color:var(--uvnl-paper); margin-top:-68px; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding:120px 28px 80px; perspective:1100px; }
   /* roterende achtergrondfoto's met crossfade */
-  .bb-hero .hero-bg { position:absolute; inset:0; z-index:0; }
-  .bb-hero .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease; }
+  .bb-hero .hero-bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
+  .bb-hero .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease; transform:scale(1.05); transform-origin:center; animation:kenburns 16s ease-out infinite alternate; will-change:transform,opacity; }
   .bb-hero .hero-slide.is-on { opacity:1; }
+  /* event-u: blije menigte met de paarse U — altijd als eerste, ingezoomd en op de U gecentreerd */
+  .bb-hero .hero-slide.eu { background-position:44% 46%; transform-origin:44% 46%; animation-name:kenburns-u; }
+  @keyframes kenburns { from{ transform:scale(1.05); } to{ transform:scale(1.2); } }
+  @keyframes kenburns-u { from{ transform:scale(1.18); } to{ transform:scale(1.32); } }
+  @media (prefers-reduced-motion:reduce){ .bb-hero .hero-slide{ animation:none; } }
   .bb-hero .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(2,46,33,.28), rgba(2,46,33,.60)); }
   .bb-hero .kicker { color:rgba(244,240,237,.66); }
   .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(48px,9vw,124px); margin:0 0 48px; text-align:center; }
@@ -160,9 +165,12 @@
 <!-- HERO -->
 <header class="bb-hero">
   <div class="hero-bg" aria-hidden="true">
-    <div class="hero-slide is-on" style="background-image:url('assets/photos/event-u.jpg')"></div>
+    <div class="hero-slide eu is-on" style="background-image:url('assets/photos/event-u.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/photos/stage-purple.jpg')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/lowlands.JPG')"></div>
+    <div class="hero-slide" style="background-image:url('assets/photos/globe-talk.jpg')"></div>
     <div class="hero-slide" style="background-image:url('assets/photos/event-globe.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/photos/dome.jpg')"></div>
   </div>
   <div class="bgu-wrap" aria-hidden="true">
     <svg class="bgu front" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
@@ -206,6 +214,7 @@
       <span class="hi-label">Tools &amp; downloads</span>
       <a href="pages/tools.html">Tools</a>
       <a href="tools/uvnl-quote.html">Quote-card generator</a>
+      <a href="tools/uvnl-titelbalk.html">Titelbalk-generator</a>
       <a href="tools/uvnl-contrast.html">Contrast-checker</a>
       <a href="pages/download.html">Download kit</a>
     </div>
@@ -238,6 +247,7 @@
     <div><h5>Tools &amp; downloads</h5><ul>
       <li><a href="pages/tools.html">Alle tools</a></li>
       <li><a href="tools/uvnl-quote.html">Quote-card generator</a></li>
+      <li><a href="tools/uvnl-titelbalk.html">Titelbalk-generator</a></li>
       <li><a href="tools/uvnl-contrast.html">Contrast-checker</a></li>
       <li><a href="downloads/uvnl-brand-kit.zip" download>Volledige kit</a></li>
       <li><a href="downloads/uvnl-logo-pack.zip" download>Logo pack</a></li>

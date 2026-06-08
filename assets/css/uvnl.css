@@ -588,6 +588,9 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 /* foto-collage */
 .ph-photos { display: grid; grid-template-columns: 1fr 1fr; }
 .ph-photos img { width: 100%; height: 100%; object-fit: cover; }
+/* enkele foto, full-bleed in de visual */
+.ph-visual.ph-photo { padding: 0; }
+.ph-visual.ph-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* citaat */
 .ph-quote { padding: 40px; }
