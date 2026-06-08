@@ -7,6 +7,13 @@
 <link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
+<style>
+  .fam-vars { display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 4px; }
+  .fam-var { width:34px; height:34px; border:1px solid var(--line); border-radius:var(--r-2); background:var(--bg-1); cursor:pointer; padding:3px; display:flex; align-items:center; justify-content:center; transition:border-color var(--dur) var(--ease); }
+  .fam-var img { max-width:100%; max-height:100%; object-fit:contain; }
+  .fam-var:hover { border-color:var(--line-strong); }
+  .fam-var.active { border-color:var(--uvnl-green-bright); box-shadow:0 0 0 1px var(--uvnl-green-bright) inset; }
+</style>
 </head>
 <body>
 
@@ -66,30 +73,51 @@
 <script src="../assets/js/brandbook.js"></script>
 <script>
 (function () {
-  var icons = [
-    ['bliksem1.png','Bliksem 1'],['bliksem2.png','Bliksem 2'],['bliksem3.png','Bliksem 3'],
-    ['pijl-groen.png','Pijl groen'],['pijl-geel.png','Pijl geel'],['pijl-paars.png','Pijl paars'],['pijl-rood.png','Pijl rood'],
-    ['pijl-groen2.png','Pijl groen 2'],['pijl-geel2.png','Pijl geel 2'],['pijl-paars2.png','Pijl paars 2'],['pijl-rood2.png','Pijl rood 2'],
-    ['pijn1.png','Pijn 1'],['pijn2.png','Pijn 2'],['pijn3.png','Pijn 3'],
-    ['snaps1.png','Snaps 1'],['snaps2.png','Snaps 2'],['snaps3.png','Snaps 3'],['snaps4.png','Snaps 4'],
-    ['spark1.png','Spark 1'],['spark2.png','Spark 2'],
-    ['circle1.png','Circle 1'],['circle2.png','Circle 2'],['circle3.png','Circle 3'],['circle4.png','Circle 4'],
-    ['grid1.png','Grid 1'],['grid2.png','Grid 2'],['grid3.png','Grid 3'],['grid4.png','Grid 4']
+  // per ornament-familie één kaart; de varianten (kleuren/vormen) kies je eronder
+  var families = [
+    ['Pijl',   [['pijl-groen.png','Groen'],['pijl-geel.png','Geel'],['pijl-paars.png','Paars'],['pijl-rood.png','Rood']]],
+    ['Pijl 2', [['pijl-groen2.png','Groen'],['pijl-geel2.png','Geel'],['pijl-paars2.png','Paars'],['pijl-rood2.png','Rood']]],
+    ['Bliksem',[['bliksem1.png','1'],['bliksem2.png','2'],['bliksem3.png','3']]],
+    ['Pijn',   [['pijn1.png','1'],['pijn2.png','2'],['pijn3.png','3']]],
+    ['Snaps',  [['snaps1.png','1'],['snaps2.png','2'],['snaps3.png','3'],['snaps4.png','4']]],
+    ['Spark',  [['spark1.png','1'],['spark2.png','2']]],
+    ['Circle', [['circle1.png','1'],['circle2.png','2'],['circle3.png','3'],['circle4.png','4']]],
+    ['Grid',   [['grid1.png','1'],['grid2.png','2'],['grid3.png','3'],['grid4.png','4']]]
   ];
   var box = document.getElementById('icon-gallery');
-  icons.forEach(function (ic) {
-    var dl = 'assets/icons/' + ic[0];
-    var rot = (Math.random()*24 - 12).toFixed(1);
+  families.forEach(function (fam) {
+    var name = fam[0], vars = fam[1], first = vars[0];
+    var rot = (Math.random()*16 - 8).toFixed(1);
     var el = document.createElement('div');
     el.className = 'asset';
+    var swatches = vars.map(function (v, i) {
+      return '<button class="fam-var' + (i === 0 ? ' active' : '') + '" data-file="' + v[0] + '" data-label="' + v[1] + '" title="' + v[1] + '"><img src="../assets/icons/' + v[0] + '" alt="' + name + ' ' + v[1] + '"></button>';
+    }).join('');
     el.innerHTML =
-      '<div class="preview"><img src="../' + dl + '" alt="' + ic[1] + '" style="transform:rotate(' + rot + 'deg);max-width:55%"></div>' +
-      '<div class="info"><span class="name">' + ic[1] + '</span><span class="desc">PNG · ornament</span></div>' +
+      '<div class="preview"><img class="fam-main" src="../assets/icons/' + first[0] + '" alt="' + name + '" style="transform:rotate(' + rot + 'deg);max-width:55%"></div>' +
+      '<div class="info"><span class="name">' + name + '</span><span class="desc desc-v">' + vars.length + ' varianten · ' + first[1] + '</span></div>' +
+      (vars.length > 1 ? '<div class="fam-vars">' + swatches + '</div>' : '') +
       '<div class="acts">' +
-        '<a class="mini-btn" href="../' + dl + '" download>Download PNG</a>' +
-        '<button class="mini-btn" data-add data-add-title="' + ic[1] + '" data-add-dl="' + dl + '">+ Selecteer</button>' +
+        '<a class="mini-btn fam-dl" href="../assets/icons/' + first[0] + '" download>Download PNG</a>' +
+        '<button class="mini-btn fam-add" data-add data-add-title="' + name + ' ' + first[1] + '" data-add-dl="assets/icons/' + first[0] + '">+ Selecteer</button>' +
       '</div>';
     box.appendChild(el);
+
+    var main = el.querySelector('.fam-main'),
+        dlBtn = el.querySelector('.fam-dl'),
+        addBtn = el.querySelector('.fam-add'),
+        descV = el.querySelector('.desc-v');
+    el.querySelectorAll('.fam-var').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var file = btn.getAttribute('data-file'), label = btn.getAttribute('data-label');
+        main.src = '../assets/icons/' + file;
+        dlBtn.href = '../assets/icons/' + file;
+        addBtn.setAttribute('data-add-title', name + ' ' + label);
+        addBtn.setAttribute('data-add-dl', 'assets/icons/' + file);
+        if (descV) descV.textContent = vars.length + ' varianten · ' + label;
+        el.querySelectorAll('.fam-var').forEach(function (b) { b.classList.toggle('active', b === btn); });
+      });
+    });
   });
 })();
 </script>
