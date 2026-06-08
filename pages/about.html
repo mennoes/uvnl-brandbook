@@ -7,6 +7,14 @@
 <link rel="icon" href="../assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="../assets/css/uvnl.css">
 <script>window.BB_BASE = '../';</script>
+<style>
+  .wie-video { position:relative; display:block; margin:6px 0 40px; border-radius:var(--r-4); overflow:hidden; aspect-ratio:16/9; background:var(--uvnl-purple); max-width:760px; }
+  .wie-video img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .wie-video .play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:78px; height:78px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.25); transition:transform var(--dur) var(--ease); }
+  .wie-video .play svg { width:30px; height:30px; margin-left:4px; color:var(--uvnl-green); }
+  .wie-video:hover .play { transform:translate(-50%,-50%) scale(1.06); }
+  .wie-video .vlabel { position:absolute; left:18px; bottom:16px; font-family:var(--font-sans); font-weight:700; font-size:14px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.5); }
+</style>
 </head>
 <body>
 
@@ -52,6 +60,12 @@
     <h1>Over UvNL</h1>
     <p class="lead">Universiteiten van Nederland maakt complexe wetenschap toegankelijk via verhalende video op YouTube, Instagram, TikTok, de website, tv en live events.</p>
   </header>
+
+  <a class="wie-video" href="https://www.universiteitvannederland.nl/ons-manifest" target="_blank" rel="noopener">
+    <img src="https://img.youtube.com/vi/ZG4WQpWd4fE/maxresdefault.jpg" alt="Bekijk de UvNL-manifestvideo" loading="lazy">
+    <span class="vlabel">Bekijk het manifest · video</span>
+    <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+  </a>
 
   <div class="prose">
     <blockquote>We zijn de HEMA van de wetenschap. Eerlijk, echt, een beetje rommelig. Kennis in wording, geen corporate glanslaag.</blockquote>
