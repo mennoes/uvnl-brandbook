@@ -10,7 +10,7 @@
 <script>window.BB_BASE = '';</script>
 <style>
   /* hero met grote, zwevende 3D-elementen rondom de tekst */
-  .bb-hero .kicker, .bb-hero h1, .bb-hero .sub, .bb-hero .search-wrap { position:relative; z-index:2; }
+  .bb-hero .kicker, .bb-hero h1, .bb-hero .sub, .bb-hero .search-wrap, .bb-hero .hero-index { position:relative; z-index:2; }
   .orn { position:absolute; z-index:1; pointer-events:none; will-change:transform; }
   .orn-img { display:block; filter:drop-shadow(0 14px 24px rgba(0,0,0,.18)); animation:float var(--fd,7s) ease-in-out infinite; animation-delay:var(--fdel,0s); transform:rotate(var(--rot,0deg)); }
   @keyframes float { 0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); } 50%{ transform:translateY(-40px) rotate(var(--rot,0deg)); } }
@@ -54,6 +54,13 @@
   .bb-hero .search-box svg { color:rgba(244,240,237,.72); width:18px; height:18px; }
   .bb-hero .search-box input { color:var(--uvnl-paper); font-size:16px; }
   .bb-hero .search-box input::placeholder { color:rgba(244,240,237,.62); }
+  /* kolom-overzicht onder de kop (à la brand book) */
+  .hero-index { max-width:920px; margin:36px auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:left; }
+  .hero-index .hi-col { display:flex; flex-direction:column; gap:9px; }
+  .hero-index .hi-label { font-family:var(--font-sans); font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(244,240,237,.5); margin-bottom:4px; }
+  .hero-index a { width:fit-content; color:var(--uvnl-paper); font-family:var(--font-sans); font-weight:700; font-size:15px; text-decoration:none; opacity:.9; transition:opacity var(--dur) var(--ease); }
+  .hero-index a:hover { opacity:1; text-decoration:underline; }
+  @media (max-width:760px){ .hero-index { grid-template-columns:repeat(2,1fr); gap:22px; } }
   /* over-ons samenvatting in sectie 01 */
   .about-summary { max-width:66ch; margin:2px 0 24px; }
   .about-summary p { font-size:18px; line-height:1.6; color:var(--fg-dim); margin:0; }
@@ -163,6 +170,37 @@
     </div>
     <div class="search-results" id="bb-results"></div>
   </div>
+
+  <nav class="hero-index" aria-label="Inhoud">
+    <div class="hi-col">
+      <span class="hi-label">Wie we zijn</span>
+      <a href="pages/about.html">Over UvNL</a>
+      <a href="pages/about.html#missie">Missie &amp; visie</a>
+      <a href="pages/about.html#persoonlijkheid">Persoonlijkheid</a>
+    </div>
+    <div class="hi-col">
+      <span class="hi-label">Hoe we eruitzien</span>
+      <a href="pages/logos.html">Logo's</a>
+      <a href="pages/colors.html">Kleuren</a>
+      <a href="pages/typography.html">Typografie</a>
+      <a href="pages/icons.html">Iconen</a>
+      <a href="pages/photography.html">Fotografie</a>
+      <a href="pages/formats.html">Formats &amp; submerken</a>
+      <a href="pages/examples.html">Voorbeelden</a>
+    </div>
+    <div class="hi-col">
+      <span class="hi-label">Hoe we spreken</span>
+      <a href="pages/tone-of-voice.html">Tone of voice</a>
+      <a href="pages/guidelines.html">Do's &amp; don'ts</a>
+    </div>
+    <div class="hi-col">
+      <span class="hi-label">Tools &amp; downloads</span>
+      <a href="pages/tools.html">Tools</a>
+      <a href="tools/uvnl-quote.html">Quote-card generator</a>
+      <a href="tools/uvnl-contrast.html">Contrast-checker</a>
+      <a href="pages/download.html">Download kit</a>
+    </div>
+  </nav>
 </header>
 
 <!-- 01 WIE WE ZIJN -->
