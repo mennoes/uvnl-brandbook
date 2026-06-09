@@ -52,9 +52,12 @@
   .lg-ball.tr { border-style:dashed; border-color:var(--line-strong); }
   .lg-ball.active { box-shadow:0 0 0 2px var(--uvnl-green-bright); }
   .lg-ball-sep { width:1px; height:20px; background:var(--line-strong); margin:0 4px; align-self:center; flex:0 0 auto; }
-  .lg-acts { display:flex; gap:8px; padding:12px 16px 16px; align-items:center; }
+  .lg-acts { display:flex; flex-wrap:wrap; gap:8px; padding:12px 16px 16px; align-items:center; }
   .lg-acts select { flex:1; min-width:0; font:inherit; font-weight:700; font-size:12px; padding:7px 8px; border-radius:var(--r-2); border:1px solid var(--line-strong); background:var(--bg-2); color:var(--fg); }
   .lg-acts .btn { padding:7px 14px; white-space:nowrap; }
+  .lg-acts .lg-ratio { flex:0 0 auto; max-width:78px; }
+  .lg-card.is-overlay .vis { padding:0; }
+  .lg-card.is-overlay .vis img { max-width:100%; max-height:100%; width:100%; height:100%; object-fit:contain; }
 </style>
 </head>
 <body>
@@ -188,7 +191,7 @@
     { t:'Logo', file:'uvnl-logo.svg', desc:'Staand hoofdlogo' },
     { t:'Beeldmerk', file:'uvnl-brandmark.svg', desc:'De U · icoon' },
     { t:'Vierkant', file:'uvnl-logo-square.svg', desc:'Social / avatar' },
-    { t:'Vaandel', file:'vaandel.svg', desc:'Pennant', trOnly:true },
+    { t:'Vaandel', file:'vaandel.svg', desc:'Overlay rechtsboven', trOnly:true, overlay:true },
     { t:'U-outline', file:'u-outline.svg', desc:'Open contour' }
   ];
   var VL = [
@@ -229,6 +232,17 @@
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + nx + ' ' + ny + ' ' + nw + ' ' + nh + '" width="' + nw + '" height="' + nh + '">' + rect + '<g fill="' + combo.fg + '">' + inner + '</g></svg>';
     return { svg: svg, w: nw, h: nh };
   }
+  function buildOverlay(text, fg, cw, ch) {
+    // vaandel als hoek-overlay: rechtsboven op een transparant doek
+    var m = text.match(/viewBox\s*=\s*"([\-\d.\s]+)"/);
+    var vb = m ? m[1].trim().split(/\s+/).map(Number) : [0, 0, 100, 100];
+    var x = vb[0], y = vb[1], w = vb[2], h = vb[3];
+    var inner = text.replace(/[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '').replace(/currentColor/g, fg);
+    var vw = cw * 0.40, scale = vw / w, tx = cw - vw;
+    var g = '<g fill="' + fg + '" transform="translate(' + tx + ',0) scale(' + scale + ') translate(' + (-x) + ',' + (-y) + ')">' + inner + '</g>';
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + cw + ' ' + ch + '" width="' + cw + '" height="' + ch + '">' + g + '</svg>';
+    return { svg: svg, w: cw, h: ch };
+  }
   function dataURI(svg) { return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); }
   function dl(blob, name) {
     var a = document.createElement('a');
@@ -254,13 +268,18 @@
 
   // --- render cards met inline kleurkeuze ---
   function card(item) {
+    var RATIOS = { '16:9':[1600,900], '9:16':[900,1600], '4:5':[1200,1500], '1:1':[1200,1200] };
     var el = document.createElement('div');
-    el.className = 'lg-card';
+    el.className = 'lg-card' + (item.overlay ? ' is-overlay' : '');
+    var ratioSel = item.overlay
+      ? '<select class="lg-ratio" aria-label="Verhouding"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="4:5">4:5</option><option value="1:1">1:1</option></select>'
+      : '';
     el.innerHTML =
       '<div class="vis"><img alt="' + item.t + '"></div>' +
       '<div class="meta"><span class="nm">' + item.t + '</span><span class="ref">' + item.desc + '</span></div>' +
       '<div class="lg-swatches"></div>' +
       '<div class="lg-acts">' +
+        ratioSel +
         '<select class="lg-fmt" aria-label="Bestandsformaat"><option value="svg">SVG</option><option value="png">PNG</option><option value="jpg">JPG</option></select>' +
         '<button class="btn primary lg-dl" type="button">Download</button>' +
       '</div>';
@@ -268,17 +287,23 @@
         vis = el.querySelector('.vis'),
         sw = el.querySelector('.lg-swatches'),
         fmtSel = el.querySelector('.lg-fmt'),
+        ratioEl = el.querySelector('.lg-ratio'),
         dlBtn = el.querySelector('.lg-dl');
     var combos = item.trOnly ? COMBOS.filter(function (c) { return c.group === 'tr'; }) : COMBOS;
     var state = { combo: combos[0], text: '' };
 
+    function builtNow() {
+      if (item.overlay) { var r = RATIOS[ratioEl ? ratioEl.value : '16:9']; return buildOverlay(state.text, state.combo.fg, r[0], r[1]); }
+      return build(state.text, state.combo);
+    }
     function renderPreview() {
       if (!state.text) return;
-      var built = build(state.text, state.combo);
-      img.src = dataURI(built.svg);
-      vis.classList.toggle('checker', !state.combo.bg);
-      vis.style.background = state.combo.bg ? state.combo.bg : '';
+      img.src = dataURI(builtNow().svg);
+      var transparent = item.overlay || !state.combo.bg;
+      vis.classList.toggle('checker', transparent);
+      vis.style.background = (!item.overlay && state.combo.bg) ? state.combo.bg : '';
     }
+    if (ratioEl) ratioEl.addEventListener('change', renderPreview);
     var prevGroup = null;
     combos.forEach(function (cb, i) {
       // scheiding tussen "op achtergrond" en "transparant"
@@ -302,8 +327,8 @@
 
     dlBtn.addEventListener('click', function () {
       if (!state.text) return;
-      var built = build(state.text, state.combo);
-      var slug = item.file.replace(/\.svg$/, '') + '-' + state.combo.id;
+      var built = builtNow();
+      var slug = item.file.replace(/\.svg$/, '') + (item.overlay ? '-overlay-' + (ratioEl ? ratioEl.value.replace(':', 'x') : '16x9') + '-' : '-') + state.combo.id;
       var fmt = fmtSel.value;
       if (fmt === 'svg') dl(new Blob([built.svg], { type: 'image/svg+xml' }), slug + '.svg');
       else if (fmt === 'png') raster(built, 'image/png', slug + '.png');
