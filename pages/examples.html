@@ -56,6 +56,10 @@
   .vf.r11  { width:232px; aspect-ratio:1/1; }
   /* echte toepassingen — collage van campagne-uitingen */
   .app-collage { columns:4 210px; column-gap:16px; margin-top:18px; }
+  .fig-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin-top:18px; }
+  .fig { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
+  .fig img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
+  .fig .cap { padding:10px 14px; font-family:var(--font-sans); font-size:12px; color:var(--fg-mute); border-top:1px solid var(--line); }
   .app { break-inside:avoid; margin:0 0 16px; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
   .app img { display:block; width:100%; height:auto; }
   .app .cap { padding:9px 13px; border-top:1px solid var(--line); font-family:var(--font-sans); font-size:11px; color:var(--fg-mute); }
@@ -108,9 +112,22 @@
     </div>
   </header>
 
-  <section class="vaandel" style="margin:0 0 8px">
+  <section style="margin:0 0 8px">
+    <div class="index-col" style="margin-bottom:6px"><h2>Uit de huisstijl</h2></div>
+    <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">College-slides en YouTube-thumbnails uit de Figma-huisstijl. Beeld © Universiteit van Nederland · alleen ter referentie.</p>
+    <div class="fig-grid">
+      <div class="fig"><img src="../assets/applications/fig-crater.png" alt="College-slide: Bacolor Crater" loading="lazy"><div class="cap">College-slide</div></div>
+      <div class="fig"><img src="../assets/applications/fig-jeroen.png" alt="College-slide: toen / nu" loading="lazy"><div class="cap">College-slide · toen/nu</div></div>
+      <div class="fig"><img src="../assets/applications/fig-graphic.png" alt="College-slide met grafische elementen" loading="lazy"><div class="cap">College-slide · grafische elementen</div></div>
+      <div class="fig"><img src="../assets/applications/fig-3dprinter.png" alt="YouTube-thumbnail" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
+      <div class="fig"><img src="../assets/applications/fig-gelukkigste.png" alt="YouTube-thumbnail" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
+      <div class="fig"><img src="../assets/applications/fig-kastje.png" alt="YouTube-thumbnail" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
+    </div>
+  </section>
+
+  <section class="vaandel" style="margin:40px 0 8px">
     <div class="index-col" style="margin-bottom:6px"><h2>Beeldmerk-plaatsing</h2></div>
-    <p class="lead" style="font-size:15px;margin:0 0 2px">De U als vaandel rechtsboven — in elk formaat, in drie kleuren.</p>
+    <p class="lead" style="font-size:15px;margin:0 0 2px">Het beeldmerk rechtsboven — in elk formaat, in drie kleuren.</p>
     <div class="vaandel-ctl" id="vaandelCtl">
       <span class="vc-lab">U-kleur</span>
       <button class="vc active" data-c="#F4F0ED" style="background:#F4F0ED" title="Paper" aria-label="Paper"></button>
