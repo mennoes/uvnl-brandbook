@@ -39,27 +39,10 @@
   /* 3D-compositie banner */
   .comp3d { margin:0 0 22px; border-radius:var(--r-4); overflow:hidden; }
   .comp3d img { display:block; width:100%; height:auto; }
-  /* beeldmerk-plaatsing (vaandel) */
-  .vaandel-ctl { display:flex; align-items:center; gap:8px; margin:14px 0 16px; }
-  .vaandel-ctl .vc-lab { font-size:13px; color:var(--fg-mute); margin-right:2px; }
-  .vaandel-ctl .vc { width:26px; height:26px; border-radius:50%; border:1px solid var(--line-strong); cursor:pointer; padding:0; }
-  .vaandel-ctl .vc.active { box-shadow:0 0 0 2px var(--uvnl-green-bright); }
-  .vf-row { display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start; }
-  .vf { position:relative; border-radius:var(--r-3); overflow:hidden; background:var(--uvnl-green); flex:0 0 auto; }
-  .vf .bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .vf .um { position:absolute; top:7%; right:6%; width:15%; z-index:2; }
-  .vf .um path { fill:var(--vu,#F4F0ED); transition:fill var(--dur) var(--ease); }
-  .vf .rl { position:absolute; left:9px; bottom:7px; z-index:2; font-family:var(--font-sans); font-weight:700; font-size:11px; color:#fff; text-shadow:0 1px 5px rgba(0,0,0,.55); }
-  .vf.r169 { width:264px; aspect-ratio:16/9; }
-  .vf.r916 { width:150px; aspect-ratio:9/16; }
-  .vf.r45  { width:200px; aspect-ratio:4/5; }
-  .vf.r11  { width:232px; aspect-ratio:1/1; }
-  /* echte toepassingen — collage van campagne-uitingen */
-  .app-collage { columns:4 210px; column-gap:16px; margin-top:18px; }
+  /* frames uit de Figma-huisstijl */
   .fig-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin-top:18px; }
   .fig { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
   .fig img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
-  .fig .cap { padding:10px 14px; font-family:var(--font-sans); font-size:12px; color:var(--fg-mute); border-top:1px solid var(--line); }
   .app { break-inside:avoid; margin:0 0 16px; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
   .app img { display:block; width:100%; height:auto; }
   .app .cap { padding:9px 13px; border-top:1px solid var(--line); font-family:var(--font-sans); font-size:11px; color:var(--fg-mute); }
@@ -116,41 +99,17 @@
     <div class="index-col" style="margin-bottom:6px"><h2>Uit de huisstijl</h2></div>
     <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">College-slides en YouTube-thumbnails uit de Figma-huisstijl. Beeld © Universiteit van Nederland · alleen ter referentie.</p>
     <div class="fig-grid">
-      <div class="fig"><img src="../assets/applications/fig-crater.png" alt="College-slide: Bacolor Crater" loading="lazy"><div class="cap">College-slide</div></div>
-      <div class="fig"><img src="../assets/applications/fig-jeroen.png" alt="College-slide: toen / nu" loading="lazy"><div class="cap">College-slide · toen/nu</div></div>
-      <div class="fig"><img src="../assets/applications/fig-graphic.png" alt="College-slide met grafische elementen" loading="lazy"><div class="cap">College-slide · grafische elementen</div></div>
-      <div class="fig"><img src="../assets/applications/fig-3dprinter.png" alt="YouTube-thumbnail" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
-      <div class="fig"><img src="../assets/applications/fig-gelukkigste.png" alt="YouTube-thumbnail" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
-      <div class="fig"><img src="../assets/applications/fig-kastje.png" alt="YouTube-thumbnail" loading="lazy"><div class="cap">YouTube-thumbnail</div></div>
+      <div class="fig"><img src="../assets/applications/fig-crater.png" alt="College-slide: Bacolor Crater" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-jeroen.png" alt="College-slide: toen / nu" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-sterren.png" alt="College-slide: sterrenstelsel" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-breken.png" alt="College-slide: breken" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-frame2537.png" alt="College-slide met annotatie" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-3dprinter.png" alt="YouTube-thumbnail" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-gelukkigste.png" alt="YouTube-thumbnail" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-shampoo.png" alt="YouTube-thumbnail" loading="lazy"></div>
+      <div class="fig"><img src="../assets/applications/fig-kastje.png" alt="YouTube-thumbnail" loading="lazy"></div>
     </div>
   </section>
-
-  <section class="vaandel" style="margin:40px 0 8px">
-    <div class="index-col" style="margin-bottom:6px"><h2>Beeldmerk-plaatsing</h2></div>
-    <p class="lead" style="font-size:15px;margin:0 0 2px">Het beeldmerk rechtsboven — in elk formaat, in drie kleuren.</p>
-    <div class="vaandel-ctl" id="vaandelCtl">
-      <span class="vc-lab">U-kleur</span>
-      <button class="vc active" data-c="#F4F0ED" style="background:#F4F0ED" title="Paper" aria-label="Paper"></button>
-      <button class="vc" data-c="#D6ACFF" style="background:#D6ACFF" title="Electric Purple" aria-label="Electric Purple"></button>
-      <button class="vc" data-c="#004B36" style="background:#004B36" title="Varsity Green" aria-label="Varsity Green"></button>
-    </div>
-    <div class="vf-row" id="vaandelFrames" style="--vu:#F4F0ED">
-      <div class="vf r169"><img class="bg" src="../assets/photos/lowlands.JPG" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">16:9</span></div>
-      <div class="vf r916"><img class="bg" src="../assets/photos/globe-talk.jpg" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">9:16</span></div>
-      <div class="vf r45"><img class="bg" src="../assets/photos/stage-green.jpg" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">4:5</span></div>
-      <div class="vf r11"><img class="bg" src="../assets/photos/event-globe.jpg" alt="" loading="lazy"><svg class="um" viewBox="0 0 156 140"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg><span class="rl">1:1</span></div>
-    </div>
-  </section>
-  <script>
-  (function(){
-    var f=document.getElementById('vaandelFrames'), c=document.getElementById('vaandelCtl');
-    if(!f||!c) return;
-    c.addEventListener('click',function(e){ var b=e.target.closest('.vc'); if(!b) return;
-      f.style.setProperty('--vu', b.dataset.c);
-      c.querySelectorAll('.vc').forEach(function(x){ x.classList.toggle('active', x===b); });
-    });
-  })();
-  </script>
 
   <section style="margin:60px 0 0">
     <figure class="comp3d"><img src="../assets/applications/3d-compositie-2.png" alt="Compositie van de 3D-elementen met de tagline 'de universiteit voor iedereén'" loading="lazy"></figure>
