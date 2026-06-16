@@ -10,6 +10,14 @@ SRC = os.path.join(ROOT, "assets", "photos")
 OUT = os.path.join(ROOT, "downloads")
 
 EXTS = (".jpg", ".jpeg", ".png")
+# Foto's die wel op de site staan maar niet mee mogen in de download (rechten).
+EXCLUDE = {
+    "poster-person1.png",
+    "poster-person2.png",
+    "event-u-r.jpg",
+    "event-u-left.jpg",
+    "artis-text.png",
+}
 README = """UvNL foto-pack
 ==============
 
@@ -23,7 +31,8 @@ Universiteit van Nederland. Crop strak, eventueel met een merkkleur-wash.
 
 
 def main():
-    files = sorted(f for f in os.listdir(SRC) if f.lower().endswith(EXTS))
+    files = sorted(f for f in os.listdir(SRC)
+                   if f.lower().endswith(EXTS) and f not in EXCLUDE)
     os.makedirs(OUT, exist_ok=True)
     zip_path = os.path.join(OUT, "uvnl-foto-pack.zip")
     if os.path.exists(zip_path):
