@@ -62,4 +62,4 @@ Figma-huisstijl (transparante PNG's in `assets/formats/`). De **partnerlogo's**
 (`assets/partners/`, wit) staan in dezelfde huisstijl en vullen de partnermuur.
 
 ---
-© 2026 Universiteiten van Nederland · Vragen: merk@universiteitenvannederland.nl
+© 2026 Universiteiten van Nederland · Vragen: info@studioyoko.nl
