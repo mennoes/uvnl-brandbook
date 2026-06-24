@@ -11,6 +11,15 @@
 <style>
   .preview.photo.ph-missing { background:var(--uvnl-paper); position:relative; }
   .preview.photo.ph-missing::after { content:"Nog te uploaden"; font-family:var(--font-sans); font-weight:700; font-size:12px; color:var(--fg-mute); position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  .album-covers { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin:8px 0 16px; }
+  .album-cover { display:flex; flex-direction:column; padding:0; border:1.5px solid var(--line); border-radius:var(--r-4,14px); background:var(--uvnl-paper); cursor:pointer; overflow:hidden; text-align:left; font-family:var(--font-sans); transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+  .album-cover:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.12); }
+  .album-cover.is-active { border-color:var(--uvnl-green-bright); box-shadow:0 0 0 1.5px var(--uvnl-green-bright); }
+  .ac-thumb { display:block; aspect-ratio:4/3; background-size:cover; background-position:center; background-color:var(--uvnl-purple,#ddd); position:relative; }
+  .ac-soon { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--fg-mute); font-weight:700; font-size:13px; }
+  .ac-meta { display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:13px 15px 15px; }
+  .ac-title { font-weight:700; font-size:15px; color:var(--fg); }
+  .ac-count { font-size:12px; color:var(--fg-mute); }
 </style>
 </head>
 <body>
@@ -59,7 +68,9 @@
       <img src="../assets/photos/stage-green.jpg" alt="Universiteit van Nederland-evenement op het podium">
     </div>
   </header>
-  <div id="photo-groups"></div>
+  <p class="lead" style="max-width:760px;margin:0 0 6px">Kies een album om de volledige beeldbank te zien.</p>
+  <div id="album-covers" class="album-covers"></div>
+  <div id="album-view"></div>
 
   <section style="margin:56px 0 80px">
     <div class="index-col" style="margin-bottom:18px"><h2>Wel &amp; niet</h2></div>
@@ -114,12 +125,15 @@
 <script src="../assets/js/brandbook.js"></script>
 <script>
 (function () {
-  // Beeldbank, gegroepeerd per merk/folder. Nieuwe folders (bijv. Vlaanderen)
-  // voeg je toe als extra object in deze lijst.
-  var groups = [
+  // Twee albums (folders). Klik een cover om de volledige beeldbank te tonen.
+  // Vlaanderen-beelden komen in assets/photos/vlaanderen/ — vul de photos-lijst
+  // en zet een cover zodra ze er zijn.
+  var albums = [
     {
+      id: 'nl',
       title: 'Universiteit van Nederland',
-      note: 'Alle beelden uit de header-hero’s van het merkboek, op één plek.',
+      dir: '',
+      cover: 'assets/photos/entrance-u.jpg',
       photos: [
         ['entrance-u.jpg','Entree met U-beeldmerk'],
         ['globe-talk.jpg','Talk bij de wereldbol'],
@@ -137,23 +151,39 @@
         ['shoot-crew.jpg','Achter de schermen · crew'],
         ['shoot-roof.jpg','Achter de schermen · dak']
       ]
+    },
+    {
+      id: 'vl',
+      title: 'Universiteit van Vlaanderen',
+      dir: 'vlaanderen/',
+      cover: '',          // nog geen beeld beschikbaar
+      photos: []          // vul aan zodra de Vlaamse beelden er zijn
     }
-    // Vlaanderen-folder volgt — voeg hier een nieuw object toe zodra de beelden er zijn.
   ];
-  var root = document.getElementById('photo-groups');
-  groups.forEach(function (g) {
+
+  var coversBox = document.getElementById('album-covers');
+  var view = document.getElementById('album-view');
+
+  function renderAlbum(a) {
+    view.innerHTML = '';
     var head = document.createElement('div');
     head.className = 'index-col';
     head.setAttribute('data-region-lock', '');
     head.style.cssText = 'margin:8px 0 18px';
-    head.innerHTML = '<h2>' + g.title + '</h2>' +
-      (g.note ? '<p class="lead" style="margin-top:6px">' + g.note + '</p>' : '');
-    root.appendChild(head);
+    head.innerHTML = '<h2>' + a.title + '</h2>';
+    view.appendChild(head);
+    if (!a.photos.length) {
+      var empty = document.createElement('p');
+      empty.className = 'lead';
+      empty.textContent = 'Deze beeldbank wordt binnenkort gevuld.';
+      view.appendChild(empty);
+      return;
+    }
     var box = document.createElement('div');
     box.className = 'gallery';
-    root.appendChild(box);
-    g.photos.forEach(function (ph) {
-      var dl = 'assets/photos/' + ph[0];
+    view.appendChild(box);
+    a.photos.forEach(function (ph) {
+      var dl = 'assets/photos/' + a.dir + ph[0];
       var ext = ph[0].split('.').pop().toUpperCase();
       var el = document.createElement('div');
       el.className = 'asset';
@@ -166,6 +196,27 @@
         '</div>';
       box.appendChild(el);
     });
+  }
+
+  albums.forEach(function (a) {
+    var card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'album-cover';
+    card.setAttribute('data-region-lock', '');
+    var count = a.photos.length ? a.photos.length + ' beelden' : 'Binnenkort';
+    card.innerHTML =
+      '<span class="ac-thumb"' + (a.cover ? ' style="background-image:url(\'../' + a.cover + '\')"' : '') + '>' +
+        (a.cover ? '' : '<span class="ac-soon">Binnenkort</span>') +
+      '</span>' +
+      '<span class="ac-meta"><span class="ac-title">' + a.title + '</span><span class="ac-count">' + count + '</span></span>';
+    card.addEventListener('click', function () {
+      var all = coversBox.querySelectorAll('.album-cover');
+      for (var i = 0; i < all.length; i++) all[i].classList.remove('is-active');
+      card.classList.add('is-active');
+      renderAlbum(a);
+      view.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    coversBox.appendChild(card);
   });
 })();
 </script>

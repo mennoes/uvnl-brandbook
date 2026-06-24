@@ -73,14 +73,13 @@
       .catch(function () {});
   }
 
-  function buildToggle(active) {
-    var links = document.querySelector('.bbnav .links');
-    if (!links || document.getElementById('region-toggle')) return;
+  function makeToggle(active, extraCss) {
     var wrap = document.createElement('div');
-    wrap.id = 'region-toggle';
+    wrap.className = 'region-toggle';
     wrap.setAttribute('data-region-lock', '');
     wrap.style.cssText =
-      'display:inline-flex;border:1.5px solid var(--line,#ddd);border-radius:999px;overflow:hidden;font-family:var(--font-sans);font-weight:700;font-size:12px';
+      'display:inline-flex;border:1.5px solid var(--line,#ddd);border-radius:999px;overflow:hidden;' +
+      'font-family:var(--font-sans);font-weight:700;font-size:12px;' + (extraCss || '');
     [['nl', 'NL'], ['vl', 'VL']].forEach(function (opt) {
       var b = document.createElement('button');
       b.type = 'button';
@@ -98,7 +97,20 @@
       });
       wrap.appendChild(b);
     });
-    links.insertBefore(wrap, links.firstChild);
+    return wrap;
+  }
+
+  function buildToggle(active) {
+    if (document.querySelector('.region-toggle')) return;
+    // In de nav
+    var links = document.querySelector('.bbnav .links');
+    if (links) links.insertBefore(makeToggle(active), links.firstChild);
+    // En in de homepage-hero (gecentreerd, onder het logo)
+    var heroLogo = document.querySelector('.bb-hero .hero-logo');
+    if (heroLogo && heroLogo.parentNode) {
+      var t = makeToggle(active, 'margin:18px auto 4px');
+      heroLogo.parentNode.insertBefore(t, heroLogo.nextSibling);
+    }
   }
 
   function run() {
@@ -116,8 +128,9 @@
         .then(function (d) {
           if (d && d.country === 'BE') {
             applyVlaanderen();
-            var t = document.getElementById('region-toggle');
-            if (t) { t.remove(); buildToggle('vl'); }
+            var ts = document.querySelectorAll('.region-toggle');
+            for (var i = 0; i < ts.length; i++) ts[i].remove();
+            buildToggle('vl');
           }
         })
         .catch(function () {});
