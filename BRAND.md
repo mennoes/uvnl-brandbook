@@ -5,8 +5,8 @@
 > Live merkboek: https://mennoes.github.io/uvnl-brandbook/
 
 ## In één zin
-De HEMA van de wetenschap. Eerlijk, echt, een beetje rommelig. Kennis in
-wording, geen corporate glanslaag.
+Eerlijk, echt, een beetje rommelig. Kennis in wording, geen corporate
+glanslaag.
 
 ## Tone of voice
 - Taal: **Nederlands**. Nieuwsgierig, slim, toegankelijk — als een slimme
