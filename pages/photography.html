@@ -58,7 +58,7 @@
       <img src="../assets/photos/stage-green.jpg" alt="Universiteit van Nederland-evenement op het podium">
     </div>
   </header>
-  <div class="gallery" id="photo-gallery"></div>
+  <div id="photo-groups"></div>
 
   <section style="margin:56px 0 80px">
     <div class="index-col" style="margin-bottom:18px"><h2>Wel &amp; niet</h2></div>
@@ -113,26 +113,57 @@
 <script src="../assets/js/brandbook.js"></script>
 <script>
 (function () {
-  var photos = [
-    ['event-globe.jpg','Event · wereldbol in het park'],
-    ['event-u.jpg','Event · publiek met paarse U'],
-    ['thumb-bg1.png','Thumb-achtergrond 1'],
-    ['thumb-bg2.png','Thumb-achtergrond 2']
+  // Beeldbank, gegroepeerd per merk/folder. Nieuwe folders (bijv. Vlaanderen)
+  // voeg je toe als extra object in deze lijst.
+  var groups = [
+    {
+      title: 'Universiteit van Nederland',
+      note: 'Alle beelden uit de header-hero’s van het merkboek, op één plek.',
+      photos: [
+        ['entrance-u.jpg','Entree met U-beeldmerk'],
+        ['globe-talk.jpg','Talk bij de wereldbol'],
+        ['event-globe.jpg','Event · wereldbol in het park'],
+        ['event-u-r.jpg','Event · publiek met paarse U'],
+        ['dome.jpg','Koepelzaal · locatie'],
+        ['lowlands.JPG','Lowlands · festivalcollege'],
+        ['stage-green.jpg','Podium · groen licht'],
+        ['stage-purple.jpg','Podium · paars licht'],
+        ['speaker.jpg','Spreker op het podium'],
+        ['speaker-3d.jpg','Spreker · 3D-titel'],
+        ['merch-u.jpg','Merch · U-logo'],
+        ['shoot-setup.jpg','Achter de schermen · set-up'],
+        ['shoot-camera.jpg','Achter de schermen · camera'],
+        ['shoot-crew.jpg','Achter de schermen · crew'],
+        ['shoot-roof.jpg','Achter de schermen · dak']
+      ]
+    }
+    // Vlaanderen-folder volgt — voeg hier een nieuw object toe zodra de beelden er zijn.
   ];
-  var box = document.getElementById('photo-gallery');
-  photos.forEach(function (ph) {
-    var dl = 'assets/photos/' + ph[0];
-    var ext = ph[0].split('.').pop().toUpperCase();
-    var el = document.createElement('div');
-    el.className = 'asset';
-    el.innerHTML =
-      '<div class="preview photo"><img src="../' + dl + '" alt="' + ph[1] + '" onerror="this.parentNode.classList.add(\'ph-missing\');this.remove()"></div>' +
-      '<div class="info"><span class="name">' + ph[1] + '</span><span class="desc">' + ext + ' · voorbeeldbeeld</span></div>' +
-      '<div class="acts">' +
-        '<a class="mini-btn" href="../' + dl + '" download>Download</a>' +
-        '<button class="mini-btn" data-add data-add-title="' + ph[1] + '" data-add-dl="' + dl + '">+ Selecteer</button>' +
-      '</div>';
-    box.appendChild(el);
+  var root = document.getElementById('photo-groups');
+  groups.forEach(function (g) {
+    var head = document.createElement('div');
+    head.className = 'index-col';
+    head.style.cssText = 'margin:8px 0 18px';
+    head.innerHTML = '<h2>' + g.title + '</h2>' +
+      (g.note ? '<p class="lead" style="margin-top:6px">' + g.note + '</p>' : '');
+    root.appendChild(head);
+    var box = document.createElement('div');
+    box.className = 'gallery';
+    root.appendChild(box);
+    g.photos.forEach(function (ph) {
+      var dl = 'assets/photos/' + ph[0];
+      var ext = ph[0].split('.').pop().toUpperCase();
+      var el = document.createElement('div');
+      el.className = 'asset';
+      el.innerHTML =
+        '<div class="preview photo"><img src="../' + dl + '" alt="' + ph[1] + '" onerror="this.parentNode.classList.add(\'ph-missing\');this.remove()"></div>' +
+        '<div class="info"><span class="name">' + ph[1] + '</span><span class="desc">' + ext + ' · beeldbank</span></div>' +
+        '<div class="acts">' +
+          '<a class="mini-btn" href="../' + dl + '" download>Download</a>' +
+          '<button class="mini-btn" data-add data-add-title="' + ph[1] + '" data-add-dl="' + dl + '">+ Selecteer</button>' +
+        '</div>';
+      box.appendChild(el);
+    });
   });
 })();
 </script>
