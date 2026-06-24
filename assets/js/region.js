@@ -47,6 +47,30 @@
     document.documentElement.setAttribute('data-region', 'vl');
     if (document.title.indexOf('Nederland') >= 0) document.title = toVL(document.title);
     walk(document.body);
+    swapLogos();
+  }
+
+  // Vervang de inhoud van de inline nav-logo door de Vlaamse variant.
+  // We houden het een inline <svg> (met fill="currentColor"), zodat de
+  // groen/wit-theming uit de CSS intact blijft.
+  function swapLogos() {
+    var logos = document.querySelectorAll('svg.navlogo');
+    if (!logos.length) return;
+    var base = (window.BB_BASE != null ? window.BB_BASE : '');
+    fetch(base + 'assets/logos/uvvl-logo.svg')
+      .then(function (r) { return r.text(); })
+      .then(function (txt) {
+        var src = new DOMParser().parseFromString(txt, 'image/svg+xml').querySelector('svg');
+        if (!src) return;
+        var vb = src.getAttribute('viewBox');
+        var inner = src.innerHTML;
+        for (var i = 0; i < logos.length; i++) {
+          if (vb) logos[i].setAttribute('viewBox', vb);
+          logos[i].setAttribute('aria-label', 'Universiteit van Vlaanderen');
+          logos[i].innerHTML = inner;
+        }
+      })
+      .catch(function () {});
   }
 
   function buildToggle(active) {
