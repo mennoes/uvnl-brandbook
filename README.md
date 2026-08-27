@@ -1,20 +1,15 @@
 # UvNL Merkboek
 
-Het gedeelde digitale merkboek van **Universiteit van Nederland** en
-**Universiteit van Vlaanderen**. Het helpt redacteuren, ontwerpers, animatoren
-en partners om eerst de juiste merkbeslissing te nemen en daarna het juiste
-bestand te gebruiken.
+Het merkboek van **Universiteiten van Nederland** — één plek waar redacteuren én
+partners alle merkelementen makkelijk vinden, bekijken en downloaden.
 
 **Live:** https://mennoes.github.io/uvnl-brandbook/
 
 ## Wat het doet
 
-- **Beslissen vóór downloaden.** Merkprincipes, visuele uitleg, compositie,
-  motion, formats en templates geven context bij ieder middel.
-- **Expliciete NL/VL-keuze.** Geen IP-detectie of automatische woordvervanging;
-  landspecifieke content en assets kiezen bewust in op de geselecteerde variant.
-- **Regel, richtlijn en voorbeeld.** De interface maakt duidelijk wat vaststaat
-  en waar ruimte voor interpretatie zit.
+- **Zoeken-eerst.** Een prominente zoekbalk op de homepage doorzoekt live alle
+  merkelementen. Typ "groen logo", "paars", "font" of "bliksem" en de resultaten
+  verschijnen meteen, met thumbnails.
 - **Download de hele kit** in één klik (ZIP), of blader per onderdeel.
 - **Bladeren door alles** — elk los logo, elke kleur, elk lettertype, elk icoon
   en elke foto is afzonderlijk te bekijken en te downloaden.
@@ -32,15 +27,10 @@ pages/
   colors.html           Volledig kleurenpalet (kopieer HEX/RGB/HSL)
   typography.html       Lettertypes + specimens + hiërarchie
   icons.html            Alle merkiconen (PNG)
-  photography.html      Fotografie-richtlijnen + art direction
-  composition.html      Hiërarchie, uitsnede, ruimte en formaten
-  motion.html           Motiontaken, timing en toegankelijk bewegen
-  visual-storytelling.html  Wetenschappelijke uitleg in beeld
+  photography.html      Fotografie-richtlijnen + voorbeelden
   formats.html          Formats & submerken (Wetensnap, Collegenacht, …) + partners
-  templates.html        Wat per toepassing vaststaat en vrij is
-  accessibility.html    Contrast, ondertiteling, motion en interactie
-  governance.html       Eigenaarschap, versies, rechten en goedkeuring
-  tone-of-voice.html    Schrijftaken, stemregels en voorbeelden
+  tone-of-voice.html    Schrijfstijl & wel/niet
+  guidelines.html       Do's & don'ts (visueel)
 tools/
   uvnl-quote.html       Quote-card generator
   uvnl-contrast.html    WCAG contrast-checker
@@ -49,12 +39,6 @@ downloads/              uvnl-brand-kit.zip · uvnl-logo-pack.zip · uvnl-font-pa
 ```
 
 Pure HTML/CSS/JS, geen build-stap, geen frameworks. Hostbaar via GitHub Pages.
-
-## Publicatiecheck
-
-Bevestig vóór publieke publicatie het officiële merkcontact en controleer welke
-fontbestanden, fotografie en campagne-assets volgens hun licentie publiek mogen
-worden gedownload. Deze aandachtspunten staan ook op de pagina Merkbeheer.
 
 ## Hosting (GitHub Pages)
 
