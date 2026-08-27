@@ -5,6 +5,8 @@
    ────────────────────────────────────────────────────────── */
 (function () {
   var BASE = window.BB_BASE || '';
+  var css=document.createElement('link');css.rel='stylesheet';css.href=BASE+'assets/css/brandbook-2026.css';document.head.appendChild(css);
+  var pro=document.createElement('script');pro.src=BASE+'assets/js/pro-system.js';document.head.appendChild(pro);
   function p(path) { return path ? BASE + path : path; }
 
   /* ── THE INDEX ──────────────────────────────────────────
@@ -73,6 +75,12 @@
     /* ── PAGINA'S ─────────────────────────────────────── */
     { t: 'Over Universiteit van Nederland', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
     { t: 'Tone of voice', cat: 'Wie we zijn', type: 'page', kw: 'tone of voice schrijfstijl tekst stem taal nederlands toon', href: 'pages/tone-of-voice.html', thumb: 'mark', dl: null },
+    { t: 'Uitleg in beeld', cat: 'Richtlijnen', type: 'page', kw: 'visual storytelling uitleg beeld redactie bron diagram 2d 3d', href: 'pages/visual-storytelling.html', thumb: 'mark', dl: null },
+    { t: 'Motion', cat: 'Richtlijnen', type: 'page', kw: 'motion animatie timing beweging overgang', href: 'pages/motion.html', thumb: 'mark', dl: null },
+    { t: 'Compositie & lay-out', cat: 'Richtlijnen', type: 'page', kw: 'compositie layout grid uitsnede hiërarchie witruimte', href: 'pages/composition.html', thumb: 'mark', dl: null },
+    { t: 'Templates', cat: 'Toepassen', type: 'page', kw: 'template thumbnail reel quote presentatie partner', href: 'pages/templates.html', thumb: 'mark', dl: null },
+    { t: 'Toegankelijkheid', cat: 'Richtlijnen', type: 'page', kw: 'toegankelijk wcag ondertiteling contrast keyboard', href: 'pages/accessibility.html', thumb: 'mark', dl: null },
+    { t: 'Merkbeheer', cat: 'Beheren', type: 'page', kw: 'governance versie rechten licentie goedkeuring', href: 'pages/governance.html', thumb: 'mark', dl: null },
 
     /* ── TOOLS ────────────────────────────────────────── */
     { t: 'Tools', cat: 'Tools', type: 'page', kw: 'tools maken gereedschap generator hulpmiddel design ontwerp', href: 'pages/tools.html', thumb: 'mark', dl: null },
@@ -182,16 +190,16 @@
   function downloadSelection() {
     var arr = load();
     var files = arr.filter(function (x) { return x.dl; });
-    if (!files.length) { Universiteit van Nederland.toast('Geen downloadbare bestanden in selectie'); return; }
+    if (!files.length) { UVNL.toast('Geen downloadbare bestanden in selectie'); return; }
     files.forEach(function (x, i) {
       setTimeout(function () { downloadFile(p(x.dl), x.dl.split('/').pop()); }, i * 350);
     });
-    Universiteit van Nederland.toast(files.length + ' bestanden gedownload');
+    UVNL.toast(files.length + ' bestanden gedownload');
   }
   function copySelection() {
     var arr = load();
     var lines = arr.map(function (x) { return '• ' + x.t + (x.hex ? '  ' + x.hex : '') + (x.dl ? '  ' + x.dl : ''); });
-    Universiteit van Nederland.copy(lines.join('\n'), 'Selectie');
+    UVNL.copy(lines.join('\n'), 'Selectie');
   }
 
   function renderTray() {
