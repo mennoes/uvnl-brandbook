@@ -125,9 +125,7 @@
 <script src="../assets/js/brandbook.js"></script>
 <script>
 (function () {
-  // Twee albums (folders). Klik een cover om de volledige beeldbank te tonen.
-  // Vlaanderen-beelden komen in assets/photos/vlaanderen/ — vul de photos-lijst
-  // en zet een cover zodra ze er zijn.
+  // Kies een albumcover om de volledige beeldbank te tonen.
   var albums = [
     {
       id: 'nl',
@@ -156,8 +154,20 @@
       id: 'vl',
       title: 'Universiteit van Vlaanderen',
       dir: 'vlaanderen/',
-      cover: '',          // nog geen beeld beschikbaar
-      photos: []          // vul aan zodra de Vlaamse beelden er zijn
+      cover: 'assets/photos/vlaanderen/vl-theater-en-podium.jpg',
+      photos: [
+        ['vl-onderzoeker-in-gesprek.jpg','Onderzoeker in gesprek'],
+        ['vl-wetenschapper-demonstratie.jpg','Wetenschapper bij demonstratie'],
+        ['vl-spreker-podium.jpg','Spreker op het podium'],
+        ['vl-spreker-met-u.jpg','Spreker met U op de achtergrond'],
+        ['vl-theater-en-podium.jpg','Theater en podium'],
+        ['vl-speelse-podiumopname.jpg','Speelse podiumopname'],
+        ['vl-onderzoeker-presentatie.jpg','Onderzoeker tijdens presentatie'],
+        ['vl-college-op-podium.jpg','College op het podium'],
+        ['vl-opname-bij-paarse-u.jpg','Opname bij paarse U'],
+        ['vl-opname-in-lab.jpg','Opname in het lab'],
+        ['vl-opname-op-locatie.jpg','Opname op locatie']
+      ]
     }
   ];
 
