@@ -73,12 +73,13 @@
       .catch(function () {});
   }
 
-  function makeToggle(active, extraCss) {
+  function makeToggle(active, extraCss, hero) {
     var wrap = document.createElement('div');
     wrap.className = 'region-toggle';
     wrap.setAttribute('data-region-lock', '');
+    var borderCol = hero ? 'rgba(244,240,237,.5)' : 'var(--line,#ddd)';
     wrap.style.cssText =
-      'display:inline-flex;border:1.5px solid var(--line,#ddd);border-radius:999px;overflow:hidden;' +
+      'display:inline-flex;border:1.5px solid ' + borderCol + ';border-radius:999px;overflow:hidden;' +
       'font-family:var(--font-sans);font-weight:700;font-size:12px;' + (extraCss || '');
     [['nl', 'NL'], ['vl', 'VL']].forEach(function (opt) {
       var b = document.createElement('button');
@@ -86,11 +87,13 @@
       b.textContent = opt[1];
       b.title = opt[0] === 'nl' ? 'Universiteit van Nederland' : 'Universiteit van Vlaanderen';
       var on = opt[0] === active;
-      b.style.cssText =
-        'border:0;cursor:pointer;padding:5px 11px;line-height:1;' +
-        (on
-          ? 'background:var(--uvnl-green-bright,#16a34a);color:#fff'
-          : 'background:transparent;color:var(--fg-mute,#666)');
+      var onCss = hero
+        ? 'background:var(--uvnl-paper,#f4f0ed);color:var(--uvnl-green,#004B36)'
+        : 'background:var(--uvnl-green-bright,#16a34a);color:#fff';
+      var offCss = hero
+        ? 'background:transparent;color:rgba(244,240,237,.85)'
+        : 'background:transparent;color:var(--fg-mute,#666)';
+      b.style.cssText = 'border:0;cursor:pointer;padding:5px 11px;line-height:1;' + (on ? onCss : offCss);
       b.addEventListener('click', function () {
         localStorage.setItem('uvnl-region', opt[0]);
         location.reload();
@@ -105,10 +108,10 @@
     // In de nav
     var links = document.querySelector('.bbnav .links');
     if (links) links.insertBefore(makeToggle(active), links.firstChild);
-    // En in de homepage-hero (gecentreerd, onder het logo)
+    // En in de homepage-hero (gecentreerd, onder het logo) — op groen leesbaar
     var heroLogo = document.querySelector('.bb-hero .hero-logo');
     if (heroLogo && heroLogo.parentNode) {
-      var t = makeToggle(active, 'margin:18px auto 4px');
+      var t = makeToggle(active, 'margin:18px auto 4px;position:relative;z-index:3', true);
       heroLogo.parentNode.insertBefore(t, heroLogo.nextSibling);
     }
   }
