@@ -2,7 +2,7 @@
 
 De externe partnerwebsite van **Universiteit van Nederland**. De site brengt het
 merkverhaal, de belangrijkste visuele principes, voorbeelden uit de UvNL-case en
-de samenwerkingsroute samen op één compacte pagina.
+de samenwerkingsroute samen in een compacte site voor partners.
 
 **Live:** https://mennoes.github.io/uvnl-brandbook/
 
@@ -21,9 +21,13 @@ de samenwerkingsroute samen op één compacte pagina.
 De site bestaat uit pure HTML, CSS en JavaScript en heeft geen buildstap.
 
 ```text
-index.html                  Complete partnergids
+index.html                  Homepage en fotografische carrousel
+pages/merk.html             Merkverhaal, waarden en tone of voice
+pages/huisstijl.html        Logo, kleur, typografie en fotografie
+pages/voorbeelden.html      UvNL-case en toepassingen
+pages/samenwerken.html      Partnerroutes, proces en contact
 assets/css/partner.css      Vormgeving en responsive layout
-assets/js/partner.js        Mobiele navigatie en subtiele reveal-animaties
+assets/js/partner.js        Navigatie, carrousel en reveal-animaties
 assets/applications/        UvNL-casebeelden en toepassingen
 downloads/uvnl-logo-pack.zip
 ```
