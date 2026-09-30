@@ -9,44 +9,24 @@
 <script defer src="../assets/js/region.js"></script>
 <script>window.BB_BASE = '../';</script>
 <style>
-  .ex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
-  .ex { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
-  .ex:hover { transform:translateY(-2px); border-color:var(--line-strong); }
-  .ex .info { padding:14px 18px; border-top:1px solid var(--line); }
-  .ex .info .name { font-family:var(--font-sans); font-weight:700; font-size:14px; color:var(--fg); }
-  .ex .info .desc { font-size:12px; color:var(--fg-mute); margin-top:2px; }
-  /* canvases */
-  .canvas { position:relative; overflow:hidden; display:flex; }
-  .c-169 { aspect-ratio:16/9; }
-  .c-45  { aspect-ratio:4/5; }
-  .c-11  { aspect-ratio:1/1; }
-  .c-916 { aspect-ratio:9/16; }
-  .disp { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; line-height:.86; }
-  .u-mark { display:inline-block; }
-  .u-mark path { fill:currentColor; }
-  .grain { position:absolute; inset:0; opacity:.5; mix-blend-mode:multiply; pointer-events:none; }
-  .ic-abs { position:absolute; pointer-events:none; }
-  .tape { position:absolute; width:84px; height:26px; background:rgba(251,240,122,.7); transform:rotate(-6deg); }
-  .photo-fill { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .wash { position:absolute; inset:0; mix-blend-mode:multiply; }
-  /* 3D-elementen set (uit de Figma-huisstijl) */
-  .el3d-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:14px; margin-top:18px; }
-  .el3d { display:block; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 10px 12px; text-align:center; text-decoration:none; color:inherit; cursor:pointer; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
-  a.el3d:hover { transform:translateY(-2px); border-color:var(--line-strong); }
-  .el3d img { width:84px; height:84px; object-fit:contain; }
-  .el3d span { display:block; margin-top:10px; font-family:var(--font-sans); font-weight:700; font-size:11px; color:var(--fg-mute); }
-  .el3d .dlhint { display:block; margin-top:3px; font-family:var(--font-sans); font-style:normal; font-weight:700; font-size:10px; letter-spacing:.04em; color:var(--uvnl-green-bright); opacity:0; transition:opacity var(--dur) var(--ease); }
-  a.el3d:hover .dlhint { opacity:1; }
-  /* 3D-compositie banner */
-  .comp3d { margin:0 0 22px; border-radius:var(--r-4); overflow:hidden; }
-  .comp3d img { display:block; width:100%; height:auto; }
-  /* frames uit de Figma-huisstijl */
-  .fig-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin-top:18px; }
-  .fig { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
-  .fig img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
-  .app { break-inside:avoid; margin:0 0 16px; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
-  .app img { display:block; width:100%; height:auto; }
-  .app .cap { padding:9px 13px; border-top:1px solid var(--line); font-family:var(--font-sans); font-size:11px; color:var(--fg-mute); }
+  .ref-note { font-size:14px; color:var(--fg-mute); margin:0 0 24px; max-width:70ch; }
+  .sub-head { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-.01em; font-size:15px; color:var(--fg-mute); margin:32px 0 14px; display:flex; align-items:center; gap:12px; }
+  .sub-head::after { content:""; flex:1; height:1px; background:var(--line); }
+  .show-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:18px; }
+  .show { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
+  .show { transition:transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .show:hover { transform:translateY(-3px); border-color:var(--line-strong); box-shadow:0 16px 34px rgba(0,0,0,.10); }
+  .show .thumb { position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--bg-3); }
+  .show .thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
+  .show:hover .thumb img { transform:scale(1.04); }
+  .show .cap { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 16px; border-top:1px solid var(--line); }
+  .show .cap .nm { font-family:var(--font-sans); font-weight:700; font-size:13.5px; color:var(--fg); }
+  .show .cap .tag { font-family:var(--font-sans); font-weight:700; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--uvnl-green-bright); background:rgba(0,128,92,.12); padding:4px 9px; border-radius:var(--r-pill); white-space:nowrap; }
+  .ingr-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+  .ingr { border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:20px 20px 22px; }
+  .ingr .n { font-family:var(--font-display); font-weight:700; font-size:22px; color:var(--uvnl-green-bright); line-height:1; }
+  .ingr b { display:block; margin:12px 0 6px; font-size:16px; color:var(--fg); }
+  .ingr p { margin:0; font-size:13px; color:var(--fg-mute); line-height:1.5; }
 </style>
 </head>
 <body>
@@ -94,53 +74,41 @@
     </div>
   </header>
 
-  <section style="margin:0 0 8px">
+  <section style="margin:8px 0 0">
     <div class="index-col" style="margin-bottom:6px"><h2>Uit de huisstijl</h2></div>
-    <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">College-slides en YouTube-thumbnails uit de Figma-huisstijl. Beeld © Universiteit van Nederland · alleen ter referentie.</p>
-    <div class="fig-grid">
-      <div class="fig"><img src="../assets/applications/fig-crater.png" alt="College-slide: Bacolor Crater" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-jeroen.png" alt="College-slide: toen / nu" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-sterren.png" alt="College-slide: sterrenstelsel" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-breken.png" alt="College-slide: breken" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-frame2537.png" alt="College-slide met annotatie" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-3dprinter.png" alt="YouTube-thumbnail" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-gelukkigste.png" alt="YouTube-thumbnail" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-shampoo.png" alt="YouTube-thumbnail" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-kastje.png" alt="YouTube-thumbnail" loading="lazy"></div>
+    <p class="ref-note">Het systeem in de praktijk — college-slides en YouTube-thumbnails uit de Figma-huisstijl. Groen op Paper, een gecondenseerde kop die een vraag stelt, één merkkleur als accent en een echt portret. Beeld © Universiteit van Nederland, alleen ter referentie.</p>
+
+    <div class="sub-head">College-slides</div>
+    <div class="show-grid">
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-crater.png" alt="College-slide: Bacolor Crater" loading="lazy"></div><div class="cap"><span class="nm">Bacolor Crater</span><span class="tag">Slide</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-jeroen.png" alt="College-slide: toen / nu" loading="lazy"></div><div class="cap"><span class="nm">Toen / nu</span><span class="tag">Slide</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-sterren.png" alt="College-slide: sterrenstelsel" loading="lazy"></div><div class="cap"><span class="nm">Sterrenstelsel</span><span class="tag">Slide</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-breken.png" alt="College-slide: breken" loading="lazy"></div><div class="cap"><span class="nm">Breken</span><span class="tag">Slide</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-frame2537.png" alt="College-slide met annotatie" loading="lazy"></div><div class="cap"><span class="nm">Annotatie</span><span class="tag">Slide</span></div></div>
+    </div>
+
+    <div class="sub-head">YouTube-thumbnails</div>
+    <div class="show-grid">
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-3dprinter.png" alt="YouTube-thumbnail: 3D-printer" loading="lazy"></div><div class="cap"><span class="nm">3D-printer</span><span class="tag">Thumbnail</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-gelukkigste.png" alt="YouTube-thumbnail: het gelukkigste land" loading="lazy"></div><div class="cap"><span class="nm">Het gelukkigste land</span><span class="tag">Thumbnail</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-shampoo.png" alt="YouTube-thumbnail: shampoo" loading="lazy"></div><div class="cap"><span class="nm">Shampoo</span><span class="tag">Thumbnail</span></div></div>
+      <div class="show"><div class="thumb"><img src="../assets/applications/fig-kastje.png" alt="YouTube-thumbnail: het kastje" loading="lazy"></div><div class="cap"><span class="nm">Het kastje</span><span class="tag">Thumbnail</span></div></div>
     </div>
   </section>
 
-  <section style="margin:60px 0 0">
-    <figure class="comp3d"><img src="../assets/applications/3d-compositie-2.png" alt="Compositie van de 3D-elementen met de tagline 'de universiteit voor iedereén'" loading="lazy"></figure>
-    <div class="index-col" style="margin-bottom:8px"><h2>3D-elementen per vakgebied</h2></div>
-    <p class="lead" style="font-size:15px;margin-bottom:4px">Naast de platte iconen heeft Universiteit van Nederland een set 3D-objecten — één per onderzoeksgebied — als sfeermaker in thumbnails, posters en slides.</p>
-    <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">Beeld © Universiteit van Nederland · alleen ter referentie getoond, niet opgenomen in de download-kit.</p>
-    <div class="el3d-grid">
-      <a class="el3d" href="../assets/illustration-3d/informatie.png" download title="Download Informatie (PNG)"><img src="../assets/illustration-3d/informatie.png" alt="3D-element informatie" loading="lazy"><span>Informatie</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/aarde-milieu.png" download title="Download Aarde &amp; milieu (PNG)"><img src="../assets/illustration-3d/aarde-milieu.png" alt="3D-element aarde &amp; milieu" loading="lazy"><span>Aarde &amp; milieu</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/gedrag-maatschappij.png" download title="Download Gedrag &amp; maatschappij (PNG)"><img src="../assets/illustration-3d/gedrag-maatschappij.png" alt="3D-element gedrag &amp; maatschappij" loading="lazy"><span>Gedrag &amp; maatschappij</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/kunst-cultuur.png" download title="Download Kunst &amp; cultuur (PNG)"><img src="../assets/illustration-3d/kunst-cultuur.png" alt="3D-element kunst &amp; cultuur" loading="lazy"><span>Kunst &amp; cultuur</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/taal-communicatie.png" download title="Download Taal &amp; communicatie (PNG)"><img src="../assets/illustration-3d/taal-communicatie.png" alt="3D-element taal &amp; communicatie" loading="lazy"><span>Taal &amp; communicatie</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/economie-bedrijf.png" download title="Download Economie &amp; bedrijf (PNG)"><img src="../assets/illustration-3d/economie-bedrijf.png" alt="3D-element economie &amp; bedrijf" loading="lazy"><span>Economie &amp; bedrijf</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/recht-bestuur.png" download title="Download Recht &amp; bestuur (PNG)"><img src="../assets/illustration-3d/recht-bestuur.png" alt="3D-element recht &amp; bestuur" loading="lazy"><span>Recht &amp; bestuur</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/gezondheid.png" download title="Download Gezondheid (PNG)"><img src="../assets/illustration-3d/gezondheid.png" alt="3D-element gezondheid" loading="lazy"><span>Gezondheid</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/techniek.png" download title="Download Techniek (PNG)"><img src="../assets/illustration-3d/techniek.png" alt="3D-element techniek" loading="lazy"><span>Techniek</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/onderwijs.png" download title="Download Onderwijs (PNG)"><img src="../assets/illustration-3d/onderwijs.png" alt="3D-element onderwijs" loading="lazy"><span>Onderwijs</span><em class="dlhint">↓ PNG</em></a>
-      <a class="el3d" href="../assets/illustration-3d/zon.png" download title="Download Zon (PNG)"><img src="../assets/illustration-3d/zon.png" alt="3D-element zon" loading="lazy"><span>Zon</span><em class="dlhint">↓ PNG</em></a>
+  <section style="margin:56px 0 80px">
+    <div class="index-col" style="margin-bottom:6px"><h2>De ingrediënten</h2></div>
+    <p class="ref-note">Elk beeld is opgebouwd uit dezelfde zes ingrediënten — dat maakt het herkenbaar.</p>
+    <div class="ingr-grid">
+      <div class="ingr"><span class="n">01</span><b>Kop als vraag</b><p>OSG Condensed, hoofdletters, links uitgelijnd.</p></div>
+      <div class="ingr"><span class="n">02</span><b>Groen op Paper</b><p>De basis; per stuk één verzadigde accentkleur.</p></div>
+      <div class="ingr"><span class="n">03</span><b>Echte foto</b><p>Tight gecropt, eventueel met een merkkleur-wash (multiply).</p></div>
+      <div class="ingr"><span class="n">04</span><b>Eén ornament</b><p>Bliksem, pijl, spark of circle — 8–20° gedraaid.</p></div>
+      <div class="ingr"><span class="n">05</span><b>Serif-italic</b><p>Voor de ondertitel of het citaat — nooit hele alinea's.</p></div>
+      <div class="ingr"><span class="n">06</span><b>U-mark</b><p>Als afzender, klein in een hoek of op de end-card.</p></div>
     </div>
   </section>
 
-  <section class="prose" style="margin:56px 0 80px">
-    <h2>De ingrediënten</h2>
-    <ul>
-      <li><b>Kop als vraag</b> in OSG Condensed, hoofdletters, links uitgelijnd.</li>
-      <li><b>Groen op Paper</b> als basis; per stuk één verzadigde accentkleur.</li>
-      <li><b>Echte foto</b>, tight gecropt, eventueel met een merkkleur-wash (multiply).</li>
-      <li><b>Eén ornament</b> (bliksem / pijl / spark / circle), 8–20° gedraaid.</li>
-      <li><b>Serif-italic</b> voor de ondertitel of het citaat — nooit hele alinea's.</li>
-      <li><b>U-mark</b> als afzender, klein in een hoek of op de end-card.</li>
-    </ul>
-  </section>
 </div>
 
 <footer class="footer">
