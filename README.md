@@ -1,33 +1,19 @@
-# UvNL partnergids
+# UvNL partnerbrandbook
 
-Externe kennismaking met **Universiteit van Nederland** voor partners.
+Extern merkboek van Universiteit van Nederland voor partners.
 
 **Live:** https://mennoes.github.io/uvnl-brandbook/
 
-De site gebruikt de oorspronkelijke UvNL-vormgeving en bundelt de inhoud in vier
-onderdelen:
+## Pagina's
 
-- **Het merk:** missie, publiek, persoonlijkheid en tone of voice.
-- **Huisstijl:** logo, kleur, typografie en zichtbare/downloadbare fotografie.
-- **Voorbeelden:** speelse toepassingen, formats en campagnebeelden.
-- **Partnerkit:** officiële logo's, artikelbeelden en een korte gebruiksnotitie.
+- `index.html` — originele homepage met cover en fotocarrousel
+- `pages/about.html` — merk, missie, persoonlijkheid en tone of voice
+- `pages/logos.html` — logo, kleur, typografie en fotografie
+- `pages/examples.html` — toepassingen, voorbeelden en formats
+- `pages/download.html` — partnerkit, logo's en fotografie
 
-Interne generators, templates en fontpacks worden niet publiek aangeboden.
-
-## Structuur
-
-```text
-index.html                       Homepage met originele fotocarrousel
-pages/merk.html                  Merkverhaal en tone of voice
-pages/huisstijl.html             Compact visueel overzicht en fotografie
-pages/examples.html              Voorbeelden en formats
-pages/download.html              Partnerkit
-downloads/uvnl-partner-kit.zip   Logo's, artikelbeelden en gebruiksnotitie
-downloads/uvnl-logo-pack.zip     Los logopakket
-downloads/uvnl-foto-pack.zip     Volledige fotoselectie
-```
-
-De oorspronkelijke interne variant staat op branch
+De website is pure HTML/CSS/JS en wordt via GitHub Pages gepubliceerd. De
+oorspronkelijke interne versie blijft bewaard op branch
 `backup/internal-brandbook-2026-09-30`.
 
 ---
