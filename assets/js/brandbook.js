@@ -37,9 +37,9 @@
     { t: 'Paper', cat: 'Kleur', type: 'color', kw: 'paper cream crème achtergrond warm F4F0ED', href: 'pages/colors.html', thumb: 'color:#F4F0ED', hex: '#F4F0ED', dl: null },
 
     /* ── TYPOGRAFIE ───────────────────────────────────── */
-    { t: 'Oldschool Grotesk', cat: 'Lettertype', type: 'font', kw: 'lettertype font sans body tekst grotesk regular bold', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: 'downloads/uvnl-font-pack.zip' },
-    { t: 'Oldschool Grotesk Condensed', cat: 'Lettertype', type: 'font', kw: 'lettertype font display condensed gecondenseerd osgc koppen headlines caps', href: 'pages/typography.html', thumb: 'glyph:AA', dl: 'downloads/uvnl-font-pack.zip' },
-    { t: 'Tiempos Text', cat: 'Lettertype', type: 'font', kw: 'lettertype font serif italic cursief quote citaat tiempos', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: 'downloads/uvnl-font-pack.zip' },
+    { t: 'Oldschool Grotesk', cat: 'Lettertype', type: 'font', kw: 'lettertype font sans body tekst grotesk regular bold', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: null },
+    { t: 'Oldschool Grotesk Condensed', cat: 'Lettertype', type: 'font', kw: 'lettertype font display condensed gecondenseerd osgc koppen headlines caps', href: 'pages/typography.html', thumb: 'glyph:AA', dl: null },
+    { t: 'Tiempos Text', cat: 'Lettertype', type: 'font', kw: 'lettertype font serif italic cursief quote citaat tiempos', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: null },
 
     /* ── ICONEN ───────────────────────────────────────── */
     { t: 'Bliksem', cat: 'Icoon', type: 'icon', kw: 'bliksem lightning energie breaking idee icoon ornament', href: 'pages/icons.html', thumb: 'img:assets/icons/bliksem1.png', dl: 'assets/icons/bliksem1.png' },
@@ -67,18 +67,10 @@
     { t: 'Universiteit van Nederland &', cat: 'Formats', type: 'logo', kw: 'ampersand samenwerking lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-amp.png', preview: 'paper', dl: 'assets/formats/uvnl-amp.png' },
     { t: 'Universiteit van Nederland +', cat: 'Formats', type: 'logo', kw: 'plus extra lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-plus.png', preview: 'paper', dl: 'assets/formats/uvnl-plus.png' },
     { t: 'Universiteit van Nederland Studio+', cat: 'Formats', type: 'logo', kw: 'studio plus productie lockup u', href: 'pages/formats.html', thumb: 'img:assets/formats/uvnl-studio.png', preview: 'paper', dl: 'assets/formats/uvnl-studio.png' },
-    { t: 'Partners', cat: 'Resources', type: 'page', kw: 'partners universiteiten leden samenwerking co-branding', href: 'pages/formats.html#partners', thumb: 'mark', dl: null },
     { t: 'Voorbeelden', cat: 'Hoe we eruitzien', type: 'page', kw: 'voorbeelden examples poster thumbnail quote slide story toepassing in het wild posters social', href: 'pages/examples.html', thumb: 'mark', dl: null },
 
     /* ── PAGINA'S ─────────────────────────────────────── */
-    { t: 'Over Universiteit van Nederland', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
-    { t: 'Tone of voice', cat: 'Wie we zijn', type: 'page', kw: 'tone of voice schrijfstijl tekst stem taal nederlands toon', href: 'pages/tone-of-voice.html', thumb: 'mark', dl: null },
-
-    /* ── TOOLS ────────────────────────────────────────── */
-    { t: 'Tools', cat: 'Tools', type: 'page', kw: 'tools maken gereedschap generator hulpmiddel design ontwerp', href: 'pages/tools.html', thumb: 'mark', dl: null },
-    { t: 'Quote-card generator', cat: 'Tools', type: 'page', kw: 'quote card citaat generator maken tool social tiempos export beeld', href: 'tools/uvnl-quote.html', thumb: 'mark', dl: null },
-    { t: 'Titelbalk-generator', cat: 'Tools', type: 'page', kw: 'titelbalk titel balk generator thumbnail video social condensed osgc export png kop headline', href: 'pages/titelbalk.html', thumb: 'mark', dl: null },
-    { t: 'Contrast-checker', cat: 'Tools', type: 'page', kw: 'contrast checker wcag toegankelijkheid kleur leesbaarheid aa aaa tool', href: 'tools/uvnl-contrast.html', thumb: 'mark', dl: null }
+    { t: 'Over ons', cat: 'Wie we zijn', type: 'page', kw: 'over ons story verhaal missie visie kernwaarden wie we zijn merk', href: 'pages/about.html', thumb: 'mark', dl: null }
   ];
 
   window.BB_INDEX = INDEX;
@@ -182,16 +174,16 @@
   function downloadSelection() {
     var arr = load();
     var files = arr.filter(function (x) { return x.dl; });
-    if (!files.length) { Universiteit van Nederland.toast('Geen downloadbare bestanden in selectie'); return; }
+    if (!files.length) { UVNL.toast('Geen downloadbare bestanden in selectie'); return; }
     files.forEach(function (x, i) {
       setTimeout(function () { downloadFile(p(x.dl), x.dl.split('/').pop()); }, i * 350);
     });
-    Universiteit van Nederland.toast(files.length + ' bestanden gedownload');
+    UVNL.toast(files.length + ' bestanden gedownload');
   }
   function copySelection() {
     var arr = load();
     var lines = arr.map(function (x) { return '• ' + x.t + (x.hex ? '  ' + x.hex : '') + (x.dl ? '  ' + x.dl : ''); });
-    Universiteit van Nederland.copy(lines.join('\n'), 'Selectie');
+    UVNL.copy(lines.join('\n'), 'Selectie');
   }
 
   function renderTray() {
