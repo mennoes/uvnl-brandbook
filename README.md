@@ -8,9 +8,12 @@ Extern merkboek van Universiteit van Nederland voor partners.
 
 - `index.html` — originele homepage met cover en fotocarrousel
 - `pages/about.html` — merk, missie, persoonlijkheid en tone of voice
-- `pages/logos.html` — logo, kleur, typografie en fotografie
+- `pages/logos.html` — Nederlandse en Vlaamse logo's
+- `pages/colors.html` — kleuren
+- `pages/typography.html` — typografie zonder fontdownloads
+- `pages/photography.html` — aparte Nederlandse en Vlaamse beeldbanken
 - `pages/examples.html` — toepassingen, voorbeelden en formats
-- `pages/download.html` — partnerkit, logo's en fotografie
+- `pages/download.html` — partnerkit, logo's en fotografie per merk
 
 De website is pure HTML/CSS/JS en wordt via GitHub Pages gepubliceerd. De
 oorspronkelijke interne versie blijft bewaard op branch
