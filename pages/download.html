@@ -33,12 +33,12 @@
   .dlc li::before { content:"·"; color:var(--uvnl-green-bright); font-weight:700; }
   .dlc .fmt { margin-top:12px; font-family:var(--font-sans); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--fg-mute); }
 
-  .dl-packs { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin-top:16px; }
-  .pack { display:block; text-decoration:none; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 20px; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
-  .pack:hover { transform:translateY(-2px); border-color:var(--line-strong); }
-  .pack .t { font-family:var(--font-sans); font-weight:700; font-size:16px; color:var(--fg); display:flex; justify-content:space-between; gap:8px; }
-  .pack .t::after { content:"↓"; color:var(--uvnl-green-bright); }
-  .pack .d { font-size:12.5px; color:var(--fg-mute); margin-top:5px; }
+  .dl-packs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:8px; }
+  .pack { display:block; text-decoration:none; background:var(--uvnl-green); color:var(--uvnl-paper); border:0; border-radius:var(--r-4); padding:24px 28px; transition:transform var(--dur) var(--ease), background var(--dur) var(--ease); }
+  .pack:hover { transform:translateY(-3px); background:var(--primary-hover,#00614A); }
+  .pack .t { font-family:var(--font-display); text-transform:uppercase; letter-spacing:-.01em; font-size:24px; line-height:1; color:var(--uvnl-paper); display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .pack .t::after { content:"↓"; font-family:var(--font-sans); color:var(--uvnl-paper); }
+  .pack .d { font-size:13.5px; color:rgba(244,240,237,.85); margin-top:10px; }
   .dl-note { margin:30px 0 80px; font-size:13px; color:var(--fg-mute); border-left:3px solid var(--line-strong); padding:6px 0 6px 14px; max-width:70ch; }
 </style>
 </head>
@@ -72,29 +72,7 @@
     <div class="cta-wrap"><a class="bigbtn" href="../downloads/uvnl-partner-kit.zip" download>Download partnerkit ↓</a></div>
   </div>
 
-  <div class="index-col" style="margin-bottom:16px"><h2>Wat zit erin?</h2></div>
-  <div class="dl-contents" data-region-lock>
-    <div class="dlc">
-      <div class="h"><b>Logo's</b><span class="count">SVG</span></div>
-      <ul>
-        <li>Nederlandse logo's</li>
-        <li>Vlaamse logo's</li>
-      </ul>
-    </div>
-    <div class="dlc">
-      <div class="h"><b>Fotografie</b><span class="count">JPG</span></div>
-      <ul>
-        <li>Nederlandse beeldbank</li>
-        <li>Vlaamse beeldbank</li>
-      </ul>
-    </div>
-    <div class="dlc">
-      <div class="h"><b>Gebruiksnotitie</b><span class="count">TXT</span></div>
-      <ul><li>Korte aanwijzingen voor logo en fotografie</li><li>Contact voor afstemming</li></ul>
-    </div>
-  </div>
-
-  <div class="index-col" style="margin:44px 0 14px"><h2>Of download per onderdeel</h2></div>
+  <div class="index-col" style="margin:8px 0 14px"><h2>Download per onderdeel</h2></div>
   <div class="dl-packs" data-region-lock>
     <a class="pack" href="../downloads/uvnl-logo-pack.zip" download><span class="t">Logo pack</span><span class="d">Nederland en Vlaanderen</span></a>
     <a class="pack" href="../downloads/uvnl-foto-pack.zip" download><span class="t">Foto-pack</span><span class="d">Nederland en Vlaanderen, op volledige resolutie</span></a>
