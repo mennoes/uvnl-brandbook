@@ -55,8 +55,13 @@
   // groen/wit-theming uit de CSS intact blijft.
   function swapLogos() {
     var logos = document.querySelectorAll('svg.navlogo');
-    if (!logos.length) return;
     var base = (window.BB_BASE != null ? window.BB_BASE : '');
+    var images = document.querySelectorAll('img[data-region-logo]');
+    for (var j = 0; j < images.length; j++) {
+      images[j].src = base + 'assets/logos/uvvl-logo.svg';
+      images[j].alt = 'Universiteit van Vlaanderen';
+    }
+    if (!logos.length) return;
     fetch(base + 'assets/logos/uvvl-logo.svg')
       .then(function (r) { return r.text(); })
       .then(function (txt) {
@@ -123,10 +128,12 @@
     // Alleen automatisch detecteren als er nog geen handmatige keuze is.
     if (manual) return;
     try {
-      fetch('https://get.geojs.io/v1/ip/country.json')
+      fetch('https://get.geojs.io/v1/ip/geo.json')
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d && d.country === 'BE') {
+          var code = d && String(d.country_code || d.country_3 || '').toUpperCase();
+          var country = d && String(d.country || '').toLowerCase();
+          if (code === 'BE' || code === 'BEL' || country === 'belgium' || country === 'belgië') {
             applyVlaanderen();
             var ts = document.querySelectorAll('.region-toggle');
             for (var i = 0; i < ts.length; i++) ts[i].remove();

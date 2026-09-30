@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Universiteit van Nederland Merkboek — alle merkelementen op één plek</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Het merkboek van Universiteit van Nederland. Zoek, bekijk en download logo's, kleuren, lettertypes, iconen en richtlijnen — voor redacteuren én partners.">
+<meta name="description" content="Het partnerbrandbook van Universiteit van Nederland en Universiteit van Vlaanderen: merk, huisstijl, fotografie, voorbeelden en partnerkit.">
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css?v=20260827">
 <script defer src="assets/js/region.js"></script>
@@ -65,29 +65,20 @@
   .bb-hero .search-box svg { color:rgba(244,240,237,.72); width:18px; height:18px; }
   .bb-hero .search-box input { color:var(--uvnl-paper); font-size:18px; }
   .bb-hero .search-box input::placeholder { color:rgba(244,240,237,.62); }
-  /* kolom-overzicht onder de kop (à la brand book) */
-  .hero-index { max-width:1080px; margin:44px auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:72px; text-align:left; }
-  .hero-index .hi-col { display:flex; flex-direction:column; align-items:flex-start; gap:11px; }
-  .hero-index .hi-label { font-family:var(--font-display); font-weight:700; font-size:18px; letter-spacing:.02em; text-transform:uppercase; color:rgba(244,240,237,.55); margin-bottom:7px; background:none; border:0; padding:0; text-align:left; cursor:default; display:inline-flex; align-items:center; }
-  .hero-index .hi-label .chev { display:none; }
-  .hero-index .hi-links { display:flex; flex-direction:column; align-items:flex-start; gap:11px; }
-  .hero-index a { color:var(--uvnl-paper); font-family:var(--font-sans); font-weight:500; font-size:17px; text-decoration:none; opacity:.9; transition:opacity var(--dur) var(--ease); }
-  .hero-index a:hover { opacity:1; text-decoration:underline; }
+  /* vijf directe ingangen, zonder subcategorieën */
+  .hero-index { width:min(1100px,100%); margin:0 auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+  .hero-index .hero-link { min-height:82px; display:flex; align-items:center; justify-content:center; padding:14px 12px; border:1px solid rgba(244,240,237,.36); border-radius:14px; background:rgba(244,240,237,.08); color:var(--uvnl-paper); font-family:var(--font-display); font-weight:700; font-size:17px; letter-spacing:.01em; line-height:1; text-align:center; text-transform:uppercase; text-decoration:none; transition:transform var(--dur) var(--ease),background var(--dur) var(--ease),border-color var(--dur) var(--ease); }
+  .hero-index .hero-link:hover { transform:translateY(-2px); background:rgba(244,240,237,.16); border-color:rgba(244,240,237,.68); }
+  .hero-index .hero-link.kit { background:var(--uvnl-paper); border-color:var(--uvnl-paper); color:var(--uvnl-green); }
+  .hero-index .hero-link.kit:hover { background:#fff; }
   @media (max-width:760px){
     .bb-hero { padding:84px 20px 60px; min-height:100svh; justify-content:flex-start; }
     .bb-hero h1 { font-size:clamp(34px,8.5vw,52px); margin:0 0 22px; }
     .bb-hero .hero-logo { max-width:170px; margin-bottom:22px; }
     .bb-hero .search-box { padding:14px 18px; }
     .bb-hero .search-box input { font-size:16px; }
-    /* 3 knoppen met uitklapbare menu's */
-    .hero-index { grid-template-columns:1fr; gap:12px; margin-top:28px; max-width:380px; text-align:left; }
-    .hero-index .hi-col { gap:0; border:1px solid rgba(244,240,237,.2); border-radius:14px; background:rgba(244,240,237,.06); overflow:hidden; }
-    .hero-index .hi-label { width:100%; display:flex; align-items:center; justify-content:space-between; cursor:pointer; padding:15px 18px; margin:0; font-size:15px; color:var(--uvnl-paper); }
-    .hero-index .hi-label .chev { display:block; width:18px; height:18px; opacity:.8; transition:transform .22s ease; }
-    .hero-index .hi-col.open .hi-label .chev { transform:rotate(180deg); }
-    .hero-index .hi-links { width:100%; align-items:stretch; gap:0; max-height:0; overflow:hidden; transition:max-height .28s ease; }
-    .hero-index .hi-col.open .hi-links { max-height:560px; }
-    .hero-index .hi-links a { font-size:16px; opacity:.96; padding:12px 18px; border-top:1px solid rgba(244,240,237,.12); }
+    .hero-index { grid-template-columns:1fr; gap:9px; max-width:380px; }
+    .hero-index .hero-link { min-height:52px; font-size:16px; }
   }
   /* over-ons samenvatting in sectie 01 */
   .about-summary { max-width:66ch; margin:2px 0 24px; }
@@ -156,6 +147,7 @@
     <div class="links">
       <a href="pages/about.html">Het merk</a>
       <a href="pages/logos.html">Huisstijl</a>
+      <a href="pages/photography.html">Fotografie</a>
       <a href="pages/examples.html">Voorbeelden</a>
       <a class="btn primary cta" style="padding:7px 14px" href="pages/download.html">Download kit</a>
     </div>
@@ -181,58 +173,28 @@
   </div>
   <h1>Het merk op één plek</h1>
 
-  <nav class="hero-index" aria-label="Inhoud">
-    <div class="hi-col">
-      <button class="hi-label" type="button" aria-expanded="false">Het merk<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="hi-links">
-        <a href="pages/about.html">Over ons</a>
-        <a href="pages/about.html#missie">Missie &amp; visie</a>
-        <a href="pages/about.html#persoonlijkheid">Persoonlijkheid</a>
-        <a href="pages/about.html#tone">Tone of voice</a>
-      </div>
-    </div>
-    <div class="hi-col">
-      <button class="hi-label" type="button" aria-expanded="false">Huisstijl<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="hi-links">
-        <a href="pages/logos.html">Logo's</a>
-        <a href="pages/colors.html">Kleuren</a>
-        <a href="pages/typography.html">Typografie</a>
-        <a href="pages/photography.html">Fotografie</a>
-      </div>
-    </div>
-    <div class="hi-col">
-      <button class="hi-label" type="button" aria-expanded="false">Voorbeelden<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="hi-links">
-        <a href="pages/examples.html">Merk in actie</a>
-        <a href="pages/examples.html#formats">Formats</a>
-        <a href="pages/download.html">Partnerkit</a>
-      </div>
-    </div>
+  <nav class="hero-index" aria-label="Hoofdonderdelen">
+    <a class="hero-link" href="pages/about.html">Het merk</a>
+    <a class="hero-link" href="pages/logos.html">Huisstijl</a>
+    <a class="hero-link" href="pages/photography.html">Fotografie</a>
+    <a class="hero-link" href="pages/examples.html">Voorbeelden</a>
+    <a class="hero-link kit" href="pages/download.html">Partnerkit</a>
   </nav>
 </header>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div style="flex-basis:300px">
-      <a class="home" href="index.html" style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-        <svg viewBox="0 0 156 140" style="width:28px;color:var(--fg)"><path fill="currentColor" d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
-        <b style="font-family:var(--font-display);text-transform:uppercase;font-size:15px;line-height:.95">Universiteit van Nederland<br>Merkboek</b>
-      </a>
+    <div style="flex-basis:250px">
+      <a class="home" href="index.html"><img class="footer-logo" data-region-logo src="assets/logos/uvnl-logo.svg" alt="Universiteit van Nederland"></a>
     </div>
-    <div><h5>Het merk</h5><ul>
-      <li><a href="pages/about.html">Over ons &amp; tone of voice</a></li>
-    </ul></div>
-    <div><h5>Huisstijl</h5><ul>
-      <li><a href="pages/logos.html">Logo's</a></li>
-      <li><a href="pages/colors.html">Kleuren</a></li>
-      <li><a href="pages/typography.html">Typografie</a></li>
-      <li><a href="pages/photography.html">Fotografie</a></li>
-    </ul></div>
-    <div><h5>Voorbeelden &amp; downloads</h5><ul>
-      <li><a href="pages/examples.html">Voorbeelden &amp; formats</a></li>
-      <li><a href="pages/download.html">Partnerkit</a></li>
-    </ul></div>
+    <nav class="footer-direct" aria-label="Hoofdonderdelen">
+      <a href="pages/about.html">Het merk</a>
+      <a href="pages/logos.html">Huisstijl</a>
+      <a href="pages/photography.html">Fotografie</a>
+      <a href="pages/examples.html">Voorbeelden</a>
+      <a href="pages/download.html">Partnerkit</a>
+    </nav>
     <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px">
       <p>© 2026 Universiteiten van Nederland</p>
       <p>Vragen over merkgebruik?<br><a href="mailto:info@studioyoko.nl" style="color:var(--uvnl-green-bright)">info@studioyoko.nl</a></p>
@@ -242,41 +204,6 @@
 
 <script src="assets/js/uvnl.js?v=20260827"></script>
 <script>
-/* hero-index: kopjes als uitklapknoppen (mobiel) */
-(function () {
-  var idx = document.querySelector('.hero-index');
-  if (!idx) return;
-  var cols = Array.prototype.slice.call(idx.querySelectorAll('.hi-col'));
-
-  // reserveer alvast de hoogte van de hoogst mogelijke open-stand,
-  // zodat uitklappen de paginahoogte niet verandert
-  function reserve() {
-    if (window.innerWidth > 760) { idx.style.minHeight = ''; return; }
-    var labels = 0, maxList = 0, gap = 12;
-    cols.forEach(function (c) {
-      labels += c.querySelector('.hi-label').offsetHeight;
-      var lh = c.querySelector('.hi-links').scrollHeight;
-      if (lh > maxList) maxList = lh;
-    });
-    idx.style.minHeight = (labels + gap * (cols.length - 1) + maxList) + 'px';
-  }
-
-  cols.forEach(function (col) {
-    col.querySelector('.hi-label').addEventListener('click', function () {
-      var willOpen = !col.classList.contains('open');
-      // maar één tegelijk open → hoogte blijft binnen de gereserveerde ruimte
-      cols.forEach(function (c) {
-        var on = (c === col && willOpen);
-        c.classList.toggle('open', on);
-        c.querySelector('.hi-label').setAttribute('aria-expanded', on ? 'true' : 'false');
-      });
-    });
-  });
-
-  window.addEventListener('resize', reserve);
-  window.addEventListener('load', reserve);
-  reserve();
-})();
 /* parallax: 3D-hero-elementen op verschillende dieptes mee laten scrollen */
 (function () {
   var orns = Array.prototype.slice.call(document.querySelectorAll('.bb-hero .orn'));

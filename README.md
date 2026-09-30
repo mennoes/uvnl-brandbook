@@ -2,6 +2,11 @@
 
 Extern merkboek van Universiteit van Nederland voor partners.
 
+De homepage en hoofdnavigatie hebben vijf directe ingangen: Het merk,
+Huisstijl, Fotografie, Voorbeelden en Partnerkit. Branding wisselt automatisch
+op basis van het IP-land naar Universiteit van Vlaanderen voor bezoekers uit
+België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
+
 **Live:** https://mennoes.github.io/uvnl-brandbook/
 
 ## Pagina's
