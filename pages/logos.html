@@ -69,6 +69,8 @@
   .lg-balls { gap:7px; }
   .lg-ball { width:22px; height:22px; }
   .lg-card .lg-acts { margin-top:auto; padding:16px; border-top:1px solid var(--line); }
+  /* logogebruik: logo krijgt de juiste merkkleur via mask (currentColor werkt niet op een <img>) */
+  .dd-vis .ddlogo { display:block; width:62%; aspect-ratio:638/140; -webkit-mask:url(../assets/logos/uvnl-logo.svg) center/contain no-repeat; mask:url(../assets/logos/uvnl-logo.svg) center/contain no-repeat; }
 </style>
 </head>
 <body>
@@ -119,19 +121,19 @@
     <div class="index-col" style="margin-bottom:18px"><h2>Logogebruik</h2></div>
     <div class="dodont">
       <div class="dd do">
-        <div class="dd-vis" style="background:var(--uvnl-paper)"><img src="../assets/logos/uvnl-logo.svg" style="max-width:60%;color:#004B36" alt=""></div>
+        <div class="dd-vis" style="background:var(--uvnl-paper)"><span class="ddlogo" style="background:#004B36"></span></div>
         <div class="dd-body"><span class="dd-tag">Wel</span><p>Varsity Green logo op Paper of wit, met ruime marge.</p></div>
       </div>
       <div class="dd do">
-        <div class="dd-vis" style="background:var(--uvnl-green)"><img src="../assets/logos/uvnl-logo.svg" style="max-width:60%;filter:none;color:#F4F0ED" alt=""></div>
+        <div class="dd-vis" style="background:var(--uvnl-green)"><span class="ddlogo" style="background:#F4F0ED"></span></div>
         <div class="dd-body"><span class="dd-tag">Wel</span><p>Paper-versie op Varsity Green of een rustige foto.</p></div>
       </div>
       <div class="dd dont">
-        <div class="dd-vis" style="background:var(--uvnl-yellow)"><img src="../assets/logos/uvnl-logo.svg" style="max-width:60%;transform:rotate(8deg)" alt=""></div>
+        <div class="dd-vis" style="background:var(--uvnl-yellow)"><span class="ddlogo" style="background:#004B36;transform:rotate(8deg)"></span></div>
         <div class="dd-body"><span class="dd-tag">Niet</span><p>Niet roteren, vervormen of op een schreeuwende accentkleur plaatsen.</p></div>
       </div>
       <div class="dd dont">
-        <div class="dd-vis" style="background:#888"><img src="../assets/logos/uvnl-logo.svg" style="max-width:60%;opacity:.5" alt=""></div>
+        <div class="dd-vis" style="background:#888"><span class="ddlogo" style="background:#2B2B2B;opacity:.5"></span></div>
         <div class="dd-body"><span class="dd-tag">Niet</span><p>Geen transparantie, geen grijswaarden, geen druk fotofragment eronder.</p></div>
       </div>
     </div>
