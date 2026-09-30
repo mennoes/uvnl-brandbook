@@ -1,46 +1,33 @@
 # UvNL partnergids
 
-De externe partnerwebsite van **Universiteit van Nederland**. De site brengt het
-merkverhaal, de belangrijkste visuele principes, voorbeelden uit de UvNL-case en
-de samenwerkingsroute samen in een compacte site voor partners.
+Externe kennismaking met **Universiteit van Nederland** voor partners.
 
 **Live:** https://mennoes.github.io/uvnl-brandbook/
 
-## Voor partners
+De site gebruikt de oorspronkelijke UvNL-vormgeving en bundelt de inhoud in vier
+onderdelen:
 
-- Het officiële logopakket is beschikbaar voor eenvoudige partnervermeldingen en
-  goedgekeurde co-branding.
-- Campagnes, social content, presentaties, video-assets en events worden samen met
-  het merkteam gemaakt of beoordeeld.
-- Fonts, templates, generators, fotografie en losse campagne-assets zijn geen
-  zelfbedieningsdownloads.
-- Productie en merkchecks lopen via info@studioyoko.nl.
+- **Het merk:** missie, publiek, persoonlijkheid en tone of voice.
+- **Huisstijl:** logo, kleur, typografie en zichtbare/downloadbare fotografie.
+- **Voorbeelden:** speelse toepassingen, formats en campagnebeelden.
+- **Partnerkit:** officiële logo's, artikelbeelden en een korte gebruiksnotitie.
 
-## Techniek
+Interne generators, templates en fontpacks worden niet publiek aangeboden.
 
-De site bestaat uit pure HTML, CSS en JavaScript en heeft geen buildstap.
+## Structuur
 
 ```text
-index.html                  Homepage en fotografische carrousel
-pages/merk.html             Merkverhaal, waarden en tone of voice
-pages/huisstijl.html        Logo, kleur, typografie en fotografie
-pages/voorbeelden.html      UvNL-case en toepassingen
-pages/samenwerken.html      Partnerroutes, proces en contact
-assets/css/partner.css      Vormgeving en responsive layout
-assets/js/partner.js        Navigatie, carrousel en reveal-animaties
-assets/applications/        UvNL-casebeelden en toepassingen
-downloads/uvnl-logo-pack.zip
+index.html                       Homepage met originele fotocarrousel
+pages/merk.html                  Merkverhaal en tone of voice
+pages/huisstijl.html             Compact visueel overzicht en fotografie
+pages/examples.html              Voorbeelden en formats
+pages/download.html              Partnerkit
+downloads/uvnl-partner-kit.zip   Logo's, artikelbeelden en gebruiksnotitie
+downloads/uvnl-logo-pack.zip     Los logopakket
+downloads/uvnl-foto-pack.zip     Volledige fotoselectie
 ```
 
-Lokaal starten:
-
-```bash
-python3 -m http.server 4173
-```
-
-Open daarna http://localhost:4173/.
-
-De oorspronkelijke interne variant is bewaard op de branch
+De oorspronkelijke interne variant staat op branch
 `backup/internal-brandbook-2026-09-30`.
 
 ---
