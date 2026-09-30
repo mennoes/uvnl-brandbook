@@ -451,7 +451,7 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 
 /* Theme toggle (floating, all pages) */
 .theme-toggle {
-  position: fixed; left: 20px; bottom: 20px; z-index: 70;
+  position: fixed; right: 20px; bottom: 20px; z-index: 70;
   display: flex; align-items: center; gap: 2px;
   background: var(--bg-2); border: 1px solid var(--line-strong);
   border-radius: var(--r-pill); padding: 4px;
@@ -749,3 +749,19 @@ section.block > .lede { color: var(--fg-dim); max-width: 640px; margin: -8px 0 2
 /* volledig logo linksboven in de nav */
 .bbnav .home .navlogo { height: 40px; width: auto; color: var(--uvnl-green); }
 .bbnav.is-hero .home .navlogo { color: var(--uvnl-paper); }
+
+/* ── Branded overlay-hero voor subpagina's (rustiger, on-brand opmaak) ── */
+.page-hero { position:relative; display:block; margin:0 calc(50% - 50vw) 52px; }
+.page-hero .ph-visual { width:100%; height:clamp(360px,54vh,540px); border-radius:0; position:relative; }
+.page-hero .ph-visual::after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,40,29,.92) 0%, rgba(0,40,29,.55) 42%, rgba(0,40,29,.12) 100%); }
+.page-hero .ph-text { position:absolute; left:50%; transform:translateX(-50%); bottom:0; width:100%; max-width:1440px; margin:0; padding:0 28px 44px; z-index:2; box-sizing:border-box; }
+.page-hero .crumb, .page-hero .crumb a { color:rgba(244,240,237,.75); }
+.page-hero h1 { color:var(--uvnl-paper); margin-bottom:14px; }
+.page-hero .lead { color:rgba(244,240,237,.92); max-width:660px; }
+.page-hero .lead b { color:#fff; }
+.page-hero .head-actions { margin-top:20px; }
+@media (max-width:760px){
+  .page-hero { margin-bottom:32px; }
+  .page-hero .ph-visual { height:clamp(300px,60vh,420px); }
+  .page-hero .ph-text { padding:0 16px 26px; }
+}
