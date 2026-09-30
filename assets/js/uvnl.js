@@ -142,7 +142,54 @@ window.UVNL = (function () {
     });
   }
 
+  // Public partner edition: retain guidance and approved logos while removing
+  // internal production tools and unrestricted asset downloads.
+  function externalizeBrandbook() {
+    document.body.setAttribute('data-no-tray', '');
+
+    var restricted = [
+      'tools.html',
+      'titelbalk.html',
+      '/tools/',
+      'uvnl-font-pack.zip',
+      'uvnl-brand-kit.zip',
+      'uvnl-foto-pack.zip'
+    ];
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var href = link.getAttribute('href') || '';
+      if (!restricted.some(function (part) { return href.indexOf(part) !== -1; })) return;
+      var item = link.closest('li');
+      (item || link).remove();
+    });
+
+    document.querySelectorAll('.bbnav .cta').forEach(function (link) {
+      link.textContent = 'Partnerassets';
+      link.href = (window.BB_BASE || '') === '../' ? 'download.html' : 'pages/download.html';
+      link.removeAttribute('download');
+    });
+
+    document.querySelectorAll('.footer h5').forEach(function (heading) {
+      if (heading.textContent.indexOf('Tools') !== -1) heading.textContent = 'Voor partners';
+    });
+
+    document.querySelectorAll('.acts').forEach(function (actions) {
+      if (actions.querySelector('[data-add]')) actions.remove();
+    });
+    document.querySelectorAll('[data-add]').forEach(function (button) { button.remove(); });
+
+    document.querySelectorAll('a[download]').forEach(function (link) {
+      var href = link.getAttribute('href') || '';
+      if (href.indexOf('uvnl-logo-pack.zip') !== -1) return;
+      link.removeAttribute('href');
+      link.removeAttribute('download');
+      link.removeAttribute('title');
+      link.classList.add('reference-only');
+    });
+    document.querySelectorAll('.dlhint').forEach(function (hint) { hint.remove(); });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    externalizeBrandbook();
     wireCopy();
     mountThemeToggle();
     mountNavDrop();

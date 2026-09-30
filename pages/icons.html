@@ -45,8 +45,7 @@
           <a href="examples.html">Voorbeelden</a>
         </div>
       </div>
-      <a href="tools.html">Tools</a>
-      <a class="btn primary cta" style="padding:7px 14px" href="download.html">Download kit</a>
+      <a class="btn primary cta" style="padding:7px 14px" href="download.html">Partnerassets</a>
     </div>
   </div>
 </nav>
@@ -86,13 +85,10 @@
       <li><a href="formats.html">Formats &amp; submerken</a></li>
       <li><a href="examples.html">Voorbeelden</a></li>
     </ul></div>
-    <div><h5>Tools &amp; downloads</h5><ul>
-      <li><a href="tools.html">Alle tools</a></li>
-      <li><a href="titelbalk.html">Titelbalk-generator</a></li>
-      <li><a href="../tools/uvnl-contrast.html">Contrast-checker</a></li>
-      <li><a href="../downloads/uvnl-brand-kit.zip" download>Volledige kit</a></li>
+    <div><h5>Voor partners</h5><ul>
+      <li><a href="download.html">Partnerassets</a></li>
       <li><a href="../downloads/uvnl-logo-pack.zip" download>Logo pack</a></li>
-      <li><a href="../downloads/uvnl-font-pack.zip" download>Font pack</a></li>
+      <li><a href="about.html#contact">Contact &amp; goedkeuring</a></li>
     </ul></div>
     <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px">
       <p>© 2026 Universiteiten van Nederland</p>
@@ -128,24 +124,15 @@
     el.innerHTML =
       '<div class="preview"><img class="fam-main" src="../assets/icons/' + first[0] + '" alt="' + name + '" style="transform:rotate(' + rot + 'deg);max-width:55%"></div>' +
       '<div class="info"><span class="name">' + name + '</span><span class="desc desc-v">' + vars.length + ' varianten · ' + first[1] + '</span></div>' +
-      (vars.length > 1 ? '<div class="fam-vars">' + swatches + '</div>' : '') +
-      '<div class="acts">' +
-        '<a class="mini-btn fam-dl" href="../assets/icons/' + first[0] + '" download>Download PNG</a>' +
-        '<button class="mini-btn fam-add" data-add data-add-title="' + name + ' ' + first[1] + '" data-add-dl="assets/icons/' + first[0] + '">+ Selecteer</button>' +
-      '</div>';
+      (vars.length > 1 ? '<div class="fam-vars">' + swatches + '</div>' : '');
     box.appendChild(el);
 
     var main = el.querySelector('.fam-main'),
-        dlBtn = el.querySelector('.fam-dl'),
-        addBtn = el.querySelector('.fam-add'),
         descV = el.querySelector('.desc-v');
     el.querySelectorAll('.fam-var').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var file = btn.getAttribute('data-file'), label = btn.getAttribute('data-label');
         main.src = '../assets/icons/' + file;
-        dlBtn.href = '../assets/icons/' + file;
-        addBtn.setAttribute('data-add-title', name + ' ' + label);
-        addBtn.setAttribute('data-add-dl', 'assets/icons/' + file);
         if (descV) descV.textContent = vars.length + ' varianten · ' + label;
         el.querySelectorAll('.fam-var').forEach(function (b) { b.classList.toggle('active', b === btn); });
       });

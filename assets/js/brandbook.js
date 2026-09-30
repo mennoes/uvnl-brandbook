@@ -37,9 +37,9 @@
     { t: 'Paper', cat: 'Kleur', type: 'color', kw: 'paper cream crème achtergrond warm F4F0ED', href: 'pages/colors.html', thumb: 'color:#F4F0ED', hex: '#F4F0ED', dl: null },
 
     /* ── TYPOGRAFIE ───────────────────────────────────── */
-    { t: 'Oldschool Grotesk', cat: 'Lettertype', type: 'font', kw: 'lettertype font sans body tekst grotesk regular bold', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: 'downloads/uvnl-font-pack.zip' },
-    { t: 'Oldschool Grotesk Condensed', cat: 'Lettertype', type: 'font', kw: 'lettertype font display condensed gecondenseerd osgc koppen headlines caps', href: 'pages/typography.html', thumb: 'glyph:AA', dl: 'downloads/uvnl-font-pack.zip' },
-    { t: 'Tiempos Text', cat: 'Lettertype', type: 'font', kw: 'lettertype font serif italic cursief quote citaat tiempos', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: 'downloads/uvnl-font-pack.zip' },
+    { t: 'Oldschool Grotesk', cat: 'Typografie', type: 'font', kw: 'lettertype font sans body tekst grotesk regular bold richtlijn', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: null },
+    { t: 'Oldschool Grotesk Condensed', cat: 'Typografie', type: 'font', kw: 'lettertype font display condensed gecondenseerd osgc koppen headlines caps richtlijn', href: 'pages/typography.html', thumb: 'glyph:AA', dl: null },
+    { t: 'Tiempos Text', cat: 'Typografie', type: 'font', kw: 'lettertype font serif italic cursief quote citaat tiempos richtlijn', href: 'pages/typography.html', thumb: 'glyph:Aa', dl: null },
 
     /* ── ICONEN ───────────────────────────────────────── */
     { t: 'Bliksem', cat: 'Icoon', type: 'icon', kw: 'bliksem lightning energie breaking idee icoon ornament', href: 'pages/icons.html', thumb: 'img:assets/icons/bliksem1.png', dl: 'assets/icons/bliksem1.png' },
@@ -74,11 +74,7 @@
     { t: 'Over Universiteit van Nederland', cat: 'Wie we zijn', type: 'page', kw: 'over story verhaal missie wie we zijn hema wetenschap merk', href: 'pages/about.html', thumb: 'mark', dl: null },
     { t: 'Tone of voice', cat: 'Wie we zijn', type: 'page', kw: 'tone of voice schrijfstijl tekst stem taal nederlands toon', href: 'pages/tone-of-voice.html', thumb: 'mark', dl: null },
 
-    /* ── TOOLS ────────────────────────────────────────── */
-    { t: 'Tools', cat: 'Tools', type: 'page', kw: 'tools maken gereedschap generator hulpmiddel design ontwerp', href: 'pages/tools.html', thumb: 'mark', dl: null },
-    { t: 'Quote-card generator', cat: 'Tools', type: 'page', kw: 'quote card citaat generator maken tool social tiempos export beeld', href: 'tools/uvnl-quote.html', thumb: 'mark', dl: null },
-    { t: 'Titelbalk-generator', cat: 'Tools', type: 'page', kw: 'titelbalk titel balk generator thumbnail video social condensed osgc export png kop headline', href: 'pages/titelbalk.html', thumb: 'mark', dl: null },
-    { t: 'Contrast-checker', cat: 'Tools', type: 'page', kw: 'contrast checker wcag toegankelijkheid kleur leesbaarheid aa aaa tool', href: 'tools/uvnl-contrast.html', thumb: 'mark', dl: null }
+    { t: 'Partnerassets', cat: 'Voor partners', type: 'page', kw: 'partner assets logo download aanvraag productie goedkeuring', href: 'pages/download.html', thumb: 'mark', dl: null }
   ];
 
   window.BB_INDEX = INDEX;
@@ -134,7 +130,7 @@
     if (!q.trim()) { container.classList.remove('open'); container.innerHTML = ''; return; }
     container.classList.add('open');
     if (!res.length) {
-      container.innerHTML = '<div class="sr-empty">Niets gevonden voor "<b>' + q + '</b>". Probeer: groen, logo, paars, geel, font, bliksem.</div>';
+      container.innerHTML = '<div class="sr-empty">Niets gevonden voor "<b>' + q + '</b>". Probeer: logo, kleur, typografie, fotografie of partner.</div>';
       return;
     }
     // group by cat, keep score order of first appearance
@@ -182,16 +178,16 @@
   function downloadSelection() {
     var arr = load();
     var files = arr.filter(function (x) { return x.dl; });
-    if (!files.length) { Universiteit van Nederland.toast('Geen downloadbare bestanden in selectie'); return; }
+    if (!files.length) { UVNL.toast('Geen downloadbare bestanden in selectie'); return; }
     files.forEach(function (x, i) {
       setTimeout(function () { downloadFile(p(x.dl), x.dl.split('/').pop()); }, i * 350);
     });
-    Universiteit van Nederland.toast(files.length + ' bestanden gedownload');
+    UVNL.toast(files.length + ' bestanden gedownload');
   }
   function copySelection() {
     var arr = load();
     var lines = arr.map(function (x) { return '• ' + x.t + (x.hex ? '  ' + x.hex : '') + (x.dl ? '  ' + x.dl : ''); });
-    Universiteit van Nederland.copy(lines.join('\n'), 'Selectie');
+    UVNL.copy(lines.join('\n'), 'Selectie');
   }
 
   function renderTray() {
@@ -266,7 +262,7 @@
     renderTray();
   }
 
-  window.BB = { search: search, add: add, downloadSelection: downloadSelection };
+  window.BB = { search: search };
 
   /* ── SVG INLINER ────────────────────────────────────────
      <img src="*.svg"> renders fill="currentColor" as black.
@@ -302,7 +298,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     wireSearch(document.getElementById('bb-search'), document.getElementById('bb-results'));
     wireSearch(document.getElementById('bb-nav-search'), document.getElementById('bb-nav-results'));
-    mountTray();
     setTimeout(inlineSvgs, 60); // after page scripts have built galleries
   });
 })();

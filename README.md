@@ -1,20 +1,18 @@
 # UvNL Merkboek
 
-Het merkboek van **Universiteiten van Nederland** — één plek waar redacteuren én
-partners alle merkelementen makkelijk vinden, bekijken en downloaden.
+Het externe merkboek van **Universiteiten van Nederland** — één plek waar
+partners de merkprincipes, richtlijnen en goedgekeurde logo-assets vinden.
 
 **Live:** https://mennoes.github.io/uvnl-brandbook/
 
 ## Wat het doet
 
-- **Zoeken-eerst.** Een prominente zoekbalk op de homepage doorzoekt live alle
-  merkelementen. Typ "groen logo", "paars", "font" of "bliksem" en de resultaten
-  verschijnen meteen, met thumbnails.
-- **Download de hele kit** in één klik (ZIP), of blader per onderdeel.
-- **Bladeren door alles** — elk los logo, elke kleur, elk lettertype, elk icoon
-  en elke foto is afzonderlijk te bekijken en te downloaden.
-- **Combineren.** Voeg items toe aan een *selectie* en download of kopieer ze in
-  één keer — handig om een setje merkelementen samen te stellen.
+- **Partnergericht.** De inhoud legt merk, toon, visuele stijl en toepassingen uit
+  zonder interne productietools beschikbaar te maken.
+- **Goedgekeurde logo-assets.** Partners kunnen alleen het officiële logopakket
+  downloaden. Fonts en productie-assets worden niet los verstrekt.
+- **Productie via het merkteam.** Nieuwe uitingen en maatwerk lopen via
+  info@studioyoko.nl.
 - **Light/dark toggle** (linksonder), voorkeur wordt onthouden.
 
 ## Structuur
@@ -31,11 +29,8 @@ pages/
   formats.html          Formats & submerken (Wetensnap, Collegenacht, …) + partners
   tone-of-voice.html    Schrijfstijl & wel/niet
   guidelines.html       Do's & don'ts (visueel)
-tools/
-  uvnl-quote.html       Quote-card generator
-  uvnl-contrast.html    WCAG contrast-checker
 assets/                 css, js, fonts, logos, icons, photos, formats, partners
-downloads/              uvnl-brand-kit.zip · uvnl-logo-pack.zip · uvnl-font-pack.zip
+downloads/              uvnl-logo-pack.zip
 ```
 
 Pure HTML/CSS/JS, geen build-stap, geen frameworks. Hostbaar via GitHub Pages.
