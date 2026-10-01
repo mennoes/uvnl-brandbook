@@ -19,9 +19,7 @@
   var SWAP_ATTRS = ['aria-label', 'alt', 'title', 'placeholder', 'content'];
 
   function toVL(s) {
-    return s
-      .replace(/Universiteiten van Nederland/g, 'Universiteiten van Vlaanderen')
-      .replace(/Universiteit van Nederland/g, 'Universiteit van Vlaanderen');
+    return s.replace(/Universiteit van Nederland/g, 'Universiteit van Vlaanderen');
   }
 
   function walk(node) {

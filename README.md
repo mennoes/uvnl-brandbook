@@ -25,4 +25,4 @@ oorspronkelijke interne versie blijft bewaard op branch
 `backup/internal-brandbook-2026-09-30`.
 
 ---
-© 2026 Universiteiten van Nederland · Vragen: info@studioyoko.nl
+© 2026 Universiteit van Nederland · Vragen: info@studioyoko.nl

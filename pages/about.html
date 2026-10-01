@@ -55,6 +55,10 @@
   .a-contact p { margin:0; color:rgba(244,240,237,.85); max-width:52ch; }
   .a-contact p a { color:#fff; font-weight:700; }
   .a-contact .btn { background:var(--uvnl-paper); color:var(--uvnl-green); }
+  .a-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+  .a-stat { border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:22px; }
+  .a-stat .n { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(28px,3.4vw,40px); line-height:1; color:var(--uvnl-green); }
+  .a-stat .l { display:block; margin-top:8px; font-size:13px; color:var(--fg-mute); line-height:1.4; }
 </style>
 </head>
 <body>
@@ -79,7 +83,7 @@
     <div class="ph-text">
       <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Over ons</div>
       <h1>Over ons</h1>
-      <p class="lead">Universiteiten van Nederland maakt complexe wetenschap toegankelijk via verhalende video op YouTube, Instagram, TikTok, de website, tv en live events.</p>
+      <p class="lead">Universiteit van Nederland maakt wetenschap toegankelijk voor iedereen — met gratis colleges van topwetenschappers, een podcast en live events.</p>
     </div>
     <div class="ph-visual ph-photo">
       <img src="../assets/photos/globe-talk.jpg" alt="Universiteit van Nederland-lezing onder een geprojecteerde wereldbol">
@@ -106,40 +110,33 @@
 
     <section class="a-block a-block--green" id="missie">
       <span class="a-kicker">Missie</span>
-      <p class="a-big" data-region-lock>De Universiteit van Nederland &amp; Vlaanderen halen de kennis uit de collegezalen en maken dit beschikbaar voor iedereen. We enthousiasmeren mensen over wetenschap, gaan fake news tegen en geven iedereen toegang tot de beste docenten van het land — via colleges, explainer video's en podcasts.</p>
+      <p class="a-big">De Universiteit van Nederland maakt wetenschap toegankelijk voor iedereen. Samen met de Nederlandse universiteiten laten we topwetenschappers elke week gratis online college geven — zodat iedereen kan blijven leren van de beste docenten van het land.</p>
     </section>
 
-    <section class="a-two" id="visie">
-      <h2>Visie</h2>
+    <section class="a-two" id="wat-we-doen">
+      <h2>Wat we doen</h2>
       <div>
-        <p>Wetenschappelijke kennis moet gedeeld worden en beschikbaar zijn voor iedereen. Door kennis te delen kan de wetenschap de samenleving helpen om betere beslissingen te maken — zowel op persoonlijk vlak als op grotere schaal.</p>
-        <p>We slaan de brug tussen de academische wereld en het brede publiek: topwetenschappers delen gratis hun kennis en verhalen via wekelijkse online colleges, offline events, een podcast en landelijke media.</p>
+        <p>Elke week verschijnen er nieuwe, gratis colleges van topwetenschappers — online voor iedereen te bekijken. Daarnaast maken we een podcast en organiseren we live events.</p>
+        <p>Alle colleges staan onder een Creative Commons-licentie (CC BY): je mag ze vrij delen en embedden, zolang je Universiteit van Nederland als bron vermeldt.</p>
       </div>
     </section>
 
-    <section id="voor-wie">
+    <section class="a-two" id="voor-wie">
       <h2>Voor wie</h2>
-      <div class="a-cards">
-        <div class="a-card">
-          <h3>Nieuwsgierige kijkers <span>17–24</span></h3>
-          <p>Leergierig en nieuwsgierig — ze komen naar events en bekijken de video's. Wij geven ze exclusieve toegang tot unieke perspectieven van échte wetenschappers.</p>
-        </div>
-        <div class="a-card a-card--purple">
-          <h3>Wie we willen bereiken <span>15+</span></h3>
-          <p>Jongeren die dénken dat wetenschap niks voor hen is, maar wél aanhaken via onderwerpen die bij hun wereld passen: muziek, sport, voeding, games of social media.</p>
-        </div>
+      <div>
+        <p>Voor iedereen die nieuwsgierig is — van scholier tot professor. Je hebt geen voorkennis of inschrijving nodig: de colleges zijn gratis en voor iedereen toegankelijk.</p>
       </div>
     </section>
 
     <section id="uniek">
-      <h2>Wat ons uniek maakt</h2>
-      <ul class="a-uniek">
-        <li>Uniek in Nederland, met een sterke positie.</li>
-        <li>Een brug tussen media en universiteiten.</li>
-        <li>We werken alleen met échte wetenschappers.</li>
-        <li>Een missie die door het hele team geleefd wordt.</li>
-        <li>Open source: kennis voor iedereen.</li>
-      </ul>
+      <h2>In het kort</h2>
+      <div class="a-stats">
+        <div class="a-stat"><span class="n">2013</span><span class="l">Opgericht door Alexander Klöpping &amp; Marten Blankesteijn</span></div>
+        <div class="a-stat"><span class="n">14</span><span class="l">Nederlandse universiteiten als partner</span></div>
+        <div class="a-stat"><span class="n">800+</span><span class="l">Gratis colleges online</span></div>
+        <div class="a-stat"><span class="n">40 mln+</span><span class="l">Views op de colleges</span></div>
+        <div class="a-stat"><span class="n">CC BY</span><span class="l">Creative Commons — vrij te delen met bronvermelding</span></div>
+      </div>
     </section>
 
     <section id="persoonlijkheid">
@@ -198,7 +195,7 @@
       <a href="download.html">Partnerkit</a>
     </nav>
     <div style="margin-left:auto;text-align:right;color:var(--fg-mute);font-size:12px">
-      <p>© 2026 Universiteiten van Nederland</p>
+      <p>© 2026 Universiteit van Nederland</p>
       <p>Vragen over merkgebruik?<br><a href="mailto:info@studioyoko.nl" style="color:var(--uvnl-green-bright)">info@studioyoko.nl</a></p>
     </div>
   </div>

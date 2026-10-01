@@ -40,7 +40,7 @@ Let op: gebruik de witte variant niet op een lichte achtergrond - je ziet
 hem dan niet. Voor inline gebruik op het web staan de bron-SVG's met
 currentColor in de huisstijl-website zelf.
 
-(c) Universiteiten van Nederland
+(c) Universiteit van Nederland
 """
 
 

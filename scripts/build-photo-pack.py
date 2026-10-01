@@ -23,7 +23,7 @@ De Nederlandse en Vlaamse merkfoto's uit het merkboek, op volledige resolutie.
 Gebruik: in colleges, thumbnails, posters en social uitingen van
 Universiteit van Nederland of Universiteit van Vlaanderen.
 
-(c) Universiteiten van Nederland - beeldgebruik in overleg met de redactie.
+(c) Universiteit van Nederland - beeldgebruik in overleg met de redactie.
 """
 
 

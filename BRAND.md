@@ -66,4 +66,4 @@ spark) als emotionele grammatica — herkleurbare ornamenten, 8–20° gedraaid.
 Geen Unicode-emoji.
 
 ---
-© 2026 Universiteiten van Nederland · Vragen: info@studioyoko.nl
+© 2026 Universiteit van Nederland · Vragen: info@studioyoko.nl
