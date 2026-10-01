@@ -59,6 +59,14 @@
   .a-stat { border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:22px; }
   .a-stat .n { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(28px,3.4vw,40px); line-height:1; color:var(--uvnl-green); }
   .a-stat .l { display:block; margin-top:8px; font-size:13px; color:var(--fg-mute); line-height:1.4; }
+  .a-stat .n { font-size:clamp(34px,4vw,52px); }
+  .a-stats .a-stat:nth-child(2) .n, .a-stats .a-stat:nth-child(4) .n { color:var(--uvnl-green-bright); }
+  /* tone-of-voice als gekleurde wel/niet i.p.v. kale tabel */
+  #tone .vs-table { border-collapse:separate; border-spacing:0 8px; margin:18px 0 0; }
+  #tone .vs-table th { font-size:12px; padding:0 16px 6px; border:0; }
+  #tone .vs-table td { border:0; padding:13px 16px; font-size:15px; color:var(--fg-dim); border-radius:var(--r-3); }
+  #tone .vs-table td.yes { background:rgba(0,128,92,.09); color:var(--fg); }
+  #tone .vs-table td:last-child { background:rgba(238,82,69,.08); }
 </style>
 </head>
 <body>
@@ -144,7 +152,7 @@
       <p class="a-sub">Gedurfd, academisch en toegankelijk. Met echte wetenschappers, heldere vragen en een speelse, redactionele beeldtaal.</p>
       <div class="a-traits">
         <div class="a-trait"><b>Echt</b><p>Altijd echte mensen, nooit stock.</p></div>
-        <div class="a-trait"><b>Nieuwsgierig</b><p>Bijna alles is een vraag: "Trump uit de NAVO?", "Wat weet jij over stress?".</p></div>
+        <div class="a-trait"><b>Nieuwsgierig</b><p>Bijna alles is een vraag — we prikkelen nieuwsgierigheid in plaats van te beleren.</p></div>
         <div class="a-trait"><b>Toegankelijk</b><p>Plain Dutch, geen jargon. Jij/je, nooit u.</p></div>
         <div class="a-trait"><b>Een beetje rommelig</b><p>Tape, scribbles, ruwe randen — met opzet.</p></div>
       </div>
@@ -185,7 +193,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div style="flex-basis:250px">
-      <a class="home" href="../index.html"><img class="footer-logo" data-region-logo src="../assets/logos/uvnl-logo.svg" alt="Universiteit van Nederland"></a>
+      <a class="home" href="../index.html"><span class="footer-logo" data-region-logo role="img" aria-label="Universiteit van Nederland"></span></a>
     </div>
     <nav class="footer-direct" aria-label="Hoofdonderdelen">
       <a href="about.html">Het merk</a>

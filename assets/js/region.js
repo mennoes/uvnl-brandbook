@@ -54,10 +54,18 @@
   function swapLogos() {
     var logos = document.querySelectorAll('svg.navlogo');
     var base = (window.BB_BASE != null ? window.BB_BASE : '');
-    var images = document.querySelectorAll('img[data-region-logo]');
+    var images = document.querySelectorAll('[data-region-logo]');
     for (var j = 0; j < images.length; j++) {
-      images[j].src = base + 'assets/logos/uvvl-logo.svg';
-      images[j].alt = 'Universiteit van Vlaanderen';
+      var el = images[j];
+      var url = base + 'assets/logos/uvvl-logo.svg';
+      if (el.tagName === 'IMG') {
+        el.src = url;
+      } else {
+        el.style.webkitMaskImage = "url('" + url + "')";
+        el.style.maskImage = "url('" + url + "')";
+      }
+      if (el.hasAttribute('alt')) el.setAttribute('alt', 'Universiteit van Vlaanderen');
+      if (el.hasAttribute('aria-label')) el.setAttribute('aria-label', 'Universiteit van Vlaanderen');
     }
     if (!logos.length) return;
     fetch(base + 'assets/logos/uvvl-logo.svg')
