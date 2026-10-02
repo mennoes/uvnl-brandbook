@@ -71,6 +71,14 @@
   .lg-card .lg-acts { margin-top:auto; padding:16px; border-top:1px solid var(--line); }
   /* logogebruik: logo krijgt de juiste merkkleur via mask (currentColor werkt niet op een <img>) */
   .dd-vis .ddlogo { display:block; width:62%; aspect-ratio:638/140; -webkit-mask:url(../assets/logos/uvnl-logo.svg) center/contain no-repeat; mask:url(../assets/logos/uvnl-logo.svg) center/contain no-repeat; }
+  /* horizontale huisstijl-presentatie (filmstrip) */
+  .pres-scroll { display:flex; gap:16px; overflow-x:auto; overflow-y:hidden; margin:16px calc(50% - 50vw) 0; padding:4px max(28px, calc(50vw - 700px)) 20px; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scrollbar-color:var(--line-strong) transparent; }
+  .pres-slide { flex:0 0 auto; scroll-snap-align:center; height:clamp(300px,56vh,540px); border-radius:var(--r-4); overflow:hidden; border:1px solid var(--line); background:#fff; display:block; transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease); }
+  .pres-slide:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(0,0,0,.12); }
+  .pres-slide img { height:100%; width:auto; max-width:none; display:block; }
+  .pres-scroll::-webkit-scrollbar { height:10px; }
+  .pres-scroll::-webkit-scrollbar-thumb { background:var(--line-strong); border-radius:999px; }
+  .pres-scroll::-webkit-scrollbar-track { background:transparent; }
 </style>
 </head>
 <body>
@@ -117,25 +125,39 @@
     <div class="logo-grid" id="vl-grid"></div>
   </section>
 
-  <section style="margin:64px 0 80px">
-    <div class="index-col" style="margin-bottom:18px"><h2>Logogebruik</h2></div>
-    <div class="dodont">
-      <div class="dd do">
-        <div class="dd-vis" style="background:var(--uvnl-paper)"><span class="ddlogo" style="background:#004B36"></span></div>
-        <div class="dd-body"><span class="dd-tag">Wel</span><p>Varsity Green logo op Paper of wit, met ruime marge.</p></div>
-      </div>
-      <div class="dd do">
-        <div class="dd-vis" style="background:var(--uvnl-green)"><span class="ddlogo" style="background:#F4F0ED"></span></div>
-        <div class="dd-body"><span class="dd-tag">Wel</span><p>Paper-versie op Varsity Green of een rustige foto.</p></div>
-      </div>
-      <div class="dd dont">
-        <div class="dd-vis" style="background:var(--uvnl-yellow)"><span class="ddlogo" style="background:#004B36;transform:rotate(8deg)"></span></div>
-        <div class="dd-body"><span class="dd-tag">Niet</span><p>Niet roteren, vervormen of op een schreeuwende accentkleur plaatsen.</p></div>
-      </div>
-      <div class="dd dont">
-        <div class="dd-vis" style="background:#888"><span class="ddlogo" style="background:#2B2B2B;opacity:.5"></span></div>
-        <div class="dd-body"><span class="dd-tag">Niet</span><p>Geen transparantie, geen grijswaarden, geen druk fotofragment eronder.</p></div>
-      </div>
+  <section style="margin:64px 0 10px">
+    <div class="index-col" style="margin-bottom:6px"><h2>De huisstijl in beeld</h2></div>
+    <p class="ls-sub" style="max-width:640px">De volledige huisstijl-presentatie. Scroll of sleep horizontaal — klik een slide om groot te bekijken.</p>
+    <div class="pres-scroll">
+      <a class="pres-slide" href="../assets/presentatie/slide-01.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-01.jpg" alt="De universiteit voor iedereen" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-04.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-04.jpg" alt="Beeldmerk" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-05.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-05.jpg" alt="Woordmerk" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-06.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-06.jpg" alt="Logo" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-07.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-07.jpg" alt="Lockups Nederland en Vlaanderen" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/usage.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/usage.jpg" alt="Logogebruik" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-03.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-03.jpg" alt="Kleuren" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/palette.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/palette.jpg" alt="Kleurenpalet" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-11.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-11.jpg" alt="Typografie" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/typography.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/typography.jpg" alt="Lettertypes" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-12.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-12.jpg" alt="Typografie en kleurbereik" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-14.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-14.jpg" alt="Formats en submerken" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/icons.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/icons.jpg" alt="Iconen" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/shapes.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/shapes.jpg" alt="Basisvormen" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/illustration.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/illustration.jpg" alt="3D-illustratie" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/illustration2.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/illustration2.jpg" alt="3D-illustratie" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/3d.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/3d.jpg" alt="3D-elementen" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-08.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-08.jpg" alt="Props" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-09.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-09.jpg" alt="3D-props" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-10.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-10.jpg" alt="Mensen" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-10b.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-10b.jpg" alt="Setting" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/frame98.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/frame98.jpg" alt="Inspiratie" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/posters.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/posters.jpg" alt="Posters" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/thumbs.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/thumbs.jpg" alt="Thumbnails" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/reels.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/reels.jpg" alt="Reels" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-23.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-23.jpg" alt="Podcast" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-24.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-24.jpg" alt="Podcast en app" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/slide-25.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-25.jpg" alt="Website" loading="lazy" decoding="async"></a>
+      <a class="pres-slide" href="../assets/presentatie/bookcover.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/bookcover.jpg" alt="Boekomslag" loading="lazy" decoding="async"></a>
     </div>
   </section>
 </div>
