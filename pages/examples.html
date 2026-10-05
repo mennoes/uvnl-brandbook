@@ -9,46 +9,7 @@
 <link rel="stylesheet" href="../assets/css/external.css?v=20260930">
 <script defer src="../assets/js/region.js"></script>
 <script>window.BB_BASE = '../';</script>
-<style>
-  .ex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
-  .ex { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
-  .ex:hover { transform:translateY(-2px); border-color:var(--line-strong); }
-  .ex .info { padding:14px 18px; border-top:1px solid var(--line); }
-  .ex .info .name { font-family:var(--font-sans); font-weight:700; font-size:14px; color:var(--fg); }
-  .ex .info .desc { font-size:12px; color:var(--fg-mute); margin-top:2px; }
-  /* canvases */
-  .canvas { position:relative; overflow:hidden; display:flex; }
-  .c-169 { aspect-ratio:16/9; }
-  .c-45  { aspect-ratio:4/5; }
-  .c-11  { aspect-ratio:1/1; }
-  .c-916 { aspect-ratio:9/16; }
-  .disp { font-family:var(--font-display); font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; line-height:.86; }
-  .u-mark { display:inline-block; }
-  .u-mark path { fill:currentColor; }
-  .grain { position:absolute; inset:0; opacity:.5; mix-blend-mode:multiply; pointer-events:none; }
-  .ic-abs { position:absolute; pointer-events:none; }
-  .tape { position:absolute; width:84px; height:26px; background:rgba(251,240,122,.7); transform:rotate(-6deg); }
-  .photo-fill { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .wash { position:absolute; inset:0; mix-blend-mode:multiply; }
-  /* 3D-elementen set (uit de Figma-huisstijl) */
-  .el3d-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:14px; margin-top:18px; }
-  .el3d { display:block; border:1px solid var(--line); border-radius:var(--r-4); background:var(--bg-2); padding:18px 10px 12px; text-align:center; text-decoration:none; color:inherit; cursor:pointer; transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease); }
-  a.el3d:hover { transform:translateY(-2px); border-color:var(--line-strong); }
-  .el3d img { width:84px; height:84px; object-fit:contain; }
-  .el3d span { display:block; margin-top:10px; font-family:var(--font-sans); font-weight:700; font-size:11px; color:var(--fg-mute); }
-  .el3d .dlhint { display:block; margin-top:3px; font-family:var(--font-sans); font-style:normal; font-weight:700; font-size:10px; letter-spacing:.04em; color:var(--uvnl-green-bright); opacity:0; transition:opacity var(--dur) var(--ease); }
-  a.el3d:hover .dlhint { opacity:1; }
-  /* 3D-compositie banner */
-  .comp3d { margin:0 0 22px; border-radius:var(--r-4); overflow:hidden; }
-  .comp3d img { display:block; width:100%; height:auto; }
-  /* frames uit de Figma-huisstijl */
-  .fig-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin-top:18px; }
-  .fig { border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
-  .fig img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
-  .app { break-inside:avoid; margin:0 0 16px; border:1px solid var(--line); border-radius:var(--r-4); overflow:hidden; background:var(--bg-2); }
-  .app img { display:block; width:100%; height:auto; }
-  .app .cap { padding:9px 13px; border-top:1px solid var(--line); font-family:var(--font-sans); font-size:11px; color:var(--fg-mute); }
-</style>
+<link rel="stylesheet" href="../assets/css/examples.css?v=20261005">
 </head>
 <body>
 
@@ -67,67 +28,28 @@
   </div>
 </nav>
 
-<div class="wrap">
-  <header class="page-hero">
-    <div class="ph-text">
-      <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Voorbeelden</div>
-      <h1>Voorbeelden</h1>
-      <p class="lead">Een selectie van toepassingen, colleges, thumbnails en formats.</p>
-    </div>
-    <div class="ph-visual ph-photo">
-      <img src="../assets/photos/speaker-3d.jpg" alt="Spreker met zwevende 3D-objecten op het podium">
-    </div>
+<main class="examples-page">
+  <header class="examples-intro wrap">
+    <div class="crumb"><a href="../index.html">Merkboek</a><span class="sep">/</span> Voorbeelden</div>
+    <div class="intro-row"><h1>Zo ziet<br><span>nieuwsgierigheid</span><br>eruit.</h1><div class="intro-note"><span class="paper-label">Het merk in het wild</span><p>Van een brein in 3D tot een volle zaal. Eén herkenbare wereld, met alle ruimte om te verrassen.</p><a href="#in-beweging" class="jump-link">Duik in de voorbeelden <span aria-hidden="true">↓</span></a></div></div>
   </header>
-
-  <section class="consolidated-section" style="margin-top:0">
-    <div class="index-col"><h2>Toepassingen</h2></div>
-    <div class="applications-grid">
-      <figure><img src="../assets/applications/website-laptop.png" alt="Website op laptop" loading="lazy"></figure>
-      <figure><img src="../assets/applications/3d-compositie-1.png" alt="3D-compositie" loading="lazy"></figure>
-      <figure><img src="../assets/applications/poster-kopje-onder.png" alt="Poster Kopje Onder" loading="lazy"></figure>
-      <figure><img src="../assets/applications/poster-rare-jongens.png" alt="Poster Rare Jongens" loading="lazy"></figure>
-      <figure><img src="../assets/applications/poster-tijd-stopt.png" alt="Poster Wat als de tijd stopt" loading="lazy"></figure>
-      <figure><img src="../assets/applications/book-slaap.png" alt="Boek Alles over slaap" loading="lazy"></figure>
-      <figure><img src="../assets/applications/reel-stress.png" alt="Social reel over stress" loading="lazy"></figure>
-      <figure><img src="../assets/applications/thumb-altijd-op-tijd.png" alt="Video-thumbnail Altijd op tijd" loading="lazy"></figure>
-    </div>
+  <section class="motion-section wrap" id="in-beweging" aria-labelledby="motion-title">
+    <div class="section-top"><h2 id="motion-title"><span class="section-number">01 /</span> Kennis komt in beweging</h2><button class="motion-toggle" type="button" hidden aria-pressed="false">Pauzeer previews</button></div>
+    <div class="motion-layout"><figure class="showpiece motion-main"><video controls muted loop playsinline preload="none" poster="../assets/examples/uvnl-gallery-02.jpg" aria-label="Formatontwikkeling · Wetenschap van dichtbij" data-preview><source src="../assets/examples/uvnl-insight-dino.mp4" type="video/mp4"></video><figcaption>Formatontwikkeling · Wetenschap van dichtbij</figcaption></figure>
+    <div class="motion-aside"><p class="side-note">Grote vragen.<br><em>Helder in beeld.</em></p><figure class="showpiece brain-card"><a class="media-link" href="../assets/examples/uvnl-gallery-04.jpg" data-enlarge aria-label="Vergroot: 3D-visualisatie van het menselijk brein"><img src="../assets/examples/uvnl-gallery-04.jpg" alt="3D-visualisatie van het menselijk brein" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>3D-animatie · Een kijkje in je hoofd</figcaption></figure></div></div>
+    <div class="film-pair"><figure class="showpiece "><video controls muted loop playsinline preload="none" poster="../assets/examples/uvnl-gallery-03.jpg" aria-label="Formats · Een eigen gezicht, hetzelfde merk" data-preview><source src="../assets/examples/uvnl-insight-format-p1.mp4" type="video/mp4"></video><figcaption>Formats · Een eigen gezicht, hetzelfde merk</figcaption></figure><figure class="showpiece "><video controls muted loop playsinline preload="none" poster="../assets/examples/uvnl-gallery-01.jpg" aria-label="Colleges · Inhoud en beeld versterken elkaar" data-preview><source src="../assets/examples/uvnl-insight-college.mp4" type="video/mp4"></video><figcaption>Colleges · Inhoud en beeld versterken elkaar</figcaption></figure></div>
   </section>
-
-  <section style="margin:0 0 8px">
-    <div class="index-col" style="margin-bottom:6px"><h2>Uit de huisstijl</h2></div>
-    <p class="lead" style="font-size:13px;margin:0;color:var(--fg-mute)">College-slides en YouTube-thumbnails uit de Figma-huisstijl. Beeld © Universiteit van Nederland · alleen ter referentie.</p>
-    <div class="fig-grid">
-      <div class="fig"><img src="../assets/applications/fig-crater.png" alt="College-slide: Bacolor Crater" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-jeroen.png" alt="College-slide: toen / nu" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-sterren.png" alt="College-slide: sterrenstelsel" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-breken.png" alt="College-slide: breken" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-frame2537.png" alt="College-slide met annotatie" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-3dprinter.png" alt="YouTube-thumbnail" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-gelukkigste.png" alt="YouTube-thumbnail" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-shampoo.png" alt="YouTube-thumbnail" loading="lazy"></div>
-      <div class="fig"><img src="../assets/applications/fig-kastje.png" alt="YouTube-thumbnail" loading="lazy"></div>
-    </div>
+  <section class="graphic-section" aria-labelledby="graphic-title"><div class="wrap">
+    <div class="section-top"><h2 id="graphic-title"><span class="section-number">02 /</span> In één oogopslag</h2><p>Kleur, letters en beeld doen het samen.</p></div>
+    <div class="graphic-layout"><figure class="showpiece graphic-large"><a class="media-link" href="../assets/examples/uvnl-gallery-03.jpg" data-enlarge aria-label="Vergroot: Grafische uitleg over CO2"><img src="../assets/examples/uvnl-gallery-03.jpg" alt="Grafische uitleg over CO2" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>Uitleg · Complex wordt begrijpelijk</figcaption></figure><figure class="showpiece graphic-small"><a class="media-link" href="../assets/examples/uvnl-gallery-01.jpg" data-enlarge aria-label="Vergroot: Visuele uitleg over de rolroeren van een vliegtuig"><img src="../assets/examples/uvnl-gallery-01.jpg" alt="Visuele uitleg over de rolroeren van een vliegtuig" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>Beeldtaal · Kijk, zo werkt het</figcaption></figure></div>
+  </div></section>
+  <section class="world-section wrap" aria-labelledby="world-title"><div class="section-top"><h2 id="world-title"><span class="section-number">03 /</span> Buiten het scherm</h2><p>Van je koptelefoon tot het theater.</p></div>
+    <div class="world-layout"><div class="cover-stack"><span class="paper-label">Ook dit is de universiteit</span><figure class="showpiece cover-card"><a class="media-link" href="../assets/examples/uvnl-quest-cover.jpg" data-enlarge aria-label="Vergroot: Rare Jongens-podcastcover met Romeinse bustes en koptelefoons"><img src="../assets/examples/uvnl-quest-cover.jpg" alt="Rare Jongens-podcastcover met Romeinse bustes en koptelefoons" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>Rare Jongens · Podcast &amp; print</figcaption></figure><figure class="showpiece magazine-card"><a class="media-link" href="../assets/examples/uvnl-insight-quest-magazine.jpg" data-enlarge aria-label="Vergroot: De Rare Jongens-uiting in Quest Magazine"><img src="../assets/examples/uvnl-insight-quest-magazine.jpg" alt="De Rare Jongens-uiting in Quest Magazine" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>In de praktijk · Quest Magazine</figcaption></figure></div>
+    <div class="live-stack"><figure class="showpiece live-main"><a class="media-link" href="../assets/examples/event-carre-01.jpg" data-enlarge aria-label="Vergroot: Universiteit van Nederland tijdens een live-evenement in Carré"><img src="../assets/examples/event-carre-01.jpg" alt="Universiteit van Nederland tijdens een live-evenement in Carré" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>Wetenschap op het podium · Carré</figcaption></figure><figure class="showpiece live-small"><a class="media-link" href="../assets/examples/event-artis-planetarium.jpg" data-enlarge aria-label="Vergroot: Wetenschap onder de koepel van het ARTIS Planetarium"><img src="../assets/examples/event-artis-planetarium.jpg" alt="Wetenschap onder de koepel van het ARTIS Planetarium" loading="lazy"><span class="enlarge" aria-hidden="true">↗</span></a><figcaption>Een andere wereld · ARTIS Planetarium</figcaption></figure><p class="live-note">Een merk dat<br><em>overal iets losmaakt.</em></p></div></div>
+    <p class="source-note">Een selectie uit de Universiteit van Nederland-case van <a href="https://www.studioyoko.nl/universiteit-van-nederland.html" target="_blank" rel="noopener noreferrer">Studio Yoko ↗</a>. Beelden ter inspiratie voor het gebruik van de huisstijl.</p>
   </section>
-
-  <section style="margin:60px 0 0">
-    <figure class="comp3d"><img src="../assets/applications/3d-compositie-2.png" alt="Compositie van de 3D-elementen met de tagline 'de universiteit voor iedereén'" loading="lazy"></figure>
-  </section>
-
-  <section class="consolidated-section" id="formats">
-    <div class="index-col"><h2>Formats &amp; submerken</h2></div>
-    <div class="fmt-grid">
-      <div class="fmt"><div class="stage"><img src="../assets/formats/collegenacht.png" alt="Collegenacht"></div><div class="info"><span class="name">Collegenacht</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/wetensnap.png" alt="Wetensnap"></div><div class="info"><span class="name">Wetensnap</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/werkplaats.png" alt="De Werkplaats"></div><div class="info"><span class="name">De Werkplaats</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/onderzoekt.png" alt="Onderzoekt"></div><div class="info"><span class="name">Onderzoekt</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/legtuit.png" alt="Legt uit"></div><div class="info"><span class="name">Legt uit</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/evendenken.png" alt="Even Denken"></div><div class="info"><span class="name">Even Denken!</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/voorkennis.png" alt="Voorkennis"></div><div class="info"><span class="name">Voorkennis</span></div></div>
-      <div class="fmt"><div class="stage"><img src="../assets/formats/heyu.png" alt="Hey U"></div><div class="info"><span class="name">Hey U</span></div></div>
-    </div>
-  </section>
-
-</div>
+</main>
+<dialog class="example-viewer" aria-label="Voorbeeld vergroot"><button type="button" class="viewer-close" aria-label="Sluiten">Sluiten ×</button><img alt=""><p></p></dialog>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -149,5 +71,6 @@
 </footer>
 
 <script src="../assets/js/uvnl.js?v=20260827"></script>
+<script src="../assets/js/examples.js?v=20261005"></script>
 </body>
 </html>
