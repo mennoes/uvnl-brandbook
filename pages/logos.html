@@ -151,6 +151,12 @@
   </section>
 
   <section class="logo-section">
+    <h2>Algemene logo’s</h2>
+    <p class="ls-sub">Het beeldmerk, vaandel en de U-outline voor beide merken.</p>
+    <div class="logo-grid" id="general-grid"></div>
+  </section>
+
+  <section class="logo-section">
     <h2>U Studio</h2>
     <p class="ls-sub">De originele U Studio-logo’s in lila en antraciet. Varianten zonder achtergrond download je als PNG of SVG; varianten op een kleurvlak standaard als JPG.</p>
     <div class="logo-grid" id="studio-grid"></div>
@@ -221,14 +227,16 @@
   var BASE = '../assets/logos/';
   var NL = [
     { t:'Logo', file:'uvnl-logo.svg', desc:'Hoofdlogo', featured:true },
-    { t:'Beeldmerk', file:'uvnl-brandmark.svg', desc:'De U · icoon' },
-    { t:'Vierkant', file:'uvnl-logo-square.svg', desc:'Social / avatar' },
-    { t:'Vaandel', file:'vaandel.svg', desc:'Overlay rechtsboven', trOnly:true, overlay:true },
-    { t:'U-outline', file:'u-outline.svg', desc:'Open contour' }
+    { t:'Vierkant', file:'uvnl-logo-square.svg', desc:'Social / avatar' }
   ];
   var VL = [
     { t:'Logo', file:'uvvl-logo.svg', desc:'Hoofdlogo', featured:true },
     { t:'Vierkant', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar' }
+  ];
+  var GENERAL = [
+    { t:'Beeldmerk', file:'uvnl-brandmark.svg', desc:'De U · icoon' },
+    { t:'Vaandel', file:'vaandel.svg', desc:'Overlay rechtsboven', trOnly:true, overlay:true },
+    { t:'U-outline', file:'u-outline.svg', desc:'Open contour' }
   ];
   var STUDIO = [
     { t:'U Studio', desc:'Hoofdlogo', featured:true, variants:[
@@ -430,6 +438,7 @@
   var nlGrid = document.getElementById('nl-grid'), vlGrid = document.getElementById('vl-grid');
   NL.forEach(function (i) { nlGrid.appendChild(card(i)); });
   VL.forEach(function (i) { vlGrid.appendChild(card(i)); });
+  GENERAL.forEach(function (i) { document.getElementById('general-grid').appendChild(card(i)); });
   STUDIO.forEach(function (i) { i.original = true; document.getElementById('studio-grid').appendChild(card(i)); });
 })();
 </script>
