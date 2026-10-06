@@ -7,7 +7,7 @@
 <meta name="description" content="Het partnerbrandbook van Universiteit van Nederland en Universiteit van Vlaanderen: merk, huisstijl, fotografie, voorbeelden en partnerkit.">
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css?v=20261006-headers">
-<script defer src="assets/js/region.js"></script>
+<script defer src="assets/js/region.js?v=20261006-mobile"></script>
 <script>window.BB_BASE = '';</script>
 <style>
   /* hero met grote, zwevende 3D-elementen rondom de tekst */
@@ -145,9 +145,22 @@
     .bb-hero { padding:0 20px 40px; min-height:0; }
     .bb-hero .hero-bg { width:calc(100% + 40px); height:clamp(150px,28vh,240px); margin:0 -20px 28px; }
   }
+  /* De verborgen homepage-nav mag geen lege strook boven de foto maken. */
+  .brandbook-home .bbnav { position:fixed; left:0; right:0; top:0; }
+  .brandbook-home .bbnav.is-hero { visibility:hidden; pointer-events:none; }
+  /* Regiokeuze staat los van de kop, met contrast op iedere headerfoto. */
+  .bb-hero > .region-toggle {
+    position:absolute; top:16px; right:16px; z-index:5;
+    margin:0 !important; background:var(--uvnl-green);
+    border-color:rgba(244,240,237,.65) !important;
+    box-shadow:0 2px 12px rgba(0,0,0,.15);
+  }
+  .bb-hero > .region-toggle button { min-width:48px; min-height:44px; color:var(--uvnl-paper) !important; }
+  .bb-hero > .region-toggle button[aria-pressed="true"] { background:var(--uvnl-paper) !important; color:var(--uvnl-green) !important; }
+  .bb-hero > .region-toggle button:focus-visible { outline:2px solid var(--uvnl-purple); outline-offset:-4px; }
 </style>
 </head>
-<body>
+<body class="brandbook-home">
 
 <!-- NAV -->
 <nav class="bbnav">
