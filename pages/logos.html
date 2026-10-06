@@ -108,6 +108,14 @@
     .lg-card.lg-featured .vis { height:240px; flex-basis:240px; padding:16px; }
     .lg-card .vis { height:150px; flex-basis:150px; }
   }
+  /* Regionale logo’s naast elkaar, met nadruk op het hoofdlogo. */
+  #nl-grid, #vl-grid { grid-template-columns:minmax(0,3fr) minmax(260px,1fr); }
+  #nl-grid .lg-featured, #vl-grid .lg-featured { grid-column:auto; }
+  #nl-grid .lg-card .vis, #vl-grid .lg-card .vis { height:300px; flex-basis:300px; }
+  @media(max-width:700px) {
+    #nl-grid, #vl-grid { grid-template-columns:minmax(0,1fr); }
+    #nl-grid .lg-card .vis, #vl-grid .lg-card .vis { height:220px; flex-basis:220px; }
+  }
 </style>
 </head>
 <body>
