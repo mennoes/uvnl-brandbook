@@ -87,6 +87,27 @@
   .pres-controls button:focus-visible,.pres-sticky:focus-visible { outline:3px solid var(--uvnl-green-bright); outline-offset:4px; }
   .pres-count { font:12px var(--font-mono); margin-right:auto; }
   @media(max-width:600px) { .pres-track { gap:12px; } .pres-slide { border-radius:8px; } .pres-controls button { font-size:12px; padding:10px 12px; } }
+  /* Hoofdlogo bovenaan; aanvullende tekens compact eronder. */
+  .logo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .lg-card { min-width:0; }
+  .lg-card .vis { height:180px; flex-basis:180px; padding:20px; }
+  .lg-card .vis img { width:100%; height:100%; object-fit:contain; }
+  .lg-card .meta { flex-wrap:wrap; }
+  .lg-card .ref { white-space:normal; }
+  .lg-card.lg-featured { grid-column:1 / -1; }
+  .lg-card.lg-featured .vis { height:350px; flex-basis:350px; padding:30px; }
+  .lg-card.lg-featured .vis img { max-width:90%; max-height:100%; }
+  .lg-featured .lg-swatches { flex-direction:row; flex-wrap:wrap; gap:24px; }
+  .lg-featured .lg-acts { justify-content:flex-end; }
+  .lg-featured .lg-acts select { flex:0 1 180px; }
+  .lg-variant { max-width:100%; padding:10px 12px; border:1px solid var(--line-strong); border-radius:var(--r-2); background:var(--bg); color:var(--fg); font:inherit; }
+  .lg-card .lg-swatches { padding-bottom:16px; }
+  @media(max-width:1000px) { .logo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media(max-width:560px) {
+    .logo-grid { grid-template-columns:minmax(0,1fr); }
+    .lg-card.lg-featured .vis { height:240px; flex-basis:240px; padding:16px; }
+    .lg-card .vis { height:150px; flex-basis:150px; }
+  }
 </style>
 </head>
 <body>
@@ -199,27 +220,32 @@
 (function () {
   var BASE = '../assets/logos/';
   var NL = [
-    { t:'Logo', file:'uvnl-logo.svg', desc:'Staand hoofdlogo' },
+    { t:'Logo', file:'uvnl-logo.svg', desc:'Hoofdlogo', featured:true },
     { t:'Beeldmerk', file:'uvnl-brandmark.svg', desc:'De U · icoon' },
     { t:'Vierkant', file:'uvnl-logo-square.svg', desc:'Social / avatar' },
     { t:'Vaandel', file:'vaandel.svg', desc:'Overlay rechtsboven', trOnly:true, overlay:true },
     { t:'U-outline', file:'u-outline.svg', desc:'Open contour' }
   ];
   var VL = [
-    { t:'Logo', file:'uvvl-logo.svg', desc:'Vlaamse variant' },
+    { t:'Logo', file:'uvvl-logo.svg', desc:'Hoofdlogo', featured:true },
     { t:'Vierkant', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar' }
   ];
   var STUDIO = [
-    { t:'U Studio staand · lila', file:'u-studio.svg', desc:'Origineel vaandel', transparent:true },
-    { t:'U Studio staand · antraciet', file:'u-studio-1.svg', desc:'Origineel vaandel', transparent:true },
-    { t:'U Studio profiel · lila', file:'u-studio-profielfoto.svg', desc:'Profielfoto · 1:1' },
-    { t:'U Studio profiel · antraciet', file:'u-studio-profielfoto-1.svg', desc:'Profielfoto · 1:1' },
-    { t:'U Studio horizontaal · donker', file:'u-studio-horizontaal.svg', desc:'Zonder achtergrond', transparent:true },
-    { t:'U Studio horizontaal · lila', file:'u-studio-horizontaal-1.svg', desc:'Zonder achtergrond', transparent:true },
-    { t:'U Studio op antraciet', file:'u-studio-horizontaal-2.svg', desc:'Horizontaal · kleurvlak' },
-    { t:'U Studio op lila', file:'u-studio-horizontaal-3.svg', desc:'Horizontaal · kleurvlak' }
-  ];
-  var COMBOS = [
+    { t:'U Studio', desc:'Hoofdlogo', featured:true, variants:[
+      { name:'Op lila', file:'u-studio-horizontaal-3.svg', bg:'#A6A9F7' },
+      { name:'Op antraciet', file:'u-studio-horizontaal-2.svg', bg:'#2B2B2B' },
+      { name:'Donker · transparant', file:'u-studio-horizontaal.svg', bg:null },
+      { name:'Lila · transparant', file:'u-studio-horizontaal-1.svg', bg:null }
+    ]},
+    { t:'U Studio staand', desc:'Vaandel', variants:[
+      { name:'Lila', file:'u-studio.svg', bg:null },
+      { name:'Antraciet', file:'u-studio-1.svg', bg:null }
+    ]},
+    { t:'U Studio profiel', desc:'Profielfoto · 1:1', variants:[
+      { name:'Op lila', file:'u-studio-profielfoto.svg', bg:'#A6A9F7' },
+      { name:'Op antraciet', file:'u-studio-profielfoto-1.svg', bg:'#2B2B2B' }
+    ]}
+  ];  var COMBOS = [
     // op een gekleurd vlak
     { id:'purple-green', name:'Electric Purple op Varsity Green', fg:'#D6ACFF', bg:'#004B36', group:'bg' },
     { id:'green-paper',  name:'Groen op Paper',            fg:'#004B36', bg:'#F4F0ED', group:'bg' },
@@ -291,7 +317,7 @@
   function card(item) {
     var RATIOS = { '16:9':[1600,900], '9:16':[900,1600], '4:5':[1200,1500], '1:1':[1200,1200] };
     var el = document.createElement('div');
-    el.className = 'lg-card' + (item.overlay ? ' is-overlay' : '');
+    el.className = 'lg-card' + (item.overlay ? ' is-overlay' : '') + (item.featured ? ' lg-featured' : '');
     var ratioSel = item.overlay
       ? '<select class="lg-ratio" aria-label="Verhouding"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="4:5">4:5</option><option value="1:1">1:1</option></select>'
       : '';
@@ -310,8 +336,9 @@
         fmtSel = el.querySelector('.lg-fmt'),
         ratioEl = el.querySelector('.lg-ratio'),
         dlBtn = el.querySelector('.lg-dl');
-    var combos = item.original ? [{ id:'origineel', bg:item.transparent ? null : '#F4F0ED' }] : item.trOnly ? COMBOS.filter(function (c) { return c.group === 'tr'; }) : COMBOS;
+    var combos = item.original ? item.variants.map(function (v) { return { id:'origineel', name:v.name, file:v.file, bg:v.bg }; }) : item.trOnly ? COMBOS.filter(function (c) { return c.group === 'tr'; }) : COMBOS;
     var state = { combo: combos[0], text: '' };
+    var requestId = 0;
 
     function builtNow() {
       if (item.original) {
@@ -361,15 +388,37 @@
       list.forEach(function (cb) { row.appendChild(makeBall(cb)); });
       g.appendChild(row); sw.appendChild(g);
     }
-    if (item.original) sw.hidden = true;
+    if (item.original) {
+      var variantLabel = document.createElement('label');
+      variantLabel.className = 'lg-sw-group';
+      var variantTitle = document.createElement('span');
+      variantTitle.className = 'lg-sw-lab'; variantTitle.textContent = 'Kleurvariant';
+      var variantSelect = document.createElement('select');
+      variantSelect.className = 'lg-variant';
+      variantSelect.setAttribute('aria-label', 'Kleurvariant ' + item.t);
+      combos.forEach(function (cb, index) { var option = document.createElement('option'); option.value = index; option.textContent = cb.name; variantSelect.appendChild(option); });
+      variantSelect.addEventListener('change', function () {
+        state.combo = combos[Number(variantSelect.value)];
+        syncFormat(); loadPreview();
+      });
+      variantLabel.appendChild(variantTitle); variantLabel.appendChild(variantSelect); sw.appendChild(variantLabel);
+    }
     group('bg', 'Op kleurvlak');
     group('tr', 'Transparant');
-    load(item.file).then(function (t) { state.text = t; renderPreview(); });
+    function loadPreview() {
+      var currentRequest = ++requestId;
+      state.text = ''; dlBtn.disabled = true;
+      load(state.combo.file || item.file).then(function (t) {
+        if (currentRequest !== requestId) return;
+        state.text = t; renderPreview(); dlBtn.disabled = false;
+      });
+    }
+    loadPreview();
 
     dlBtn.addEventListener('click', function () {
       if (!state.text) return;
       var built = builtNow();
-      var slug = item.file.replace(/\.svg$/, '') + (item.overlay ? '-overlay-' + (ratioEl ? ratioEl.value.replace(':', 'x') : '16x9') + '-' : '-') + state.combo.id;
+      var slug = (state.combo.file || item.file).replace(/\.svg$/, '') + (item.overlay ? '-overlay-' + (ratioEl ? ratioEl.value.replace(':', 'x') : '16x9') + '-' : '-') + state.combo.id;
       var fmt = fmtSel.value;
       if ((item.overlay || !state.combo.bg) && fmt === 'jpg') fmt = 'png';
       if (fmt === 'svg') dl(new Blob([built.svg], { type: 'image/svg+xml' }), slug + '.svg');
