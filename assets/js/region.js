@@ -88,6 +88,8 @@
     var wrap = document.createElement('div');
     wrap.className = 'region-toggle';
     wrap.setAttribute('data-region-lock', '');
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', 'Kies Nederland of Vlaanderen');
     wrap.style.cssText =
       'display:inline-flex;border:1.5px solid var(--line,#ddd);border-radius:999px;overflow:hidden;' +
       'font-family:var(--font-sans);font-weight:700;font-size:12px;' + (extraCss || '');
@@ -97,6 +99,7 @@
       b.textContent = opt[1];
       b.title = opt[0] === 'nl' ? 'Universiteit van Nederland' : 'Universiteit van Vlaanderen';
       var on = opt[0] === active;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
       b.style.cssText =
         'border:0;cursor:pointer;padding:5px 11px;line-height:1;' +
         (on
