@@ -73,15 +73,20 @@
   .lg-card .lg-acts { margin-top:auto; padding:18px; border-top:1px solid var(--line); }
   /* logogebruik: logo krijgt de juiste merkkleur via mask (currentColor werkt niet op een <img>) */
   .dd-vis .ddlogo { display:block; width:62%; aspect-ratio:638/140; -webkit-mask:url(../assets/logos/uvnl-logo.svg) center/contain no-repeat; mask:url(../assets/logos/uvnl-logo.svg) center/contain no-repeat; }
-  /* horizontale huisstijl-presentatie — scroll-gedreven (pinned) */
-  .pres-pin { position:relative; margin:18px calc(50% - 50vw) 0; }
-  .pres-sticky { position:sticky; top:0; height:100vh; overflow:hidden; display:flex; align-items:center; }
-  .pres-track { display:flex; gap:22px; padding:0 max(28px, calc(50vw - 700px)); will-change:transform; }
-  .pres-slide { flex:0 0 auto; height:min(66vh,600px); aspect-ratio:16/9; border-radius:var(--r-4); overflow:hidden; border:1px solid var(--line); background:#fff; display:block; box-shadow:0 12px 34px rgba(0,0,0,.08); }
+  /* De presentatie scrolt zelfstandig; de pagina blijft vrij bewegen. */
+  .pres-pin { margin:18px 0 0; }
+  .pres-sticky { overflow-x:auto; overflow-y:hidden; padding:0 0 14px; scroll-snap-type:x mandatory; scrollbar-color:var(--uvnl-green) var(--line); scroll-padding-inline:0; }
+  .pres-track { display:flex; gap:20px; }
+  .pres-slide { flex:0 0 min(100%, 1066px); aspect-ratio:16/9; border-radius:var(--r-4); overflow:hidden; border:1px solid var(--line); background:#fff; display:block; scroll-snap-align:start; }
   .pres-slide img { width:100%; height:100%; object-fit:contain; display:block; }
-  .pres-pin.no-pin .pres-sticky { position:static; height:auto; overflow-x:auto; overflow-y:hidden; padding-bottom:18px; scrollbar-color:var(--line-strong) transparent; }
-  .pres-pin.no-pin .pres-track { transform:none !important; }
-  @media (max-width:760px){ .pres-slide { height:46vh; } }
+  .pres-controls { display:flex; align-items:center; justify-content:flex-end; gap:12px; margin:12px 0 0; }
+  .pres-controls[hidden] { display:none; }
+  .pres-controls button { border:1px solid var(--line-strong); background:var(--bg); color:var(--fg); border-radius:99px; padding:10px 18px; font:700 14px var(--font-sans); cursor:pointer; }
+  .pres-controls button:hover:not(:disabled) { background:var(--uvnl-green); color:var(--uvnl-paper); }
+  .pres-controls button:disabled { opacity:.35; cursor:default; }
+  .pres-controls button:focus-visible,.pres-sticky:focus-visible { outline:3px solid var(--uvnl-green-bright); outline-offset:4px; }
+  .pres-count { font:12px var(--font-mono); margin-right:auto; }
+  @media(max-width:600px) { .pres-track { gap:12px; } .pres-slide { border-radius:8px; } .pres-controls button { font-size:12px; padding:10px 12px; } }
 </style>
 </head>
 <body>
@@ -104,12 +109,8 @@
 <div class="wrap">
   <header class="page-hero">
     <div class="ph-text">
-      <div class="crumb"><a href="../index.html">Merkboek</a> <span class="sep">/</span> Huisstijl</div>
       <h1>Huisstijl</h1>
       <p class="lead">Het Universiteit van Nederland-beeldmerk is de <b>U</b> — kort voor Universiteit. Gebruik bij voorkeur de staande variant in Varsity Green op Paper. Op donkere of drukke achtergronden gebruik je de Paper-versie. Geef het logo altijd ademruimte: minimaal de hoogte van de U als marge rondom.</p>
-      <div class="head-actions">
-        <a class="btn primary" href="../downloads/uvnl-logo-pack.zip" download>Download logo pack (ZIP)</a>
-      </div>
     </div>
     <div class="ph-visual ph-photo">
       <img src="../assets/photos/merch-u.jpg" alt="Universiteit van Nederland-beeldmerk op merchandise">
@@ -128,10 +129,16 @@
     <div class="logo-grid" id="vl-grid"></div>
   </section>
 
-  <div class="index-col" style="margin:64px 0 6px"><h2>De huisstijl in beeld</h2></div>
-  <p class="ls-sub" style="max-width:660px">De volledige huisstijl-presentatie — scroll verder en de slides schuiven mee. Klik een slide om groot te bekijken.</p>
+  <section class="logo-section">
+    <h2>U Studio</h2>
+    <p class="ls-sub">De originele U Studio-logo’s in lila en antraciet. Varianten zonder achtergrond download je als PNG of SVG; varianten op een kleurvlak standaard als JPG.</p>
+    <div class="logo-grid" id="studio-grid"></div>
+  </section>
+
+  <div class="index-col" style="margin:24px 0 6px"><h2>De huisstijl in beeld</h2></div>
+  <p class="ls-sub" style="max-width:660px">Scroll omlaag om door de huisstijl te bladeren. Omhoog scrollen brengt je direct terug door de pagina. Je kunt ook de pijlen gebruiken of opzij swipen. Klik een slide om groot te bekijken.</p>
   <section class="pres-pin" id="presPin">
-    <div class="pres-sticky">
+    <div class="pres-sticky" tabindex="0" role="region" aria-label="Huisstijlpresentatie" aria-roledescription="carrousel">
     <div class="pres-track" id="presTrack">
       <a class="pres-slide" href="../assets/presentatie/slide-01.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-01.jpg" alt="De universiteit voor iedereen" loading="lazy" decoding="async"></a>
       <a class="pres-slide" href="../assets/presentatie/slide-04.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/slide-04.jpg" alt="Beeldmerk" loading="lazy" decoding="async"></a>
@@ -164,6 +171,7 @@
       <a class="pres-slide" href="../assets/presentatie/bookcover.jpg" target="_blank" rel="noopener"><img src="../assets/presentatie/bookcover.jpg" alt="Boekomslag" loading="lazy" decoding="async"></a>
     </div>
     </div>
+    <div class="pres-controls" hidden><span class="pres-count" aria-live="polite"></span><button type="button" class="pres-prev" aria-label="Vorige slide">← Vorige</button><button type="button" class="pres-next" aria-label="Volgende slide">Volgende →</button></div>
   </section>
 </div>
 
@@ -200,6 +208,16 @@
   var VL = [
     { t:'Logo', file:'uvvl-logo.svg', desc:'Vlaamse variant' },
     { t:'Vierkant', file:'uvvl-logo-square.svg', desc:'Vlaamse social / avatar' }
+  ];
+  var STUDIO = [
+    { t:'U Studio staand · lila', file:'u-studio.svg', desc:'Origineel vaandel', transparent:true },
+    { t:'U Studio staand · antraciet', file:'u-studio-1.svg', desc:'Origineel vaandel', transparent:true },
+    { t:'U Studio profiel · lila', file:'u-studio-profielfoto.svg', desc:'Profielfoto · 1:1' },
+    { t:'U Studio profiel · antraciet', file:'u-studio-profielfoto-1.svg', desc:'Profielfoto · 1:1' },
+    { t:'U Studio horizontaal · donker', file:'u-studio-horizontaal.svg', desc:'Zonder achtergrond', transparent:true },
+    { t:'U Studio horizontaal · lila', file:'u-studio-horizontaal-1.svg', desc:'Zonder achtergrond', transparent:true },
+    { t:'U Studio op antraciet', file:'u-studio-horizontaal-2.svg', desc:'Horizontaal · kleurvlak' },
+    { t:'U Studio op lila', file:'u-studio-horizontaal-3.svg', desc:'Horizontaal · kleurvlak' }
   ];
   var COMBOS = [
     // op een gekleurd vlak
@@ -283,7 +301,7 @@
       '<div class="lg-swatches"></div>' +
       '<div class="lg-acts">' +
         ratioSel +
-        '<select class="lg-fmt" aria-label="Bestandsformaat"><option value="svg">SVG</option><option value="png">PNG</option><option value="jpg">JPG</option></select>' +
+        '<select class="lg-fmt" aria-label="Bestandsformaat"><option value="jpg">JPG</option><option value="png">PNG</option><option value="svg">SVG</option></select>' +
         '<button class="btn primary lg-dl" type="button">Download</button>' +
       '</div>';
     var img = el.querySelector('img'),
@@ -292,13 +310,24 @@
         fmtSel = el.querySelector('.lg-fmt'),
         ratioEl = el.querySelector('.lg-ratio'),
         dlBtn = el.querySelector('.lg-dl');
-    var combos = item.trOnly ? COMBOS.filter(function (c) { return c.group === 'tr'; }) : COMBOS;
+    var combos = item.original ? [{ id:'origineel', bg:item.transparent ? null : '#F4F0ED' }] : item.trOnly ? COMBOS.filter(function (c) { return c.group === 'tr'; }) : COMBOS;
     var state = { combo: combos[0], text: '' };
 
     function builtNow() {
+      if (item.original) {
+        var source = new DOMParser().parseFromString(state.text, 'image/svg+xml').documentElement;
+        var box = source.getAttribute('viewBox').trim().split(/\s+/).map(Number);
+        return { svg:state.text, w:box[2], h:box[3] };
+      }
       if (item.overlay) { var r = RATIOS[ratioEl ? ratioEl.value : '16:9']; return buildOverlay(state.text, state.combo.fg, r[0], r[1]); }
       return build(state.text, state.combo);
     }
+    function syncFormat() {
+      var transparent = item.overlay || !state.combo.bg;
+      fmtSel.querySelector('option[value="jpg"]').disabled = transparent;
+      if (fmtSel.value !== 'svg') fmtSel.value = transparent ? 'png' : 'jpg';
+    }
+    syncFormat();
     function renderPreview() {
       if (!state.text) return;
       img.src = dataURI(builtNow().svg);
@@ -317,6 +346,7 @@
         : 'linear-gradient(135deg, ' + cb.fg + ' 0 50%, ' + cb.bg + ' 50% 100%)';
       b.addEventListener('click', function () {
         state.combo = cb;
+        syncFormat();
         el.querySelectorAll('.lg-ball').forEach(function (x) { x.classList.toggle('active', x === b); });
         renderPreview();
       });
@@ -331,6 +361,7 @@
       list.forEach(function (cb) { row.appendChild(makeBall(cb)); });
       g.appendChild(row); sw.appendChild(g);
     }
+    if (item.original) sw.hidden = true;
     group('bg', 'Op kleurvlak');
     group('tr', 'Transparant');
     load(item.file).then(function (t) { state.text = t; renderPreview(); });
@@ -340,6 +371,7 @@
       var built = builtNow();
       var slug = item.file.replace(/\.svg$/, '') + (item.overlay ? '-overlay-' + (ratioEl ? ratioEl.value.replace(':', 'x') : '16x9') + '-' : '-') + state.combo.id;
       var fmt = fmtSel.value;
+      if ((item.overlay || !state.combo.bg) && fmt === 'jpg') fmt = 'png';
       if (fmt === 'svg') dl(new Blob([built.svg], { type: 'image/svg+xml' }), slug + '.svg');
       else if (fmt === 'png') raster(built, 'image/png', slug + '.png');
       else raster(built, 'image/jpeg', slug + '.jpg');
@@ -349,44 +381,59 @@
   var nlGrid = document.getElementById('nl-grid'), vlGrid = document.getElementById('vl-grid');
   NL.forEach(function (i) { nlGrid.appendChild(card(i)); });
   VL.forEach(function (i) { vlGrid.appendChild(card(i)); });
+  STUDIO.forEach(function (i) { i.original = true; document.getElementById('studio-grid').appendChild(card(i)); });
 })();
 </script>
 <script>
-/* Scroll-gestuurde horizontale huisstijl-presentatie (pinned) */
+/* Horizontaal bladeren zonder verticale scroll over te nemen. */
 (function () {
-  var pin = document.getElementById('presPin');
-  var track = document.getElementById('presTrack');
-  if (!pin || !track) return;
-  var sticky = pin.querySelector('.pres-sticky');
-  var distance = 0;
-  var SPEED = 3; // horizontaal beweegt sneller dan verticaal → minder scrollen
-
-  function dist() { return Math.max(0, track.scrollWidth - sticky.clientWidth); }
-
-  function setup() {
-    if (window.innerWidth < 760 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      pin.classList.add('no-pin');
-      pin.style.height = '';
-      track.style.transform = '';
-      return;
+  var region = document.querySelector('.pres-sticky');
+  var slides = Array.from(document.querySelectorAll('.pres-slide'));
+  var controls = document.querySelector('.pres-controls');
+  if (!region || !slides.length || !controls) return;
+  var prev = controls.querySelector('.pres-prev');
+  var next = controls.querySelector('.pres-next');
+  var count = controls.querySelector('.pres-count');
+  var current = 0;
+  function update() {
+    var max = region.scrollWidth - region.clientWidth;
+    var step = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : 1;
+    current = Math.max(0, Math.min(slides.length - 1, Math.round(region.scrollLeft / step)));
+    if (max > 0 && region.scrollLeft >= max - 2) current = slides.length - 1;
+    count.textContent = (current + 1) + ' / ' + slides.length;
+    prev.disabled = region.scrollLeft < 2;
+    next.disabled = region.scrollLeft >= max - 2;
+  }
+  function move(delta) {
+    region.style.scrollSnapType = 'x mandatory';
+    var target = slides[Math.max(0, Math.min(slides.length - 1, current + delta))];
+    region.scrollTo({left:target.offsetLeft - slides[0].offsetLeft, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  }
+  prev.addEventListener('click', function () { move(-1); });
+  next.addEventListener('click', function () { move(1); });
+  region.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1);
     }
-    pin.classList.remove('no-pin');
-    distance = dist();
-    pin.style.height = (window.innerHeight + distance / SPEED) + 'px';
-    onScroll();
-  }
-
-  function onScroll() {
-    if (pin.classList.contains('no-pin')) return;
-    var total = pin.offsetHeight - window.innerHeight;
-    var progress = total > 0 ? Math.min(1, Math.max(0, -pin.getBoundingClientRect().top / total)) : 0;
-    track.style.transform = 'translate3d(' + (-progress * distance).toFixed(1) + 'px,0,0)';
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', setup);
-  window.addEventListener('load', setup);
-  setup();
+  });
+  // Alleen omlaag bladeren: omhoog blijft altijd gewone paginascroll.
+  window.addEventListener('wheel', function (event) {
+    if (event.ctrlKey || event.deltaY <= 0 || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    var rect = region.getBoundingClientRect();
+    var nav = document.querySelector('.bbnav');
+    var top = nav ? nav.getBoundingClientRect().bottom : 0;
+    var max = region.scrollWidth - region.clientWidth;
+    if (rect.top > Math.max(top + 60, (window.innerHeight - rect.height) / 2) || rect.bottom < top + 140 || region.scrollLeft >= max - 2) return;
+    if (!event.cancelable) return;
+    event.preventDefault();
+    var pixels = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? region.clientWidth : 1);
+    region.style.scrollSnapType = 'none';
+    region.scrollLeft = Math.min(max, region.scrollLeft + pixels * 3);
+  }, {passive:false});
+  region.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  controls.hidden = false;
+  update();
 })();
 </script>
 </body>
