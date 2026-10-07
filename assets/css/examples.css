@@ -62,3 +62,5 @@
 .examples-brand-logo{display:block;width:min(820px,82%);aspect-ratio:638/140;background:#D6ACFF;-webkit-mask:url('../logos/uvnl-logo.svg') center/contain no-repeat;mask:url('../logos/uvnl-logo.svg') center/contain no-repeat}
 @media(max-width:600px){.examples-brand-header{min-height:200px;padding:36px 20px}.examples-brand-logo{width:100%}}
 .examples-brand-header + .examples-intro{margin-top:1px}
+
+.examples-topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.examples-topics a{padding:10px 16px;border:1px solid var(--line-strong);border-radius:30px;color:var(--uvnl-green);text-decoration:none;font-weight:700;font-size:14px}.examples-topics a:hover{background:var(--uvnl-green);color:var(--uvnl-paper)}.case-example-section>.motion-toggle{margin-bottom:24px}
