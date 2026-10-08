@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Universiteit van Nederland Merkboek — alle merkelementen op één plek</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Het partnerbrandbook van Universiteit van Nederland en Universiteit van Vlaanderen: merk, huisstijl, fotografie, voorbeelden en partnerkit.">
+<meta name="description" content="Het partnermerkboek van Universiteit van Nederland en Universiteit van Vlaanderen: merk, huisstijl, fotografie, voorbeelden en partnerkit.">
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css?v=20261006-headers">
 <script defer src="assets/js/region.js?v=20261006-mobile"></script>
@@ -35,8 +35,8 @@
   .hub-card .arr { position:absolute; top:18px; right:18px; color:var(--fg-mute); font-size:16px; transition:transform var(--dur) var(--ease); }
   .hub-card:hover .arr { transform:translateX(4px); }
 
-  /* hero = vol Varsity Green met grote U erachter (zoals de site) */
-  .bb-hero { position:relative; overflow:hidden; background-color:var(--uvnl-green); color:var(--uvnl-paper); margin-top:-68px; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding:120px 28px 80px; perspective:1100px; }
+  /* Eén beeldvullende hero: de foto en inhoud blijven op ieder laptopformaat één geheel. */
+  .bb-hero { position:relative; isolation:isolate; overflow:hidden; background:var(--uvnl-green); color:var(--uvnl-paper); margin-top:0; min-height:100vh; min-height:100svh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end; padding:clamp(110px,18vh,180px) 28px clamp(54px,9vh,92px); perspective:1100px; }
   /* roterende achtergrondfoto's met crossfade */
   .bb-hero .hero-bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
   .bb-hero .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease; transform:scale(1.05); transform-origin:center; animation:kenburns 16s ease-out infinite alternate; will-change:transform,opacity; }
@@ -46,9 +46,9 @@
   @keyframes kenburns { from{ transform:scale(1.05); } to{ transform:scale(1.2); } }
   @keyframes kenburns-u { from{ transform:scale(1.18); } to{ transform:scale(1.32); } }
   @media (prefers-reduced-motion:reduce){ .bb-hero .hero-slide{ animation:none; } }
-  .bb-hero .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(2,46,33,.28), rgba(2,46,33,.60)); }
+  .bb-hero .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(2,46,33,.12) 0%,rgba(2,46,33,.28) 38%,rgba(2,46,33,.86) 100%); }
   .bb-hero .kicker { color:rgba(244,240,237,.66); }
-  .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(48px,9vw,124px); margin:0 0 48px; text-align:center; }
+  .bb-hero h1 { color:var(--uvnl-paper); font-size:clamp(54px,7.2vw,112px); margin:0 0 36px; text-align:center; text-wrap:balance; }
   .bb-hero .sub { color:rgba(244,240,237,.88); }
   /* pseudo-3D U die met de cursor meedraait */
   .bb-hero .bgu-wrap { display:none; position:absolute; left:50%; top:50%; width:min(560px,60%); z-index:1; pointer-events:none; transform:translate(-50%,-50%); }
@@ -74,7 +74,7 @@
   .hero-index .hero-link.kit::after { display:none; }
   .hero-index .hero-link.kit:hover { background:#fff; transform:translateY(-2px); }
   @media (max-width:760px){
-    .bb-hero { padding:84px 20px 60px; min-height:100svh; justify-content:flex-start; }
+    .bb-hero { padding:88px 20px 42px; min-height:100svh; justify-content:flex-end; }
     .bb-hero h1 { font-size:clamp(34px,8.5vw,52px); margin:0 0 22px; }
     .bb-hero .hero-logo { max-width:170px; margin-bottom:22px; }
     .bb-hero .search-box { padding:14px 18px; }
@@ -137,13 +137,11 @@
   .merch figcaption { margin-top:10px; font-family:var(--font-sans); font-weight:700; font-size:12.5px; color:#3a2b63; }
   .dl-cta { margin:30px 0 0; font-size:16px; color:#3a2b63; }
   .dl-cta a { color:var(--uvnl-green); font-weight:700; }
-  /* Headerfoto staat los van de tekst. */
-  .bb-hero { margin-top:0; min-height:0; padding:0 28px 56px; justify-content:flex-start; }
-  .bb-hero .hero-bg { position:relative; inset:auto; flex:none; width:calc(100% + 56px); height:clamp(220px,36vh,400px); margin:0 -28px 40px; }
-  .bb-hero .hero-bg::after { display:none; }
+  /* Op mobiel blijft de compactere, losse hiërarchie behouden. */
   @media(max-width:760px) {
     .bb-hero { padding:0 20px 40px; min-height:0; }
-    .bb-hero .hero-bg { width:calc(100% + 40px); height:clamp(150px,28vh,240px); margin:0 -20px 28px; }
+    .bb-hero .hero-bg { position:relative; inset:auto; flex:none; width:calc(100% + 40px); height:clamp(150px,28vh,240px); margin:0 -20px 28px; }
+    .bb-hero .hero-bg::after { display:none; }
   }
   /* De verborgen homepage-nav mag geen lege strook boven de foto maken. */
   .brandbook-home .bbnav { position:fixed; left:0; right:0; top:0; }
