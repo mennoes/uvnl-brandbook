@@ -4,9 +4,9 @@
 
 /* ── Navigatie: pillen met paars ── */
 .bbnav { background:color-mix(in srgb,var(--uvnl-paper) 90%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:0; }
-.bbnav .links a { font-family:var(--font-display); font-size:18px; text-transform:uppercase; color:var(--uvnl-green); border-radius:var(--r-pill); padding:7px 14px; transition:background .25s var(--ease),transform .25s var(--spring); }
+.bbnav .links a { font-family:var(--font-sans); font-weight:700; font-size:16px; text-transform:none; letter-spacing:0; color:var(--uvnl-green); border-radius:var(--r-pill); padding:7px 14px; transition:background .25s var(--ease),transform .25s var(--spring); }
 .bbnav .links a:hover { background:var(--uvnl-purple); color:var(--uvnl-green); transform:translateY(-1px); }
-.bbnav .links a.cta { background:var(--uvnl-green); color:var(--uvnl-paper); font-size:16px; }
+.bbnav .links a.cta { background:var(--uvnl-green); color:var(--uvnl-paper); font-size:16px; letter-spacing:0; text-transform:none; }
 .bbnav .links a.cta:hover { background:var(--uvnl-green-bright); color:var(--uvnl-paper); }
 @media (max-width:900px){
   .bbnav-inner { gap:10px; }
@@ -103,7 +103,7 @@
 .footer { background:var(--uvnl-green); color:rgba(244,240,237,.8) !important; border:0 !important; border-radius:var(--r-xl) var(--r-xl) 0 0; padding-top:56px; padding-bottom:40px; margin-top:clamp(48px,7vw,96px) !important; }
 .footer .footer-logo { background:var(--uvnl-purple); }
 .footer a, .footer p { color:var(--uvnl-paper) !important; }
-.footer .footer-direct a { font-family:var(--font-display); font-size:20px; text-transform:uppercase; }
+.footer .footer-direct a { font-family:var(--font-sans); font-weight:700; font-size:16px; text-transform:none; }
 .footer a:hover { color:var(--uvnl-purple) !important; }
 
 /* ── Beweging ── */
@@ -122,3 +122,6 @@
 .page-hero h1 { color:var(--uvnl-purple) !important; }
 .page-hero .lead { color:rgba(244,240,237,.92) !important; }
 .page-hero .lead b { color:var(--uvnl-purple) !important; }
+
+/* hero-menu in dezelfde Oldschool Grotesk Bold */
+.hero-index .hero-link { font-family:var(--font-sans) !important; font-weight:700 !important; text-transform:none !important; letter-spacing:0 !important; font-size:clamp(18px,1.7vw,22px) !important; }
