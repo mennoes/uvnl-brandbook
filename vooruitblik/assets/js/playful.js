@@ -15,17 +15,16 @@
     setTimeout(function () { cards.forEach(function (c) { c.classList.add('pop'); }); }, 5000);   /* vangnet */
   }
 
-  /* ── kaarten kantelen mee met de cursor; foto, titel en lichtglans schuiven op eigen diepte mee ── */
+  /* ── kaarten kantelen mee met de cursor; foto en titel schuiven op eigen diepte mee ── */
   if (fine && !reduce) {
     cards.forEach(function (c) {
       c.addEventListener('pointermove', function (e) {
         var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
         c.style.setProperty('--ry', (x * 11).toFixed(1) + 'deg'); c.style.setProperty('--rx', (-y * 11).toFixed(1) + 'deg');
         c.style.setProperty('--tx', (x * 18).toFixed(1) + 'px'); c.style.setProperty('--ty', (y * 18).toFixed(1) + 'px');
-        c.style.setProperty('--gx', ((x + .5) * 100).toFixed(0) + '%'); c.style.setProperty('--gy', ((y + .5) * 100).toFixed(0) + '%');
       });
       c.addEventListener('pointerleave', function () {
-        ['--rx', '--ry', '--tx', '--ty', '--gx', '--gy'].forEach(function (k) { c.style.removeProperty(k); });
+        ['--rx', '--ry', '--tx', '--ty'].forEach(function (k) { c.style.removeProperty(k); });
       });
     });
   }
