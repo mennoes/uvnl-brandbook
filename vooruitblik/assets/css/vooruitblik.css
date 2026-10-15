@@ -207,7 +207,7 @@ p { margin:0 0 1em; }
 .panel { border-radius:var(--r-m); padding:clamp(22px,3vw,40px); background:var(--white); }
 .panel h2 { font-size:clamp(32px,4vw,52px); margin-bottom:18px; }
 .panel h3 { font-size:clamp(24px,2.4vw,32px); margin:22px 0 8px; }
-.panel--purple { background:var(--purple); } .panel--green { background:var(--green); color:var(--paper); } .panel--green h2,.panel--green h3 { color:var(--purple); }
+.panel--purple { background:var(--purple); } .panel--green { background:var(--green); color:var(--paper); } .panel--green h2,.panel--green h3 { color:var(--purple); } .panel--calm h2 { color:var(--white); }
 .panel--paper { background:var(--paper-mid); }
 .panel p:last-child { margin-bottom:0; }
 .prose { max-width:64ch; }

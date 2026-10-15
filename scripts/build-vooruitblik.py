@@ -359,11 +359,11 @@ for i, c in enumerate(CH):
     body = hero + f"""
 <section class="section section--tight"><div class="wrap">
   <div class="two">
-    <article class="panel panel--purple reveal"><span class="tag">In het boek</span><h2 style="margin-top:14px">Het hoofdstuk</h2>
+    <article class="panel panel--purple reveal"><h2>Het hoofdstuk</h2>
       <div class="prose">{kort}{meer}</div>
       <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
     </article>
-    <article class="panel panel--green reveal"><span class="tag">Videopodcast</span><h2 style="margin-top:14px">Twee blikken</h2>
+    <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
       <div class="video" style="margin-bottom:18px"><div><div class="play"></div><p>Verschijnt {lang(v["datum"])}</p></div></div>
       <p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
       <div class="people">{spk}</div>
