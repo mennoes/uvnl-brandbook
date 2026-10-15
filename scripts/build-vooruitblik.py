@@ -251,7 +251,7 @@ home = f"""
     <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
       <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
     <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
-      <div class="hero-side"><p>23 proffen over wat ons te wachten staat in 2027. Geen glazen bol, wel wetenschap die uitlegt wat eraan komt.</p></div>
+      <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties en van gezondheid tot mobiliteit.</p><p class="hero-sub">Geen glazen bol en geen voorspellingen, wel context, inzichten en kennis om 2027 beter te begrijpen. Elk hoofdstuk vertrekt vanuit één concrete vraag, beantwoord in een boek en besproken in een videopodcast met twee professoren.</p></div>
       <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
     </div>
   </div>
@@ -261,12 +261,6 @@ home = f"""
 
 <section class="section">
   <div class="wrap">
-    <div class="statement reveal">
-      <img class="st-obj" src="assets/elementen/gloeilamp.png" alt="" data-speed="-0.05">
-      <h2 class="st-h">Geen glazen bol</h2>
-      <p class="st-sub">Geen voorspellingen. Wel context, inzichten en kennis om 2027 beter te begrijpen.</p>
-      <p class="st-cta"><em>Benieuwd hoe het boek werkt?</em> <a class="btn btn--line" href="boek.html">Over het boek <span class="arr">→</span></a></p>
-    </div>
     <div class="cascade">
       <div class="cas cas-elec reveal"><div class="cas-t"><b class="cas-n"><span data-count="23">23</span> vragen</b><p>Van ruimtevaart tot relaties, van gezondheid tot mobiliteit: elk hoofdstuk vertrekt vanuit een concrete vraag die laat zien hoe wetenschap helpt begrijpen wat er in 2027 op ons afkomt.</p></div>
         <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/informatie.png" alt="" loading="lazy"></div></div>
