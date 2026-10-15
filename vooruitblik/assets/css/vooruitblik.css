@@ -8,6 +8,7 @@
 @font-face { font-family:"Oldschool Grotesk"; src:url("../fonts/OldschoolGrotesk-Bold.woff") format("woff"); font-weight:700; font-style:normal; font-display:swap; }
 @font-face { font-family:"Oldschool Grotesk Condensed"; src:url("../fonts/OldschoolGroteskCondensed-Bold.woff") format("woff"); font-weight:700; font-style:normal; font-display:swap; }
 @font-face { font-family:"Tiempos Text"; src:url("../fonts/TiemposText-Regular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Tiempos Text"; src:url("../fonts/TiemposText-BoldItalic.otf") format("opentype"); font-weight:700; font-style:italic; font-display:swap; }
 @font-face { font-family:"Tiempos Text"; src:url("../fonts/TiemposText-RegularItalic.otf") format("opentype"); font-weight:400; font-style:italic; font-display:swap; }
 
 :root {
@@ -74,6 +75,7 @@ p { margin:0 0 1em; }
 .hero .kicker { color:var(--purple); margin:0 0 clamp(18px,3vw,34px); }
 .vb-title { font-family:var(--font-sans); font-weight:700; text-transform:uppercase; color:var(--purple); line-height:.86; letter-spacing:-.025em; font-size:min(15.5vw,260px); margin:0; }
 .vb-title span { display:block; white-space:nowrap; }
+.vb-title .l1 { font-family:var(--font-serif); font-style:italic; font-weight:700; text-transform:uppercase; letter-spacing:0; font-size:.27em; line-height:1; margin:0 0 .1em .05em; }
 .vb-title .l2 { margin-left:.12em; }
 .vb-title .l3 { margin-left:.58em; }
 /* de twee O's zijn echte letters; het gat in de O is het oog, met een pupil die meekijkt */
