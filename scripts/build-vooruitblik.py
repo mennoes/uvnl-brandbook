@@ -120,9 +120,8 @@ TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
-NAV = [("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"),
-       ("radio.html", "Radio 1"), ("live.html", "Live")]
-FOOT_NAV = NAV + [("partners.html", "Partners"), ("vormgeving.html", "Vormgeving")]
+NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("visuals.html", "Visuals"), ("vormgeving.html", "Vormgeving")]
+FOOT_NAV = NAV[1:] + [("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners")]
 
 
 def page(path, title, desc, body, base="", current="", hero_class="", og_img="assets/img/boek-cover.jpg"):
@@ -298,7 +297,7 @@ home = f"""
 """
 page("index.html", "De Vooruitblik 2027",
      "23 professoren over wat ons te wachten staat in 2027: een boek, videopodcasts, een Radio 1-programma en live evenementen van Universiteit van Vlaanderen.",
-     home)
+     home, current="index.html")
 
 # ───────────────────────── VRAGEN ─────────────────────────
 chips = '<button class="chip" data-uni="alle" aria-pressed="true">Alle</button>' + "".join(
@@ -468,6 +467,26 @@ partners = subhero("hero-paper", "Partners", "Samen gemaakt",
 </div></section>
 """
 page("partners.html", "Partners", "De initiatiefnemers en partners van De Vooruitblik 2027: Universiteit van Vlaanderen, Radio 1, Pelckmans, de vijf Vlaamse universiteiten en meer.", partners, current="partners.html")
+
+# ───────────────────────── VISUALS ─────────────────────────
+def vis_card(cls, h, p, tag):
+    return f'<div class="panel {cls} reveal"><h2>{h}</h2><p>{p}</p><p style="margin-top:14px"><span class="tag">{tag}</span></p></div>'
+
+visuals = subhero("hero-purple", "Visuals", "Foto’s, video’s en posts",
+                  "Alles om De Vooruitblik te delen: portretten van de professoren, video’s, sociale media en advertenties.", "elementen/schakelaar.png") + f"""
+<section class="section section--tight"><div class="wrap">
+  <div class="two">
+    {vis_card("panel--paper", "Foto’s", "Portretten van de professoren, geordend per hoofdstuk. Vrij te gebruiken, bijvoorbeeld voor een affiche.", "Komt binnenkort")}
+    {vis_card("panel--green", "Video’s", "Drie video’s per professor: het boek promoten, de inhoudsopgave voorlezen en doorverwijzen, en zichzelf voorstellen met één prikkelende zin.", "Komt binnenkort")}
+    {vis_card("panel--paper", "Sociale media", "De kant-en-klare posts om te delen.", "Komt binnenkort")}
+    {vis_card("panel--green", "Advertenties Mediahuis", "De advertenties bij het boek.", "Komt binnenkort")}
+  </div>
+</div></section>
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Logo en beeld", "Het logo, de 3D-elementen, kleuren en lettertypes met downloads vind je bij Vormgeving.", '<a class="btn btn--green" href="vormgeving.html">Naar Vormgeving <span class="arr">→</span></a>')}
+</div></section>
+"""
+page("visuals.html", "Visuals", "Foto's, video's, sociale media en advertenties van De Vooruitblik 2027.", visuals, current="visuals.html")
 
 # ───────────────────────── VORMGEVING ─────────────────────────
 def lum(hexc):
