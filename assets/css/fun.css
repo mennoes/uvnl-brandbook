@@ -1,0 +1,126 @@
+/* fun.css — alleen uitstraling: kleur, vorm, beweging. Geen nieuwe onderdelen of teksten.
+   Taal van de Vooruitblik-site: ronde vlakken, paars op groen, zware koppen, springerige hovers. */
+:root { --spring:cubic-bezier(.34,1.56,.64,1); --paper-mid:#ECE4DF; --r-xl:36px; }
+
+/* ── Navigatie: pillen met paars ── */
+.bbnav { background:color-mix(in srgb,var(--uvnl-paper) 90%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:0; }
+.bbnav .links a { font-family:var(--font-display); font-size:18px; text-transform:uppercase; color:var(--uvnl-green); border-radius:var(--r-pill); padding:7px 14px; transition:background .25s var(--ease),transform .25s var(--spring); }
+.bbnav .links a:hover { background:var(--uvnl-purple); color:var(--uvnl-green); transform:translateY(-1px); }
+.bbnav .links a.cta { background:var(--uvnl-green); color:var(--uvnl-paper); font-size:16px; }
+.bbnav .links a.cta:hover { background:var(--uvnl-green-bright); color:var(--uvnl-paper); }
+@media (max-width:900px){
+  .bbnav-inner { gap:10px; }
+  .bbnav .links { min-width:0; flex:1; overflow-x:auto; scrollbar-width:none; justify-content:flex-start; }
+  .bbnav .links::-webkit-scrollbar { display:none; }
+  .bbnav .links a { white-space:nowrap; flex:none; }
+}
+
+/* ── Homepage-hero: afgeronde onderkant, tekst in het midden, logo bovenin ── */
+.bb-hero { border-radius:0 0 var(--r-xl) var(--r-xl); justify-content:center !important; padding-top:clamp(80px,12vh,120px) !important; padding-bottom:clamp(80px,12vh,120px) !important; }
+@media (min-width:761px){ .bb-hero .hero-logo { position:absolute; top:24px; left:28px; z-index:5; margin:0 !important; width:210px; max-width:210px; } }
+
+/* ── Pagina-kop: reuzenkop en een gekleurd vlak over de foto ── */
+.page-hero .ph-visual { border-radius:0 0 var(--r-xl) var(--r-xl) !important; overflow:hidden; }
+.page-hero .ph-text { background:var(--uvnl-purple); border-radius:var(--r-xl); max-width:calc(1440px - 56px) !important; width:calc(100% - 56px) !important; margin:-64px auto 0 !important; padding:clamp(26px,4vw,52px) clamp(24px,4vw,56px) !important; position:relative; z-index:2; box-sizing:border-box; }
+.page-hero h1 { font-size:clamp(56px,10vw,150px) !important; line-height:.86 !important; letter-spacing:-.025em !important; color:var(--uvnl-green) !important; margin:0 0 16px !important; }
+.page-hero .lead { color:#2b1f55 !important; font-size:clamp(17px,1.5vw,21px); max-width:62ch !important; }
+.page-hero .lead b { color:var(--uvnl-green) !important; }
+@media (max-width:760px){ .page-hero .ph-text { width:calc(100% - 32px) !important; margin-top:-36px !important; } }
+
+/* ── Sectiekoppen ── */
+.index-col h2, .logo-section h2, .about2 h2, .case-example-copy h2 { font-family:var(--font-display) !important; text-transform:uppercase; letter-spacing:-.02em !important; line-height:.9 !important; color:var(--uvnl-green) !important; }
+.index-col h2 { font-size:clamp(34px,4.6vw,60px) !important; }
+.logo-section h2, .about2 h2 { font-size:clamp(38px,5.6vw,76px) !important; }
+.case-example-copy h2 { font-size:clamp(36px,5vw,64px) !important; }
+
+/* ── Huisstijl: elke logosectie een eigen kleurvlak ── */
+.logo-section { border-radius:var(--r-xl); padding:clamp(22px,3.5vw,48px); margin-bottom:22px; }
+.logo-section .ls-sub { color:var(--uvnl-green); opacity:.85; font-size:clamp(16px,1.4vw,19px); }
+.logo-section:nth-of-type(1) { background:var(--uvnl-purple); }
+.logo-section:nth-of-type(2) { background:var(--uvnl-pink); }
+.logo-section:nth-of-type(3) { background:var(--uvnl-yellow); }
+.logo-section:nth-of-type(4) { background:var(--uvnl-blue); }
+.lg-card, .gallery > * { border-radius:28px !important; }
+
+/* ── Het merk ── */
+.about2 .a-block--green { border-radius:var(--r-xl); padding:clamp(32px,5vw,64px); }
+.about2 .a-block .a-big { font-size:clamp(24px,3.2vw,42px); line-height:1.2; color:var(--uvnl-purple); }
+.about2 .a-kicker { font-family:"Tiempos Text",Georgia,serif; font-style:italic; font-weight:400; text-transform:none; letter-spacing:0; font-size:24px; color:var(--uvnl-paper); }
+.about2 .a-two { border-radius:var(--r-xl); padding:clamp(26px,4.5vw,56px); grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); align-items:center; }
+.about2 #wat-we-doen { background:var(--uvnl-purple); }
+.about2 #voor-wie { background:var(--uvnl-pink); }
+.about2 .a-two p { color:var(--uvnl-green); font-size:clamp(17px,1.6vw,21px); }
+.about2 .a-stat, .about2 .a-trait { border:0; border-radius:var(--r-xl); }
+.about2 .a-stat { padding:26px 24px 28px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between; }
+.about2 .a-stat .n { font-size:clamp(44px,5vw,72px); }
+.about2 .a-stat .l, .about2 .a-trait p { color:inherit; opacity:.85; }
+.about2 .a-stats .a-stat:nth-child(1), .about2 .a-traits .a-trait:nth-child(2) { background:var(--uvnl-green); color:var(--uvnl-paper); }
+.about2 .a-stats .a-stat:nth-child(1) .n, .about2 .a-traits .a-trait:nth-child(2) b { color:var(--uvnl-purple); }
+.about2 .a-stats .a-stat:nth-child(2), .about2 .a-traits .a-trait:nth-child(4) { background:var(--uvnl-yellow); color:var(--uvnl-green); }
+.about2 .a-stats .a-stat:nth-child(3) { background:var(--uvnl-blue); color:var(--uvnl-green); }
+.about2 .a-stats .a-stat:nth-child(4), .about2 .a-traits .a-trait:nth-child(3) { background:var(--uvnl-pink); color:var(--uvnl-green); }
+.about2 .a-stats .a-stat:nth-child(5) { background:var(--uvnl-purple-deep); color:var(--uvnl-paper); }
+.about2 .a-stats .a-stat:nth-child(5) .n { color:var(--uvnl-purple); }
+.about2 .a-stats .a-stat:nth-child(2) .n, .about2 .a-stats .a-stat:nth-child(3) .n, .about2 .a-stats .a-stat:nth-child(4) .n { color:var(--uvnl-green); }
+.about2 .a-traits .a-trait:nth-child(1) { background:var(--uvnl-purple); color:var(--uvnl-green); }
+.about2 .a-trait { padding:26px; min-height:180px; }
+.about2 .a-trait b { font-size:clamp(26px,2.6vw,34px); line-height:.95; margin-bottom:12px; }
+#tone .vs-table td { font-size:17px; padding:16px 20px; border-radius:24px !important; }
+#tone .vs-table td.yes { background:var(--uvnl-green) !important; color:var(--uvnl-paper) !important; font-weight:700; }
+#tone .vs-table td:last-child { background:var(--uvnl-pink) !important; color:#5c1d17; }
+#tone .vs-table th { font-family:var(--font-display); font-size:28px !important; text-transform:uppercase; color:var(--uvnl-green); }
+.about2 .a-stem li { border-left:0; background:var(--uvnl-purple); color:var(--uvnl-green); border-radius:24px; padding:14px 18px; }
+.about2 .a-stem li:nth-child(2) { background:var(--uvnl-yellow); } .about2 .a-stem li:nth-child(3) { background:var(--uvnl-blue); } .about2 .a-stem li:nth-child(4) { background:var(--uvnl-pink); }
+.about2 .a-contact { background:var(--uvnl-purple-deep); border-radius:var(--r-xl); }
+.about2 .a-contact h2 { color:var(--uvnl-purple) !important; }
+.about2 .a-contact .btn { background:var(--uvnl-purple); color:var(--uvnl-green); }
+.wie-video { border-radius:var(--r-xl) !important; }
+
+/* ── Fotografie: Wel & niet als kleurvlakken ── */
+.prose[style*="760px"] { max-width:none !important; }
+.prose[style*="760px"] ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.prose[style*="760px"] li { border-radius:var(--r-xl); padding:26px; font-size:17px; line-height:1.45; margin:0; }
+.prose[style*="760px"] li b { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(30px,3vw,42px); line-height:.95; margin-bottom:8px; }
+.prose[style*="760px"] li:nth-child(1) { background:var(--uvnl-green); color:var(--uvnl-paper); } .prose[style*="760px"] li:nth-child(1) b { color:var(--uvnl-purple); }
+.prose[style*="760px"] li:nth-child(2) { background:var(--uvnl-purple); color:var(--uvnl-green); } .prose[style*="760px"] li:nth-child(2) b { color:var(--uvnl-green); }
+.prose[style*="760px"] li:nth-child(3) { background:var(--uvnl-red); color:var(--uvnl-purple-deep); }
+.prose[style*="760px"] li:nth-child(4) { background:var(--uvnl-yellow); color:var(--uvnl-green); }
+
+/* ── Voorbeelden ── */
+.examples-topics a, .examples-topics button { border-radius:var(--r-pill); }
+.showpiece img, .showpiece video, .showpiece .enlarge { border-radius:24px; }
+
+/* ── Partnerkit ── */
+.dl-hero { border-radius:var(--r-xl) !important; }
+.dl-packs .pack { border-radius:var(--r-xl); padding:30px; }
+.dl-packs .pack .t { font-size:clamp(28px,3vw,40px); }
+.dl-packs .pack:nth-child(2) { background:var(--uvnl-purple); } .dl-packs .pack:nth-child(2) .t, .dl-packs .pack:nth-child(2) .t::after { color:var(--uvnl-green); } .dl-packs .pack:nth-child(2) .d { color:#3a2b63; }
+.dlc { border:0 !important; border-radius:var(--r-xl) !important; }
+.dl-contents .dlc:nth-child(4n+1) { background:var(--uvnl-pink); } .dl-contents .dlc:nth-child(4n+2) { background:var(--uvnl-purple); } .dl-contents .dlc:nth-child(4n+3) { background:var(--uvnl-yellow); } .dl-contents .dlc:nth-child(4n) { background:var(--uvnl-blue); }
+.dlc .h b, .dlc li, .dlc .h .count, .dlc .fmt, .dlc li::before { color:var(--uvnl-green) !important; }
+
+/* ── Footer als groen vlak ── */
+.footer { background:var(--uvnl-green); color:rgba(244,240,237,.8) !important; border:0 !important; border-radius:var(--r-xl) var(--r-xl) 0 0; padding-top:56px; padding-bottom:40px; margin-top:clamp(48px,7vw,96px) !important; }
+.footer .footer-logo { background:var(--uvnl-purple); }
+.footer a, .footer p { color:var(--uvnl-paper) !important; }
+.footer .footer-direct a { font-family:var(--font-display); font-size:20px; text-transform:uppercase; }
+.footer a:hover { color:var(--uvnl-purple) !important; }
+
+/* ── Beweging ── */
+@media (prefers-reduced-motion:no-preference) {
+  .page-hero h1, .bb-hero h1 { animation:rise .95s var(--spring) backwards; }
+  .page-hero .ph-text { animation:pop .9s var(--spring) backwards .1s; }
+  .lg-card, .gallery > *, .about2 .a-stat, .about2 .a-trait, .dl-packs .pack, .dlc, .showpiece { transition:transform .3s var(--spring),box-shadow .3s var(--ease); }
+  .lg-card:hover, .gallery > *:hover, .about2 .a-stat:hover, .about2 .a-trait:hover, .dl-packs .pack:hover, .dlc:hover { transform:translateY(-6px) rotate(-.6deg); box-shadow:0 22px 40px rgba(27,7,87,.18); }
+  .about2 .a-trait:nth-child(2n) { transform:rotate(.8deg); } .about2 .a-trait:nth-child(2n+1) { transform:rotate(-.8deg); }
+  .bbnav .links a.cta:active, .btn:active { transform:scale(.94) rotate(-1.5deg); }
+  @keyframes rise { from { opacity:0; transform:translateY(.45em) rotate(3deg) scale(.96); } }
+  @keyframes pop { from { opacity:0; transform:translateY(40px) rotate(2deg) scale(.96); } }
+}
+.page-hero .ph-visual { background:transparent !important; }
+/* kop-vlak groen met paarse titel (zoals de Vooruitblik), foto zonder afgeronde onderhoeken */
+.page-hero .ph-visual { border-radius:0 !important; }
+.page-hero .ph-text { background:var(--uvnl-green) !important; }
+.page-hero h1 { color:var(--uvnl-purple) !important; }
+.page-hero .lead { color:rgba(244,240,237,.92) !important; }
+.page-hero .lead b { color:var(--uvnl-purple) !important; }

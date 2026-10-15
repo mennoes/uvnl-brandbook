@@ -7,7 +7,6 @@
 <meta name="description" content="Het partnermerkboek van Universiteit van Nederland en Universiteit van Vlaanderen: merk, huisstijl, fotografie, voorbeelden en partnerkit.">
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css?v=20261006-headers">
-<link rel="stylesheet" href="assets/css/plus.css?v=20261018">
 <script defer src="assets/js/region.js?v=20261006-mobile"></script>
 <script>window.BB_BASE = '';</script>
 <style>
@@ -37,7 +36,7 @@
   .hub-card:hover .arr { transform:translateX(4px); }
 
   /* Eén beeldvullende hero: de foto en inhoud blijven op ieder laptopformaat één geheel. */
-  .bb-hero { position:relative; isolation:isolate; overflow:hidden; background:var(--uvnl-green); color:var(--uvnl-paper); margin-top:0; min-height:100vh; min-height:100svh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; padding:clamp(80px,12vh,120px) 28px; perspective:1100px; }
+  .bb-hero { position:relative; isolation:isolate; overflow:hidden; background:var(--uvnl-green); color:var(--uvnl-paper); margin-top:0; min-height:100vh; min-height:100svh; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end; padding:clamp(110px,18vh,180px) 28px clamp(54px,9vh,92px); perspective:1100px; }
   /* roterende achtergrondfoto's met crossfade */
   .bb-hero .hero-bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
   .bb-hero .hero-slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease; transform:scale(1.05); transform-origin:center; animation:kenburns 16s ease-out infinite alternate; will-change:transform,opacity; }
@@ -58,8 +57,6 @@
   .bb-hero .bgu-wrap .front { position:relative; }
   .bb-hero .bgu-wrap .front path { fill:#157A55; }
   .bb-hero .hero-logo { display:flex; justify-content:center; margin:0 auto 60px; width:100%; max-width:270px; }
-  /* logo linksboven in de hero; hero-tekst blijft zo écht in het midden */
-  @media (min-width:761px){ .bb-hero .hero-logo { position:absolute; top:24px; left:28px; z-index:5; margin:0; width:210px; max-width:210px; } }
   .bb-hero .hero-logo .navlogo { width:100%; height:auto; color:var(--uvnl-purple); }
   /* zoekbalk blendt met de groene hero */
   .bb-hero .search-wrap { max-width:600px; margin-left:auto; margin-right:auto; width:100%; }
@@ -189,6 +186,7 @@
     }
   }
 </style>
+<link rel="stylesheet" href="assets/css/fun.css?v=20261021">
 </head>
 <body class="brandbook-home">
 
@@ -235,72 +233,6 @@
     <a class="hero-link kit" href="pages/download.html">Partnerkit</a>
   </nav>
 </header>
-
-
-<div class="tapes" aria-hidden="true"><div class="tape tape--purple"><div class="tape-track"><span>eerlijk</span><span>echt</span><span>een beetje rommelig</span><span>kennis in wording</span><span>snap je het?</span><span>eerlijk</span><span>echt</span><span>een beetje rommelig</span><span>kennis in wording</span><span>snap je het?</span></div></div><div class="tape tape--green"><div class="tape-track"><span>groen op paper</span><span>één accentkleur</span><span>vragen als titel</span><span>geen emoji</span><span>plain dutch</span><span>groen op paper</span><span>één accentkleur</span><span>vragen als titel</span><span>geen emoji</span><span>plain dutch</span></div></div></div>
-<main>
-<div class="wrap">
-
-  <section class="hp" id="start">
-    <div class="hp-head">
-      <div><span class="eyebrow">Waar begin je?</span><h2>Vijf ingangen, één merk</h2></div>
-      <p>Dit merkboek is voor partners, makers en iedereen die iets maakt met Universiteit van Nederland of Universiteit van Vlaanderen. Kies wat je zoekt, of download meteen de kit.</p>
-    </div>
-    <div class="hp-cards"><a class="hp-card " href="pages/about.html"><span class="arr">→</span><img class="fig" src="assets/illustration-3d/gedrag-maatschappij.png" alt="" loading="lazy"><div><div class="t">Het merk</div><div class="d">Missie, persoonlijkheid en tone of voice.</div></div></a><a class="hp-card " href="pages/logos.html"><span class="arr">→</span><img class="fig" src="assets/illustration-3d/economie-bedrijf.png" alt="" loading="lazy"><div><div class="t">Huisstijl</div><div class="d">Logo’s, kleuren en typografie.</div></div></a><a class="hp-card " href="pages/photography.html"><span class="arr">→</span><img class="fig" src="assets/illustration-3d/onderwijs.png" alt="" loading="lazy"><div><div class="t">Fotografie</div><div class="d">Beeldbanken voor Nederland en Vlaanderen.</div></div></a><a class="hp-card " href="pages/examples.html"><span class="arr">→</span><img class="fig" src="assets/illustration-3d/informatie.png" alt="" loading="lazy"><div><div class="t">Voorbeelden</div><div class="d">Video, formats, live en publicaties.</div></div></a><a class="hp-card hl" href="pages/download.html"><span class="arr">→</span><img class="fig" src="assets/illustration-3d/gezondheid.png" alt="" loading="lazy"><div><div class="t">Partnerkit</div><div class="d">Logo’s en foto’s in één zip.</div></div></a></div>
-  </section>
-
-  <section class="hp">
-    <div class="hp-head">
-      <div><span class="eyebrow">Het merk in één oogopslag</span><h2>Eerlijk, echt, een beetje rommelig</h2></div>
-      <p>Kennis in wording, geen corporate glanslaag. Groen op Paper als basis, per uiting één verzadigde accentkleur, en een vraag als titel.</p>
-    </div>
-    <div class="glance">
-      <a class="gl gl--logo" href="pages/logos.html"><small>Logo</small><span class="footer-logo big-logo" data-region-logo role="img" aria-label="Universiteit van Nederland"></span></a>
-      <a class="gl gl--color" href="pages/colors.html"><div class="sw"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="lab"><small>Kleuren</small></div></a>
-      <a class="gl gl--type" href="pages/typography.html"><small>Typografie</small><div><div class="big">Snap je het?</div><div class="ser">Alleen voor ondertitels</div></div></a>
-      <a class="gl gl--tone" href="pages/about.html#tone"><small>Tone of voice</small><ul data-region-lock><li><s>✗</s> <del style="opacity:.55">Heeft u dit kunnen volgen?</del></li><li><i>✓</i> Snap je het?</li><li><i>✓</i> Dit is wat we niet weten</li></ul></a>
-      <a class="gl gl--photo" href="pages/photography.html"><img src="assets/photos/stage-purple.jpg" alt="Podium in paars en groen licht" loading="lazy"><span>Echte foto’s, eerlijk in beeld</span></a>
-    </div>
-  </section>
-
-
-  <section class="hp">
-    <div class="show">
-      <div class="show-tx">
-        <span class="eyebrow">Zo ziet het eruit</span>
-        <h2>Posters, podcasts, thumbs en websites</h2>
-        <p>Eén herkenbare familie, in iedere vorm. Groen, paars en een grote U; verder mag elk verhaal zijn eigen kleur en vorm krijgen.</p>
-        <a class="btn-pill" href="pages/examples.html">Bekijk de voorbeelden →</a>
-      </div>
-      <div class="posters" aria-hidden="false">
-        <img src="assets/applications/poster-kopje-onder.png" alt="Poster Kopje onder in ARTIS" loading="lazy">
-        <img src="assets/applications/poster-rare-jongens.png" alt="Poster Rare Jongens, de podcast" loading="lazy">
-        <img src="assets/applications/poster-tijd-stopt.png" alt="Poster Wat als de tijd stopt" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <section class="hp">
-    <img class="slogan" src="assets/applications/3d-compositie-2.png" alt="De universiteit voor iedereen" loading="lazy">
-  </section>
-
-  <section class="hp">
-    <div class="hp-head">
-      <div><span class="eyebrow">Formats</span><h2>Een eigen vorm voor ieder verhaal</h2></div>
-      <p>Onze colleges en formats hebben elk een eigen karakter, maar horen duidelijk bij dezelfde familie. Bekijk ze in beeld op de voorbeeldenpagina.</p>
-    </div>
-    <div class="fmt-strip"><img src="assets/formats/heyu.png" alt="Format HEY U" loading="lazy"><img src="assets/formats/wetensnap.png" alt="Format Wetensnap" loading="lazy"><img src="assets/formats/legtuit.png" alt="Format Leg uit" loading="lazy"><img src="assets/formats/collegenacht.png" alt="Format Collegenacht" loading="lazy"><img src="assets/formats/onderzoekt.png" alt="Format Onderzoekt" loading="lazy"><img src="assets/formats/voorkennis.png" alt="Format Voorkennis" loading="lazy"><img src="assets/formats/evendenken.png" alt="Format Even denken" loading="lazy"><img src="assets/formats/werkplaats.png" alt="Format Werkplaats" loading="lazy"></div>
-  </section>
-
-  <section class="hp">
-    <div class="dl-band">
-      <div><h3>Klaar om te maken?</h3><p>De partnerkit bevat logo’s (SVG) en foto’s, apart voor Nederland en Vlaanderen, met een gebruiksnotitie.</p></div>
-      <a class="bigbtn" href="pages/download.html">Naar de partnerkit →</a>
-    </div>
-  </section>
-
-</div>
-</main>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -409,6 +341,5 @@
   });
 })();
 </script>
-<script defer src="assets/js/plus.js?v=20261015"></script>
 </body>
 </html>
