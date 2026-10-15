@@ -128,12 +128,9 @@ p { margin:0 0 1em; }
 .card-fig { position:relative; aspect-ratio:1/1.08; border-radius:18px; overflow:hidden; background:rgba(255,255,255,.3); display:grid; place-items:center; flex:none; }
 .card-fig img { display:block; transition:transform .4s var(--ease); }
 .card-fig img.f { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 22%; translate:none; }
-.card-fig img.t { width:56%; transform:rotate(var(--r,8deg)); }
 .card:hover .card-fig img.f { transform:scale(1.04); }
-.card:hover .card-fig img.t { transform:rotate(calc(var(--r,8deg) * -1)) scale(1.06); }
 .card h3 { font-family:var(--font-sans); font-size:clamp(19px,1.8vw,23px); font-weight:700; text-transform:none; letter-spacing:0; line-height:1.12; margin:0; padding:16px 10px 0; color:inherit; text-wrap:pretty; }
-.card-fig--sil { align-items:end; background:radial-gradient(120% 90% at 50% 18%,#9577C8 0%,#6C49AA 55%,#4B2E86 100%); }
-.card-fig .sil { display:block; width:100%; height:100%; translate:var(--tx,0px) var(--ty,0px); transition:translate .15s linear; }
+.card-fig--sil { background:radial-gradient(120% 90% at 50% 18%,#9577C8 0%,#6C49AA 55%,#4B2E86 100%); }
 .card .who { margin-top:auto; padding:14px 10px 8px; font-size:13px; font-weight:700; }
 .card .who span { font-weight:400; opacity:.85; }
 .c-purple { background:var(--purple); color:var(--green); }

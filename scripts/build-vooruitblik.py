@@ -82,29 +82,7 @@ def person(p, role):
             f'<div class="meta">{E(meta)}</div></div></div>')
 
 
-SIL_BASIS = ('<path d="M0 300 L0 272 C6 238 40 220 92 208 C104 204 108 198 110 192 L130 192 C132 198 136 204 148 208 C200 220 234 238 240 272 L240 300Z"/>'
-             '<path d="M101 150 C101 178 100 194 90 208 L150 208 C140 194 139 178 139 150Z"/>'
-             '<path d="M120 40 C150 40 167 66 167 98 C167 130 152 158 120 162 C88 158 73 130 73 98 C73 66 90 40 120 40Z"/>')
-SIL_HAAR = [
-    '<path d="M71 96 C64 52 90 30 120 30 C152 30 174 54 169 96 C163 72 148 58 120 58 C94 58 77 72 71 96Z"/>',
-    '<path d="M68 102 C58 44 92 24 120 24 C150 24 182 44 172 102 C176 140 182 176 188 212 C166 222 152 196 148 164 L92 164 C88 196 74 222 52 212 C58 176 64 140 68 102Z"/>',
-    '<path d="M71 96 C64 52 90 30 120 30 C152 30 174 54 169 96 C163 72 148 58 120 58 C94 58 77 72 71 96Z"/><path d="M104 34 C100 14 140 14 136 34Z"/><ellipse cx="120" cy="22" rx="18" ry="16"/>',
-    '<ellipse cx="72" cy="102" rx="8" ry="15"/><ellipse cx="168" cy="102" rx="8" ry="15"/>',
-    '<path d="M62 104 C48 80 56 50 80 40 C90 20 116 16 128 24 C148 14 174 30 176 52 C194 62 192 94 178 108 C172 82 152 64 120 62 C88 64 68 82 62 104Z"/>',
-    '<path d="M68 116 C58 52 90 28 124 28 C160 28 180 58 170 116 C168 130 160 136 156 120 C152 92 142 70 112 66 C86 70 74 88 74 124 C72 134 68 130 68 116Z"/>',
-]
-
-
-def silhouet(nr):
-    """Placeholder zonder portret: studio-achtergrond met een silhouet en een cursief vraagteken, in de stijl van de portretten."""
-    haar = SIL_HAAR[nr % len(SIL_HAAR)]
-    return ('<svg class="sil" viewBox="0 0 240 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true">'
-            '<defs><filter id="silb" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.1"/></filter><linearGradient id="silg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1260"/><stop offset="1" stop-color="#170A3D"/></linearGradient>'
-            '<radialGradient id="silr" cx=".5" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>'
-            f'<g filter="url(#silb)" fill="url(#silg)" stroke="#B79BEA" stroke-opacity=".35" stroke-width="1.5" stroke-linejoin="round">{SIL_BASIS}{haar}</g>'
-            '<rect width="240" height="300" fill="url(#silr)"/>'
-            '<text x="120" y="132" text-anchor="middle" font-family="\'Tiempos Text\',Georgia,serif" font-style="italic" '
-            'font-weight="700" font-size="104" fill="#F4F0ED" fill-opacity=".92">?</text></svg>')
+SILHOUETTEN = 8   # assets/foto/silhouet-1..8.webp: uitgeknipte contouren van echte portretten met een cursief vraagteken
 
 
 def card_foto(c):
@@ -121,7 +99,8 @@ def card(c, base):
         fig = (f'<div class="card-fig"><img class="f" src="{base}assets/foto/{f["foto"]}" alt="{E(f["naam"])}" '
                f'width="450" height="540" loading="lazy"></div>')
     else:
-        fig = f'<div class="card-fig card-fig--sil">{silhouet(c["nr"])}</div>'
+        fig = (f'<div class="card-fig card-fig--sil"><img class="f" src="{base}assets/foto/silhouet-{c["nr"] % SILHOUETTEN + 1}.webp" alt="" '
+               f'width="450" height="563" loading="lazy"></div>')
     return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]:02d}</span>'
             f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
