@@ -269,7 +269,23 @@
 .fan-slot .card { min-height:380px; box-shadow:0 14px 34px rgba(27,7,87,.16); }
 .fan-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; }
 .btn--lg { padding:18px 34px; font-size:clamp(17px,1.5vw,20px); }
-@media (max-width:900px){
+@media (max-width:1100px){
   .fan-stage { justify-content:flex-start; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 30px; margin-inline:-2px; -webkit-overflow-scrolling:touch; }
   .fan-slot,.fan-slot.is-first { flex:0 0 min(78%,320px); margin-left:0; transform:none !important; scroll-snap-align:start; }
+}
+
+/* ── cijferkaarten: drie naast elkaar ───────────────────── */
+@media (prefers-reduced-motion:no-preference){
+  .js .cas.reveal { transform:translateY(24px); transition:opacity .6s var(--ease),transform .8s var(--spring); }
+  .js .cas.reveal.in { transform:none; }
+  .js .cas.reveal:nth-child(2) { transition-delay:.1s; } .js .cas.reveal:nth-child(3) { transition-delay:.2s; }
+}
+@media (min-width:1101px){
+  .cascade { grid-template-columns:repeat(3,minmax(0,1fr)); align-items:stretch; }
+  .cas { display:flex; flex-direction:column; justify-content:space-between; gap:24px; padding:clamp(22px,2.4vw,34px); }
+  .cas .cas-n { font-size:clamp(30px,3.3vw,46px); }
+  .cas-red .cas-n { font-size:clamp(28px,3vw,42px); }
+  .cas p { margin-top:12px; font-size:clamp(16px,1.25vw,18px); }
+  .cas .inset { aspect-ratio:16/10; width:100%; }
+  .cas .inset img { width:44%; }
 }
