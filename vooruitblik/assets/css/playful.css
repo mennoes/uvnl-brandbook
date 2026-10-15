@@ -109,8 +109,16 @@
   .card.pop { animation:pop .85s var(--spring) backwards; animation-delay:calc(var(--n,0) * 70ms); }
   @keyframes pop { from { opacity:0; transform:translateY(46px) rotate(3deg) scale(.93); } }
   .card { transition:transform .25s var(--ease),box-shadow .25s var(--ease); }
-  .card:hover { transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px); }
+  .card:hover { transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px); box-shadow:0 26px 48px rgba(27,7,87,.22); }
   .card .card-fig img.t { transition:transform .4s var(--ease),translate .12s linear; }
+  .card .card-fig img.f { transition:transform .5s var(--ease),translate .15s linear; }
+  .card:hover .card-fig img.f { transform:scale(1.16); translate:calc(var(--tx,0px) * -1.3) calc(var(--ty,0px) * -1.3); }
+  .card:hover .card-fig img.t { transform:rotate(calc(var(--r,8deg) * -1)) scale(1.14); translate:calc(var(--tx,0px) * 1.6) calc(var(--ty,0px) * 1.6); }
+  .card h3,.card .who { transition:translate .15s linear; }
+  .card:hover h3 { translate:calc(var(--tx,0px) * .55) calc(var(--ty,0px) * .55); }
+  .card:hover .who { translate:calc(var(--tx,0px) * .3) calc(var(--ty,0px) * .3); }
+  .card::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:2; opacity:0; transition:opacity .3s var(--ease); background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.32),rgba(255,255,255,0) 55%); }
+  .card:hover::after { opacity:1; }
 
   /* knoppen: klik als een snap */
   .btn:active,.chip:active,.fb-send:active { transform:scale(.94) rotate(-1.5deg); }
