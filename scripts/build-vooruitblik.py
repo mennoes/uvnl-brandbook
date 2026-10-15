@@ -73,7 +73,11 @@ def initials(name):
 
 def person(p, role):
     meta = " · ".join(x for x in (p["vak"], p["uni"]) if x)
-    return (f'<div class="person"><div class="avatar" aria-hidden="true">{E(initials(p["naam"]))}</div>'
+    if p.get("foto"):
+        avatar = f'<div class="avatar avatar--foto"><img src="../assets/foto/{p["foto"]}" alt="{E(p["naam"])}" width="64" height="64" loading="lazy"></div>'
+    else:
+        avatar = f'<div class="avatar" aria-hidden="true">{E(initials(p["naam"]))}</div>'
+    return (f'<div class="person">{avatar}'
             f'<div><div class="role">{E(role)}</div><div class="name">{E(p["naam"])}</div>'
             f'<div class="meta">{E(meta)}</div></div></div>')
 
