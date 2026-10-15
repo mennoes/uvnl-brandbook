@@ -88,6 +88,37 @@ def card(c, base):
             f'<div class="who">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></div></a>')
 
 
+def hl(text):
+    """Elk woord op een eigen kleurblok (zoals de thumbs in de huisstijl); het vraagteken wiebelt."""
+    out = []
+    for i, w in enumerate(text.split(" ")):
+        inner = (E(w[:-1]) + '<span class="qm">?</span>') if w.endswith("?") else E(w)
+        out.append(f'<span class="w" style="--i:{i}"><span>{inner}</span></span>')
+    return " ".join(out)
+
+
+def shapes(items):
+    """Zwevende basisvormen uit de huisstijl: (soort, kleur, links, boven, grootte, vertraging, rotatie)."""
+    return '<div class="shapes" aria-hidden="true">' + "".join(
+        f'<span class="sh sh-{k}" style="--c:var(--{c});left:{l};top:{t};--s:{sz};--d:{d}s;--r:{r}deg"></span>'
+        for k, c, l, t, sz, d, r in items) + "</div>"
+
+
+HERO_SHAPES = {"hero-purple": ("green", "blue", "paper"), "hero-yellow": ("green", "blue", "pink"),
+               "hero-pink": ("green", "blue", "purple"), "hero-blue": ("paper", "purple", "green"),
+               "hero-paper": ("green", "blue", "purple"), "hero-green": ("purple", "blue", "pink")}
+
+
+def hero_shapes(cls):
+    a, b, c = HERO_SHAPES.get(cls.split()[0], HERO_SHAPES["hero-paper"])
+    return shapes([("circle", a, "66%", "6%", "clamp(26px,4vw,60px)", 0, 0), ("hex", a, "91%", "8%", "clamp(26px,3.6vw,54px)", 1, 8),
+                   ("tri", b, "80%", "27%", "clamp(30px,4.4vw,66px)", 2, 12), ("ring", c, "94%", "50%", "clamp(34px,5vw,76px)", 4, 0)])
+
+
+TILES = [("green", "purple"), ("pink", "green"), ("ink", "purple"), ("paper", "green"), ("ballpoint", "purple"), ("purple", "green"), ("blue", "purple"), ("grey", "green")]
+EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
+    f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
+
 NAV = [("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"),
        ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners")]
 
@@ -111,9 +142,11 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <link rel="preload" href="{base}assets/fonts/OldschoolGrotesk-Bold.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="{base}assets/css/vooruitblik.css">
 <link rel="stylesheet" href="{base}assets/css/feedback.css">
+<link rel="stylesheet" href="{base}assets/css/playful.css">
 <script defer src="{base}assets/js/vooruitblik.js"></script>
 <script defer src="{base}assets/js/feedback-config.js"></script>
 <script defer src="{base}assets/js/feedback.js"></script>
+<script defer src="{base}assets/js/playful.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">Naar de inhoud</a>
@@ -127,6 +160,7 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <main id="main">
 {body}
 </main>
+{EYEWALL}
 <footer class="site-foot">
   <div class="wrap">
     <span class="brand brand--foot" role="img" aria-label="Universiteit van Vlaanderen"></span>
@@ -162,26 +196,35 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
     dest.write_text(out, encoding="utf-8")
 
 
-def sec_head(h2, p="", btn=""):
-    return f'<div class="sec-head reveal"><h2>{h2}</h2>{f"<p>{p}</p>" if p else ""}{btn}</div>'
+def sec_head(h2, p="", btn="", eyebrow=""):
+    eb = f'<span class="eyebrow">{eyebrow}</span>' if eyebrow else ""
+    return f'<div class="sec-head reveal"><div>{eb}<h2>{h2}</h2><span class="squig" aria-hidden="true"></span></div>{f"<p>{p}</p>" if p else ""}{btn}</div>'
 
 
 def subhero(cls, kicker, h1, sub="", orn=None, q=False):
     o = (f'<img class="orn" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
     return (f'<section class="page-hero {cls}{" q" if q else ""}"><div class="wrap">'
-            f'<div class="crumbs"><a href="index.html">De Vooruitblik</a> / {kicker}</div><h1>{h1}</h1>'
+            f'{hero_shapes(cls)}<div class="crumbs"><a href="index.html">De Vooruitblik</a> / {kicker}</div><h1 class="q">{hl(h1)}</h1>'
             f'{f"<p class=sub>{sub}</p>" if sub else ""}</div>{o}</section>')
 
 
 # ───────────────────────── HOME ─────────────────────────
-ticker = "".join(f'<a class="c-{c["kleur"]}" href="hoofdstuk/{c["slug"]}.html">{E(c["vraag"])}</a>' for c in CH)
+SPARK = '<img src="assets/icons/spark1.png" alt="" class="tape-ic">'
+SPARK2 = '<img src="assets/icons/spark2.png" alt="" class="tape-ic">'
+tape1 = "".join(f"<span>{t}</span>{SPARK}" for t in ["23 proffen", "23 vragen", "2027", "geen glazen bol", "wel wetenschap"])
+tape2 = "".join(f'<a href="hoofdstuk/{c["slug"]}.html">{E(c["vraag"])}</a>{SPARK}' for c in CH)
+tape2_copy = tape2.replace("<a ", '<a tabindex="-1" aria-hidden="true" ')
+tapes = (f'<div class="tapes"><div class="tape tape--purple" aria-hidden="true"><div class="tape-track">{tape1 * 3}{tape1 * 3}</div></div>'
+         f'<div class="tape tape--green rev" aria-label="Alle 23 vragen"><div class="tape-track">{tape2}{tape2_copy}</div></div></div>')
 home = f"""
 <section class="hero">
-  <img class="orn orn--book" src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027" width="753" height="1290"><span class="orn orn--b"><img src="assets/3d/techniek.png" alt="" style="--rot:-8deg"></span>
+  {shapes([("tri","blue","62%","24%","clamp(30px,4vw,62px)",2,-10),("ring","pink","8%","62%","clamp(44px,6vw,92px)",1,0),("hex","purple","56%","74%","clamp(26px,3.4vw,52px)",3,8)])}
+  <span class="orn orn--book" data-speed="-0.05"><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027" width="753" height="1290" style="--rot:6deg"></span><span class="orn orn--b" data-speed="0.06"><img src="assets/3d/techniek.png" alt="" style="--rot:-8deg"></span>
+  <a class="burst" href="boek.html" aria-label="Het boek verschijnt op 15 november"><span class="burst-star"></span><span class="burst-txt">15<br>nov</span></a>
   <div class="wrap">
     <p class="kicker">Universiteit van Vlaanderen · Radio 1 · Pelckmans</p>
     <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
-      <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
+      <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT<img class="pow" src="assets/icons/snaps1.png" alt=""></span><span class="l3" aria-hidden="true">BLIK<img class="spk" src="assets/icons/spark2.png" alt=""></span></h1>
     <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
       <div class="hero-side"><p>23 proffen over wat ons te wachten staat in 2027. Geen glazen bol, wel wetenschap die uitlegt wat eraan komt.</p></div>
       <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
@@ -189,7 +232,7 @@ home = f"""
   </div>
 </section>
 
-<div class="ticker" aria-label="Alle 23 vragen"><div class="ticker-track">{ticker}<span aria-hidden="true" style="display:contents">{ticker.replace('<a ', '<a tabindex="-1" aria-hidden="true" ')}</span></div></div>
+{tapes}
 
 <section class="section">
   <div class="wrap intro-grid">
@@ -203,7 +246,7 @@ home = f"""
 
 <section class="section section--tight">
   <div class="wrap">
-    {sec_head("De vragen", "Elk hoofdstuk begint met één concrete vraag. Klik door voor de professoren erachter.", '<a class="btn btn--green" href="vragen.html">Alle 23 <span class="arr">→</span></a>')}
+    {sec_head("De vragen", "Elk hoofdstuk begint met één concrete vraag. Klik door voor de professoren erachter.", btn='<a class="btn btn--green" href="vragen.html">Alle 23 <span class="arr">→</span></a>', eyebrow="Eén vraag per hoofdstuk")}
     <div class="grid reveal">{"".join(card(c, "") for c in CH[:6])}</div>
   </div>
 </section>
@@ -212,7 +255,7 @@ home = f"""
   <div class="wrap">
     {sec_head("Vier manieren om mee te kijken")}
     <div class="formats reveal">
-      <a class="format c-purple has-book" href="boek.html"><span class="go">→</span><span class="big">23</span><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
+      <a class="format c-purple has-book" href="boek.html"><span class="go">→</span><span class="big" data-count="23">23</span><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
       <a class="format c-yellow" href="videopodcast.html"><span class="go">→</span><span class="big">3/wk</span><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p></a>
       <a class="format c-pink" href="radio.html"><span class="go">→</span><span class="big">12u</span><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p></a>
       <a class="format c-blue" href="live.html"><span class="go" style="color:var(--blue)">→</span><span class="big">Live</span><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p></a>
@@ -267,7 +310,7 @@ for i, c in enumerate(CH):
     hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper"}[c["kleur"]]
     hero = (f'<section class="page-hero q {hero_cls}"><div class="wrap">'
             f'<div class="crumbs"><a href="../index.html">De Vooruitblik</a> / <a href="../vragen.html">De 23 vragen</a> / Hoofdstuk {c["nr"]:02d}</div>'
-            f'<h1>{E(c["vraag"])}</h1>'
+            f'{hero_shapes(hero_cls)}<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
             f'<img class="orn" src="../assets/3d/{c["thema"]}.png" alt=""></section>')
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
@@ -322,7 +365,7 @@ boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
   </div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  <ul class="facts reveal"><li><b>23</b><span>essays van 23 academici</span></li><li><b>5</b><span>Vlaamse universiteiten</span></li><li><b>+1</b><span>extraatje per hoofdstuk: een weetje, anekdote of filmtip</span></li></ul>
+  <ul class="facts reveal"><li><b data-count="23">23</b><span>essays van 23 academici</span></li><li><b data-count="5">5</b><span>Vlaamse universiteiten</span></li><li><b>+1</b><span>extraatje per hoofdstuk: een weetje, anekdote of filmtip</span></li></ul>
 </div></section>
 <section class="section section--tight"><div class="wrap two">
   <div class="panel panel--paper reveal"><h2>Zo is elk hoofdstuk opgebouwd</h2><div class="prose"><p>Elk hoofdstuk bevat een toegankelijk essay, weetjes, anekdotes of een extraatje zoals een filmtip, en een korte biografie van de auteur.</p><p>De hoofdstukken kan je afzonderlijk lezen, maar samen vormen ze een rijk overzicht van de thema’s die ons begrip van 2027 bepalen.</p></div></div>
