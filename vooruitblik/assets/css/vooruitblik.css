@@ -76,9 +76,11 @@ p { margin:0 0 1em; }
 .vb-title span { display:block; white-space:nowrap; }
 .vb-title .l2 { margin-left:.12em; }
 .vb-title .l3 { margin-left:.58em; }
-/* de twee O's worden ogen, zoals op de boekcover */
-.oo { display:inline-block; width:.74em; height:.74em; margin:0 .02em; border-radius:50%; background:var(--paper); position:relative; vertical-align:-.04em; }
-.oo::after { content:""; position:absolute; width:.3em; height:.3em; border-radius:50%; background:var(--green); left:50%; top:50%; transform:translate(-50%,-50%) translate(var(--px,0),var(--py,0)); transition:transform .12s linear; }
+/* de twee O's zijn echte letters; het gat in de O is het oog, met een pupil die meekijkt */
+.vb-title .o { position:relative; display:inline-block; color:var(--paper); }
+.vb-title .o::after { content:""; position:absolute; left:50%; top:calc(50% - .108em); width:.2em; height:.2em; border-radius:50%; background:var(--purple); transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)); transition:transform .14s ease-out; }
+.vb-title .o.blink::after { animation:blink .22s ease-in-out; }
+@keyframes blink { 50% { transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)) scaleY(.08); } }
 .hero-grid { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px clamp(24px,5vw,72px); align-items:end; }
 .hero-side { padding-bottom:.6em; }
 .hero-side p { font-size:clamp(18px,2vw,24px); line-height:1.3; color:rgba(244,240,237,.94); max-width:34ch; margin:0; }
