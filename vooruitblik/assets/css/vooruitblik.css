@@ -277,3 +277,25 @@ p { margin:0 0 1em; }
 
 .partner img[src*="jonge-academie"],.partner img[src*="vlaamse-overheid"] { max-height:82px; }
 @media (max-width:860px){ .hero .kicker { max-width:calc(100% - 118px); } }
+
+/* ── afleveringsschema ──────────────────────────────────── */
+.sched { display:grid; gap:12px; margin-bottom:8px; }
+.ep { display:grid; grid-template-columns:96px minmax(0,1fr) auto; gap:8px 24px; align-items:center; padding:20px 26px; border-radius:var(--r-m); text-decoration:none; transition:transform var(--dur) var(--ease); }
+.ep:hover { transform:translateX(6px); }
+.ep-date { display:grid; justify-items:center; line-height:1; text-transform:uppercase; font-weight:700; font-size:13px; letter-spacing:.08em; }
+.ep-date b { font-family:var(--font-display); font-size:58px; letter-spacing:-.01em; margin:2px 0; }
+.ep-nr { font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.8; margin-bottom:6px; }
+.ep h3 { font-size:clamp(24px,2.6vw,34px); color:inherit; line-height:1; margin-bottom:8px; }
+.ep p { margin:0; font-size:14.5px; }
+.ep-book { opacity:.78; margin-top:2px !important; }
+.ep-status:empty { display:none; }
+.ep.is-next { box-shadow:0 0 0 3px var(--green); }
+.ep-line { margin:0 0 16px; font-size:15px; line-height:1.35; }
+.ep-line b { text-transform:uppercase; letter-spacing:.07em; font-size:12.5px; }
+@media (max-width:640px){
+  .ep { grid-template-columns:70px minmax(0,1fr); padding:18px; gap:6px 14px; }
+  .ep-date b { font-size:42px; }
+  .ep-status { grid-column:1 / -1; justify-self:start; }
+}
+.panel--green a:not(.btn),.dark a:not(.btn) { color:var(--purple); }
+.panel--green a:not(.btn):hover,.dark a:not(.btn):hover { color:var(--paper); }

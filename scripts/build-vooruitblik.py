@@ -47,6 +47,25 @@ for i, slug in enumerate(ORDER, 1):
 assert not chapters, f"hoofdstukken zonder plek in ORDER: {list(chapters)}"
 
 
+import datetime
+DAGEN = ["maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag", "zondag"]
+MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
+
+
+def dt(iso):
+    return datetime.date.fromisoformat(iso)
+
+
+def lang(iso):
+    x = dt(iso)
+    return f"{DAGEN[x.weekday()]} {x.day} {MAANDEN[x.month - 1]}"
+
+
+def speakers(c):
+    """Sprekers in de videopodcast: standaard auteur + tweede expert."""
+    return c.get("podcast") or [c["boek"], c["gast"]]
+
+
 def initials(name):
     w = [p for p in name.replace("’", "'").split() if p[0].isalpha()]
     return (w[0][0] + w[-1][0]).upper()
@@ -206,7 +225,7 @@ home = f"""
     <div class="dark" style="padding:clamp(26px,5vw,64px)">
       <div class="sec-head reveal" style="margin-bottom:24px"><h2>Wanneer</h2></div>
       <ul class="agenda reveal">
-        <li><div class="when">Begin november</div><div><h3>Eerste videopodcasts</h3><p>Elke week drie nieuwe afleveringen op VRT MAX, YouTube, Spotify en onze socials.</p></div></li>
+        <li><div class="when">1 november</div><div><h3>Eerste videopodcast</h3><p>Aflevering 1 verschijnt op zondag 1 november. Daarna komen er elke week ongeveer drie nieuwe bij, op VRT MAX, YouTube, Spotify en onze socials, tot en met 31 december.</p></div></li>
         <li><div class="when">15 november</div><div><h3>Het boek verschijnt op Boektopia</h3><p>Dag van de Wetenschap. Drie professoren gaan in gesprek in de Red Room van Antwerp Expo, tussen 12u en 12u45. Daarna is er een signeersessie.</p></div></li>
         <li><div class="when">21 dec – 1 jan</div><div><h3>Radio 1-programma</h3><p>Elke weekdag van 12 tot 13 uur, met Jacotte Brokken.</p></div></li>
         <li><div class="when">Voorjaar 2027</div><div><h3>Panelgesprekken in Vlaanderen</h3><p>Vijf locaties, telkens vier academici in gesprek met het publiek. Data en locaties volgen.</p></div></li>
@@ -253,6 +272,8 @@ for i, c in enumerate(CH):
             f'<img class="orn" src="../assets/3d/{c["thema"]}.png" alt=""></section>')
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
     meer = "".join(f"<p>{E(p)}</p>" for p in c["meer"].split("\n") if p) if c["meer"] else ""
+    v = c["video"]
+    spk = "".join(person(sp, f"Spreker {i}") for i, sp in enumerate(speakers(c), 1))
     if not c["kort"] and not c["meer"]:
         kort = '<div class="todo"><strong>Tekst volgt binnenkort.</strong>De samenvatting van dit hoofdstuk wordt nog aangeleverd.</div>'
     body = hero + f"""
@@ -263,8 +284,9 @@ for i, c in enumerate(CH):
       <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
     </article>
     <article class="panel panel--green reveal"><span class="tag">Videopodcast</span><h2 style="margin-top:14px">Twee blikken</h2>
-      <div class="video" style="margin-bottom:18px"><div><div class="play"></div><p>Binnenkort te zien op VRT MAX en YouTube</p></div></div>
-      <div class="people">{person(c["boek"], "Spreker 1")}{person(c["gast"], "Spreker 2")}</div>
+      <div class="video" style="margin-bottom:18px"><div><div class="play"></div><p>Verschijnt {lang(v["datum"])}</p></div></div>
+      <p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
+      <div class="people">{spk}</div>
     </article>
   </div>
 </div></section>
@@ -314,19 +336,33 @@ boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
 page("boek.html", "Het boek", "Het boek De Vooruitblik 2027: 23 essays van 23 academici. Verschijnt op 15 november 2026, uitgegeven door Pelckmans.", boek, current="boek.html")
 
 # ───────────────────────── VIDEOPODCAST ─────────────────────────
-eps = "".join(f'<a class="card c-{c["kleur"]}" style="min-height:260px" href="hoofdstuk/{c["slug"]}.html"><span class="nr">Aflevering {c["nr"]:02d} · binnenkort</span><h3 style="padding-top:90px;font-size:clamp(24px,2.2vw,30px)">{E(c["vraag"])}</h3><div class="who">{E(c["boek"]["naam"])} <span>& {E(c["gast"]["naam"])}</span></div></a>' for c in CH)
+def ep_row(c):
+    v = c["video"]
+    return (f'<a class="ep c-{c["kleur"]}" href="hoofdstuk/{c["slug"]}.html" data-date="{v["datum"]}">'
+            f'<div class="ep-date"><span>{DAGEN[dt(v["datum"]).weekday()][:2]}</span><b>{dt(v["datum"]).day}</b><span>{MAANDEN[dt(v["datum"]).month - 1][:3]}</span></div>'
+            f'<div class="ep-body"><div class="ep-nr">Aflevering {v["afl"]:02d}</div><h3>{E(v["titel"])}</h3>'
+            f'<p>Met {E(" en ".join(sp["naam"] for sp in speakers(c)))}</p>'
+            f'<p class="ep-book">In het boek: {E(c["vraag"])}</p></div>'
+            f'<span class="ep-status tag"></span></a>')
+
+
+by_ep = sorted(CH, key=lambda c: c["video"]["datum"])
+eps = ""
+for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
+    jaar, maand = int(ym[:4]), int(ym[5:])
+    eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
 vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
              "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "taal-communicatie") + f"""
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
-  <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Vanaf begin november elke week <b>drie afleveringen</b></li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
+  <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Van <b>1 november</b> tot en met <b>31 december</b>, ongeveer drie afleveringen per week</li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Alle afleveringen", "De volgorde waarin de afleveringen verschijnen, wordt nog vastgelegd. Zodra een aflevering online staat, vind je hem hier.")}
-  <div class="grid reveal">{eps}</div>
+  {sec_head("Alle afleveringen", "Het schema van de 23 afleveringen. Klik door naar het hoofdstuk bij de aflevering.")}
+  <div class="reveal">{eps}</div>
 </div></section>
 """
-page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2027: telkens twee professoren over één vraag. Vanaf begin november drie afleveringen per week.", vp, current="videopodcast.html")
+page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2027: telkens twee professoren over één vraag. Van 1 november tot 31 december verschijnen 23 afleveringen, ongeveer drie per week.", vp, current="videopodcast.html")
 
 # ───────────────────────── RADIO ─────────────────────────
 radio = subhero("hero-pink", "Radio 1", "Twee weken vooruitblikken",
