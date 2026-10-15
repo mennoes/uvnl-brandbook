@@ -52,6 +52,18 @@
     }
   }
 
+  /* afleveringsschema: markeer wat al verschenen is en wat als eerstvolgende komt */
+  var eps = d.querySelectorAll('.ep[data-date]');
+  if (eps.length) {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var nextDone = false;
+    eps.forEach(function (e) {
+      var tag = e.querySelector('.ep-status');
+      if (new Date(e.dataset.date + 'T00:00:00') <= today) { tag.textContent = 'Verschenen'; }
+      else if (!nextDone) { tag.textContent = 'Eerstvolgende'; e.classList.add('is-next'); nextDone = true; }
+    });
+  }
+
   /* filter + zoeken op de vragenpagina */
   var grid = d.getElementById('vragen-grid');
   if (grid) {
