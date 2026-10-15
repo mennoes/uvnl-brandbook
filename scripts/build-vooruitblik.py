@@ -116,12 +116,13 @@ def hero_shapes(cls):
                    ("tri", b, "80%", "27%", "clamp(30px,4.4vw,66px)", 2, 12), ("ring", c, "94%", "50%", "clamp(34px,5vw,76px)", 4, 0)])
 
 
-TILES = [("green", "purple"), ("pink", "green"), ("ink", "purple"), ("paper", "green"), ("ballpoint", "purple"), ("purple", "green"), ("blue", "purple"), ("grey", "green")]
+TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
 NAV = [("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"),
-       ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners"), ("vormgeving.html", "Vormgeving")]
+       ("radio.html", "Radio 1"), ("live.html", "Live")]
+FOOT_NAV = NAV + [("partners.html", "Partners"), ("vormgeving.html", "Vormgeving")]
 
 
 def page(path, title, desc, body, base="", current="", hero_class="", og_img="assets/img/boek-cover.jpg"):
@@ -173,7 +174,7 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
       </div>
       <div>
         <h2>Ontdek</h2>
-        <ul>{"".join(f'<li><a href="{base}{h}">{t}</a></li>' for h, t in NAV)}</ul>
+        <ul>{"".join(f'<li><a href="{base}{h}">{t}</a></li>' for h, t in FOOT_NAV)}</ul>
       </div>
       <div>
         <h2>Volg ons</h2>
@@ -199,7 +200,7 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 
 def sec_head(h2, p="", btn="", eyebrow=""):
     eb = f'<span class="eyebrow">{eyebrow}</span>' if eyebrow else ""
-    return f'<div class="sec-head reveal"><div>{eb}<h2>{h2}</h2><span class="squig" aria-hidden="true"></span></div>{f"<p>{p}</p>" if p else ""}{btn}</div>'
+    return f'<div class="sec-head reveal"><div>{eb}<h2>{h2}</h2></div>{f"<p>{p}</p>" if p else ""}{btn}</div>'
 
 
 def subhero(cls, kicker, h1, sub="", orn=None, q=False):
