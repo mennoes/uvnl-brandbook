@@ -259,3 +259,4 @@
 .banner span > span { white-space:nowrap; }
 .banner > span { gap:10px; align-items:flex-start; }
 .rule--no::after { opacity:.4; }
+@media (max-width:760px){ .burst { display:none; } }
