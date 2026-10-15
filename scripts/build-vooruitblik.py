@@ -39,10 +39,12 @@ URL = {
 }
 
 chapters = {c["slug"]: c for c in json.loads((ROOT / "data" / "hoofdstukken.json").read_text(encoding="utf-8"))}
+KLEUREN = ["red", "purple", "yellow", "blue", "mint"]
 CH = []
 for i, slug in enumerate(ORDER, 1):
     c = chapters.pop(slug)
     c["nr"] = i
+    c["kleur"] = KLEUREN[(i - 1) % len(KLEUREN)]   # kleur volgt de volgorde op de site, zodat buren altijd verschillen
     CH.append(c)
 assert not chapters, f"hoofdstukken zonder plek in ORDER: {list(chapters)}"
 
@@ -343,7 +345,9 @@ for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
     hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper", "red": "hero-red", "mint": "hero-mint"}[c["kleur"]]
     hero = (f'<section class="page-hero q {hero_cls}"><div class="wrap">'
-            f'{hero_shapes(hero_cls)}<h1 class="q">{hl(c["vraag"])}</h1>'
+            f'{hero_shapes(hero_cls)}<div class="hero-meta"><span class="tag">Hoofdstuk {c["nr"]:02d} van {len(CH)}</span>'
+            f'<a class="btn btn--line btn--sm" href="../vragen.html">← Alle hoofdstukken</a></div>'
+            f'<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
             f'<img class="orn" src="../assets/3d/{c["thema"]}.png" alt=""></section>')
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
@@ -380,7 +384,8 @@ for i, c in enumerate(CH):
 <section class="section section--tight"><div class="wrap"><nav class="pager" aria-label="Andere hoofdstukken">
   {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag · Hoofdstuk {prev_c["nr"]:02d}</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
   {f'<a class="next" href="{next_c["slug"]}.html"><small>Hoofdstuk {next_c["nr"]:02d} · Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
-</nav></div></section>
+</nav>
+  <p class="pager-all"><a class="btn btn--green" href="../vragen.html">Alle hoofdstukken <span class="arr">→</span></a></p></div></section>
 """
     desc = c["kort"] or f'{c["vraag"]} Een hoofdstuk van {c["boek"]["naam"]} ({c["boek"]["uni"]}) in De Vooruitblik 2027.'
     page(f"hoofdstuk/{c['slug']}.html", c["vraag"], desc[:200], body, base="../", current="vragen.html")
