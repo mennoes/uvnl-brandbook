@@ -125,3 +125,9 @@
 .about2 .a-stat { min-height:200px; padding:30px 34px 32px; }
 .about2 .a-stat .l { font-size:16px; }
 @media (max-width:560px){ .about2 .a-stats { grid-template-columns:1fr; } }
+
+/* Tone of voice-regels: grotere kaarten en tekst */
+.about2 .a-stem { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:22px; }
+.about2 .a-stem li { padding:28px 32px; min-height:150px; font-size:clamp(19px,1.9vw,24px); line-height:1.35; border-radius:var(--r-xl); display:block; }
+.about2 .a-stem li b { font-size:1.1em; }
+@media (max-width:560px){ .about2 .a-stem { grid-template-columns:1fr; } .about2 .a-stem li { min-height:0; padding:22px; } }
