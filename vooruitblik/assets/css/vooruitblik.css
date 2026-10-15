@@ -73,13 +73,13 @@ p { margin:0 0 1em; }
 /* ── hero ───────────────────────────────────────────────── */
 .hero { position:relative; isolation:isolate; overflow:hidden; background:var(--green); color:var(--paper); border-radius:0 0 var(--r-l) var(--r-l); padding:clamp(40px,7vw,90px) 0 clamp(56px,8vw,110px); }
 .hero .kicker { color:var(--purple); margin:0 0 clamp(18px,3vw,34px); }
-.vb-title { font-family:var(--font-sans); font-weight:700; text-transform:uppercase; color:var(--purple); line-height:.86; letter-spacing:-.025em; font-size:min(15.5vw,260px); margin:0; }
+.vb-title { font-family:var(--font-sans); font-weight:700; text-transform:uppercase; color:var(--purple); line-height:.86; letter-spacing:-.025em; font-size:min(11.6vw,196px); margin:0; }
 .vb-title span { display:block; white-space:nowrap; }
 .vb-title .l1 { font-family:var(--font-serif); font-style:italic; font-weight:700; text-transform:uppercase; letter-spacing:0; font-size:.27em; line-height:1; margin:0 0 .1em .05em; }
 .vb-title .l2 { margin-left:.12em; }
 .vb-title .l3 { margin-left:.58em; }
 /* de twee O's zijn echte letters; het gat in de O is het oog, met een pupil die meekijkt */
-.vb-title .o { position:relative; display:inline-block; color:var(--paper); }
+.vb-title .o { position:relative; display:inline-block; color:var(--pink); }
 .vb-title .o::after { content:""; position:absolute; left:50%; top:calc(50% - .108em); width:.2em; height:.2em; border-radius:50%; background:var(--purple); transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)); transition:transform .14s ease-out; }
 .vb-title .o.blink::after { animation:blink .22s ease-in-out; }
 @keyframes blink { 50% { transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)) scaleY(.08); } }
