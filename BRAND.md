@@ -65,5 +65,16 @@ Redactioneel en eerlijk — geen gladde SaaS-stockbeelden.
 spark) als emotionele grammatica — herkleurbare ornamenten, 8–20° gedraaid.
 Geen Unicode-emoji.
 
+## Campagnes
+Campagnes zijn geen losse merken: ze erven kleuren, typografie en tone of voice
+en krijgen een eigen logo en beeldtaal.
+
+**De Vooruitblik 2027** (Universiteit van Vlaanderen, boek van Pelckmans,
+verschijnt 15 november 2026): 23 vragen, 23 proffen, 5 Vlaamse universiteiten.
+Logo in Electric Purple op donker (Varsity Green, Ballpoint of Electric Blue),
+concentrische vlakken en de U in perspectief als beeld, 3D-elementen per
+vakgebied, e-mailbanners. Zie https://mennoes.github.io/uvnl-brandbook/pages/campagnes.html
+en de campagnesite in `vooruitblik/`.
+
 ---
 © 2026 Universiteit van Nederland · Vragen: info@studioyoko.nl
