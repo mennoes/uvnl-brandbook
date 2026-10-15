@@ -20,15 +20,11 @@
 .sh-ring { background:transparent; border:.2em solid var(--c); border-radius:50%; font-size:calc(var(--s) * .5); box-sizing:border-box; border-width:calc(var(--s) * .16); }
 .hero .shapes,.page-hero .shapes { z-index:-1; }
 
-/* ── woorden op kleurblokken ────────────────────────────── */
-.q { line-height:1.12 !important; }
-.q .w { display:inline-block; margin:.05em .04em; transform:rotate(var(--tilt,-1.4deg)); }
-.q .w:nth-child(even) { --tilt:1.2deg; }
-.q .w:nth-child(3n) { --tilt:-.6deg; }
-.q .w > span { display:inline-block; background:var(--green); color:var(--paper); padding:.02em .15em .07em; border-radius:.13em; }
-.hero-green .q .w > span { background:var(--purple); color:var(--green); }
-.hero-blue .q .w > span { background:var(--paper); color:var(--green); }
-.hero-paper .q .w > span { color:var(--purple); }
+/* ── koppen als gewone tekst ────────────────────────────── */
+.q { line-height:.98 !important; }
+.q .w { display:inline-block; }
+.q .w > span { display:inline-block; color:var(--green); }
+.hero-green .q .w > span { color:var(--paper); }
 .qm { display:inline-block; transform-origin:50% 80%; }
 
 /* ── serif-ondertitel en krabbel onder koppen ───────────── */
