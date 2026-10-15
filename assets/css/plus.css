@@ -223,3 +223,68 @@
 
 /* Sectiekoppen op de inhoudspagina's: groter, in de huisstijl-koptaal */
 .index-col h2 { font-family:var(--font-display) !important; font-size:clamp(30px,4vw,52px) !important; letter-spacing:-.015em !important; line-height:.92 !important; color:var(--uvnl-green) !important; text-transform:uppercase; }
+
+/* vijf kaarten: 3 + 2 */
+.hp-cards { grid-template-columns:repeat(6,1fr); }
+.hp-card { grid-column:span 2; }
+.hp-card:nth-child(n+4) { grid-column:span 3; }
+@media (max-width:760px){ .hp-cards { grid-template-columns:repeat(2,1fr); } .hp-card, .hp-card:nth-child(n+4) { grid-column:span 1; } .hp-card:last-child { grid-column:span 2; } }
+@media (max-width:440px){ .hp-cards { grid-template-columns:1fr; } .hp-card, .hp-card:last-child { grid-column:span 1; } }
+
+/* ══ Inhoudspagina's: meer kleur, vlakken en kopteksten ══ */
+.about2 h2 { font-size:clamp(36px,5.4vw,72px) !important; line-height:.9 !important; letter-spacing:-.02em !important; color:var(--uvnl-green) !important; }
+.about2 .a-block--green { border-radius:var(--r-l); padding:clamp(32px,5vw,64px); }
+.about2 .a-block .a-big { font-size:clamp(24px,3.2vw,42px); line-height:1.2; color:var(--uvnl-purple); }
+.about2 .a-kicker { font-family:"Tiempos Text",Georgia,serif; font-style:italic; font-weight:400; text-transform:none; letter-spacing:0; font-size:24px; color:var(--uvnl-paper); }
+/* Wat we doen / Voor wie als gekleurde vlakken */
+.about2 .a-two { border-radius:var(--r-l); padding:clamp(28px,4.5vw,56px); grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); align-items:center; }
+.about2 #wat-we-doen { background:var(--uvnl-purple); }
+.about2 #voor-wie { background:var(--uvnl-pink); }
+.about2 .a-two p { color:var(--uvnl-green); font-size:clamp(17px,1.6vw,21px); }
+/* Cijfers */
+.about2 .a-stat { border:0; border-radius:var(--r-l); padding:26px 24px 28px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between; }
+.about2 .a-stat .n { font-size:clamp(44px,5vw,72px); color:var(--uvnl-green); }
+.about2 .a-stat .l { color:inherit; opacity:.85; }
+.about2 .a-stats .a-stat:nth-child(1) { background:var(--uvnl-green); color:var(--uvnl-paper); } .about2 .a-stats .a-stat:nth-child(1) .n { color:var(--uvnl-purple); }
+.about2 .a-stats .a-stat:nth-child(2) { background:var(--uvnl-yellow); color:var(--uvnl-green); } .about2 .a-stats .a-stat:nth-child(2) .n { color:var(--uvnl-green); }
+.about2 .a-stats .a-stat:nth-child(3) { background:var(--uvnl-blue); color:var(--uvnl-green); } .about2 .a-stats .a-stat:nth-child(3) .n { color:var(--uvnl-green); }
+.about2 .a-stats .a-stat:nth-child(4) { background:var(--uvnl-pink); color:var(--uvnl-green); } .about2 .a-stats .a-stat:nth-child(4) .n { color:var(--uvnl-green); }
+.about2 .a-stats .a-stat:nth-child(5) { background:var(--uvnl-purple-deep); color:var(--uvnl-paper); } .about2 .a-stats .a-stat:nth-child(5) .n { color:var(--uvnl-purple); }
+/* Persoonlijkheid */
+.about2 .a-sub { font-size:clamp(18px,1.6vw,22px); }
+.about2 .a-trait { border:0; border-radius:var(--r-l); padding:26px; min-height:180px; }
+.about2 .a-trait b { font-size:clamp(26px,2.6vw,34px); line-height:.95; margin-bottom:12px; }
+.about2 .a-trait p { color:inherit; opacity:.85; font-size:15px; }
+.about2 .a-traits .a-trait:nth-child(1) { background:var(--uvnl-purple); color:var(--uvnl-green); }
+.about2 .a-traits .a-trait:nth-child(2) { background:var(--uvnl-green); color:var(--uvnl-paper); } .about2 .a-traits .a-trait:nth-child(2) b { color:var(--uvnl-purple); }
+.about2 .a-traits .a-trait:nth-child(3) { background:var(--uvnl-pink); color:var(--uvnl-green); }
+.about2 .a-traits .a-trait:nth-child(4) { background:var(--uvnl-yellow); color:var(--uvnl-green); }
+.about2 .a-trait:nth-child(2n) { transform:rotate(1deg); } .about2 .a-trait:nth-child(2n+1) { transform:rotate(-1deg); }
+/* Tone of voice */
+#tone .vs-table td { font-size:17px; padding:16px 20px; border-radius:var(--r-m,24px) !important; }
+#tone .vs-table td.yes { background:var(--uvnl-green) !important; color:var(--uvnl-paper) !important; font-weight:700; }
+#tone .vs-table td:last-child { background:var(--uvnl-pink) !important; color:#5c1d17; }
+#tone .vs-table th { font-family:var(--font-display); font-size:28px !important; text-transform:uppercase; color:var(--uvnl-green); letter-spacing:-.01em; }
+.about2 .a-stem li { border-left:0; background:var(--uvnl-purple); color:var(--uvnl-green); border-radius:var(--r-m,24px); padding:14px 18px; font-size:16px; }
+.about2 .a-stem li:nth-child(2) { background:var(--uvnl-yellow); } .about2 .a-stem li:nth-child(3) { background:var(--uvnl-blue); } .about2 .a-stem li:nth-child(4) { background:var(--uvnl-pink); }
+.about2 .a-contact { background:var(--uvnl-purple-deep); border-radius:var(--r-l); }
+.about2 .a-contact h2 { color:var(--uvnl-purple) !important; }
+.about2 .a-contact .btn { background:var(--uvnl-purple); color:var(--uvnl-green); }
+
+/* Fotografie: wel/niet als kleurvlakken */
+.wn { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.wn li { border-radius:var(--r-l); padding:26px; font-size:17px; line-height:1.45; margin:0; }
+.wn li b { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(30px,3vw,42px); line-height:.95; margin-bottom:8px; }
+.wn li.ok { background:var(--uvnl-green); color:var(--uvnl-paper); } .wn li.ok:nth-child(2) { background:var(--uvnl-purple); color:var(--uvnl-green); }
+.wn li.ok b { color:var(--uvnl-purple); } .wn li.ok:nth-child(2) b { color:var(--uvnl-green); }
+.wn li.no { background:var(--uvnl-red); color:var(--uvnl-purple-deep); } .wn li.no:nth-child(4) { background:var(--uvnl-yellow); color:var(--uvnl-green); }
+
+/* Downloadpagina: gekleurde packs */
+.dl-packs .pack:nth-child(2) { background:var(--uvnl-purple); } .dl-packs .pack:nth-child(2) .t, .dl-packs .pack:nth-child(2) .t::after { color:var(--uvnl-green); } .dl-packs .pack:nth-child(2) .d { color:#3a2b63; }
+.dl-packs .pack { border-radius:var(--r-l); padding:30px; } .dl-packs .pack .t { font-size:clamp(28px,3vw,40px); }
+.dlc { border:0 !important; border-radius:var(--r-l) !important; }
+.dl-contents .dlc:nth-child(4n+1) { background:var(--uvnl-pink); } .dl-contents .dlc:nth-child(4n+2) { background:var(--uvnl-purple); } .dl-contents .dlc:nth-child(4n+3) { background:var(--uvnl-yellow); } .dl-contents .dlc:nth-child(4n) { background:var(--uvnl-blue); }
+.dlc .h b, .dlc li { color:var(--uvnl-green) !important; } .dlc .h .count, .dlc .fmt, .dlc li::before { color:var(--uvnl-green) !important; }
+
+/* Logo-, kleur- en beeldkaarten wat ronder en met een kleurrand bij hover */
+.lg-card, .gallery > * { border-radius:var(--r-l) !important; }

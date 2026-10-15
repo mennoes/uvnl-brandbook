@@ -2,8 +2,8 @@
 
 Extern merkboek van Universiteit van Nederland voor partners.
 
-De homepage en hoofdnavigatie hebben zes directe ingangen: Het merk,
-Huisstijl, Fotografie, Voorbeelden, Campagnes en Partnerkit. Huisstijl bevat
+De homepage en hoofdnavigatie hebben vijf directe ingangen: Het merk,
+Huisstijl, Fotografie, Voorbeelden en Partnerkit. Huisstijl bevat
 Logo's, Kleuren en Typografie (subnavigatie op die drie pagina's). Het merk wisselt automatisch
 op basis van het IP-land naar Universiteit van Vlaanderen voor bezoekers uit
 België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
@@ -12,15 +12,14 @@ België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
 
 ## Pagina's
 
-- `index.html` — homepage: hero, ingangen, merk in één oogopslag, campagne-spotlight, formats en partnerkit
+- `index.html` — homepage: hero, ingangen, merk in één oogopslag, formats en partnerkit
 - `pages/about.html` — merk, missie, persoonlijkheid en tone of voice
 - `pages/logos.html` — Nederlandse en Vlaamse logo's
 - `pages/colors.html` — kleuren (onderdeel van Huisstijl)
 - `pages/typography.html` — typografie zonder fontdownloads (onderdeel van Huisstijl)
-- `pages/campagnes.html` — De Vooruitblik 2027: logo, beeld, 3D-elementen, boek, banners en partners
 - `pages/photography.html` — aparte Nederlandse en Vlaamse beeldbanken
 - `pages/examples.html` — toepassingen, voorbeelden en formats
-- `assets/css/plus.css` — stijlen voor subnav, homepage-secties en campagnepagina
+- `assets/css/plus.css` — stijlen voor subnav, homepage-secties
 - `pages/download.html` — partnerkit, logo's en fotografie per merk
 
 ## De Vooruitblik 2027 (Universiteit van Vlaanderen)
