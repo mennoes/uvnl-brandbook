@@ -123,7 +123,9 @@ p { margin:0 0 1em; }
 .card:hover { transform:translateY(-5px) rotate(-.4deg); box-shadow:0 18px 36px rgba(27,7,87,.16); }
 .card .nr { align-self:flex-start; font-size:13px; font-weight:700; padding:6px 12px; border-radius:var(--r-s); background:rgba(255,255,255,.7); }
 .card h3 { font-size:clamp(27px,2.6vw,34px); margin-top:auto; padding-top:150px; line-height:.98; color:inherit; position:relative; z-index:1; }
-.card .who { margin-top:14px; font-size:14px; font-weight:700; position:relative; z-index:1; }
+.card .who { margin-top:14px; font-size:14px; font-weight:700; position:relative; z-index:1; display:flex; align-items:center; gap:10px; }
+.card .mini { position:static; right:auto; top:auto; max-width:none; transform:none !important; translate:none !important; flex:none; width:36px; height:36px; border-radius:50%; object-fit:cover; object-position:50% 28%; background:var(--purple); display:block; }
+.card .mini--init { display:grid; place-items:center; background:var(--green); color:var(--purple); font:700 14px/1 var(--font-display); letter-spacing:.02em; }
 .card .who span { font-weight:400; opacity:.85; }
 .card img { position:absolute; right:-14px; top:34px; width:62%; max-width:190px; z-index:0; transform:rotate(var(--r,8deg)); transition:transform .4s var(--ease); }
 .card:hover img { transform:rotate(calc(var(--r,8deg) * -1)) scale(1.06); }

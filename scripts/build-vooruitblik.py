@@ -82,6 +82,13 @@ def person(p, role):
             f'<div class="meta">{E(meta)}</div></div></div>')
 
 
+def mini(p, base):
+    """Klein rond portret naast de naam op een kaart; zonder foto de initialen."""
+    if p.get("foto"):
+        return f'<img class="mini" src="{base}assets/foto/{p["foto"]}" alt="" width="36" height="36" loading="lazy">'
+    return f'<span class="mini mini--init" aria-hidden="true">{E(initials(p["naam"]))}</span>'
+
+
 def card(c, base):
     return (f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
@@ -89,7 +96,7 @@ def card(c, base):
             f'<span class="nr">Hoofdstuk {c["nr"]:02d}</span>'
             f'<img src="{base}assets/3d/{c["thema"]}.png" alt="" loading="lazy" style="--r:{(c["nr"] * 7) % 20 - 8}deg">'
             f'<h3>{E(c["vraag"])}</h3>'
-            f'<div class="who">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></div></a>')
+            f'<div class="who">{mini(c["boek"], base)}<span class="who-t">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></span></div></a>')
 
 
 def hl(text):
