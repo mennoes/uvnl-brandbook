@@ -12,7 +12,9 @@ create table if not exists public.comments (
   oy         real,
   xp         real,
   yp         real,
-  parent_id  bigint               references public.comments (id) on delete cascade
+  parent_id  bigint               references public.comments (id) on delete cascade,
+  ctx        text                 check (ctx is null or char_length(ctx) <= 200),   -- tekst bij de pin, voor de redactie
+  done       boolean     not null default false                                   -- verwerkt door de redactie
 );
 
 -- Had je het eerdere schema al uitgevoerd? Voer dan deze regels uit om pins toe te voegen:
@@ -22,16 +24,22 @@ alter table public.comments add column if not exists oy real;
 alter table public.comments add column if not exists xp real;
 alter table public.comments add column if not exists yp real;
 alter table public.comments add column if not exists parent_id bigint references public.comments (id) on delete cascade;
+alter table public.comments add column if not exists ctx text check (ctx is null or char_length(ctx) <= 200);
+alter table public.comments add column if not exists done boolean not null default false;
 
 create index if not exists comments_page_created_idx on public.comments (page, created_at desc);
 
 -- Row Level Security: bezoekers (rol "anon") mogen alleen lezen en toevoegen.
--- Wijzigen en verwijderen kan niet via de website; dat doe je zelf in het Supabase-dashboard.
+-- Tekst wijzigen en verwijderen kan niet via de website; dat doe je zelf in het Supabase-dashboard.
 alter table public.comments enable row level security;
 
 drop policy if exists "iedereen mag lezen"    on public.comments;
 drop policy if exists "iedereen mag plaatsen" on public.comments;
 create policy "iedereen mag lezen"    on public.comments for select to anon using (true);
 create policy "iedereen mag plaatsen" on public.comments for insert to anon with check (true);
+drop policy if exists "iedereen mag afronden" on public.comments;
+create policy "iedereen mag afronden" on public.comments for update to anon using (true) with check (true);
 
 grant select, insert on public.comments to anon;
+-- Wijzigen kan alleen voor de kolom "done" (verwerkt-vinkje); tekst en namen zijn dus niet te wijzigen.
+grant update (done) on public.comments to anon;

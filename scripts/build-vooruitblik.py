@@ -235,11 +235,20 @@ home = f"""
 {tapes}
 
 <section class="section">
-  <div class="wrap intro-grid">
-    <p class="lead reveal">Geen voorspellingen. Wel context, inzichten en kennis om 2027 beter te begrijpen.</p>
-    <div class="text reveal">
-      <p>Hoe verandert ChatGPT ons denken? Zijn e-steps na de nieuwe verkeersregels echt veiliger? Kunnen we ziektes sneller opsporen via je stoelgang? Van ruimtevaart tot relaties, van gezondheid tot mobiliteit: drieëntwintig vragen, drieëntwintig wetenschappers.</p>
-      <p>Elk hoofdstuk is een toegankelijk essay van een professor. In de videopodcast schuift telkens een tweede expert aan die het onderwerp vanuit een andere hoek bekijkt. Samen helpen ze je begrijpen wat er in 2027 op je afkomt.</p>
+  <div class="wrap">
+    <div class="statement reveal">
+      <img class="st-obj" src="assets/3d/zon.png" alt="" data-speed="-0.05">
+      <h2 class="st-h">Geen glazen bol</h2>
+      <p class="st-sub">Geen voorspellingen. Wel context, inzichten en kennis om 2027 beter te begrijpen.</p>
+      <p class="st-cta"><em>Benieuwd hoe het boek werkt?</em> <a class="btn btn--line" href="boek.html">Over het boek <span class="arr">→</span></a></p>
+    </div>
+    <div class="cascade">
+      <div class="cas cas-elec reveal"><div class="cas-t"><b class="cas-n"><span data-count="23">23</span> vragen</b><p>Van ruimtevaart tot relaties, van gezondheid tot mobiliteit: elk hoofdstuk vertrekt vanuit een concrete vraag die laat zien hoe wetenschap helpt begrijpen wat er in 2027 op ons afkomt.</p></div>
+        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/informatie.png" alt="" loading="lazy"></div></div>
+      <div class="cas cas-blue reveal"><div class="cas-t"><b class="cas-n"><span data-count="46">46</span> proffen</b><p>Per hoofdstuk schrijft een professor een toegankelijk essay. In de videopodcast schuift een tweede expert aan die het onderwerp vanuit een andere invalshoek bekijkt.</p></div>
+        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/techniek.png" alt="" loading="lazy"></div></div>
+      <div class="cas cas-red reveal"><div class="cas-t"><b class="cas-n"><span data-count="5">5</span> universiteiten</b><p>UAntwerpen, UHasselt, KU Leuven, UGent en de VUB leveren de experten en dragen bij aan de wetenschappelijke kwaliteit.</p></div>
+        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/recht-bestuur.png" alt="" loading="lazy"></div></div>
     </div>
   </div>
 </section>
@@ -338,10 +347,10 @@ for i, c in enumerate(CH):
     <div class="todo"><strong>Biografieën volgen.</strong>De korte biografie van de auteur staat in het boek. Op deze pagina komen ze binnenkort ook online.</div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  <div class="dark" style="padding:clamp(26px,5vw,56px)"><div class="buy">
-    <img src="../assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy">
-    <div><p class="kicker" style="color:var(--purple)">Lees het volledige essay</p><h2 style="font-size:clamp(36px,5vw,64px)">Dit hoofdstuk zit in het boek</h2><p style="max-width:44ch;margin-top:14px">Drieëntwintig essays, weetjes, anekdotes en een filmtip per hoofdstuk. Verschijnt op 15 november 2026.</p>
-    <div class="stack"><a class="btn btn--purple" href="../boek.html">Over het boek <span class="arr">→</span></a></div></div>
+  <div class="elec"><div class="buy">
+    <div class="buy-t"><p class="serif-lead">Lees het volledige essay</p><h2>Dit hoofdstuk zit in het boek</h2><p>Drieëntwintig essays, weetjes, anekdotes en een filmtip per hoofdstuk. Verschijnt op 15 november 2026.</p>
+    <p class="cta-row"><em>Wil je meer lezen?</em> <a class="btn btn--white" href="../boek.html">Over het boek <span class="arr">→</span></a></p></div>
+    <div class="inset inset--book"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="../assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy"></div>
   </div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap"><nav class="pager" aria-label="Andere hoofdstukken">
@@ -357,11 +366,11 @@ rows = "".join(f'<li style="border-top:1.5px solid rgba(0,75,54,.25);padding:14p
 boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
                "Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
-  <div class="dark" style="padding:clamp(26px,5vw,64px)"><div class="buy">
-    <img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290">
-    <div><p class="kicker" style="color:var(--purple)">Verschijnt 15 november 2026</p><div class="price">€24,50</div>
-      <p style="max-width:46ch;margin-top:16px">Officiële lancering op Dag van de Wetenschap, 15 november, op Boektopia in Antwerp Expo.</p>
-      <div class="stack"><a class="btn btn--purple" href="{URL["standaard"]}" rel="noopener">Bestel bij Standaard Boekhandel <span class="arr">→</span></a><a class="btn btn--line" href="{URL["pelckmans"]}" rel="noopener" style="color:var(--paper)">Bij Pelckmans</a></div></div>
+  <div class="elec"><div class="buy">
+    <div class="buy-t"><p class="serif-lead">Verschijnt 15 november 2026</p><div class="price">€24,50</div>
+      <p>Officiële lancering op Dag van de Wetenschap, 15 november, op Boektopia in Antwerp Expo.</p>
+      <div class="stack"><a class="btn btn--white" href="{URL["standaard"]}" rel="noopener">Bestel bij Standaard Boekhandel <span class="arr">→</span></a><a class="btn btn--line-w" href="{URL["pelckmans"]}" rel="noopener">Bij Pelckmans</a></div></div>
+    <div class="inset inset--book"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy"></div>
   </div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
