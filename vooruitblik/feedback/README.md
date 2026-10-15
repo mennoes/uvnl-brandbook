@@ -1,4 +1,19 @@
-# Feedback & reacties
+# Feedback & reacties (voor de redactie)
+
+De feedbackfunctie is bedoeld voor de **redactie**, om opmerkingen te verzamelen en daarna wijzigingen door te voeren.
+Gewone bezoekers zien de knop niet.
+
+- **Aanzetten voor jezelf:** open de site één keer met `?redactie` achter de URL, bijvoorbeeld
+  `…/vooruitblik/?redactie`. Je browser onthoudt dit. Met `?redactie=uit` (of de knop *Redactiemodus uitzetten*
+  in het paneel) zet je het weer uit. Deel deze link met de redactie.
+- **Verwerkt:** markeer een reactie of pin als *verwerkt* zodra de wijziging is doorgevoerd. Verwerkte items
+  verdwijnen uit de lijst (vinkje *Verwerkt* toont ze weer).
+- **Kopieer open feedback:** zet alle openstaande feedback als lijst op je klembord (pagina, plek, tekst
+  erbij en opmerking), handig om door te geven voor de volgende ronde wijzigingen.
+- **Bij livegang:** zet `enabled: false` in `assets/js/feedback-config.js`.
+
+Dit is geen beveiliging: wie de link kent kan de redactiemodus aanzetten. Zet er geen vertrouwelijke
+informatie in.
 
 Rechtsonder op elke pagina staat een knop **Feedback**. Bezoekers kunnen:
 - een **pin** plaatsen op een exacte plek (zoals comments in Figma): knop *Pin plaatsen*, klikken op de

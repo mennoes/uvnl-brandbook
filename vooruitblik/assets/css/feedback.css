@@ -77,3 +77,14 @@ html.fb-pinning [data-fb], html.fb-pinning [data-fb] * { cursor:pointer !importa
 .fb-go { cursor:pointer; border-radius:var(--r-s); margin:-6px; padding:6px; }
 .fb-go:hover { background:var(--paper-mid); }
 @media print { .fb-pins,.fb-pop,.fb-hint { display:none !important; } }
+
+/* ── redactie: verwerkt, kopiëren, uitzetten ───────────── */
+.fb-tools2 { padding-top:0; }
+.fb-copy,.fb-done { border:2px solid var(--green); border-radius:var(--r-pill); background:transparent; color:var(--green); font:700 13px/1 var(--font-sans); padding:8px 14px; cursor:pointer; }
+.fb-copy:hover,.fb-done:hover { background:var(--green); color:var(--purple); }
+.fb-exit { border:0; background:none; color:var(--green); font:700 13px/1 var(--font-sans); text-decoration:underline; cursor:pointer; padding:6px 0; }
+.fb-done { margin-top:8px; padding:6px 12px; font-size:12.5px; }
+.fb-done-pop { margin:0 18px 8px; }
+.fb-item.is-done { opacity:.6; }
+.fb-tag-done { background:var(--green-bright,#00805C); color:#fff; }
+.fb-pin.done { background:var(--paper-mid); color:var(--green); opacity:.85; }

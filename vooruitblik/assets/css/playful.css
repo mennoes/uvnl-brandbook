@@ -7,7 +7,7 @@
    Bewegingen staan in `prefers-reduced-motion: no-preference`.
    ══════════════════════════════════════════════════════════════ */
 
-:root { --spring:cubic-bezier(.34,1.56,.64,1); --ballpoint:#1B0757; }
+:root { --spring:cubic-bezier(.34,1.56,.64,1); --ballpoint:#1B0757; --green-elec:#00A879; --green-deep:#00805C; --r-m:32px; --r-l:48px; }
 
 /* ── basisvormen ────────────────────────────────────────── */
 .shapes { position:absolute; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
@@ -147,3 +147,59 @@
   .burst-star,.sh,.vb-title .pow,.vb-title .spk,.qm { animation:none; }
 }
 @media (max-width:640px){ .page-hero .orn[src$=".webp"] { display:none; } }
+
+/* ══ composities uit de huisstijl-site: grote afrondingen, felgroene kaarten, ingezette panelen ══ */
+.btn--white { background:#fff; color:var(--green); }
+.btn--white:hover { background:var(--paper); color:var(--green); }
+.btn--line-w { border-color:#fff; color:#fff; background:transparent; }
+.btn--line-w:hover { background:#fff; color:var(--green); }
+.serif-lead,.st-cta em,.cta-row em { font-family:var(--font-serif); font-style:italic; font-weight:400; }
+
+/* stelling in zware versalen met een 3D-object dat over de rand valt */
+.statement { position:relative; background:var(--white); border-radius:var(--r-l); padding:clamp(48px,8vw,112px) clamp(22px,6vw,90px); text-align:center; }
+.st-h { font-size:clamp(56px,11.5vw,170px); line-height:.86; letter-spacing:-.02em; margin-bottom:clamp(18px,2.4vw,30px); }
+.st-sub { font-size:clamp(20px,2.4vw,30px); font-weight:700; line-height:1.2; max-width:28ch; margin:0 auto clamp(22px,3vw,34px); color:var(--green); }
+.st-cta { display:flex; flex-wrap:wrap; gap:14px 20px; align-items:center; justify-content:center; margin:0; }
+.st-cta em { font-size:clamp(20px,2vw,26px); color:var(--green); }
+.st-obj { position:absolute; width:clamp(96px,17vw,250px); right:-2%; top:-9%; transform:translate3d(0,var(--py,0px),0) rotate(12deg); filter:drop-shadow(0 20px 26px rgba(0,40,28,.25)); pointer-events:none; }
+
+/* trapsgewijze kaarten met groot cijfer en ingezet paneel */
+.cascade { display:grid; gap:clamp(14px,2vw,24px); margin-top:clamp(14px,2vw,24px); }
+.cas { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.6fr); gap:clamp(18px,4vw,56px); align-items:center; width:min(100%,88%); padding:clamp(22px,3.4vw,42px) clamp(22px,3.4vw,42px) clamp(22px,3.4vw,42px) clamp(26px,4.6vw,70px); border-radius:var(--r-l); color:#fff; }
+.cas:nth-child(2) { margin-inline:auto; } .cas:nth-child(3) { margin-left:auto; }
+.cas-elec { background:var(--green-elec); } .cas-blue { background:var(--blue); } .cas-red { background:var(--red); }
+.cas-n { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(46px,7.4vw,104px); line-height:.88; letter-spacing:-.01em; }
+.cas p { margin:16px 0 0; font-size:clamp(18px,1.7vw,22px); font-weight:700; line-height:1.3; max-width:36ch; }
+.inset { position:relative; aspect-ratio:1; border-radius:var(--r-m); display:grid; place-items:center; overflow:hidden; background:rgba(0,0,0,.18); }
+.cas-elec .inset { background:var(--green-deep); } .cas-blue .inset { background:#4650DA; } .cas-red .inset { background:#D9483C; }
+.inset img { position:relative; width:60%; filter:drop-shadow(0 18px 24px rgba(0,0,0,.3)); transform:rotate(-6deg); transition:transform .5s var(--spring); }
+.cas:hover .inset img,.elec:hover .inset img { transform:rotate(4deg) scale(1.06); }
+.snap { position:absolute; width:15%; aspect-ratio:1; background:var(--yellow); clip-path:polygon(0 0,100% 100%,0 100%); }
+.snap.s1 { right:16%; top:10%; transform:rotate(38deg); width:17%; }
+.snap.s2 { right:6%; top:26%; transform:rotate(70deg); width:12%; }
+.snap.s3 { left:9%; bottom:8%; transform:rotate(-30deg); width:19%; }
+@media (max-width:760px){ .cas { width:100%; grid-template-columns:1fr; padding:26px; } .cas:nth-child(n) { margin-inline:0; } .inset { aspect-ratio:16/10; } .inset img { width:42%; } }
+
+/* bestelblok als felgroene kaart met ingezet paneel */
+.elec { background:var(--green-elec); color:#fff; border-radius:var(--r-l); padding:clamp(24px,4.4vw,56px); }
+.elec .buy { grid-template-columns:minmax(0,1fr) minmax(0,400px); gap:clamp(22px,4vw,60px); align-items:center; }
+.elec .buy-t h2 { color:#fff; font-size:clamp(40px,5.8vw,84px); margin:6px 0 16px; }
+.elec .buy-t p { font-size:clamp(18px,1.6vw,21px); font-weight:700; line-height:1.3; max-width:38ch; }
+.elec .serif-lead { font-size:clamp(22px,2.4vw,30px); color:#00291E; margin:0 0 6px; }
+.elec .price { color:#fff; }
+.cta-row { display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; margin-top:22px !important; }
+.cta-row em { font-size:22px; color:#00291E; }
+.elec .inset { aspect-ratio:4/5; background:var(--green-deep); }
+.elec .inset img { width:56%; transform:rotate(4deg); }
+@media (max-width:760px){ .elec .buy { grid-template-columns:1fr; } .elec .inset { aspect-ratio:1; max-width:340px; } }
+.cas-t { min-width:0; }
+@media (max-width:760px){ .cas-n { font-size:clamp(32px,10.4vw,64px); overflow-wrap:anywhere; } }
+
+/* robuust op smalle schermen: kolommen mogen krimpen en lange woorden breken af */
+@media (max-width:860px){ .two,.three,.intro-grid,.buy { grid-template-columns:minmax(0,1fr); } }
+.panel,.prose,.person,.cas,.elec,.statement { overflow-wrap:break-word; }
+.person > div:last-child { min-width:0; }
+.person .meta,.person .name { overflow-wrap:anywhere; }
+.cas .inset img { width:84%; }
+.elec .inset img { width:68%; }
+@media (max-width:760px){ .cas .inset img { width:50%; } }

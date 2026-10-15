@@ -2,6 +2,7 @@
  * - Algemene reactie per pagina, of een pin op een precieze plek; op een pin kun je antwoorden.
  * - Een pin hangt aan het element waarop is geklikt (positie binnen dat element), met de
  *   paginapositie als reserve. Daardoor blijft hij op de juiste plek bij ander schermformaat.
+ * - Alleen voor de redactie: de knop verschijnt pas na ?redactie in de URL (blijft onthouden; ?redactie=uit zet hem weer uit).
  * - Opslag: Supabase (REST) als die is ingesteld, anders localStorage (voorbeeldmodus).
  * - Reacties worden altijd als tekst getoond (nooit als HTML).
  */
@@ -10,9 +11,15 @@
   if (cfg.enabled === false) return;
   var d = document, de = d.documentElement;
   var remote = !!(cfg.supabaseUrl && cfg.supabaseKey);
+  var LS_ED = 'vb-redactie', LS_DONE = 'vb-feedback-done';
   var LS = 'vb-feedback-v2', LS_NAME = 'vb-feedback-name', LS_LAST = 'vb-feedback-last', LS_PINS = 'vb-feedback-pins';
   var MAX = 1000, MIN_GAP = 8000;
-  var FIELDS = 'id,page,name,body,created_at,sel,ox,oy,xp,yp,parent_id';
+  var FIELDS = 'id,page,name,body,created_at,sel,ox,oy,xp,yp,parent_id,ctx,done';
+  try {
+    var em = /[?&](?:redactie|feedback)(?:=([^&#]*))?/.exec(location.search);
+    if (em) { if (em[1] === 'uit' || em[1] === '0') localStorage.removeItem(LS_ED); else localStorage.setItem(LS_ED, '1'); }
+  } catch (e) { /* geen opslag beschikbaar */ }
+  if (cfg.editorOnly !== false && lsGet(LS_ED) !== '1') return;
 
   /* ── opslaghulpjes (localStorage kan ontbreken of geblokkeerd zijn) ── */
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -60,6 +67,18 @@
     return Promise.resolve(row);
   }
 
+  function patch(c, fields) {
+    if (remote) {
+      return fetch(cfg.supabaseUrl.replace(/\/+$/, '') + '/rest/v1/' + (cfg.table || 'comments') + '?id=eq.' + encodeURIComponent(c.id),
+        { method: 'PATCH', headers: headers({ Prefer: 'return=minimal' }), body: JSON.stringify(fields) }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
+    }
+    var all = [];
+    try { all = JSON.parse(lsGet(LS) || '[]'); } catch (e) { all = []; }
+    all.forEach(function (x) { if (x.id == c.id) for (var k in fields) x[k] = fields[k]; });
+    lsSet(LS, JSON.stringify(all));
+    return Promise.resolve();
+  }
+
   /* ── kleine DOM-helper ── */
   function h(tag, attrs, kids) {
     var el = d.createElement(tag);
@@ -82,6 +101,8 @@
   function initials(n) { var w = (n || 'Anoniem').trim().split(/\s+/); return ((w[0][0] || '?') + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase(); }
   function pageLabel(p) { return p === 'home' ? 'Home' : p.replace(/^hoofdstuk\//, 'Hoofdstuk: ').replace(/\.html$/, '').replace(/-/g, ' '); }
   var COLORS = ['purple', 'yellow', 'pink', 'blue'];
+  function rootOf(c, items) { return c.parent_id == null ? c : (items.find(function (x) { return x.id == c.parent_id; }) || c); }
+  function isDone(c, items) { return !!rootOf(c, items).done; }
   function isPin(c) { return c.sel != null || c.xp != null; }
   function inWidget(el) { return !!(el && el.closest && el.closest('[data-fb]')); }
 
@@ -99,7 +120,7 @@
     return 'body > ' + parts.join(' > ');
   }
   function anchorFrom(e) {
-    var el = e.target, r = el.getBoundingClientRect(), out = { xp: +(e.pageX / de.scrollWidth).toFixed(4), yp: Math.round(e.pageY) };
+    var el = e.target, r = el.getBoundingClientRect(), out = { xp: +(e.pageX / de.scrollWidth).toFixed(4), yp: Math.round(e.pageY), ctx: ((el.innerText || el.getAttribute('alt') || '').replace(/\s+/g, ' ').trim().slice(0, 160)) || null };
     if (r.width > 0 && r.height > 0) {
       out.sel = pathFor(el);
       out.ox = +((e.clientX - r.left) / r.width).toFixed(4);
@@ -120,7 +141,7 @@
   }
 
   /* ── toestand ── */
-  var scope = 'page', timer = null, open = false, pinning = false, showPins = lsGet(LS_PINS) !== '0';
+  var scope = 'page', timer = null, open = false, pinning = false, showPins = lsGet(LS_PINS) !== '0', showDone = lsGet(LS_DONE) === '1';
   var pageItems = [], allItems = [], activePin = null, draft = null;
 
   /* ── interface: knop en paneel ── */
@@ -131,6 +152,9 @@
   var closeBtn = h('button', { class: 'fb-close', type: 'button', 'aria-label': 'Feedback sluiten', text: '×' });
   var pinBtn = h('button', { class: 'fb-pinbtn', type: 'button', text: 'Pin plaatsen' });
   var pinsChk = h('input', { type: 'checkbox', id: 'fb-showpins' }); pinsChk.checked = showPins;
+  var doneChk = h('input', { type: 'checkbox', id: 'fb-showdone' }); doneChk.checked = showDone;
+  var copyBtn = h('button', { class: 'fb-copy', type: 'button', text: 'Kopieer open feedback' });
+  var exitLink = h('button', { class: 'fb-exit', type: 'button', text: 'Redactiemodus uitzetten' });
   var ul = h('ul', { class: 'fb-list', 'aria-live': 'polite' });
   var nameIn = h('input', { id: 'fb-name', type: 'text', maxlength: '60', autocomplete: 'name', placeholder: 'Je naam (optioneel)' });
   var bodyIn = h('textarea', { id: 'fb-body', maxlength: String(MAX), rows: '3', placeholder: 'Algemene opmerking over deze pagina…', required: '' });
@@ -147,7 +171,8 @@
   var panel = h('aside', { class: 'fb-panel', id: 'fb-panel', role: 'dialog', 'aria-label': 'Feedback op de website', hidden: '', 'data-fb': '' }, [
     h('div', { class: 'fb-head' }, [h('h2', { text: 'Feedback' }), closeBtn]),
     h('div', { class: 'fb-tabs', role: 'group', 'aria-label': 'Bereik' }, [tabPage, tabAll]),
-    h('div', { class: 'fb-tools' }, [pinBtn, h('label', { class: 'fb-chk', for: 'fb-showpins' }, [pinsChk, h('span', { text: 'Pins tonen' })])])
+    h('div', { class: 'fb-tools' }, [pinBtn, h('label', { class: 'fb-chk', for: 'fb-showpins' }, [pinsChk, h('span', { text: 'Pins' })]), h('label', { class: 'fb-chk', for: 'fb-showdone' }, [doneChk, h('span', { text: 'Verwerkt' })])]),
+    h('div', { class: 'fb-tools fb-tools2' }, [copyBtn, exitLink])
   ].concat(notice ? [notice] : []).concat([ul, form]));
   var pinLayer = h('div', { class: 'fb-pins', 'data-fb': '' });
   var hint = h('div', { class: 'fb-hint', role: 'status', 'data-fb': '', hidden: '' }, [h('span', { text: 'Klik op de plek waar je feedback wilt achterlaten' }), h('button', { type: 'button', text: 'Stoppen' })]);
@@ -158,10 +183,11 @@
   function pinNumber(c) { var r = roots(pageItems), i = r.findIndex(function (x) { return x.id == c.id; }); return i + 1; }
 
   function render() {
-    var items = (scope === 'page' ? pageItems : allItems).slice().reverse();
+    var src = scope === 'page' ? pageItems : allItems;
+    var items = src.filter(function (c) { return showDone || !isDone(c, src); }).reverse();
     ul.textContent = '';
     if (!items.length) {
-      ul.appendChild(h('li', { class: 'fb-empty', text: scope === 'page' ? 'Nog geen feedback op deze pagina. Wees de eerste.' : 'Nog geen feedback.' }));
+      ul.appendChild(h('li', { class: 'fb-empty', text: scope === 'page' ? 'Geen openstaande feedback op deze pagina.' : 'Geen openstaande feedback.' }));
       return;
     }
     items.forEach(function (c, i) {
@@ -171,9 +197,13 @@
       if (c.parent_id != null) tags.push(h('span', { class: 'fb-tag', text: 'Antwoord' }));
       if (pinned) tags.push(h('span', { class: 'fb-tag fb-tag-pin', text: onThisPage ? 'Pin ' + pinNumber(c) : 'Pin' }));
       if (scope === 'all') tags.push(h('a', { class: 'fb-page', href: pageHref(c.page), text: pageLabel(c.page) }));
-      var li = h('li', { class: 'fb-item' + (pinned && onThisPage ? ' fb-go' : '') }, [
+      var done = isDone(c, src), isRoot = c.parent_id == null;
+      if (done && isRoot) tags.push(h('span', { class: 'fb-tag fb-tag-done', text: 'Verwerkt' }));
+      var tog = isRoot ? h('button', { class: 'fb-done', type: 'button', text: done ? 'Heropenen' : 'Verwerkt' }) : null;
+      if (tog) tog.addEventListener('click', function (e) { e.stopPropagation(); setDone(c, !done); });
+      var li = h('li', { class: 'fb-item' + (pinned && onThisPage ? ' fb-go' : '') + (done ? ' is-done' : '') }, [
         h('span', { class: 'fb-av fb-' + COLORS[(who.length + i) % 4], 'aria-hidden': 'true', text: initials(who) }),
-        h('div', {}, [h('div', { class: 'fb-meta' }, meta), h('div', { class: 'fb-tags' }, tags), h('p', { class: 'fb-text', text: c.body })])
+        h('div', {}, [h('div', { class: 'fb-meta' }, meta), h('div', { class: 'fb-tags' }, tags), h('p', { class: 'fb-text', text: c.body })].concat(tog ? [tog] : []))
       ]);
       if (pinned && onThisPage) li.addEventListener('click', function (e) { if (e.target.tagName !== 'A') { show(false); goToPin(c); } });
       ul.appendChild(li);
@@ -187,7 +217,7 @@
   function setBadge(n) { badge.textContent = n > 99 ? '99+' : String(n); if (n) badge.removeAttribute('hidden'); else badge.setAttribute('hidden', ''); }
 
   function refreshPage() {
-    return list('page').then(function (items) { pageItems = items; setBadge(items.length); renderPins(); if (scope === 'page') render(); if (activePin) refreshPop(); });
+    return list('page').then(function (items) { pageItems = items; setBadge(items.filter(function (c) { return c.parent_id == null && !c.done; }).length); renderPins(); if (scope === 'page') render(); if (activePin) refreshPop(); });
   }
   function refreshAll() {
     return list('all').then(function (items) { allItems = items; if (scope === 'all') render(); });
@@ -202,8 +232,9 @@
     pinLayer.textContent = '';
     pinLayer.style.display = showPins ? '' : 'none';
     roots(pageItems).forEach(function (c, i) {
+      if (c.done && !showDone) return;
       var p = posOf(c);
-      var b = h('button', { class: 'fb-pin' + (activePin && activePin.id == c.id ? ' on' : ''), type: 'button', 'aria-label': 'Pin ' + (i + 1) + ': ' + c.body.slice(0, 60), text: String(i + 1), 'data-fb': '' });
+      var b = h('button', { class: 'fb-pin' + (c.done ? ' done' : '') + (activePin && activePin.id == c.id ? ' on' : ''), type: 'button', 'aria-label': 'Pin ' + (i + 1) + ': ' + c.body.slice(0, 60), text: String(i + 1), 'data-fb': '' });
       b.style.left = p.x + 'px'; b.style.top = p.y + 'px';
       b.addEventListener('click', function (e) { e.stopPropagation(); openPop(c); });
       pinLayer.appendChild(b);
@@ -268,6 +299,9 @@
         h('div', {}, [h('div', { class: 'fb-meta' }, [h('b', { text: who }), h('span', { text: ' · ' + ago(c.created_at) })]), h('p', { class: 'fb-text', text: c.body })])]));
     });
     pop.appendChild(tl);
+    var dn = h('button', { class: 'fb-done fb-done-pop', type: 'button', text: root.done ? 'Heropenen' : 'Markeer als verwerkt' });
+    dn.addEventListener('click', function () { setDone(root, !root.done).then(function () { if (root.done && !showDone) closePop(); }); });
+    pop.appendChild(dn);
     pop.appendChild(postForm('Antwoord…', 'Antwoord', function (name, body) {
       return add(name, body, { parent_id: root.id }).then(function () { return refreshPage(); });
     }));
@@ -282,6 +316,38 @@
     }, closePop));
     renderPins(); placePop(pos);
   }
+
+  function setDone(c, v) {
+    return patch(c, { done: v }).then(function () { c.done = v; return refreshPage().then(function () { if (scope === 'all') return refreshAll(); }); })
+      .catch(function () { status.textContent = 'Bijwerken lukt nu niet.'; status.className = 'fb-status err'; });
+  }
+  function exportOpen() {
+    return list('all').then(function (all) {
+      var open = all.filter(function (c) { return c.parent_id == null && !c.done; }), byPage = {};
+      open.forEach(function (c) { (byPage[c.page] = byPage[c.page] || []).push(c); });
+      var out = ['# Open feedback De Vooruitblik (' + new Date().toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' }) + ')', ''];
+      Object.keys(byPage).forEach(function (pg) {
+        out.push('## ' + pageLabel(pg) + ' (' + (pg === 'home' ? 'index.html' : pg) + ')');
+        byPage[pg].forEach(function (c) {
+          var where = isPin(c) ? '[Pin' + (c.ctx ? ' bij “' + c.ctx + '”' : '') + (c.sel ? ' – ' + c.sel : '') + ']' : '[Algemeen]';
+          out.push('- ' + where + ' ' + (c.name || 'Anoniem') + ': ' + c.body.replace(/\n+/g, ' '));
+          all.filter(function (r) { return r.parent_id == c.id; }).forEach(function (r) { out.push('  - antwoord ' + (r.name || 'Anoniem') + ': ' + r.body.replace(/\n+/g, ' ')); });
+        });
+        out.push('');
+      });
+      if (!open.length) out.push('Geen openstaande feedback.');
+      return out.join('\n');
+    });
+  }
+  copyBtn.addEventListener('click', function () {
+    exportOpen().then(function (txt) {
+      var done = function () { copyBtn.textContent = 'Gekopieerd'; setTimeout(function () { copyBtn.textContent = 'Kopieer open feedback'; }, 2200); };
+      if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(txt).then(done);
+      var ta = h('textarea', { 'aria-hidden': 'true' }); ta.value = txt; ta.style.cssText = 'position:fixed;left:-9999px'; d.body.appendChild(ta); ta.select(); try { d.execCommand('copy'); done(); } catch (e) { /* negeren */ } ta.remove();
+    }).catch(function () { copyBtn.textContent = 'Kopiëren mislukt'; });
+  });
+  exitLink.addEventListener('click', function () { try { localStorage.removeItem(LS_ED); } catch (e) { /* negeren */ } location.search = ''; });
+  doneChk.addEventListener('change', function () { showDone = doneChk.checked; lsSet(LS_DONE, showDone ? '1' : '0'); renderPins(); render(); });
 
   /* ── pin plaatsen ── */
   function startPinning() { show(false); closePop(); pinning = true; de.classList.add('fb-pinning'); hint.removeAttribute('hidden'); }
