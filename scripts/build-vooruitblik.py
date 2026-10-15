@@ -546,6 +546,25 @@ def el_card(src, title, bg):
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
              "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes. Klik op een beeld of knop om te downloaden.", "elementen/gloeilamp.png") + f"""
 <section class="section section--tight"><div class="wrap">
+  {sec_head("Universiteit van Vlaanderen", "Het logo van de afzender van De Vooruitblik. Groen op een lichte ondergrond, Electric Purple op een donkere.", eyebrow="Afzender")}
+  <div class="uvvl-grid">
+    <figure class="uvvl-tile uvvl-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
+    <div class="uvvl-side">
+      <figure class="uvvl-tile uvvl-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
+      <figure class="uvvl-tile uvvl-tile--paars reveal"><img class="uvvl-vierkant" src="assets/vormgeving/uvvl-logo-vierkant-groen.svg" alt="Vierkant logo Universiteit van Vlaanderen in Varsity Green op Electric Purple" width="156" height="195"></figure>
+    </div>
+  </div>
+  <div class="stack" style="margin-top:20px">
+    <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
+    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Logo paars (SVG) <span class="arr">↓</span></a>
+    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen (SVG) <span class="arr">↓</span></a>
+    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars (SVG) <span class="arr">↓</span></a>
+    <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen (SVG) <span class="arr">↓</span></a>
+    <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars (SVG) <span class="arr">↓</span></a>
+  </div>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
   {sec_head("Het logo", "Een cursieve serif voor “DE” boven een zware grotesk voor “VOORUITBLIK”, in Electric Purple.", eyebrow="Op donker")}
   <div class="logo-grid">
     <figure class="logo-big reveal"><a href="assets/vormgeving/logo-op-blauw.png" download aria-label="Download het logo op blauw"><img src="assets/vormgeving/logo-op-blauw.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" loading="lazy"></a></figure>
