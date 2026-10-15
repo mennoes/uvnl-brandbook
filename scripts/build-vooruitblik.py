@@ -90,13 +90,13 @@ def mini(p, base):
 
 
 def card(c, base):
-    return (f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
+    return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]:02d}</span>'
+            f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
             f'data-zoek="{E((c["vraag"] + " " + c["boek"]["naam"] + " " + c["gast"]["naam"] + " " + c["boek"]["vak"]).lower())}">'
-            f'<span class="nr">Hoofdstuk {c["nr"]:02d}</span>'
             f'<img src="{base}assets/3d/{c["thema"]}.png" alt="" loading="lazy" style="--r:{(c["nr"] * 7) % 20 - 8}deg">'
             f'<h3>{E(c["vraag"])}</h3>'
-            f'<div class="who">{mini(c["boek"], base)}<span class="who-t">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></span></div></a>')
+            f'<div class="who">{mini(c["boek"], base)}<span class="who-t">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></span></div></a></div>')
 
 
 def hl(text):
@@ -285,9 +285,9 @@ home = f"""
   <div class="wrap">
     {sec_head("Vier manieren om mee te kijken")}
     <div class="formats reveal">
-      <a class="format c-purple has-book" href="boek.html"><span class="go">→</span><span class="big" data-count="23">23</span><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
-      <a class="format c-yellow" href="videopodcast.html"><span class="go">→</span><span class="big">3/wk</span><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p></a>
-      <a class="format c-pink" href="radio.html"><span class="go">→</span><span class="big">12u</span><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p></a>
+      <a class="format c-purple has-book" href="boek.html"><span class="go">→</span><span class="big">23 essays</span><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
+      <a class="format c-yellow" href="videopodcast.html"><span class="go">→</span><span class="big">3 per week</span><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p></a>
+      <a class="format c-pink" href="radio.html"><span class="go">→</span><span class="big">12 uur</span><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p></a>
       <a class="format c-blue" href="live.html"><span class="go" style="color:var(--blue)">→</span><span class="big">Live</span><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p></a>
     </div>
   </div>
