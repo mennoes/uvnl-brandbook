@@ -74,7 +74,7 @@
       var t = (q.value || '').toLowerCase().trim(), n = 0;
       cards.forEach(function (c) {
         var ok = (uni === 'alle' || c.dataset.uni.indexOf(uni) > -1) && (!t || c.dataset.zoek.indexOf(t) > -1);
-        c.hidden = !ok; if (ok) n++;
+        (c.closest('.card-wrap') || c).hidden = !ok; if (ok) n++;
       });
       empty.style.display = n ? 'none' : 'block';
       var cnt = d.getElementById('telling'); if (cnt) cnt.textContent = n + (n === 1 ? ' vraag' : ' vragen');
