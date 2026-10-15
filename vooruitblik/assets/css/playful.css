@@ -1,0 +1,149 @@
+/* ══════════════════════════════════════════════════════════════
+   DE VOORUITBLIK — speelse laag
+   Geïnspireerd op de huisstijl van Universiteit van Nederland:
+   · woorden op kleurblokken (thumbs, reels)  · cursief serif + zwaar versaal (posters)
+   · basisvormen, sparks en snaps             · ring op kleurblok (Usage-frame)
+   · stickers/starbursts en schuine tape
+   Bewegingen staan in `prefers-reduced-motion: no-preference`.
+   ══════════════════════════════════════════════════════════════ */
+
+:root { --spring:cubic-bezier(.34,1.56,.64,1); --ballpoint:#1B0757; }
+
+/* ── basisvormen ────────────────────────────────────────── */
+.shapes { position:absolute; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
+.sh { position:absolute; width:var(--s); aspect-ratio:1; background:var(--c); transform:rotate(var(--r,0deg)); }
+.sh-circle { border-radius:50%; }
+.sh-sq { border-radius:14%; }
+.sh-tri { clip-path:polygon(50% 4%,100% 96%,0 96%); }
+.sh-hex { clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%); }
+.sh-diamond { clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%); }
+.sh-ring { background:transparent; border:.2em solid var(--c); border-radius:50%; font-size:calc(var(--s) * .5); box-sizing:border-box; border-width:calc(var(--s) * .16); }
+.hero .shapes,.page-hero .shapes { z-index:-1; }
+
+/* ── woorden op kleurblokken ────────────────────────────── */
+.q { line-height:1.12 !important; }
+.q .w { display:inline-block; margin:.05em .04em; transform:rotate(var(--tilt,-1.4deg)); }
+.q .w:nth-child(even) { --tilt:1.2deg; }
+.q .w:nth-child(3n) { --tilt:-.6deg; }
+.q .w > span { display:inline-block; background:var(--green); color:var(--paper); padding:.02em .15em .07em; border-radius:.13em; }
+.hero-green .q .w > span { background:var(--purple); color:var(--green); }
+.hero-blue .q .w > span { background:var(--paper); color:var(--green); }
+.hero-paper .q .w > span { color:var(--purple); }
+.qm { display:inline-block; transform-origin:50% 80%; }
+
+/* ── serif-ondertitel en krabbel onder koppen ───────────── */
+.eyebrow { display:block; font-family:var(--font-serif); font-style:italic; font-weight:400; font-size:clamp(20px,2.4vw,30px); line-height:1.1; color:var(--green-bright); margin-bottom:6px; text-transform:none; }
+.squig { display:block; height:18px; width:min(240px,55%); margin-top:12px; background:var(--purple);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='18' viewBox='0 0 40 18'%3E%3Cpath d='M0 9 Q10 -1 20 9 T40 9' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left center/40px 18px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='18' viewBox='0 0 40 18'%3E%3Cpath d='M0 9 Q10 -1 20 9 T40 9' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left center/40px 18px; }
+
+/* ── hero: sticker, sparks, snaps ───────────────────────── */
+.hero { overflow:visible; }
+.hero > .wrap { position:relative; }
+.hero .orn--book { animation:none; transform:translate3d(0,var(--py,0px),0); }
+.hero .orn { transform:translate3d(0,var(--py,0px),0); }
+.vb-title .l2,.vb-title .l3 { position:relative; width:max-content; }
+.vb-title .pow { position:absolute; width:.46em; left:1.02em; top:-.3em; transform:rotate(6deg); pointer-events:none; }
+.vb-title .spk { position:absolute; width:.36em; left:calc(100% + .08em); top:.02em; pointer-events:none; }
+.burst { position:absolute; z-index:3; right:clamp(18px,4.6vw,96px); top:clamp(250px,37vw,580px); width:clamp(78px,9vw,136px); aspect-ratio:1; display:grid; place-items:center; text-decoration:none; transform:rotate(-12deg); }
+.burst-star { position:absolute; inset:0; background:var(--purple); clip-path:polygon(50% 0,58% 14%,71% 6%,74% 22%,90% 20%,86% 36%,100% 42%,90% 55%,100% 68%,85% 72%,88% 88%,72% 86%,66% 100%,55% 90%,43% 100%,36% 86%,21% 90%,20% 74%,4% 70%,13% 56%,0 44%,14% 36%,10% 20%,27% 22%,29% 6%,42% 14%); }
+.burst-txt { position:relative; font-family:var(--font-display); font-weight:700; font-size:clamp(20px,2.5vw,36px); line-height:.9; text-align:center; text-transform:uppercase; color:var(--green); }
+
+/* ── schuine tape-banden ────────────────────────────────── */
+.tapes { position:relative; height:clamp(150px,17vw,230px); overflow:hidden; margin-top:clamp(-18px,-1vw,0px); }
+.tape { position:absolute; left:-4%; right:-4%; white-space:nowrap; overflow:hidden; display:flex; align-items:center; }
+.tape--purple { top:14%; background:var(--purple); color:var(--green); transform:rotate(-2.2deg); height:clamp(56px,6.5vw,88px); }
+.tape--green { top:42%; background:var(--green); color:var(--purple); transform:rotate(1.8deg); height:clamp(56px,6.5vw,88px); box-shadow:0 8px 0 var(--paper-mid); }
+.tape-track { display:inline-flex; align-items:center; gap:clamp(18px,2.4vw,34px); padding-left:20px; }
+.tape span,.tape a { font-family:var(--font-display); font-weight:700; text-transform:uppercase; font-size:clamp(28px,3.8vw,52px); letter-spacing:-.005em; line-height:1; color:inherit; text-decoration:none; }
+.tape a:hover { color:var(--paper); }
+.tape-ic { width:clamp(22px,2.6vw,36px); height:auto; flex:none; }
+
+/* ── kaarten ────────────────────────────────────────────── */
+.card { transform-style:flat; }
+.card img { translate:var(--tx,0px) var(--ty,0px); }
+
+/* ── ogenmuur: ring op kleurblok (Usage-frame) ──────────── */
+.eyewall { display:grid; grid-template-columns:repeat(8,1fr); max-width:calc(var(--wrap) - 2 * var(--gut)); margin:clamp(56px,9vw,120px) auto 22px; border-radius:var(--r-l); overflow:hidden; }
+.site-foot { margin-top:0; }
+.ew { position:relative; aspect-ratio:1 / 1.9; background:var(--bg); }
+.ew-green { --bg:var(--green); } .ew-pink { --bg:var(--pink); } .ew-ink { --bg:var(--ink); } .ew-paper { --bg:var(--paper-mid); }
+.ew-ballpoint { --bg:var(--ballpoint); } .ew-purple { --bg:var(--purple); } .ew-blue { --bg:var(--blue); } .ew-grey { --bg:var(--grey-100); }
+.ew-r-purple { --ring:var(--purple); } .ew-r-green { --ring:var(--green); }
+.ew-eye { position:absolute; left:50%; top:66%; width:66%; aspect-ratio:1; border-radius:50%; background:var(--ring); transform:translate(-50%,-50%); }
+.ew-eye::before { content:""; position:absolute; inset:27%; border-radius:50%; background:var(--bg); }
+.ew-eye b { position:absolute; left:50%; top:50%; width:21%; height:21%; border-radius:50%; background:var(--ring); transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)); }
+@media (max-width:760px){ .eyewall { grid-template-columns:repeat(4,1fr); } .ew:nth-child(n+5) { display:none; } }
+
+/* ═════════ bewegingen ═════════ */
+@media (prefers-reduced-motion:no-preference) {
+  /* hero-titel: woorden springen omhoog, ogen en stickers poppen erna */
+  .vb-title .l1,.vb-title .l2,.vb-title .l3 { animation:rise .95s var(--spring) backwards; }
+  .vb-title .l2 { animation-delay:.14s; } .vb-title .l3 { animation-delay:.28s; }
+  .vb-title .o { animation:eyepop .7s var(--spring) backwards; }
+  .vb-title .o:nth-of-type(1) { animation-delay:.6s; } .vb-title .o:nth-of-type(2) { animation-delay:.72s; }
+  .vb-title .pow { animation:snap 2.6s ease-in-out infinite 1.4s; transform-origin:0 100%; }
+  .vb-title .spk { animation:twirl 7s linear infinite; }
+  @keyframes rise { from { opacity:0; transform:translateY(.45em) rotate(3deg) scale(.96); } }
+  @keyframes eyepop { from { transform:scale(.2) rotate(-40deg); opacity:0; } }
+  @keyframes snap { 0%,70%,100% { transform:rotate(6deg) scale(1); } 80% { transform:rotate(12deg) scale(1.18); } 90% { transform:rotate(3deg) scale(1.04); } }
+  @keyframes twirl { to { transform:rotate(360deg); } }
+  .burst { animation:burst-in 1s var(--spring) backwards .9s; }
+  .burst-star { animation:twirl 22s linear infinite; }
+  @keyframes burst-in { from { transform:rotate(-120deg) scale(0); } }
+
+  /* zwevende vormen */
+  .sh { animation:bob 9s ease-in-out infinite; animation-delay:var(--d,0s); }
+  .sh-ring,.sh-hex { animation-name:spin-bob; animation-duration:16s; }
+  @keyframes bob { 0%,100% { transform:translateY(0) rotate(var(--r,0deg)); } 50% { transform:translateY(-22px) rotate(calc(var(--r,0deg) + 12deg)); } }
+  @keyframes spin-bob { 0% { transform:translateY(0) rotate(var(--r,0deg)); } 50% { transform:translateY(-16px) rotate(calc(var(--r,0deg) + 180deg)); } 100% { transform:translateY(0) rotate(calc(var(--r,0deg) + 360deg)); } }
+
+  /* blokken met woorden vallen binnen */
+  .q .w { animation:drop .8s var(--spring) backwards; animation-delay:calc(var(--i) * 75ms + .15s); }
+  @keyframes drop { from { opacity:0; transform:translateY(-.7em) rotate(calc(var(--tilt) * -6)) scale(.8); } }
+  .qm { animation:wob 2.4s ease-in-out infinite; }
+  @keyframes wob { 0%,100% { transform:rotate(-10deg); } 50% { transform:rotate(14deg) scale(1.1); } }
+
+  /* tape loopt door, de groene in tegenrichting */
+  .tape-track { animation:tape 60s linear infinite; }
+  .tape--green .tape-track { animation-duration:140s; animation-direction:reverse; }
+  .tape:hover .tape-track { animation-play-state:paused; }
+  @keyframes tape { to { transform:translateX(-50%); } }
+
+  /* krabbel tekent zichzelf */
+  .squig { clip-path:inset(0 100% 0 0); transition:clip-path .9s var(--ease) .25s; }
+  .in .squig,.squig.in { clip-path:inset(0); }
+  .eyebrow { transition:opacity .6s, transform .6s var(--spring); }
+
+  /* kaarten poppen op en kantelen mee met de cursor */
+  .pj .card:not(.pop) { opacity:0; }
+  .card.pop { animation:pop .85s var(--spring) backwards; animation-delay:calc(var(--n,0) * 70ms); }
+  @keyframes pop { from { opacity:0; transform:translateY(46px) rotate(3deg) scale(.93); } }
+  .card { transition:transform .25s var(--ease),box-shadow .25s var(--ease); }
+  .card:hover { transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px); }
+  .card img { transition:transform .4s var(--ease),translate .12s linear; }
+
+  /* knoppen: klik als een snap */
+  .btn:active,.chip:active,.fb-send:active { transform:scale(.94) rotate(-1.5deg); }
+  .btn .arr { display:inline-block; }
+  .btn:hover .arr { animation:nudge .6s ease-in-out infinite alternate; }
+  @keyframes nudge { to { transform:translateX(6px); } }
+
+  /* ogen knipperen even als je erover gaat */
+  .ew { transition:transform .25s var(--spring); }
+  .ew:hover .ew-eye { animation:squint .35s ease-in-out; }
+  @keyframes squint { 50% { transform:translate(-50%,-50%) scaleY(.1); } }
+
+  /* paginawissel (waar ondersteund) */
+  @view-transition { navigation:auto; }
+  .site-head { view-transition-name:head; }
+  ::view-transition-old(root) { animation:vt-out .22s ease-in both; }
+  ::view-transition-new(root) { animation:vt-in .45s var(--ease) both; }
+  @keyframes vt-out { to { opacity:0; transform:translateY(-10px); } }
+  @keyframes vt-in { from { opacity:0; transform:translateY(18px); } }
+}
+@media (prefers-reduced-motion:reduce) {
+  .tape-track { animation:none; }
+  .burst-star,.sh,.vb-title .pow,.vb-title .spk,.qm { animation:none; }
+}
+@media (max-width:640px){ .page-hero .orn[src$=".webp"] { display:none; } }
