@@ -58,19 +58,18 @@
 .about2 .a-stats .a-stat:nth-child(1) .n, .about2 .a-traits .a-trait:nth-child(2) b { color:var(--uvnl-purple); }
 .about2 .a-stats .a-stat:nth-child(2), .about2 .a-traits .a-trait:nth-child(4) { background:var(--uvnl-yellow); color:var(--uvnl-green); }
 .about2 .a-stats .a-stat:nth-child(3) { background:var(--uvnl-blue); color:var(--uvnl-green); }
-.about2 .a-stats .a-stat:nth-child(4), .about2 .a-traits .a-trait:nth-child(3) { background:var(--uvnl-pink); color:var(--uvnl-green); }
-.about2 .a-stats .a-stat:nth-child(5) { background:var(--uvnl-purple-deep); color:var(--uvnl-paper); }
-.about2 .a-stats .a-stat:nth-child(5) .n { color:var(--uvnl-purple); }
+.about2 .a-stats .a-stat:nth-child(4) { background:var(--uvnl-purple); color:var(--uvnl-green); }
+.about2 .a-traits .a-trait:nth-child(3) { background:var(--uvnl-blue); color:var(--uvnl-green); }
 .about2 .a-stats .a-stat:nth-child(2) .n, .about2 .a-stats .a-stat:nth-child(3) .n, .about2 .a-stats .a-stat:nth-child(4) .n { color:var(--uvnl-green); }
 .about2 .a-traits .a-trait:nth-child(1) { background:var(--uvnl-purple); color:var(--uvnl-green); }
 .about2 .a-trait { padding:26px; min-height:180px; }
 .about2 .a-trait b { font-size:clamp(26px,2.6vw,34px); line-height:.95; margin-bottom:12px; }
 #tone .vs-table td { font-size:17px; padding:16px 20px; border-radius:24px !important; }
 #tone .vs-table td.yes { background:var(--uvnl-green) !important; color:var(--uvnl-paper) !important; font-weight:700; }
-#tone .vs-table td:last-child { background:var(--uvnl-pink) !important; color:#5c1d17; }
+#tone .vs-table td:last-child { background:var(--paper-mid) !important; color:var(--fg-dim); }
 #tone .vs-table th { font-family:var(--font-display); font-size:28px !important; text-transform:uppercase; color:var(--uvnl-green); }
 .about2 .a-stem li { border-left:0; background:var(--uvnl-purple); color:var(--uvnl-green); border-radius:24px; padding:14px 18px; }
-.about2 .a-stem li:nth-child(2) { background:var(--uvnl-yellow); } .about2 .a-stem li:nth-child(3) { background:var(--uvnl-blue); } .about2 .a-stem li:nth-child(4) { background:var(--uvnl-pink); }
+.about2 .a-stem li:nth-child(2) { background:var(--uvnl-yellow); } .about2 .a-stem li:nth-child(3) { background:var(--uvnl-blue); } .about2 .a-stem li:nth-child(4) { background:var(--uvnl-green); color:var(--uvnl-paper); }
 .about2 .a-contact { background:var(--uvnl-purple-deep); border-radius:var(--r-xl); }
 .about2 .a-contact h2 { color:var(--uvnl-purple) !important; }
 .about2 .a-contact .btn { background:var(--uvnl-purple); color:var(--uvnl-green); }
@@ -120,3 +119,9 @@
 .page-hero .lead { color:var(--fg-dim) !important; font-size:clamp(18px,1.6vw,22px); max-width:60ch !important; }
 .page-hero .lead b { color:var(--uvnl-green) !important; }
 @media (max-width:760px){ .page-hero .ph-text { padding-left:16px !important; padding-right:16px !important; margin-top:24px !important; } .page-hero h1 { max-width:none; } }
+
+/* In het kort: 2x2, langwerpige kaarten */
+.about2 .a-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.about2 .a-stat { min-height:200px; padding:30px 34px 32px; }
+.about2 .a-stat .l { font-size:16px; }
+@media (max-width:560px){ .about2 .a-stats { grid-template-columns:1fr; } }
