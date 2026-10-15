@@ -80,4 +80,12 @@
       look(r.left + (Math.random() * 2 - 1) * 900, r.top + (Math.random() * 2 - 1) * 400);
     }, 1400);
   }
+
+  /* kleuren: klik om de code te kopiëren */
+  [].slice.call(d.querySelectorAll('.sw')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var hex = b.dataset.hex, done = function () { b.classList.add('copied'); setTimeout(function () { b.classList.remove('copied'); }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(hex).then(done, done); else done();
+    });
+  });
 })();

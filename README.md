@@ -23,7 +23,7 @@ België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
 ## De Vooruitblik 2027 (Universiteit van Vlaanderen)
 
 Aparte site in `vooruitblik/` (home, 23 hoofdstukken, boek, videopodcast, Radio 1,
-live, partners). Alle inhoud staat in `vooruitblik/data/hoofdstukken.json`; de
+live, partners, vormgeving met downloads van logo, beeld, 3D-elementen en banners). Alle inhoud staat in `vooruitblik/data/hoofdstukken.json`; de
 pagina's worden gegenereerd met `python3 scripts/build-vooruitblik.py`. De map is
 zelfstandig (eigen assets) en kan zo naar een eigen repo.
 
