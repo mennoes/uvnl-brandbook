@@ -7,7 +7,7 @@
 <meta name="description" content="Het partnermerkboek van Universiteit van Nederland en Universiteit van Vlaanderen: merk, huisstijl, fotografie, voorbeelden en partnerkit.">
 <link rel="icon" href="assets/logos/uvnl-brandmark.svg">
 <link rel="stylesheet" href="assets/css/uvnl.css?v=20261006-headers">
-<link rel="stylesheet" href="assets/css/plus.css?v=20261015b">
+<link rel="stylesheet" href="assets/css/plus.css?v=20261015c">
 <script defer src="assets/js/region.js?v=20261006-mobile"></script>
 <script>window.BB_BASE = '';</script>
 <style>
@@ -58,6 +58,8 @@
   .bb-hero .bgu-wrap .front { position:relative; }
   .bb-hero .bgu-wrap .front path { fill:#157A55; }
   .bb-hero .hero-logo { display:flex; justify-content:center; margin:0 auto 60px; width:100%; max-width:270px; }
+  /* logo linksboven in de hero; hero-tekst blijft zo écht in het midden */
+  @media (min-width:761px){ .bb-hero .hero-logo { position:absolute; top:24px; left:28px; z-index:5; margin:0; width:210px; max-width:210px; } }
   .bb-hero .hero-logo .navlogo { width:100%; height:auto; color:var(--uvnl-purple); }
   /* zoekbalk blendt met de groene hero */
   .bb-hero .search-wrap { max-width:600px; margin-left:auto; margin-right:auto; width:100%; }
