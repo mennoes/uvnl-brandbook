@@ -24,7 +24,7 @@
 .q { line-height:.98 !important; }
 .q .w { display:inline-block; }
 .q .w > span { display:inline-block; color:var(--green); }
-.hero-green .q .w > span { color:var(--paper); }
+.hero-green .q .w > span,.hero-blue .q .w > span,.hero-red .q .w > span { color:var(--paper); }
 .qm { display:inline-block; transform-origin:50% 80%; }
 
 /* ── serif-ondertitel en krabbel onder koppen ───────────── */
@@ -54,7 +54,7 @@
 
 /* ── kaarten ────────────────────────────────────────────── */
 .card { transform-style:flat; }
-.card img { translate:var(--tx,0px) var(--ty,0px); }
+.card .card-fig img.t { translate:var(--tx,0px) var(--ty,0px); }
 
 /* ── ogenmuur: ring op kleurblok (Usage-frame) ──────────── */
 .eyewall { display:flex; justify-content:center; gap:clamp(14px,2vw,26px); margin:clamp(48px,7vw,96px) auto 28px; }
@@ -110,7 +110,7 @@
   @keyframes pop { from { opacity:0; transform:translateY(46px) rotate(3deg) scale(.93); } }
   .card { transition:transform .25s var(--ease),box-shadow .25s var(--ease); }
   .card:hover { transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px); }
-  .card img { transition:transform .4s var(--ease),translate .12s linear; }
+  .card .card-fig img.t { transition:transform .4s var(--ease),translate .12s linear; }
 
   /* knoppen: klik als een snap */
   .btn:active,.chip:active,.fb-send:active { transform:scale(.94) rotate(-1.5deg); }
@@ -262,7 +262,7 @@
 .fan-slot[hidden] { display:none; }
 .fan-slot.is-first { margin-left:0; }
 .fan-slot:hover,.fan-slot:focus-within { z-index:5; transform:translateY(-18px) rotate(0deg) scale(1.03); }
-.fan-slot .card { min-height:380px; box-shadow:0 14px 34px rgba(27,7,87,.16); }
+.fan-slot .card { box-shadow:0 14px 34px rgba(27,7,87,.16); }
 .fan-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; }
 .btn--lg { padding:18px 34px; font-size:clamp(17px,1.5vw,20px); }
 @media (max-width:1100px){

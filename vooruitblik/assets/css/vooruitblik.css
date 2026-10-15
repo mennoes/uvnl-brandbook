@@ -119,25 +119,29 @@ p { margin:0 0 1em; }
 
 /* ── hoofdstuk-kaarten ──────────────────────────────────── */
 .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr)); gap:18px; }
-.card { position:relative; display:flex; flex-direction:column; min-height:340px; padding:22px; border-radius:var(--r-m); text-decoration:none; overflow:hidden; isolation:isolate; transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease); }
+.card { position:relative; display:flex; flex-direction:column; padding:10px; border-radius:var(--r-m); text-decoration:none; overflow:hidden; isolation:isolate; transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease); }
 .card:hover { transform:translateY(-5px) rotate(-.4deg); box-shadow:0 18px 36px rgba(27,7,87,.16); }
 .card-wrap { display:flex; flex-direction:column; gap:10px; min-width:0; }
 .card-wrap[hidden] { display:none; }
 .card-wrap > .card { flex:1; }
 .card-nr { font-size:13px; font-weight:700; letter-spacing:.02em; color:var(--green); padding-left:6px; }
-.card h3 { font-size:clamp(27px,2.6vw,34px); margin-top:auto; padding-top:150px; line-height:.98; color:inherit; position:relative; z-index:1; }
-.card .who { margin-top:14px; font-size:14px; font-weight:700; position:relative; z-index:1; display:flex; align-items:center; gap:10px; }
-.card .mini { position:static; right:auto; top:auto; max-width:none; transform:none !important; translate:none !important; flex:none; width:36px; height:36px; border-radius:50%; object-fit:cover; object-position:50% 28%; background:var(--purple); display:block; }
-.card .mini--init { display:grid; place-items:center; background:var(--green); color:var(--purple); font:700 14px/1 var(--font-display); letter-spacing:.02em; }
+.card-fig { position:relative; aspect-ratio:1/1.08; border-radius:18px; overflow:hidden; background:rgba(255,255,255,.3); display:grid; place-items:center; flex:none; }
+.card-fig img { display:block; transition:transform .4s var(--ease); }
+.card-fig img.f { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 22%; translate:none; }
+.card-fig img.t { width:56%; transform:rotate(var(--r,8deg)); }
+.card:hover .card-fig img.f { transform:scale(1.04); }
+.card:hover .card-fig img.t { transform:rotate(calc(var(--r,8deg) * -1)) scale(1.06); }
+.card h3 { font-family:var(--font-sans); font-size:clamp(19px,1.8vw,23px); font-weight:700; text-transform:none; letter-spacing:0; line-height:1.12; margin:0; padding:16px 10px 0; color:inherit; text-wrap:pretty; }
+.card .who { margin-top:auto; padding:14px 10px 8px; font-size:13px; font-weight:700; }
 .card .who span { font-weight:400; opacity:.85; }
-.card img { position:absolute; right:-14px; top:34px; width:62%; max-width:190px; z-index:0; transform:rotate(var(--r,8deg)); transition:transform .4s var(--ease); }
-.card:hover img { transform:rotate(calc(var(--r,8deg) * -1)) scale(1.06); }
 .c-purple { background:var(--purple); color:var(--green); }
 .c-yellow { background:var(--yellow); color:var(--green); }
 .c-pink   { background:var(--pink);   color:var(--green); }
 .c-blue   { background:var(--blue);   color:var(--white); }
 .c-paper  { background:var(--paper-mid); color:var(--green); }
 .c-green  { background:var(--green);  color:var(--purple); }
+.c-red    { background:var(--red);    color:var(--white); }
+.c-mint   { background:var(--green-glow); color:var(--green); }
 
 /* filters */
 .filters { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; }
@@ -190,7 +194,9 @@ p { margin:0 0 1em; }
 .hero-blue { background:var(--blue); color:var(--white); }
 .hero-paper { background:var(--paper-mid); color:var(--green); }
 .hero-green { background:var(--green); color:var(--purple); }
-.hero-blue .tag,.hero-green .tag { color:var(--green); }
+.hero-red { background:var(--red); color:var(--white); }
+.hero-mint { background:var(--green-glow); color:var(--green); }
+.hero-blue .tag,.hero-green .tag,.hero-red .tag { color:var(--green); }
 
 /* ── tekstblokken ───────────────────────────────────────── */
 .two { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
