@@ -221,7 +221,7 @@ def sec_head(h2, p="", btn="", eyebrow=""):
 def subhero(cls, kicker, h1, sub="", orn=None, q=False):
     o = (f'<img class="orn" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
     return (f'<section class="page-hero {cls}{" q" if q else ""}"><div class="wrap">'
-            f'{hero_shapes(cls)}<div class="crumbs"><a href="index.html">De Vooruitblik</a> / {kicker}</div><h1 class="q">{hl(h1)}</h1>'
+            f'{hero_shapes(cls)}<h1 class="q">{hl(h1)}</h1>'
             f'{f"<p class=sub>{sub}</p>" if sub else ""}</div>{o}</section>')
 
 
@@ -339,7 +339,6 @@ for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
     hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper"}[c["kleur"]]
     hero = (f'<section class="page-hero q {hero_cls}"><div class="wrap">'
-            f'<div class="crumbs"><a href="../index.html">De Vooruitblik</a> / <a href="../vragen.html">De 23 vragen</a> / Hoofdstuk {c["nr"]:02d}</div>'
             f'{hero_shapes(hero_cls)}<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
             f'<img class="orn" src="../assets/3d/{c["thema"]}.png" alt=""></section>')

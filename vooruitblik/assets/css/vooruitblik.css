@@ -184,8 +184,6 @@ p { margin:0 0 1em; }
 .page-hero .orn { position:absolute; right:4%; bottom:-6%; width:clamp(140px,26vw,380px); z-index:-1; transform:rotate(8deg); }
 @media (max-width:640px){ .page-hero .orn { width:96px; right:14px; bottom:14px; opacity:.9; } .page-hero.q h1,.page-hero h1.q { padding-right:0; } }
 .three { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:18px; }
-.crumbs { font-size:14px; font-weight:700; }
-.crumbs a { color:inherit; }
 .hero-purple { background:var(--purple); color:var(--green); }
 .hero-yellow { background:var(--yellow); color:var(--green); }
 .hero-pink { background:var(--pink); color:var(--green); }
