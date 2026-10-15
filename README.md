@@ -20,6 +20,13 @@ België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
 - `pages/examples.html` — toepassingen, voorbeelden en formats
 - `pages/download.html` — partnerkit, logo's en fotografie per merk
 
+## De Vooruitblik 2027 (Universiteit van Vlaanderen)
+
+Aparte site in `vooruitblik/` (home, 23 hoofdstukken, boek, videopodcast, Radio 1,
+live, partners). Alle inhoud staat in `vooruitblik/data/hoofdstukken.json`; de
+pagina's worden gegenereerd met `python3 scripts/build-vooruitblik.py`. De map is
+zelfstandig (eigen assets) en kan zo naar een eigen repo.
+
 De website is pure HTML/CSS/JS en wordt via GitHub Pages gepubliceerd. De
 oorspronkelijke interne versie blijft bewaard op branch
 `backup/internal-brandbook-2026-09-30`.
