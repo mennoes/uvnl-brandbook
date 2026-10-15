@@ -17,7 +17,7 @@
 
 /* ── Homepage-hero: afgeronde onderkant, tekst in het midden, logo bovenin ── */
 .bb-hero { border-radius:0 0 var(--r-xl) var(--r-xl); justify-content:center !important; padding-top:clamp(80px,12vh,120px) !important; padding-bottom:clamp(80px,12vh,120px) !important; }
-@media (min-width:761px){ .bb-hero .hero-logo { position:absolute; top:24px; left:28px; z-index:5; margin:0 !important; width:210px; max-width:210px; } }
+.bb-hero .hero-logo .navlogo { color:#fff !important; }
 
 /* ── Pagina-kop: reuzenkop en een gekleurd vlak over de foto ── */
 .page-hero .ph-visual { border-radius:0 0 var(--r-xl) var(--r-xl) !important; overflow:hidden; }
