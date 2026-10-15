@@ -288,3 +288,8 @@
 
 /* Logo-, kleur- en beeldkaarten wat ronder en met een kleurrand bij hover */
 .lg-card, .gallery > * { border-radius:var(--r-l) !important; }
+
+.hp-card { min-height:190px; }
+.tape-track { gap:clamp(28px,3.4vw,52px); }
+.tape-track span + span::before { content:""; }
+.hp-cards .hp-card.hl .d, .hp-cards .hp-card.hl .arr { color:#3a2b63; }

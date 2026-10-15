@@ -12,26 +12,6 @@
     if (f === here || f === group[here]) a.classList.add('active');
   });
 
-  /* ogenmuur boven de footer */
-  var foot = d.querySelector('.footer');
-  if (foot && !d.querySelector('.eyewall')) {
-    var w = d.createElement('div');
-    w.className = 'eyewall'; w.setAttribute('aria-hidden', 'true');
-    w.innerHTML = '<span class="ew"><i class="ew-eye"><b></b></i></span><span class="ew"><i class="ew-eye"><b></b></i></span>';
-    foot.parentNode.insertBefore(w, foot);
-    if (fine && !reduce) {
-      var eyes = [].slice.call(w.querySelectorAll('.ew-eye'));
-      d.addEventListener('pointermove', function (e) {
-        eyes.forEach(function (eye) {
-          var r = eye.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-          var dx = e.clientX - cx, dy = e.clientY - cy, dist = Math.hypot(dx, dy) || 1, m = Math.min(r.width * .2, dist);
-          eye.style.setProperty('--px', (dx / dist * m).toFixed(1) + 'px');
-          eye.style.setProperty('--py', (dy / dist * m).toFixed(1) + 'px');
-        });
-      });
-    }
-  }
-
   /* pop-in zodra iets in beeld komt */
   var items = [].slice.call(d.querySelectorAll('.hp-card, .gl, .spot, .fmt-strip img, .tile, .fact, .cmp > div, .rl, .dl-band'));
   items.forEach(function (el) { el.classList.add('pp'); });
