@@ -39,10 +39,12 @@ URL = {
 }
 
 chapters = {c["slug"]: c for c in json.loads((ROOT / "data" / "hoofdstukken.json").read_text(encoding="utf-8"))}
+KLEUREN = ["red", "purple", "yellow", "blue", "mint"]
 CH = []
 for i, slug in enumerate(ORDER, 1):
     c = chapters.pop(slug)
     c["nr"] = i
+    c["kleur"] = KLEUREN[(i - 1) % len(KLEUREN)]   # kleur volgt de volgorde op de site, zodat buren altijd verschillen
     CH.append(c)
 assert not chapters, f"hoofdstukken zonder plek in ORDER: {list(chapters)}"
 
@@ -107,6 +109,14 @@ def card(c, base):
             f'data-zoek="{E((c["vraag"] + " " + c["boek"]["naam"] + " " + c["gast"]["naam"] + " " + c["boek"]["vak"]).lower())}">'
             f'{fig}<h3>{E(c["vraag"])}</h3>'
             f'<div class="who">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></div></a></div>')
+
+
+def hero_portret(c):
+    """Portret van de auteur rechts in de hero; zonder portret het silhouet van de placeholder."""
+    f = card_foto(c)
+    if f:
+        return (f'<img class="orn orn--foto" src="../assets/foto/{f["foto"]}" alt="{E(f["naam"])}" width="450" height="563">')
+    return (f'<img class="orn orn--foto orn--sil" src="../assets/foto/silhouet-{c["nr"] % SILHOUETTEN + 1}.webp" alt="" width="450" height="563">')
 
 
 def hl(text):
@@ -251,7 +261,7 @@ home = f"""
     <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
       <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
     <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
-      <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties en van gezondheid tot mobiliteit.</p><p class="hero-sub">Geen glazen bol en geen voorspellingen, wel context, inzichten en kennis om 2027 beter te begrijpen. Elk hoofdstuk vertrekt vanuit één concrete vraag, beantwoord in een boek en besproken in een videopodcast met twee professoren.</p></div>
+      <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties.</p><p class="hero-sub">Geen glazen bol, wel context, inzichten en kennis. Elk hoofdstuk start bij één vraag, beantwoord in het boek en besproken in de videopodcast.</p></div>
       <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
     </div>
   </div>
@@ -343,9 +353,11 @@ for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
     hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper", "red": "hero-red", "mint": "hero-mint"}[c["kleur"]]
     hero = (f'<section class="page-hero q {hero_cls}"><div class="wrap">'
-            f'{hero_shapes(hero_cls)}<h1 class="q">{hl(c["vraag"])}</h1>'
+            f'{hero_shapes(hero_cls)}<div class="hero-meta"><span class="tag">Hoofdstuk {c["nr"]:02d} van {len(CH)}</span>'
+            f'<a class="btn btn--line btn--sm" href="../vragen.html">← Alle hoofdstukken</a></div>'
+            f'<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
-            f'<img class="orn" src="../assets/3d/{c["thema"]}.png" alt=""></section>')
+            f'{hero_portret(c)}</section>')
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
     meer = "".join(f"<p>{E(p)}</p>" for p in c["meer"].split("\n") if p) if c["meer"] else ""
     v = c["video"]
@@ -355,11 +367,11 @@ for i, c in enumerate(CH):
     body = hero + f"""
 <section class="section section--tight"><div class="wrap">
   <div class="two">
-    <article class="panel panel--purple reveal"><span class="tag">In het boek</span><h2 style="margin-top:14px">Het hoofdstuk</h2>
+    <article class="panel panel--purple reveal"><h2>Het hoofdstuk</h2>
       <div class="prose">{kort}{meer}</div>
       <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
     </article>
-    <article class="panel panel--green reveal"><span class="tag">Videopodcast</span><h2 style="margin-top:14px">Twee blikken</h2>
+    <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
       <div class="video" style="margin-bottom:18px"><div><div class="play"></div><p>Verschijnt {lang(v["datum"])}</p></div></div>
       <p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
       <div class="people">{spk}</div>
@@ -378,9 +390,10 @@ for i, c in enumerate(CH):
   </div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap"><nav class="pager" aria-label="Andere hoofdstukken">
-  {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
-  {f'<a class="next" href="{next_c["slug"]}.html"><small>Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
-</nav></div></section>
+  {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag · Hoofdstuk {prev_c["nr"]:02d}</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
+  {f'<a class="next" href="{next_c["slug"]}.html"><small>Hoofdstuk {next_c["nr"]:02d} · Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
+</nav>
+  <p class="pager-all"><a class="btn btn--green" href="../vragen.html">Alle hoofdstukken <span class="arr">→</span></a></p></div></section>
 """
     desc = c["kort"] or f'{c["vraag"]} Een hoofdstuk van {c["boek"]["naam"]} ({c["boek"]["uni"]}) in De Vooruitblik 2027.'
     page(f"hoofdstuk/{c['slug']}.html", c["vraag"], desc[:200], body, base="../", current="vragen.html")

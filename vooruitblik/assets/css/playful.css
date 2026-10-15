@@ -38,7 +38,7 @@
 .vb-title .l2,.vb-title .l3 { position:relative; width:max-content; }
 .vb-title .pow { position:absolute; width:.46em; left:1.02em; top:-.3em; transform:rotate(6deg); pointer-events:none; }
 .vb-title .spk { position:absolute; width:.36em; left:calc(100% + .08em); top:.02em; pointer-events:none; }
-.burst { position:absolute; z-index:3; right:clamp(120px,18vw,330px); top:clamp(200px,29vw,460px); width:clamp(78px,9vw,136px); aspect-ratio:1; display:grid; place-items:center; text-decoration:none; transform:rotate(-12deg); }
+.burst { position:absolute; z-index:3; right:calc(var(--bookr) + clamp(150px,14vw,270px)); top:clamp(170px,19vw,300px); width:clamp(78px,9vw,136px); aspect-ratio:1; display:grid; place-items:center; text-decoration:none; transform:rotate(-12deg); }
 .burst-star { position:absolute; inset:0; background:var(--purple); clip-path:polygon(50% 0,58% 14%,71% 6%,74% 22%,90% 20%,86% 36%,100% 42%,90% 55%,100% 68%,85% 72%,88% 88%,72% 86%,66% 100%,55% 90%,43% 100%,36% 86%,21% 90%,20% 74%,4% 70%,13% 56%,0 44%,14% 36%,10% 20%,27% 22%,29% 6%,42% 14%); }
 .burst-txt { position:relative; font-family:var(--font-display); font-weight:700; font-size:clamp(20px,2.5vw,36px); line-height:.9; text-align:center; text-transform:uppercase; color:var(--green); }
 
@@ -138,7 +138,7 @@
   .tape-track { animation:none; }
   .burst-star,.sh,.vb-title .pow,.vb-title .spk,.qm { animation:none; }
 }
-@media (max-width:640px){ .page-hero .orn[src$=".webp"] { display:none; } }
+@media (max-width:640px){ .page-hero .orn[src$=".webp"]:not(.orn--foto) { display:none; } }
 
 /* ══ composities uit de huisstijl-site: grote afrondingen, felgroene kaarten, ingezette panelen ══ */
 .btn--white { background:#fff; color:var(--green); }
