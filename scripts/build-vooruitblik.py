@@ -110,6 +110,7 @@ HERO_SHAPES = {"hero-purple": ("green", "blue", "paper"), "hero-yellow": ("green
 
 
 def hero_shapes(cls):
+    return ""   # bewust leeg: rustiger, meer zoals de huisstijl-site
     a, b, c = HERO_SHAPES.get(cls.split()[0], HERO_SHAPES["hero-paper"])
     return shapes([("circle", a, "66%", "6%", "clamp(26px,4vw,60px)", 0, 0), ("hex", a, "91%", "8%", "clamp(26px,3.6vw,54px)", 1, 8),
                    ("tri", b, "80%", "27%", "clamp(30px,4.4vw,66px)", 2, 12), ("ring", c, "94%", "50%", "clamp(34px,5vw,76px)", 4, 0)])
@@ -218,13 +219,12 @@ tapes = (f'<div class="tapes"><div class="tape tape--purple" aria-hidden="true">
          f'<div class="tape tape--green rev" aria-label="Alle 23 vragen"><div class="tape-track">{tape2}{tape2_copy}</div></div></div>')
 home = f"""
 <section class="hero">
-  {shapes([("tri","blue","62%","24%","clamp(30px,4vw,62px)",2,-10),("ring","pink","8%","62%","clamp(44px,6vw,92px)",1,0),("hex","purple","56%","74%","clamp(26px,3.4vw,52px)",3,8)])}
-  <span class="orn orn--book" data-speed="-0.05"><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027" width="753" height="1290" style="--rot:6deg"></span><span class="orn orn--b" data-speed="0.06"><img src="assets/3d/techniek.png" alt="" style="--rot:-8deg"></span>
+    <span class="orn orn--book" data-speed="-0.05"><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027" width="753" height="1290" style="--rot:6deg"></span>
   <a class="burst" href="boek.html" aria-label="Het boek verschijnt op 15 november"><span class="burst-star"></span><span class="burst-txt">15<br>nov</span></a>
   <div class="wrap">
     <p class="kicker">Universiteit van Vlaanderen · Radio 1 · Pelckmans</p>
     <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
-      <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT<img class="pow" src="assets/icons/snaps1.png" alt=""></span><span class="l3" aria-hidden="true">BLIK<img class="spk" src="assets/icons/spark2.png" alt=""></span></h1>
+      <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
     <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
       <div class="hero-side"><p>23 proffen over wat ons te wachten staat in 2027. Geen glazen bol, wel wetenschap die uitlegt wat eraan komt.</p></div>
       <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
