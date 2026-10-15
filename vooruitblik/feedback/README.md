@@ -1,8 +1,14 @@
 # Feedback & reacties
 
-Rechtsonder op elke pagina staat een knop **Feedback**. Bezoekers laten daar een reactie achter
-(naam is optioneel), zien de reacties op de pagina waar ze zijn, en kunnen via **Alle pagina's**
-alle feedback van de hele site doorlezen.
+Rechtsonder op elke pagina staat een knop **Feedback**. Bezoekers kunnen:
+- een **pin** plaatsen op een exacte plek (zoals comments in Figma): knop *Pin plaatsen*, klikken op de
+  plek, opmerking typen. Anderen kunnen op de pin **antwoorden**;
+- een **algemene opmerking** over de pagina achterlaten (naam is optioneel);
+- via **Alle pagina's** alle feedback van de hele site doorlezen, en via een reactie naar de pin springen.
+
+Een pin hangt aan het element waarop is geklikt (met de positie daarbinnen), met de paginapositie als
+reserve. Daardoor blijft hij op de juiste plek bij een ander schermformaat. Verander je later de
+opbouw van een pagina sterk, dan kan een pin naar zijn reserve-positie terugvallen.
 
 ## Voorbeeldmodus (nu)
 Zonder koppeling werkt de knop al, maar reacties blijven **alleen in de eigen browser** staan.
