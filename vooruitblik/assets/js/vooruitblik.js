@@ -33,7 +33,7 @@
         var r = el.getBoundingClientRect();
         var dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2);
         var k = Math.min(1, Math.hypot(dx, dy) / 300), a = Math.atan2(dy, dx);
-        el.style.setProperty('--px', (Math.cos(a) * k * r.width * 0.15).toFixed(1) + 'px');
+        el.style.setProperty('--px', (Math.cos(a) * k * r.width * 0.085).toFixed(1) + 'px');
         el.style.setProperty('--py', (Math.sin(a) * k * r.height * 0.125).toFixed(1) + 'px');
       });
     };

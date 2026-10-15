@@ -80,7 +80,7 @@ p { margin:0 0 1em; }
 .vb-title .l3 { margin-left:.58em; }
 /* de twee O's zijn echte letters; het gat in de O is het oog, met een pupil die meekijkt */
 .vb-title .o { position:relative; display:inline-block; color:var(--pink); }
-.vb-title .o::after { content:""; position:absolute; left:50%; top:calc(50% - .108em); width:.2em; height:.2em; border-radius:50%; background:var(--purple); transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)); transition:transform .14s ease-out; }
+.vb-title .o::after { content:""; position:absolute; left:50%; top:calc(50% - .108em); width:.18em; height:.18em; border-radius:50%; background:var(--pink); transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)); transition:transform .14s ease-out; }
 .vb-title .o.blink::after { animation:blink .22s ease-in-out; }
 @keyframes blink { 50% { transform:translate(-50%,-50%) translate(var(--px,0px),var(--py,0px)) scaleY(.08); } }
 .hero-grid { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px clamp(24px,5vw,72px); align-items:end; }
