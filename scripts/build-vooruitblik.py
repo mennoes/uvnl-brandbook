@@ -483,7 +483,7 @@ visuals = subhero("hero-purple", "Visuals", "Foto’s, video’s en posts",
   </div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Logo en beeld", "Het logo, de 3D-elementen, kleuren en lettertypes met downloads vind je bij Vormgeving.", '<a class="btn btn--green" href="vormgeving.html">Naar Vormgeving <span class="arr">→</span></a>')}
+  {sec_head("Logo en beeld", "Het logo, beeld, kleuren en lettertypes met downloads vind je bij Vormgeving.", '<a class="btn btn--green" href="vormgeving.html">Naar Vormgeving <span class="arr">→</span></a>')}
 </div></section>
 """
 page("visuals.html", "Visuals", "Foto's, video's, sociale media en advertenties van De Vooruitblik 2027.", visuals, current="visuals.html")
@@ -538,11 +538,6 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
-  {sec_head("3D-elementjes", "Vrijgestelde 3D-objecten uit de huisstijl, met transparante achtergrond.", eyebrow="Voor accenten")}
-  <div class="elcs">{el_card("schakelaar", "Schakelaar", "blue")}{el_card("gloeilamp", "Gloeilamp", "ink")}{el_card("hangslot", "Open hangslot", "green")}</div>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
   {sec_head("Het boek", "De cover van De Vooruitblik 2027, uitgegeven door Pelckmans.", eyebrow="Cover")}
   <div class="assets assets--two">
     {asset("assets/vormgeving/boek-2d-voorkant.jpg", "Voorkant", "Platte voorkant van het boek.", "", "asset--tall")}
@@ -577,6 +572,6 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
   <p class="note">De lettertypes zijn gelicentieerd en hier niet te downloaden.</p>
 </div></section>
 """
-page("vormgeving.html", "Vormgeving", "Logo, beeld, 3D-elementen, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
+page("vormgeving.html", "Vormgeving", "Logo, beeld, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
 
 print(f"{len(CH)} hoofdstukken + 8 pagina's gebouwd in {ROOT}")
