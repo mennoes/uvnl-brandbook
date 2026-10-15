@@ -120,7 +120,7 @@ EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
 NAV = [("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"),
-       ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners")]
+       ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners"), ("vormgeving.html", "Vormgeving")]
 
 
 def page(path, title, desc, body, base="", current="", hero_class="", og_img="assets/img/boek-cover.jpg"):
@@ -237,7 +237,7 @@ home = f"""
 <section class="section">
   <div class="wrap">
     <div class="statement reveal">
-      <img class="st-obj" src="assets/3d/zon.png" alt="" data-speed="-0.05">
+      <img class="st-obj" src="assets/elementen/gloeilamp.png" alt="" data-speed="-0.05">
       <h2 class="st-h">Geen glazen bol</h2>
       <p class="st-sub">Geen voorspellingen. Wel context, inzichten en kennis om 2027 beter te begrijpen.</p>
       <p class="st-cta"><em>Benieuwd hoe het boek werkt?</em> <a class="btn btn--line" href="boek.html">Over het boek <span class="arr">→</span></a></p>
@@ -404,7 +404,7 @@ for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     jaar, maand = int(ym[:4]), int(ym[5:])
     eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
 vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
-             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "taal-communicatie") + f"""
+             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "elementen/schakelaar.png") + f"""
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
   <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Van <b>1 november</b> tot en met <b>31 december</b>, ongeveer drie afleveringen per week</li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
@@ -431,7 +431,7 @@ page("radio.html", "Radio 1", "Het Radio 1-programma bij De Vooruitblik 2027, me
 
 # ───────────────────────── LIVE ─────────────────────────
 live = subhero("hero-blue", "Live", "Stel je vraag aan de prof",
-               "Op de live evenementen praat het publiek rechtstreeks met de professoren.", "recht-bestuur") + """
+               "Op de live evenementen praat het publiek rechtstreeks met de professoren.", "elementen/hangslot.png") + """
 <section class="section section--tight"><div class="wrap">
   <div class="dark" style="padding:clamp(26px,5vw,64px)"><ul class="agenda">
     <li><div class="when">15 november</div><div><h3>Boektopia, Antwerp Expo</h3><p>De Vooruitblik 2027 wordt officieel voorgesteld op Dag van de Wetenschap. Onder begeleiding van een moderator praten drie professoren over een selectie onderwerpen uit het boek.</p><p style="margin-top:10px"><b>12u – 12u45</b> gesprek in de Red Room<br><b>13u – 14u</b> signeersessie</p></div></li>
@@ -462,10 +462,101 @@ partners = subhero("hero-paper", "Partners", "Samen gemaakt",
   <h2 class="group-title">Met steun van</h2>
   {pl([("jonge-academie","Jonge Academie"),("vrt","VRT"),("vlaamse-overheid","Vlaamse overheid (WEWIS)"),("nationale-loterij","Nationale Loterij")])}
   <h2 class="group-title">Deel De Vooruitblik</h2>
-  <p style="max-width:60ch">Zet het boek in je e-mailhandtekening. Download een banner en voeg hem toe.</p>
-  <div class="banners">{"".join(f'<a class="banner reveal" href="assets/img/banner-{f}.png" download><img src="assets/img/banner-{f}.png" alt="{E(n)}" loading="lazy"><span>{E(n)} <span>Download ↓</span></span></a>' for f, n in [("vanaf-15-november","Vanaf 15 november in de boekhandel"),("nu-in-de-boekhandel","Nu in de boekhandel"),("lees-er-alles-over","Lees er nu alles over")])}</div>
+  <p style="max-width:60ch">Banners voor je e-mailhandtekening, het logo en ander beeld vind je bij Vormgeving.</p>
+  <p><a class="btn btn--green" href="vormgeving.html">Naar Vormgeving <span class="arr">→</span></a></p>
 </div></section>
 """
 page("partners.html", "Partners", "De initiatiefnemers en partners van De Vooruitblik 2027: Universiteit van Vlaanderen, Radio 1, Pelckmans, de vijf Vlaamse universiteiten en meer.", partners, current="partners.html")
 
-print(f"{len(CH)} hoofdstukken + 7 pagina's gebouwd in {ROOT}")
+# ───────────────────────── VORMGEVING ─────────────────────────
+def lum(hexc):
+    r, g, b = (int(hexc[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    f = lambda c: c / 12.92 if c <= .03928 else ((c + .055) / 1.055) ** 2.4
+    return .2126 * f(r) + .7152 * f(g) + .0722 * f(b)
+
+
+SWATCHES = [("Varsity Green", "#004B36", "Basiskleur, logo en tekst op licht"), ("Electric Purple", "#D6ACFF", "Logo en kopjes op donker"),
+            ("Ballpoint", "#1B0757", "Donker accent"), ("Electric Blue", "#585FF1", "Accent"),
+            ("Paper", "#F4F0ED", "Lichte achtergrond"), ("Pink", "#FFC9D7", "Accent"),
+            ("Electric Yellow", "#FBF07A", "Accent, tape en driehoeken"), ("Electric Red", "#EE5245", "Accent"),
+            ("Printer Ink", "#2B2B2B", "Lopende tekst"), ("Electric Green", "#00A879", "Felgroene kaarten op de website")]
+sw = "".join(f'<button class="sw" type="button" data-hex="{h}" style="background:{h};color:{"#fff" if lum(h) < .3 else "#004B36"}"><b>{E(n)}</b><span>{h}</span><small>{E(d)}</small></button>' for n, h, d in SWATCHES)
+
+
+def asset(src, title, text, dl, cls=""):
+    return (f'<figure class="asset {cls} reveal"><a class="asset-img" href="{src}" download aria-label="Download {E(title)}"><img src="{src}" alt="{E(title)}" loading="lazy"></a>'
+            f'<figcaption><h3>{E(title)}</h3><p>{E(text)}</p><a class="btn btn--green" href="{dl or src}" download>Download <span class="arr">↓</span></a></figcaption></figure>')
+
+
+def el_card(src, title, bg):
+    return (f'<figure class="elc elc--{bg} reveal"><img src="assets/elementen/{src}.png" alt="{E(title)}" loading="lazy">'
+            f'<figcaption><b>{E(title)}</b><a class="btn btn--white" href="assets/elementen/{src}.png" download>PNG <span class="arr">↓</span></a></figcaption></figure>')
+
+
+vg = subhero("hero-green", "Vormgeving", "Vormgeving",
+             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes. Klik op een beeld of knop om te downloaden.", "elementen/gloeilamp.png") + f"""
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Het logo", "Een cursieve serif voor “DE” boven een zware grotesk voor “VOORUITBLIK”, in Electric Purple.", eyebrow="Op donker")}
+  <div class="logo-grid">
+    <figure class="logo-big reveal"><a href="assets/vormgeving/logo-op-blauw.png" download aria-label="Download het logo op blauw"><img src="assets/vormgeving/logo-op-blauw.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" loading="lazy"></a></figure>
+    <div class="logo-side">
+      <figure class="logo-sm logo-sm--green reveal"><img src="assets/vormgeving/logo-transparant.png" alt="Het logo op Varsity Green" loading="lazy"></figure>
+      <figure class="logo-sm logo-sm--ink reveal"><img src="assets/vormgeving/logo-transparant.png" alt="Het logo op Ballpoint" loading="lazy"></figure>
+    </div>
+  </div>
+  <div class="stack" style="margin-top:20px"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
+  <p class="note">Gebruik het logo in Electric Purple op een donkere ondergrond: Varsity Green, Ballpoint of Electric Blue.</p>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Beeld", "Vlakken en een U in perspectief, als achtergrond of tussenbeeld.", eyebrow="Patroon en U")}
+  <div class="assets">
+    {asset("assets/vormgeving/patroon-concentrisch.png", "Concentrische vlakken", "Ineenschuivende rechthoeken in de huisstijlkleuren.", "")}
+    {asset("assets/vormgeving/u-tunnel-1.png", "U in de tunnel, versie 1", "De U in 3D in het midden van een kamer van kleurvlakken.", "")}
+    {asset("assets/vormgeving/u-tunnel-2.png", "U in de tunnel, versie 2", "Dezelfde U, dichterbij en met andere vlakken.", "")}
+  </div>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
+  {sec_head("3D-elementjes", "Vrijgestelde 3D-objecten uit de huisstijl, met transparante achtergrond.", eyebrow="Voor accenten")}
+  <div class="elcs">{el_card("schakelaar", "Schakelaar", "blue")}{el_card("gloeilamp", "Gloeilamp", "ink")}{el_card("hangslot", "Open hangslot", "green")}</div>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Het boek", "De cover van De Vooruitblik 2027, uitgegeven door Pelckmans.", eyebrow="Cover")}
+  <div class="assets assets--two">
+    {asset("assets/vormgeving/boek-2d-voorkant.jpg", "Voorkant", "Platte voorkant van het boek.", "", "asset--tall")}
+    {asset("assets/vormgeving/boek-3d.jpg", "Voor- en zijkant (3D)", "Het boek in perspectief.", "", "asset--tall")}
+  </div>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
+  {sec_head("E-mailhandtekening", "Drie banners om onder je e-mails te zetten.", eyebrow="Banners")}
+  <div class="banners">{"".join(f'<a class="banner reveal" href="assets/vormgeving/banner-{f}.png" download><img src="assets/vormgeving/banner-{f}.png" alt="{E(n)}" loading="lazy"><span>{E(n)} <span>Download ↓</span></span></a>' for f, n in [("vanaf-15-november", "Vanaf 15 november in de boekhandel"), ("nu-in-de-boekhandel", "Nu in de boekhandel"), ("lees-er-alles-over", "Lees er nu alles over")])}</div>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Kleuren", "Klik op een kleur om de code te kopiëren.", eyebrow="Palet")}
+  <div class="swatches reveal">{sw}</div>
+  <div class="rules reveal">
+    <div class="rule rule--ok" style="background:var(--green);color:var(--purple)"><span class="tag">Wel</span><b>Paars op groen</b></div>
+    <div class="rule rule--ok" style="background:var(--paper-mid);color:var(--green)"><span class="tag">Wel</span><b>Groen op licht</b></div>
+    <div class="rule rule--no" style="background:var(--red);color:var(--green)"><span class="tag">Niet</span><b>Groen op rood</b></div>
+    <div class="rule rule--no" style="background:var(--yellow);color:var(--green)"><span class="tag">Niet</span><b>Groen op geel</b></div>
+  </div>
+  <p class="note">Kies per uiting één verzadigde accentkleur. Rood of geel combineer je met paars in plaats van met groen.</p>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Lettertypes", "Drie lettertypes, elk met een eigen rol.", eyebrow="Typografie")}
+  <div class="type reveal">
+    <div class="type-c"><small>Koppen en cijfers</small><p class="t1">Oldschool Grotesk Condensed</p><p class="t1s">ZWAAR VERSAAL, STRAK</p></div>
+    <div class="type-c"><small>Tekst</small><p class="t2">Oldschool Grotesk</p><p class="t2s">Eén vraag per hoofdstuk, beantwoord door een professor.</p></div>
+    <div class="type-c"><small>Accenten</small><p class="t3">Tiempos Text Italic</p><p class="t3s">Alleen voor korte regels en citaten.</p></div>
+  </div>
+  <p class="note">De lettertypes zijn gelicentieerd en hier niet te downloaden.</p>
+</div></section>
+"""
+page("vormgeving.html", "Vormgeving", "Logo, beeld, 3D-elementen, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
+
+print(f"{len(CH)} hoofdstukken + 8 pagina's gebouwd in {ROOT}")
