@@ -29,6 +29,37 @@
     });
   }
 
+
+  /* ── waaier: 4 kaarten, schudden ── */
+  var fan = d.getElementById('fan'), sh = d.getElementById('fan-shuffle');
+  if (fan) {
+    var stage = fan.querySelector('.fan-stage');
+    var layout = function () {
+      var vis = [].slice.call(stage.querySelectorAll('.fan-slot:not([hidden])'));
+      vis.forEach(function (s, i) {
+        var m = (vis.length - 1) / 2;
+        s.classList.toggle('is-first', i === 0);
+        s.style.setProperty('--rot', ((i - m) * 3.2).toFixed(1) + 'deg');
+        s.style.setProperty('--dy', (Math.abs(i - m) * 12 - 10).toFixed(0) + 'px');
+      });
+    };
+    layout();
+    if (sh) {
+      sh.hidden = false;
+      sh.addEventListener('click', function () {
+        var all = [].slice.call(stage.querySelectorAll('.fan-slot'));
+        for (var i = all.length - 1; i > 0; i--) { var k = Math.floor(Math.random() * (i + 1)); var t = all[i]; all[i] = all[k]; all[k] = t; }
+        all.forEach(function (s, i) {
+          stage.appendChild(s); s.hidden = i >= 4;
+          var c = s.querySelector('.card'); if (c && i < 4 && !reduce) { c.classList.remove('pop'); void c.offsetWidth; setTimeout(function () { c.classList.add('pop'); }, 40 + i * 70); }
+          else if (c) c.classList.add('pop');
+        });
+        layout();
+        var img = stage.querySelectorAll('.fan-slot:not([hidden]) img'); [].forEach.call(img, function (m) { m.loading = 'eager'; });
+      });
+    }
+  }
+
   /* ── parallax voor zwevende objecten ── */
   var px = [].slice.call(d.querySelectorAll('[data-speed]'));
   if (px.length && !reduce) {
