@@ -124,6 +124,11 @@ NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen")
 FOOT_NAV = NAV[1:] + [("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners")]
 
 
+import hashlib as _h
+def ver(rel):
+    return _h.md5((ROOT / rel).read_bytes()).hexdigest()[:8]
+
+
 def page(path, title, desc, body, base="", current="", hero_class="", og_img="assets/img/boek-cover.jpg"):
     nav = "".join(f'<a href="{base}{h}"{" aria-current=page" if h == current else ""}>{t}</a>' for h, t in NAV)
     full_title = f"{title} · De Vooruitblik 2027" if title != "De Vooruitblik 2027" else "De Vooruitblik 2027 · Universiteit van Vlaanderen"
@@ -141,13 +146,13 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <meta name="theme-color" content="#004B36">
 <link rel="icon" href="{base}assets/logos/uvvl-logo-square.svg" type="image/svg+xml">
 <link rel="preload" href="{base}assets/fonts/OldschoolGrotesk-Bold.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="{base}assets/css/vooruitblik.css">
-<link rel="stylesheet" href="{base}assets/css/feedback.css">
-<link rel="stylesheet" href="{base}assets/css/playful.css">
-<script defer src="{base}assets/js/vooruitblik.js"></script>
-<script defer src="{base}assets/js/feedback-config.js"></script>
-<script defer src="{base}assets/js/feedback.js"></script>
-<script defer src="{base}assets/js/playful.js"></script>
+<link rel="stylesheet" href="{base}assets/css/vooruitblik.css?v={ver('assets/css/vooruitblik.css')}">
+<link rel="stylesheet" href="{base}assets/css/feedback.css?v={ver('assets/css/feedback.css')}">
+<link rel="stylesheet" href="{base}assets/css/playful.css?v={ver('assets/css/playful.css')}">
+<script defer src="{base}assets/js/vooruitblik.js?v={ver('assets/js/vooruitblik.js')}"></script>
+<script defer src="{base}assets/js/feedback-config.js?v={ver('assets/js/feedback-config.js')}"></script>
+<script defer src="{base}assets/js/feedback.js?v={ver('assets/js/feedback.js')}"></script>
+<script defer src="{base}assets/js/playful.js?v={ver('assets/js/playful.js')}"></script>
 </head>
 <body>
 <a class="skip" href="#main">Naar de inhoud</a>
