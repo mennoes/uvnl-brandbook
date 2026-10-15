@@ -25,18 +25,31 @@
     items.forEach(function (el) { io.observe(el); });
   } else { items.forEach(function (el) { el.classList.add('in'); }); }
 
-  /* de ogen in de titel kijken mee met de cursor */
-  var eyes = d.querySelectorAll('.oo');
-  if (eyes.length && !reduce) {
-    d.addEventListener('pointermove', function (e) {
+  /* de ogen in de titel: de pupil in het gat van de O kijkt mee met de cursor */
+  var eyes = [].slice.call(d.querySelectorAll('.vb-title .o'));
+  if (eyes.length) {
+    var look = function (x, y) {
       eyes.forEach(function (el) {
         var r = el.getBoundingClientRect();
-        var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
-        var a = Math.atan2(dy, dx), m = Math.min(1, Math.hypot(dx, dy) / 400) * r.width * 0.17;
-        el.style.setProperty('--px', (Math.cos(a) * m) + 'px');
-        el.style.setProperty('--py', (Math.sin(a) * m) + 'px');
+        var dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2);
+        var k = Math.min(1, Math.hypot(dx, dy) / 300), a = Math.atan2(dy, dx);
+        el.style.setProperty('--px', (Math.cos(a) * k * r.width * 0.15).toFixed(1) + 'px');
+        el.style.setProperty('--py', (Math.sin(a) * k * r.height * 0.125).toFixed(1) + 'px');
       });
-    });
+    };
+    if (!reduce) {
+      var active = false, idle;
+      d.addEventListener('pointermove', function (e) { active = true; look(e.clientX, e.clientY); });
+      /* zonder cursor (telefoon) kijken de ogen af en toe rond en knipperen ze */
+      idle = setInterval(function () {
+        if (active) return;
+        var r = eyes[0].getBoundingClientRect();
+        look(r.left + (Math.random() * 2 - 1) * 400 + r.width / 2, r.top + (Math.random() * 2 - 1) * 300 + r.height / 2);
+      }, 1800);
+      setInterval(function () {
+        eyes.forEach(function (el) { el.classList.remove('blink'); void el.offsetWidth; el.classList.add('blink'); });
+      }, 5200);
+    }
   }
 
   /* filter + zoeken op de vragenpagina */
