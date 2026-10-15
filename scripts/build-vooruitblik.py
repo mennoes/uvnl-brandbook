@@ -378,8 +378,8 @@ for i, c in enumerate(CH):
   </div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap"><nav class="pager" aria-label="Andere hoofdstukken">
-  {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
-  {f'<a class="next" href="{next_c["slug"]}.html"><small>Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
+  {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag · Hoofdstuk {prev_c["nr"]:02d}</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
+  {f'<a class="next" href="{next_c["slug"]}.html"><small>Hoofdstuk {next_c["nr"]:02d} · Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
 </nav></div></section>
 """
     desc = c["kort"] or f'{c["vraag"]} Een hoofdstuk van {c["boek"]["naam"]} ({c["boek"]["uni"]}) in De Vooruitblik 2027.'
