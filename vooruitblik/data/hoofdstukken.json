@@ -32,12 +32,14 @@
   "boek": {
    "naam": "Brahim Zarouali",
    "vak": "communicatiewetenschapper",
-   "uni": "KU Leuven"
+   "uni": "KU Leuven",
+   "foto": "brahim-zarouali.webp"
   },
   "gast": {
    "naam": "Roel Gevaers",
    "vak": "e-commerce",
-   "uni": "UAntwerpen"
+   "uni": "UAntwerpen",
+   "foto": "roel-gevaers.webp"
   },
   "kort": "Tien jaar geleden had je misschien vijf apps op je telefoon. En vandaag? Vijftig, honderd, of zelfs meer. Goed nieuws voor wie door de bomen het bos niet meer ziet: met een beetje geluk zet je dit jaar één superapp op je gsm en heb je de rest niet meer nodig.",
   "meer": "Eén enkele app waar je alles mee kan doen: van berichten tot bankieren, van taxi’s tot je belastingaangifte. In China gebruiken ze al WeChat, zo’n superapp. Superhandig. En toch… misschien willen we hem hier liever niet zien?",
@@ -56,12 +58,14 @@
   "boek": {
    "naam": "Ruben Verborgh",
    "vak": "computerwetenschapper",
-   "uni": "UGent"
+   "uni": "UGent",
+   "foto": "ruben-verborgh.webp"
   },
   "gast": {
    "naam": "Ike Picone",
    "vak": "fake news",
-   "uni": "VUB"
+   "uni": "VUB",
+   "foto": "ike-picone.webp"
   },
   "kort": "Als je in 2027 een vraag stelt aan ChatGPT, Claude of Copilot, dan is de kans groot dat er in het antwoord ook reclame is verwerkt. Nóg minder betrouwbaar dus. Maar moeten we dat problematisch vinden?",
   "meer": "",
@@ -104,12 +108,14 @@
   "boek": {
    "naam": "Ann Van Griensven",
    "vak": "bio-ingenieur",
-   "uni": "VUB"
+   "uni": "VUB",
+   "foto": "ann-van-griensven.webp"
   },
   "gast": {
    "naam": "Tim Soens",
    "vak": "milieuhistoricus",
-   "uni": "UAntwerpen"
+   "uni": "UAntwerpen",
+   "foto": "tim-soens.webp"
   },
   "kort": "Droogtes worden intenser, duren langer en treffen grotere gebieden tegelijk. Vlaanderen is nu al structureel afhankelijk van water uit Wallonië.",
   "meer": "Die afhankelijkheid stoot op fysieke grenzen, zoals de verzilting van het Albertkanaal en de vraag hoe de Maas straks tussen Nederland en België verdeeld wordt. Het systeem schuurt nu al tegen zijn grenzen aan. In 2027 zal de droogtestress alleen maar toenemen.",
@@ -152,12 +158,14 @@
   "boek": {
    "naam": "Giselinde Kuipers",
    "vak": "socioloog",
-   "uni": "KU Leuven"
+   "uni": "KU Leuven",
+   "foto": "giselinde-kuipers.webp"
   },
   "gast": {
    "naam": "Philip Blondeel",
    "vak": "plastische heelkunde",
-   "uni": "UGent"
+   "uni": "UGent",
+   "foto": "philip-blondeel.webp"
   },
   "kort": "Botox is meer dan een trend. Elke individuele keuze om er fris uit te blijven zien, duwt de collectieve lat weer wat hoger. Wat vandaag nog een uitzondering is, is over vijf jaar misschien de standaard.",
   "meer": "In 2027 voelen we die versnelling extra scherp: schoonheidsbehandelingen worden goedkoper en toegankelijker, sociale media doen ons constant vergelijken met anderen en de zorgsector wordt steeds meer een markt die om klanttevredenheid draait. Hoe langer we wachten om het over de stijgende schoonheidsdruk te hebben, hoe meer de keuze om die afweging bewust te maken verdwijnt.",
@@ -176,12 +184,14 @@
   "boek": {
    "naam": "Annelien Smets",
    "vak": "filosoof",
-   "uni": "VUB"
+   "uni": "VUB",
+   "foto": "annelien-smets.webp"
   },
   "gast": {
    "naam": "Len Feremans",
    "vak": "",
-   "uni": "UHasselt"
+   "uni": "UHasselt",
+   "foto": "len-feremans.webp"
   },
   "kort": "2027 wordt het jaar waarin meer dan de helft van de mensen een AI-chatbot zal gebruiken om iets te zoeken op het internet, in plaats van eerst zelf te zoeken. Die nieuwe manier van zoeken heeft onverwachte en verregaande gevolgen voor elk van ons.",
   "meer": "Want zoeken, doorklikken en af en toe verdwalen is precies waar we onze scherpzinnigheid trainen, de vaardigheid om toeval op te merken en er iets mee te doen. We verliezen daardoor ons vermogen om iets onverwachts op te merken. Zo komen niet alleen kleine, leuke ontdekkingen in het gedrang, maar ook de creativiteit en de innovatie die daaruit voortkomen.",
@@ -272,7 +282,8 @@
   "boek": {
    "naam": "Jeroen Scheerder",
    "vak": "sportsocioloog",
-   "uni": "KU Leuven"
+   "uni": "KU Leuven",
+   "foto": "jeroen-scheerder.webp"
   },
   "gast": {
    "naam": "Ignace Glorieux",
@@ -392,12 +403,14 @@
   "boek": {
    "naam": "Stijn Joye",
    "vak": "cultuurwetenschapper",
-   "uni": "UGent"
+   "uni": "UGent",
+   "foto": "stijn-joye.webp"
   },
   "gast": {
    "naam": "Stef Aupers",
    "vak": "cultuursocioloog",
-   "uni": "KU Leuven"
+   "uni": "KU Leuven",
+   "foto": "stef-aupers.webp"
   },
   "kort": "50 jaar geleden verscheen Star Wars in de cinema. De film was een succes en… de filmwereld is sindsdien voorgoed veranderd. Want een halve eeuw later volgt elke grote studio nog altijd dezelfde succesformule.",
   "meer": "Marvel, Jurassic World of de aankomende nieuwe Harry Potter-reeks: allemaal zijn ze schatplichtig aan het businessmodel dat George Lucas ooit uit pure angst voor een flop uit de grond heeft gestampt. In 2027 draait Hollywood meer dan ooit op intellectueel eigendom, franchises en universums. En wie begrijpt hoe dat begon, snapt meteen ook waarom zo weinig studio’s nog een origineel verhaal durven te vertellen.",
@@ -488,12 +501,14 @@
   "boek": {
    "naam": "Laura Sels",
    "vak": "psycholoog",
-   "uni": "UGent"
+   "uni": "UGent",
+   "foto": "laura-sels.webp"
   },
   "gast": {
    "naam": "Laura Vandenbosch",
    "vak": "communicatiewetenschapper",
-   "uni": "KU Leuven"
+   "uni": "KU Leuven",
+   "foto": "laura-vandenbossche.webp"
   },
   "kort": "Vijftien jaar geleden werd Tinder gelanceerd. Sindsdien zoeken meer mensen dan ooit hun partner via een scherm. Volgens een recent Belgisch onderzoek gebruikt 88 procent van de singles die een partner zoeken een datingapp. Maar heeft dat wel het gewenste resultaat?",
   "meer": "Via een online profiel evalueer je iemand nog voor er ooit een blik, een lach of een reactie is uitgewisseld, terwijl net dat soort interacties bepalen of we elkaar echt aantrekkelijk vinden. Hierdoor lopen we online vaak potentiële partners mis. Wie begrijpt dat aantrekking niet draait om de perfecte match op papier, maar om het gevoel dat je krijgt bij de ander, gaat zowel op apps als daarbuiten met andere verwachtingen aan tafel zitten.",
@@ -517,7 +532,8 @@
   "gast": {
    "naam": "Britt Weyts",
    "vak": "",
-   "uni": "UAntwerpen"
+   "uni": "UAntwerpen",
+   "foto": "britt-weyts.webp"
   },
   "kort": "",
   "meer": "",
@@ -530,12 +546,14 @@
    {
     "naam": "Jelle Habay",
     "vak": "",
-    "uni": "VUB"
+    "uni": "VUB",
+    "foto": "jelle-habay.webp"
    },
    {
     "naam": "Britt Weyts",
     "vak": "",
-    "uni": "UAntwerpen"
+    "uni": "UAntwerpen",
+    "foto": "britt-weyts.webp"
    }
   ]
  },
