@@ -261,7 +261,7 @@ home = f"""
     <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
       <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
     <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
-      <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties en van gezondheid tot mobiliteit.</p><p class="hero-sub">Geen glazen bol en geen voorspellingen, wel context, inzichten en kennis om 2027 beter te begrijpen. Elk hoofdstuk vertrekt vanuit één concrete vraag, beantwoord in een boek en besproken in een videopodcast met twee professoren.</p></div>
+      <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties.</p><p class="hero-sub">Geen glazen bol, wel context, inzichten en kennis. Elk hoofdstuk start bij één vraag, beantwoord in het boek en besproken in de videopodcast.</p></div>
       <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
     </div>
   </div>
