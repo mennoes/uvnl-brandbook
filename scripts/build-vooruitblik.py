@@ -82,6 +82,26 @@ def person(p, role):
             f'<div class="meta">{E(meta)}</div></div></div>')
 
 
+SIL_BASIS = ('<path d="M14 240 C14 188 54 168 100 168 C146 168 186 188 186 240Z"/>'
+             '<rect x="82" y="140" width="36" height="40" rx="14"/><ellipse cx="100" cy="94" rx="46" ry="56"/>')
+SIL_HAAR = [
+    '<path d="M52 92 C48 44 76 30 100 30 C126 30 152 44 148 92 C140 70 120 60 100 60 C80 60 60 70 52 92Z"/>',
+    '<path d="M50 96 C44 40 76 26 100 26 C124 26 156 40 150 96 L158 190 C140 196 124 170 120 150 L80 150 C76 170 60 196 42 190Z"/>',
+    '<path d="M52 92 C48 44 76 30 100 30 C126 30 152 44 148 92 C140 70 120 60 100 60 C80 60 60 70 52 92Z"/><circle cx="100" cy="22" r="20"/>',
+    '<ellipse cx="53" cy="98" rx="7" ry="13"/><ellipse cx="147" cy="98" rx="7" ry="13"/>',
+    '<circle cx="62" cy="52" r="20"/><circle cx="86" cy="36" r="22"/><circle cx="114" cy="36" r="22"/><circle cx="138" cy="52" r="20"/><circle cx="50" cy="80" r="16"/><circle cx="150" cy="80" r="16"/>',
+    '<path d="M48 110 C40 50 70 28 104 28 C140 28 160 56 152 110 C150 124 142 130 138 116 C136 90 128 70 96 66 C74 70 58 84 56 120 C54 130 48 126 48 110Z"/>',
+]
+
+
+def silhouet(nr):
+    """Placeholder zonder portret: wisselend silhouet met een cursief vraagteken in het hoofd."""
+    haar = SIL_HAAR[nr % len(SIL_HAAR)]
+    return (f'<svg class="sil" viewBox="0 0 200 240" aria-hidden="true"><g fill="currentColor" opacity=".24">{SIL_BASIS}{haar}</g>'
+            '<text x="100" y="122" text-anchor="middle" font-family="\'Tiempos Text\',Georgia,serif" font-style="italic" '
+            'font-weight="700" font-size="84" fill="currentColor" opacity=".9">?</text></svg>')
+
+
 def card_foto(c):
     """Eerste persoon van het hoofdstuk met een portret (auteur, dan gast)."""
     for p in (c["boek"], c["gast"]):
@@ -96,8 +116,7 @@ def card(c, base):
         fig = (f'<div class="card-fig"><img class="f" src="{base}assets/foto/{f["foto"]}" alt="{E(f["naam"])}" '
                f'width="450" height="540" loading="lazy"></div>')
     else:
-        fig = (f'<div class="card-fig card-fig--3d"><img class="t" src="{base}assets/3d/{c["thema"]}.png" alt="" '
-               f'loading="lazy" style="--r:{(c["nr"] * 7) % 20 - 8}deg"></div>')
+        fig = f'<div class="card-fig card-fig--sil">{silhouet(c["nr"])}</div>'
     return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]:02d}</span>'
             f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
@@ -292,10 +311,10 @@ home = f"""
   <div class="wrap">
     {sec_head("Vier manieren om mee te kijken")}
     <div class="formats reveal">
-      <a class="format c-purple has-book" href="boek.html"><span class="go">→</span><span class="big">23 essays</span><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
-      <a class="format c-yellow" href="videopodcast.html"><span class="go">→</span><span class="big">3 per week</span><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p></a>
-      <a class="format c-pink" href="radio.html"><span class="go">→</span><span class="big">12 uur</span><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p></a>
-      <a class="format c-blue" href="live.html"><span class="go" style="color:var(--blue)">→</span><span class="big">Live</span><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p></a>
+      <a class="format c-purple has-book" href="boek.html"><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p><span class="format-foot"><span class="big">23 essays</span><span class="go">→</span></span></a>
+      <a class="format c-yellow" href="videopodcast.html"><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p><span class="format-foot"><span class="big">3 per week</span><span class="go">→</span></span></a>
+      <a class="format c-pink" href="radio.html"><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p><span class="format-foot"><span class="big">12 uur</span><span class="go">→</span></span></a>
+      <a class="format c-blue" href="live.html"><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p><span class="format-foot"><span class="big">Live</span><span class="go" style="color:var(--blue)">→</span></span></a>
     </div>
   </div>
 </section>
