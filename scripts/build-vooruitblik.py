@@ -145,7 +145,7 @@ def sec_head(h2, p="", btn=""):
 
 
 def subhero(cls, kicker, h1, sub="", orn=None, q=False):
-    o = f'<img class="orn" src="assets/3d/{orn}.png" alt="">' if orn else ""
+    o = (f'<img class="orn" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
     return (f'<section class="page-hero {cls}{" q" if q else ""}"><div class="wrap">'
             f'<div class="crumbs"><a href="index.html">De Vooruitblik</a> / {kicker}</div><h1>{h1}</h1>'
             f'{f"<p class=sub>{sub}</p>" if sub else ""}</div>{o}</section>')
@@ -155,7 +155,7 @@ def subhero(cls, kicker, h1, sub="", orn=None, q=False):
 ticker = "".join(f'<a class="c-{c["kleur"]}" href="hoofdstuk/{c["slug"]}.html">{E(c["vraag"])}</a>' for c in CH)
 home = f"""
 <section class="hero">
-  <img class="orn orn--a" src="assets/3d/gezondheid.png" alt="" style="--rot:10deg"><span class="orn orn--b"><img src="assets/3d/techniek.png" alt="" style="--rot:-8deg"></span>
+  <img class="orn orn--book" src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027" width="753" height="1290"><span class="orn orn--b"><img src="assets/3d/techniek.png" alt="" style="--rot:-8deg"></span>
   <div class="wrap">
     <p class="kicker">Universiteit van Vlaanderen · Radio 1 · Pelckmans</p>
     <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
@@ -190,7 +190,7 @@ home = f"""
   <div class="wrap">
     {sec_head("Vier manieren om mee te kijken")}
     <div class="formats reveal">
-      <a class="format c-purple" href="boek.html"><span class="go">→</span><span class="big">23</span><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
+      <a class="format c-purple has-book" href="boek.html"><span class="go">→</span><span class="big">23</span><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p></a>
       <a class="format c-yellow" href="videopodcast.html"><span class="go">→</span><span class="big">3/wk</span><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p></a>
       <a class="format c-pink" href="radio.html"><span class="go">→</span><span class="big">12u</span><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p></a>
       <a class="format c-blue" href="live.html"><span class="go" style="color:var(--blue)">→</span><span class="big">Live</span><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p></a>
@@ -271,7 +271,7 @@ for i, c in enumerate(CH):
 </div></section>
 <section class="section section--tight"><div class="wrap">
   <div class="dark" style="padding:clamp(26px,5vw,56px)"><div class="buy">
-    <img src="../assets/img/boek-cover.jpg" alt="Cover van het boek De Vooruitblik 2027, uitgegeven door Pelckmans" loading="lazy">
+    <img src="../assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy">
     <div><p class="kicker" style="color:var(--purple)">Lees het volledige essay</p><h2 style="font-size:clamp(36px,5vw,64px)">Dit hoofdstuk zit in het boek</h2><p style="max-width:44ch;margin-top:14px">Drieëntwintig essays, weetjes, anekdotes en een filmtip per hoofdstuk. Verschijnt op 15 november 2026.</p>
     <div class="stack"><a class="btn btn--purple" href="../boek.html">Over het boek <span class="arr">→</span></a></div></div>
   </div></div>
@@ -287,10 +287,10 @@ for i, c in enumerate(CH):
 # ───────────────────────── BOEK ─────────────────────────
 rows = "".join(f'<li style="border-top:1.5px solid rgba(0,75,54,.25);padding:14px 0;font-size:18px"><a href="hoofdstuk/{c["slug"]}.html" style="color:var(--green);text-decoration:none"><b>{c["nr"]:02d}</b>&nbsp; {E(c["vraag"])} <span style="opacity:.75">· {E(c["boek"]["naam"])}, {E(c["boek"]["uni"])}</span></a></li>' for c in CH)
 boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
-               "Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.", "gedrag-maatschappij") + f"""
+               "Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
   <div class="dark" style="padding:clamp(26px,5vw,64px)"><div class="buy">
-    <img src="assets/img/boek-cover.jpg" alt="Cover van het boek De Vooruitblik 2027, uitgegeven door Pelckmans">
+    <img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290">
     <div><p class="kicker" style="color:var(--purple)">Verschijnt 15 november 2026</p><div class="price">€24,50</div>
       <p style="max-width:46ch;margin-top:16px">Officiële lancering op Dag van de Wetenschap, 15 november, op Boektopia in Antwerp Expo.</p>
       <div class="stack"><a class="btn btn--purple" href="{URL["standaard"]}" rel="noopener">Bestel bij Standaard Boekhandel <span class="arr">→</span></a><a class="btn btn--line" href="{URL["pelckmans"]}" rel="noopener" style="color:var(--paper)">Bij Pelckmans</a></div></div>
@@ -361,15 +361,18 @@ partners = subhero("hero-paper", "Partners", "Samen gemaakt",
 <section class="section section--tight"><div class="wrap">
   <h2 class="group-title">Initiatiefnemers</h2>
   <div class="three">
-    <div class="panel reveal"><h3 style="margin-top:0">Universiteit van Vlaanderen</h3><p>Maakt wetenschappelijke kennis toegankelijk voor een breed publiek, via video’s, podcasts, evenementen en publicaties.</p></div>
-    <div class="panel reveal"><h3 style="margin-top:0">Radio 1</h3><p>De actualiteitszender van de VRT, met betrouwbare informatie, verdieping en duiding.</p></div>
-    <div class="panel reveal"><h3 style="margin-top:0">Pelckmans Uitgevers</h3><p>Belgische uitgeverij met een sterke traditie in educatieve, algemene en wetenschappelijk geïnspireerde publicaties.</p></div>
+    <div class="panel panel--green reveal"><span class="logo-mask" role="img" aria-label="Universiteit van Vlaanderen"></span><p>Maakt wetenschappelijke kennis toegankelijk voor een breed publiek, via video’s, podcasts, evenementen en publicaties.</p></div>
+    <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/radio1.png" alt="Radio 1"><p>De actualiteitszender van de VRT, met betrouwbare informatie, verdieping en duiding.</p></div>
+    <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/pelckmans.png" alt="Pelckmans Uitgevers"><p>Belgische uitgeverij met een sterke traditie in educatieve, algemene en wetenschappelijk geïnspireerde publicaties.</p></div>
   </div>
   <h2 class="group-title">De vijf Vlaamse universiteiten</h2>
   <p style="max-width:60ch">Zij leveren experten, ondersteunen de communicatie en dragen bij aan de wetenschappelijke kwaliteit.</p>
   {pl([("antwerpen","Universiteit Antwerpen"),("hasselt","Universiteit Hasselt"),("kuleuven","KU Leuven"),("gent","Universiteit Gent"),("vub-brussel","Vrije Universiteit Brussel")])}
   <h2 class="group-title">Met steun van</h2>
   {pl([("jonge-academie","Jonge Academie"),("vrt","VRT"),("vlaamse-overheid","Vlaamse overheid (WEWIS)"),("nationale-loterij","Nationale Loterij")])}
+  <h2 class="group-title">Deel De Vooruitblik</h2>
+  <p style="max-width:60ch">Zet het boek in je e-mailhandtekening. Download een banner en voeg hem toe.</p>
+  <div class="banners">{"".join(f'<a class="banner reveal" href="assets/img/banner-{f}.png" download><img src="assets/img/banner-{f}.png" alt="{E(n)}" loading="lazy"><span>{E(n)} <span>Download ↓</span></span></a>' for f, n in [("vanaf-15-november","Vanaf 15 november in de boekhandel"),("nu-in-de-boekhandel","Nu in de boekhandel"),("lees-er-alles-over","Lees er nu alles over")])}</div>
 </div></section>
 """
 page("partners.html", "Partners", "De initiatiefnemers en partners van De Vooruitblik 2027: Universiteit van Vlaanderen, Radio 1, Pelckmans, de vijf Vlaamse universiteiten en meer.", partners, current="partners.html")
