@@ -82,21 +82,28 @@ def person(p, role):
             f'<div class="meta">{E(meta)}</div></div></div>')
 
 
-def mini(p, base):
-    """Klein rond portret naast de naam op een kaart; zonder foto de initialen."""
-    if p.get("foto"):
-        return f'<img class="mini" src="{base}assets/foto/{p["foto"]}" alt="" width="36" height="36" loading="lazy">'
-    return f'<span class="mini mini--init" aria-hidden="true">{E(initials(p["naam"]))}</span>'
+def card_foto(c):
+    """Eerste persoon van het hoofdstuk met een portret (auteur, dan gast)."""
+    for p in (c["boek"], c["gast"]):
+        if p.get("foto"):
+            return p
+    return None
 
 
 def card(c, base):
+    f = card_foto(c)
+    if f:
+        fig = (f'<div class="card-fig"><img class="f" src="{base}assets/foto/{f["foto"]}" alt="{E(f["naam"])}" '
+               f'width="450" height="540" loading="lazy"></div>')
+    else:
+        fig = (f'<div class="card-fig card-fig--3d"><img class="t" src="{base}assets/3d/{c["thema"]}.png" alt="" '
+               f'loading="lazy" style="--r:{(c["nr"] * 7) % 20 - 8}deg"></div>')
     return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]:02d}</span>'
             f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
             f'data-zoek="{E((c["vraag"] + " " + c["boek"]["naam"] + " " + c["gast"]["naam"] + " " + c["boek"]["vak"]).lower())}">'
-            f'<img src="{base}assets/3d/{c["thema"]}.png" alt="" loading="lazy" style="--r:{(c["nr"] * 7) % 20 - 8}deg">'
-            f'<h3>{E(c["vraag"])}</h3>'
-            f'<div class="who">{mini(c["boek"], base)}<span class="who-t">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></span></div></a></div>')
+            f'{fig}<h3>{E(c["vraag"])}</h3>'
+            f'<div class="who">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></div></a></div>')
 
 
 def hl(text):
@@ -337,7 +344,7 @@ page("vragen.html", "De 23 vragen", "Alle 23 vragen uit De Vooruitblik 2027, met
 # ───────────────────────── HOOFDSTUKKEN ─────────────────────────
 for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
-    hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper"}[c["kleur"]]
+    hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper", "red": "hero-red", "mint": "hero-mint"}[c["kleur"]]
     hero = (f'<section class="page-hero q {hero_cls}"><div class="wrap">'
             f'{hero_shapes(hero_cls)}<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
