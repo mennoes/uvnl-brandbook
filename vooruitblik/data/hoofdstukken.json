@@ -104,7 +104,7 @@
   "slug": "drinkbaar-water-uit-de-kraan",
   "vraag": "Komt er in 2027 nog drinkbaar water uit de kraan?",
   "thema": "aarde-milieu",
-  "kleur": "pink",
+  "kleur": "mint",
   "boek": {
    "naam": "Ann Van Griensven",
    "vak": "bio-ingenieur",
@@ -130,7 +130,7 @@
   "slug": "homoseksualiteit-wegknippen-uit-je-dna",
   "vraag": "Homoseksualiteit wegknippen uit je DNA?",
   "thema": "gezondheid",
-  "kleur": "mint",
+  "kleur": "red",
   "boek": {
    "naam": "Piet Hoebeke",
    "vak": "uroloog",
@@ -154,7 +154,7 @@
   "slug": "botox-even-normaal-als-een-tandartscontrole",
   "vraag": "Wordt een botox-afspraak dit jaar even normaal als een tandartscontrole?",
   "thema": "gedrag-maatschappij",
-  "kleur": "red",
+  "kleur": "purple",
   "boek": {
    "naam": "Giselinde Kuipers",
    "vak": "socioloog",
@@ -180,7 +180,7 @@
   "slug": "verleren-we-toevalligheden-op-te-merken",
   "vraag": "Verleren we in 2027 om toevalligheden op te merken?",
   "thema": "informatie",
-  "kleur": "purple",
+  "kleur": "yellow",
   "boek": {
    "naam": "Annelien Smets",
    "vak": "filosoof",
@@ -206,7 +206,7 @@
   "slug": "kan-de-navo-rusland-aan",
   "vraag": "Kan de NAVO Rusland aan?",
   "thema": "recht-bestuur",
-  "kleur": "yellow",
+  "kleur": "blue",
   "boek": {
    "naam": "Alexander Mattelaer",
    "vak": "defensie-expert",
@@ -230,7 +230,7 @@
   "slug": "verkeersregels-voor-e-steps",
   "vraag": "Eindelijk verkeersregels voor e-steps, maar toch niet veiliger?",
   "thema": "techniek",
-  "kleur": "blue",
+  "kleur": "mint",
   "boek": {
    "naam": "Evelien Polders",
    "vak": "verkeersveiligheidsexpert",
@@ -254,7 +254,7 @@
   "slug": "ziektes-opsporen-met-stoelgangtesten",
   "vraag": "Vanaf nu ziektes opsporen met stoelgangtesten in plaats van bloedtesten?",
   "thema": "gezondheid",
-  "kleur": "pink",
+  "kleur": "red",
   "boek": {
    "naam": "Werend Boesmans",
    "vak": "biomedicus",
@@ -278,7 +278,7 @@
   "slug": "triatlon-lopen-om-erbij-te-horen",
   "vraag": "Dit jaar een triatlon lopen om erbij te horen?",
   "thema": "gedrag-maatschappij",
-  "kleur": "mint",
+  "kleur": "purple",
   "boek": {
    "naam": "Jeroen Scheerder",
    "vak": "sportsocioloog",
@@ -303,7 +303,7 @@
   "slug": "geen-spuitjes-meer-voor-mensen-met-diabetes",
   "vraag": "Geen spuitjes meer voor mensen met diabetes?",
   "thema": "gezondheid",
-  "kleur": "red",
+  "kleur": "yellow",
   "boek": {
    "naam": "Chantal Mathieu",
    "vak": "endocrinoloog",
@@ -327,7 +327,7 @@
   "slug": "hoe-gewoon-mag-koningin-elisabeth-zijn",
   "vraag": "Hoe gewoon mag onze toekomstige koningin Elisabeth zijn?",
   "thema": "recht-bestuur",
-  "kleur": "purple",
+  "kleur": "blue",
   "boek": {
    "naam": "Luc Duerloo",
    "vak": "historicus",
@@ -351,7 +351,7 @@
   "slug": "wolf-in-jouw-stadstuin",
   "vraag": "Passeert er binnenkort een wolf in jouw stadstuin?",
   "thema": "aarde-milieu",
-  "kleur": "yellow",
+  "kleur": "mint",
   "boek": {
    "naam": "Raoul Van Damme",
    "vak": "bioloog",
@@ -375,7 +375,7 @@
   "slug": "hoorapparaat-graag-dragen",
   "vraag": "Zullen mensen hun hoorapparaat in 2027 écht graag dragen?",
   "thema": "gezondheid",
-  "kleur": "blue",
+  "kleur": "red",
   "boek": {
    "naam": "Hannah Keppler",
    "vak": "revalidatiewetenschapper",
@@ -399,7 +399,7 @@
   "slug": "hoe-heeft-star-wars-de-filmindustrie-veranderd",
   "vraag": "Hoe heeft Star Wars de hele filmindustrie veranderd?",
   "thema": "kunst-cultuur",
-  "kleur": "pink",
+  "kleur": "purple",
   "boek": {
    "naam": "Stijn Joye",
    "vak": "cultuurwetenschapper",
@@ -425,7 +425,7 @@
   "slug": "geen-adoptiekinderen-meer-uit-het-buitenland",
   "vraag": "In 2027 geen adoptiekinderen meer uit het buitenland?",
   "thema": "gedrag-maatschappij",
-  "kleur": "mint",
+  "kleur": "yellow",
   "boek": {
    "naam": "Chiara Candaele",
    "vak": "historica",
@@ -449,7 +449,7 @@
   "slug": "wat-neemt-rafael-liegeois-mee-naar-het-iss",
   "vraag": "Wat neemt Rafaël Liégeois mee naar het ISS?",
   "thema": "zon",
-  "kleur": "red",
+  "kleur": "blue",
   "boek": {
    "naam": "Jaroslav Hruby",
    "vak": "fysicus",
@@ -473,7 +473,7 @@
   "slug": "wie-wordt-de-opvolger-van-trump",
   "vraag": "Wie wordt de opvolger van Trump?",
   "thema": "recht-bestuur",
-  "kleur": "purple",
+  "kleur": "mint",
   "boek": {
    "naam": "Peter Van Aelst",
    "vak": "politicoloog",
@@ -497,7 +497,7 @@
   "slug": "geraak-je-alleen-nog-via-tinder-aan-een-lief",
   "vraag": "Geraak je alleen nog via Tinder aan een lief?",
   "thema": "gedrag-maatschappij",
-  "kleur": "yellow",
+  "kleur": "red",
   "boek": {
    "naam": "Laura Sels",
    "vak": "psycholoog",
@@ -523,7 +523,7 @@
   "slug": "non-stop-vlucht-van-22-uur",
   "vraag": "Kan een mens een non-stop vlucht van 22 uur aan?",
   "thema": "gezondheid",
-  "kleur": "blue",
+  "kleur": "purple",
   "boek": {
    "naam": "Nathalie Pattyn",
    "vak": "spoedarts",
@@ -562,7 +562,7 @@
   "slug": "nobelprijswinnaars-in-brussel",
   "vraag": "Waarom komen Nobelprijswinnaars in oktober graag naar Brussel?",
   "thema": "techniek",
-  "kleur": "pink",
+  "kleur": "yellow",
   "boek": {
    "naam": "Jan Danckaert",
    "vak": "fysicus en rector",
