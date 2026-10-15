@@ -138,7 +138,7 @@
   .tape-track { animation:none; }
   .burst-star,.sh,.vb-title .pow,.vb-title .spk,.qm { animation:none; }
 }
-@media (max-width:640px){ .page-hero .orn[src$=".webp"] { display:none; } }
+@media (max-width:640px){ .page-hero .orn[src$=".webp"]:not(.orn--foto) { display:none; } }
 
 /* ══ composities uit de huisstijl-site: grote afrondingen, felgroene kaarten, ingezette panelen ══ */
 .btn--white { background:#fff; color:var(--green); }

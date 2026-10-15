@@ -111,6 +111,14 @@ def card(c, base):
             f'<div class="who">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></div></a></div>')
 
 
+def hero_portret(c):
+    """Portret van de auteur rechts in de hero; zonder portret het silhouet van de placeholder."""
+    f = card_foto(c)
+    if f:
+        return (f'<img class="orn orn--foto" src="../assets/foto/{f["foto"]}" alt="{E(f["naam"])}" width="450" height="563">')
+    return (f'<img class="orn orn--foto orn--sil" src="../assets/foto/silhouet-{c["nr"] % SILHOUETTEN + 1}.webp" alt="" width="450" height="563">')
+
+
 def hl(text):
     """Elk woord op een eigen kleurblok (zoals de thumbs in de huisstijl); het vraagteken wiebelt."""
     out = []
@@ -349,7 +357,7 @@ for i, c in enumerate(CH):
             f'<a class="btn btn--line btn--sm" href="../vragen.html">← Alle hoofdstukken</a></div>'
             f'<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
-            f'<img class="orn" src="../assets/3d/{c["thema"]}.png" alt=""></section>')
+            f'{hero_portret(c)}</section>')
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
     meer = "".join(f"<p>{E(p)}</p>" for p in c["meer"].split("\n") if p) if c["meer"] else ""
     v = c["video"]
