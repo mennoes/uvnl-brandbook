@@ -177,10 +177,10 @@ p { margin:0 0 1em; }
 /* ── pagina-hero (subpagina's) ──────────────────────────── */
 .page-hero { border-radius:0 0 var(--r-l) var(--r-l); padding:clamp(36px,6vw,80px) 0 clamp(44px,6vw,84px); position:relative; overflow:hidden; isolation:isolate; }
 .page-hero h1 { font-size:clamp(52px,9.5vw,150px); line-height:.9; margin:16px 0 0; color:inherit; max-width:16ch; }
-.page-hero.q h1 { font-size:clamp(40px,7vw,104px); max-width:20ch; }
+.page-hero.q h1,.page-hero h1.q { font-size:clamp(30px,4.4vw,64px); max-width:26ch; }
 .page-hero .sub { font-size:clamp(18px,2vw,23px); max-width:44ch; margin:22px 0 0; }
 .page-hero .orn { position:absolute; right:4%; bottom:-6%; width:clamp(140px,26vw,380px); z-index:-1; transform:rotate(8deg); }
-@media (max-width:640px){ .page-hero .orn { width:96px; right:14px; bottom:14px; opacity:.9; } .page-hero.q h1 { padding-right:0; } }
+@media (max-width:640px){ .page-hero .orn { width:96px; right:14px; bottom:14px; opacity:.9; } .page-hero.q h1,.page-hero h1.q { padding-right:0; } }
 .three { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:18px; }
 .crumbs { font-size:14px; font-weight:700; }
 .crumbs a { color:inherit; }
