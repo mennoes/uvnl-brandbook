@@ -254,8 +254,14 @@ home = f"""
 
 <section class="section section--tight">
   <div class="wrap">
-    {sec_head("De vragen", "Elk hoofdstuk begint met één concrete vraag. Klik door voor de professoren erachter.", btn='<a class="btn btn--green" href="vragen.html">Alle 23 <span class="arr">→</span></a>', eyebrow="Eén vraag per hoofdstuk")}
-    <div class="grid reveal">{"".join(card(c, "") for c in CH[:6])}</div>
+    {sec_head("De vragen", "Elk hoofdstuk begint met één concrete vraag. Klik door voor de professoren erachter.", eyebrow="Eén vraag per hoofdstuk")}
+    <div class="fan" id="fan">
+      <div class="fan-stage">{"".join(f'<div class="fan-slot"{" hidden" if i >= 4 else ""}>{card(c, "")}</div>' for i, c in enumerate(CH))}</div>
+      <div class="fan-actions">
+        <button class="btn btn--line fan-shuffle" type="button" id="fan-shuffle" hidden>Schud de kaarten <span class="arr">↻</span></button>
+        <a class="btn btn--green btn--lg" href="vragen.html">Bekijk alle 23 vragen <span class="arr">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
