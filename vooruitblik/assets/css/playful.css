@@ -288,3 +288,15 @@
   .cas .inset { aspect-ratio:16/10; width:100%; }
   .cas .inset img { width:44%; }
 }
+
+/* ── logo Universiteit van Vlaanderen op Vormgeving ── */
+.uvvl-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:18px; }
+.uvvl-side { display:grid; gap:18px; }
+.uvvl-tile { margin:0; border-radius:var(--r-l); display:grid; place-items:center; padding:clamp(28px,5vw,64px); min-height:200px; }
+.uvvl-tile img { display:block; width:100%; max-width:520px; height:auto; }
+.uvvl-tile img.uvvl-vierkant { max-width:88px; }
+.uvvl-tile--wit { background:var(--white); }
+.uvvl-tile--groen { background:var(--green); }
+.uvvl-tile--paars { background:var(--purple); }
+.uvvl-tile--groen img { max-width:360px; }
+@media (max-width:760px){ .uvvl-grid { grid-template-columns:minmax(0,1fr); } }
