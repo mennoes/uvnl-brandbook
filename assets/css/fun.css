@@ -76,15 +76,6 @@
 .about2 .a-contact .btn { background:var(--uvnl-purple); color:var(--uvnl-green); }
 .wie-video { border-radius:var(--r-xl) !important; }
 
-/* ── Fotografie: Wel & niet als kleurvlakken ── */
-.prose[style*="760px"] { max-width:none !important; }
-.prose[style*="760px"] ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
-.prose[style*="760px"] li { border-radius:var(--r-xl); padding:26px; font-size:17px; line-height:1.45; margin:0; }
-.prose[style*="760px"] li b { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(30px,3vw,42px); line-height:.95; margin-bottom:8px; }
-.prose[style*="760px"] li:nth-child(1) { background:var(--uvnl-green); color:var(--uvnl-paper); } .prose[style*="760px"] li:nth-child(1) b { color:var(--uvnl-purple); }
-.prose[style*="760px"] li:nth-child(2) { background:var(--uvnl-purple); color:var(--uvnl-green); } .prose[style*="760px"] li:nth-child(2) b { color:var(--uvnl-green); }
-.prose[style*="760px"] li:nth-child(3) { background:var(--uvnl-red); color:var(--uvnl-purple-deep); }
-.prose[style*="760px"] li:nth-child(4) { background:var(--uvnl-yellow); color:var(--uvnl-green); }
 
 /* ── Voorbeelden ── */
 .examples-topics a, .examples-topics button { border-radius:var(--r-pill); }
@@ -109,10 +100,7 @@
 /* ── Beweging ── */
 @media (prefers-reduced-motion:no-preference) {
   .page-hero .ph-text { animation:rise .8s var(--ease) backwards; }
-  .lg-card, .gallery > *, .about2 .a-stat, .about2 .a-trait, .dl-packs .pack, .dlc, .showpiece { transition:transform .3s var(--spring),box-shadow .3s var(--ease); }
-  .lg-card:hover, .gallery > *:hover, .about2 .a-stat:hover, .about2 .a-trait:hover, .dl-packs .pack:hover, .dlc:hover { transform:translateY(-6px) rotate(-.6deg); box-shadow:0 22px 40px rgba(27,7,87,.18); }
-  .about2 .a-trait:nth-child(2n) { transform:rotate(.8deg); } .about2 .a-trait:nth-child(2n+1) { transform:rotate(-.8deg); }
-  .bbnav .links a.cta:active, .btn:active { transform:scale(.94) rotate(-1.5deg); }
+  .bbnav .links a.cta:active, .btn:active { transform:scale(.96); }
   @keyframes rise { from { opacity:0; transform:translateY(16px); } }
 }
 .page-hero .ph-visual { background:transparent !important; }
