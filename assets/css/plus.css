@@ -293,3 +293,55 @@
 .tape-track { gap:clamp(28px,3.4vw,52px); }
 .tape-track span + span::before { content:""; }
 .hp-cards .hp-card.hl .d, .hp-cards .hp-card.hl .arr { color:#3a2b63; }
+
+/* ══ Ronde 2: echte assets groot gebruiken ══ */
+/* Subnav zit nu in de hero */
+.page-hero .subnav { margin:0 0 clamp(18px,3vw,34px); }
+.page-hero .subnav a { color:var(--uvnl-paper); border-color:rgba(244,240,237,.45); font-size:15px; padding:9px 20px; }
+.page-hero .subnav a:hover { background:rgba(244,240,237,.14); }
+.page-hero .subnav a[aria-current="page"] { background:var(--uvnl-purple); border-color:var(--uvnl-purple); color:var(--uvnl-green); }
+/* 3D-elementen in de pagina-hero i.p.v. losse cirkel en ring */
+.page-hero::before, .page-hero::after { display:none !important; }
+.ph-3d { position:absolute; z-index:3; pointer-events:none; filter:drop-shadow(0 22px 28px rgba(0,0,0,.35)); }
+.ph-3d.a { width:clamp(120px,17vw,250px); right:max(16px,calc(50vw - 690px)); top:clamp(10px,3vw,40px); transform:rotate(12deg); }
+.ph-3d.b { width:clamp(90px,12vw,180px); left:46%; bottom:clamp(-30px,-2vw,-10px); transform:rotate(-14deg); }
+@media (max-width:860px){ .ph-3d.b { display:none; } .ph-3d.a { width:110px; top:auto; bottom:16px; right:16px; } }
+@media (prefers-reduced-motion:no-preference) {
+  .ph-3d.a { animation:float-a 7s ease-in-out infinite; }
+  .ph-3d.b { animation:float-b 9s ease-in-out infinite; }
+  @keyframes float-a { 0%,100% { transform:translateY(0) rotate(12deg); } 50% { transform:translateY(-18px) rotate(18deg); } }
+  @keyframes float-b { 0%,100% { transform:translateY(0) rotate(-14deg); } 50% { transform:translateY(-14px) rotate(-6deg); } }
+}
+/* Ingangskaarten met 3D-element, zoals de kaarten op de Vooruitblik-site */
+.hp-card { min-height:300px; }
+.hp-card .fig { position:absolute; right:-6%; top:-4%; width:52%; height:auto; transform:rotate(10deg); filter:drop-shadow(0 16px 20px rgba(0,0,0,.25)); transition:transform .4s var(--spring); }
+.hp-card:hover .fig { transform:rotate(-4deg) scale(1.1); }
+.hp-card:nth-child(n+4) .fig { width:34%; right:4%; top:6%; }
+.hp-card:last-child .fig { width:24%; }
+/* Posters-sectie */
+.show { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(24px,4vw,56px); align-items:center; background:var(--uvnl-purple); border-radius:var(--r-l); padding:clamp(32px,5vw,72px); overflow:hidden; }
+.show .eyebrow { color:var(--uvnl-green); }
+.show h2 { font-family:var(--font-display); text-transform:uppercase; font-size:clamp(40px,5.6vw,84px); line-height:.88; letter-spacing:-.02em; color:var(--uvnl-green); margin:0 0 18px; }
+.show p { font-size:clamp(17px,1.5vw,20px); line-height:1.5; color:#2b1f55; max-width:44ch; margin:0 0 24px; }
+.btn-pill { display:inline-block; background:var(--uvnl-green); color:var(--uvnl-paper); font-weight:700; text-decoration:none; padding:14px 26px; border-radius:var(--r-pill); transition:transform .25s var(--spring); }
+.btn-pill:hover { transform:translateY(-3px) rotate(-1.5deg); }
+.posters { display:flex; justify-content:center; align-items:center; gap:0; }
+.posters img { width:33%; height:auto; border-radius:14px; box-shadow:0 24px 40px rgba(27,7,87,.35); }
+.posters img:nth-child(1) { transform:rotate(-7deg) translateY(10px); margin-right:-4%; }
+.posters img:nth-child(2) { transform:rotate(1deg) translateY(-20px); z-index:2; width:36%; }
+.posters img:nth-child(3) { transform:rotate(7deg) translateY(14px); margin-left:-4%; }
+.slogan { display:block; width:100%; height:auto; border-radius:var(--r-l); }
+@media (max-width:860px){ .show { grid-template-columns:1fr; } }
+
+/* Kaarttekst niet onder het 3D-element */
+.hp-card .d { max-width:52%; }
+.hp-card:nth-child(n+4) .d { max-width:62%; }
+/* Sectiekoppen op Huisstijl: groot, met serif-eyebrow-gevoel */
+
+.logo-section { border-radius:var(--r-l); padding:clamp(24px,3.5vw,48px); margin-bottom:22px; }
+.logo-section h2 { font-family:var(--font-display) !important; font-size:clamp(40px,6vw,84px) !important; line-height:.88 !important; letter-spacing:-.02em !important; text-transform:uppercase; color:var(--uvnl-green) !important; margin:0 0 10px !important; }
+.logo-section .ls-sub { font-size:clamp(16px,1.4vw,19px); color:var(--uvnl-green); opacity:.85; margin:0 0 22px; }
+.logo-section:nth-of-type(1) { background:var(--uvnl-purple); }
+.logo-section:nth-of-type(2) { background:var(--uvnl-pink); }
+.logo-section:nth-of-type(3) { background:var(--uvnl-yellow); }
+.logo-section:nth-of-type(4) { background:var(--uvnl-blue); }
