@@ -41,7 +41,7 @@
   .pack .d { font-size:13.5px; color:rgba(244,240,237,.85); margin-top:10px; }
   .dl-note { margin:30px 0 80px; font-size:13px; color:var(--fg-mute); border-left:3px solid var(--line-strong); padding:6px 0 6px 14px; max-width:70ch; }
 </style>
-<link rel="stylesheet" href="../assets/css/fun.css?v=20261040">
+<link rel="stylesheet" href="../assets/css/fun.css?v=20261041">
 </head>
 <body>
 
@@ -72,20 +72,11 @@
   </div>
 
   <section class="dl-choose" data-region-lock>
-    <div class="index-col" style="margin:8px 0 14px"><h2>Voor welk merk?</h2></div>
+    <div class="index-col" style="margin:8px 0 18px;text-align:center"><h2>Voor welk merk?</h2></div>
     <div class="dl-opts" role="radiogroup" aria-label="Kies een merk">
-      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="nl">
-        <span class="dl-opt-img"><img src="../assets/photos/entrance-u.jpg" alt="" loading="lazy"></span>
-        <span class="dl-opt-t">Universiteit van Nederland</span><span class="dl-opt-d">Logo’s en foto’s van UvNL</span>
-      </button>
-      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="vl">
-        <span class="dl-opt-img"><img src="../assets/photos/vlaanderen/vl-theater-en-podium.jpg" alt="" loading="lazy"></span>
-        <span class="dl-opt-t">Universiteit van Vlaanderen</span><span class="dl-opt-d">Logo’s en foto’s van UvVL</span>
-      </button>
-      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="both">
-        <span class="dl-opt-img dl-opt-img--two"><img src="../assets/photos/entrance-u.jpg" alt="" loading="lazy"><img src="../assets/photos/vlaanderen/vl-theater-en-podium.jpg" alt="" loading="lazy"></span>
-        <span class="dl-opt-t">Beide merken</span><span class="dl-opt-d">Netjes gescheiden per merk</span>
-      </button>
+      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="nl" aria-label="Universiteit van Nederland"><span class="dl-logo" style="-webkit-mask-image:url('../assets/logos/uvnl-logo.svg');mask-image:url('../assets/logos/uvnl-logo.svg')"></span></button>
+      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="vl" aria-label="Universiteit van Vlaanderen"><span class="dl-logo" style="-webkit-mask-image:url('../assets/logos/uvvl-logo.svg');mask-image:url('../assets/logos/uvvl-logo.svg')"></span></button>
+      <button class="dl-opt dl-opt--both" type="button" role="radio" aria-checked="false" data-brand="both">Beide</button>
     </div>
 
     <div class="dl-group" data-group="nl">

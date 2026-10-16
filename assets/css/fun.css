@@ -243,3 +243,12 @@
 .dlp-btn { align-self:flex-start; margin-top:auto; background:var(--uvnl-green); color:var(--uvnl-paper); font-weight:700; text-decoration:none; padding:12px 22px; border-radius:var(--r-pill); transition:transform .25s var(--spring), background .2s var(--ease); }
 .dlp-btn:hover { background:var(--uvnl-green-bright); transform:translateY(-2px); }
 @media (max-width:760px){ .dl-opts { grid-template-columns:1fr; } }
+
+/* Download: merkkeuze als drie kleine knoppen in het midden (logo UvNL, logo UvVL, Beide) */
+.dl-opts { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+.dl-opt { flex-direction:row; align-items:center; justify-content:center; gap:0; min-width:230px; height:76px; padding:0 30px; border-radius:var(--r-pill); }
+.dl-opt:hover { transform:translateY(-3px); }
+.dl-opt .dl-logo { display:block; width:170px; aspect-ratio:638/140; background:var(--uvnl-green); -webkit-mask:center/contain no-repeat; mask:center/contain no-repeat; }
+.dl-opt.on .dl-logo { background:var(--uvnl-purple); }
+.dl-opt--both { font-family:var(--font-sans); font-weight:700; font-size:22px; min-width:150px; }
+@media (max-width:560px){ .dl-opt { min-width:0; width:100%; } }
