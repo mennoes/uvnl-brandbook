@@ -254,12 +254,12 @@ def inset_vragen():
 
 def inset_proffen():
     # naam, links %, boven %, breedte %, rotatie graden, diepte (voor de muisbeweging)
-    plek = [("ann-van-griensven", 4, 6, 26, -8, 1.0), ("britt-weyts", 30, 3, 30, 5, 1.4), ("giselinde-kuipers", 62, 8, 25, -5, 0.8),
-            ("jelle-habay", 5, 44, 27, 7, 1.2), ("laura-sels", 30, 36, 33, -4, 1.8), ("ike-picone", 67, 38, 26, 8, 1.0),
-            ("philip-blondeel", 14, 68, 22, -9, 0.7), ("tim-soens", 48, 64, 27, 5, 1.5)]
+    plek = [("ann-van-griensven", 4, 6, 26, -8, 1.0, 2), ("britt-weyts", 30, 3, 30, 5, 1.4, 4), ("giselinde-kuipers", 62, 8, 25, -5, 0.8, 3),
+            ("jelle-habay", 5, 44, 27, 7, 1.2, 3), ("laura-sels", 30, 36, 33, -4, 1.8, 6), ("ike-picone", 67, 38, 26, 8, 1.0, 5),
+            ("philip-blondeel", 14, 68, 22, -9, 0.7, 7), ("tim-soens", 48, 64, 27, 5, 1.5, 8)]
     return '<div class="inset inset--proffen" data-react>' + "".join(
         f'<img src="assets/foto/{n}.webp" alt="" width="450" height="563" loading="lazy" '
-        f'style="--x:{x};--y:{y};--w:{w};--r:{r}deg;--d:{d};--dl:{i * -0.55:.2f}s">' for i, (n, x, y, w, r, d) in enumerate(plek)) + '</div>'
+        f'style="--x:{x};--y:{y};--w:{w};--r:{r}deg;--d:{d};--dl:{i * -0.55:.2f}s;--z:{z}">' for i, (n, x, y, w, r, d, z) in enumerate(plek)) + '</div>'
 
 
 def inset_unis():

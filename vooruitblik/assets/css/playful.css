@@ -285,13 +285,8 @@
 .cas .inset--vragen { display:flex; flex-direction:column; justify-content:center; gap:10px; padding:clamp(14px,2vw,26px); place-items:unset; aspect-ratio:auto; min-height:clamp(200px,17vw,260px); }
 .qv { display:block; background:var(--paper); color:var(--green); border-radius:16px; padding:11px 15px; font-weight:700; font-size:clamp(13px,1.1vw,16px); line-height:1.2; box-shadow:0 10px 22px rgba(0,0,0,.18); }
 .qv1 { transform:rotate(-2deg); margin-right:10%; } .qv2 { transform:rotate(1.6deg); margin-left:8%; } .qv3 { transform:rotate(-1deg); margin-right:5%; }
-.cas .inset--unis { display:grid; grid-template-columns:repeat(6,1fr); align-content:center; align-items:center; gap:16px 18px; padding:clamp(16px,2.4vw,32px); place-items:unset; }
-.cas .inset--unis img { grid-column:span 2; width:100%; max-height:46px; height:auto; object-fit:contain; filter:none; transform:none; }
-.cas .inset--unis img:nth-child(4) { grid-column:2 / span 2; } .cas .inset--unis img:nth-child(5) { grid-column:4 / span 2; }
-.cas:hover .inset--unis img,.cas:hover .inset--vragen { transform:none; }
 .cas .inset { aspect-ratio:auto; min-height:clamp(200px,17vw,260px); }
 @media (min-width:1101px){ .cas .inset { height:clamp(250px,19.5vw,290px); } }
-.cas .inset--unis img { max-height:52px; }
 
 /* logo's naast elkaar op gelijke hoogte */
 .pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px; }
@@ -313,11 +308,17 @@
 /* professoren: speelse stapel die wiebelt en met de muis meebeweegt */
 .cas .inset--proffen { display:block; position:relative; padding:0; }
 @media (max-width:1100px){ .cas .inset--proffen { aspect-ratio:1.08 / 1; height:auto; min-height:0; } }
-.cas .inset--proffen img { position:absolute; left:calc(var(--x) * 1%); top:calc(var(--y) * 1%); width:calc(var(--w) * 1%); max-width:none; height:auto; aspect-ratio:1; border-radius:50%; object-fit:cover; object-position:50% 20%; border:3px solid var(--paper); box-shadow:0 10px 20px rgba(0,0,0,.22); filter:none; margin:0; transform:none; rotate:var(--r); translate:calc(var(--mx,0) * var(--d,1) * 16px) calc(var(--my,0) * var(--d,1) * 16px); transition:translate .35s var(--ease), scale .3s var(--ease); }
-.cas .inset--proffen img:hover { scale:1.14; z-index:3; }
+.cas .inset--proffen img { position:absolute; left:calc(var(--x) * 1%); top:calc(var(--y) * 1%); width:calc(var(--w) * 1%); max-width:none; height:auto; aspect-ratio:1; border-radius:50%; object-fit:cover; object-position:50% 20%; border:3px solid var(--paper); box-shadow:0 10px 20px rgba(0,0,0,.22); filter:none; margin:0; transform:none; z-index:var(--z,1); rotate:var(--r); translate:calc(var(--mx,0) * var(--d,1) * 16px) calc(var(--my,0) * var(--d,1) * 16px); transition:translate .35s var(--ease), scale .3s var(--ease); }
+.cas .inset--proffen img:hover { scale:1.08; }
 .cas .inset--vragen .qv { translate:calc(var(--mx,0) * var(--d,1) * 12px) calc(var(--my,0) * var(--d,1) * 8px); transition:translate .35s var(--ease); }
 @media (prefers-reduced-motion:no-preference){
   .cas .inset--proffen img { animation:wiebel 4.2s ease-in-out infinite; animation-delay:var(--dl,0s); }
   @keyframes wiebel { 0%,100% { rotate:var(--r); scale:1; } 50% { rotate:calc(var(--r) + 5deg); scale:1.05; } }
 }
 @media (prefers-reduced-motion:reduce){ .cas .inset--proffen img { animation:none; } }
+
+/* universiteitslogo's: groter, twee per rij */
+.cas .inset--unis { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-content:center; align-items:center; justify-items:center; gap:14px 22px; padding:clamp(16px,2.2vw,28px); }
+.cas .inset--unis img { width:100%; max-width:150px; max-height:62px; height:auto; object-fit:contain; filter:none; transform:none; }
+.cas .inset--unis img:nth-child(5) { grid-column:1 / -1; max-width:150px; }
+.cas:hover .inset--vragen { transform:none; }
