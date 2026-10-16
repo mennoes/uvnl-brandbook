@@ -151,7 +151,7 @@ TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
-NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio-en-live.html", "Radio en live"), ("vormgeving.html", "Vormgeving")]
+NAV = [("index.html", "Vooruitblik"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio-en-live.html", "Radio en live"), ("vormgeving.html", "Vormgeving")]
 FOOT_NAV = NAV[1:]
 
 
@@ -239,10 +239,27 @@ def sec_head(h2, p="", btn="", eyebrow=""):
 
 
 def subhero(cls, kicker, h1, sub="", orn=None, q=False):
-    o = (f'<img class="orn" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
+    foto = bool(orn) and orn.startswith(("foto/", "img/live"))
+    o = (f'<img class="orn{" orn--foto" if foto else ""}" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
     return (f'<section class="page-hero {cls}{" q" if q else ""}"><div class="wrap">'
             f'{hero_shapes(cls)}<h1 class="q">{hl(h1)}</h1>'
             f'{f"<p class=sub>{sub}</p>" if sub else ""}</div>{o}</section>')
+
+
+def inset_vragen():
+    kies = ["wie-wordt-de-opvolger-van-trump", "drinkbaar-water-uit-de-kraan", "non-stop-vlucht-van-22-uur"]
+    vr = {c["slug"]: c["vraag"] for c in CH}
+    return '<div class="inset inset--vragen">' + "".join(f'<span class="qv qv{i}">{E(vr[k])}</span>' for i, k in enumerate(kies, 1)) + '</div>'
+
+
+def inset_proffen():
+    namen = ["ann-van-griensven", "britt-weyts", "giselinde-kuipers", "ike-picone", "jelle-habay", "laura-sels", "philip-blondeel", "tim-soens"]
+    return '<div class="inset inset--proffen">' + "".join(f'<img src="assets/foto/{n}.webp" alt="" width="450" height="563" loading="lazy">' for n in namen) + '</div>'
+
+
+def inset_unis():
+    logos = [("antwerpen", "Universiteit Antwerpen"), ("hasselt", "Universiteit Hasselt"), ("kuleuven", "KU Leuven"), ("gent", "Universiteit Gent"), ("vub-brussel", "Vrije Universiteit Brussel")]
+    return '<div class="inset inset--unis">' + "".join(f'<img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy">' for f, n in logos) + '</div>'
 
 
 # ───────────────────────── HOME ─────────────────────────
@@ -280,11 +297,11 @@ home = f"""
   <div class="wrap">
     <div class="cascade">
       <div class="cas cas-elec reveal"><div class="cas-t"><b class="cas-n"><span data-count="23">23</span> vragen</b><p>Van ruimtevaart tot relaties, van gezondheid tot mobiliteit: elk hoofdstuk vertrekt vanuit een concrete vraag die laat zien hoe wetenschap helpt begrijpen wat er in 2027 op ons afkomt.</p></div>
-        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/informatie.png" alt="" loading="lazy"></div></div>
+        {inset_vragen()}</div>
       <div class="cas cas-blue reveal"><div class="cas-t"><b class="cas-n"><span data-count="46">46</span> proffen</b><p>Per hoofdstuk schrijft een professor een toegankelijk essay. In de videopodcast schuift een tweede expert aan die het onderwerp vanuit een andere invalshoek bekijkt.</p></div>
-        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/techniek.png" alt="" loading="lazy"></div></div>
+        {inset_proffen()}</div>
       <div class="cas cas-red reveal"><div class="cas-t"><b class="cas-n"><span data-count="5">5</span> universiteiten</b><p>UAntwerpen, UHasselt, KU Leuven, UGent en de VUB leveren de experten en dragen bij aan de wetenschappelijke kwaliteit.</p></div>
-        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/recht-bestuur.png" alt="" loading="lazy"></div></div>
+        {inset_unis()}</div>
     </div>
   </div>
 </section>
@@ -350,7 +367,7 @@ page("index.html", "De Vooruitblik 2027",
 chips = '<button class="chip" data-uni="alle" aria-pressed="true">Alle</button>' + "".join(
     f'<button class="chip" data-uni="{u}" aria-pressed="false">{u}</button>' for u in UNIS)
 vragen = subhero("hero-yellow", "De 23 vragen", "De Vooruitblik 2027 in 23 vragen",
-                 "Eén vraag per hoofdstuk, beantwoord door een professor in het boek en besproken met een tweede expert in de videopodcast.", "informatie") + f"""
+                 "Eén vraag per hoofdstuk, beantwoord door een professor in het boek en besproken met een tweede expert in de videopodcast.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
   <div class="filters" role="group" aria-label="Filter op universiteit">{chips}<label class="sr" for="zoek">Zoek in de vragen</label><input id="zoek" class="search" type="search" placeholder="Zoek op vraag of professor…"></div>
   <p aria-live="polite" style="font-weight:700;color:var(--green)" id="telling">23 vragen</p>
@@ -359,6 +376,15 @@ vragen = subhero("hero-yellow", "De 23 vragen", "De Vooruitblik 2027 in 23 vrage
 </div></section>
 """
 page("vragen.html", "De 23 vragen", "Alle 23 vragen uit De Vooruitblik 2027, met de professoren van de vijf Vlaamse universiteiten.", vragen, current="vragen.html")
+
+YT_VOORBEELD = "E70O2_dd97M"   # voorlopige video van het kanaal van Universiteit van Vlaanderen; vervang per hoofdstuk via "youtube" in hoofdstukken.json
+
+
+def yt_embed(vid, titel):
+    return (f'<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" title="{E(titel)}" loading="lazy" '
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
+            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>')
+
 
 # ───────────────────────── HOOFDSTUKKEN ─────────────────────────
 for i, c in enumerate(CH):
@@ -373,22 +399,25 @@ for i, c in enumerate(CH):
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
     meer = "".join(f"<p>{E(p)}</p>" for p in c["meer"].split("\n") if p) if c["meer"] else ""
     v = c["video"]
+    yt_id = v.get("youtube", "")
     spk = "".join(person(sp, f"Spreker {i}") for i, sp in enumerate(speakers(c), 1))
     if not c["kort"] and not c["meer"]:
         kort = '<div class="todo"><strong>Tekst volgt binnenkort.</strong>De samenvatting van dit hoofdstuk wordt nog aangeleverd.</div>'
     body = hero + f"""
 <section class="section section--tight"><div class="wrap">
-  <div class="two">
-    <article class="panel panel--purple reveal"><h2>Het hoofdstuk</h2>
-      <div class="prose">{kort}{meer}</div>
-      <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
-    </article>
-    <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
-      <div class="video" style="margin-bottom:18px"><div><div class="play"></div><p>Verschijnt {lang(v["datum"])}</p></div></div>
-      <p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
-      <div class="people">{spk}</div>
-    </article>
-  </div>
+  <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
+    <div class="vid-panel">
+      <div>{yt_embed(yt_id or YT_VOORBEELD, c["vraag"])}{"" if yt_id else f'<p class="yt-note">Voorlopige video van Universiteit van Vlaanderen. Aflevering {v["afl"]} verschijnt {lang(v["datum"])}.</p>'}</div>
+      <div><p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
+      <div class="people">{spk}</div></div>
+    </div>
+  </article>
+</div></section>
+<section class="section section--tight"><div class="wrap">
+  <article class="panel panel--purple reveal"><h2>Het hoofdstuk</h2>
+    <div class="prose">{kort}{meer}</div>
+    <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
+  </article>
 </div></section>
 <section class="section section--tight"><div class="wrap">
   <div class="panel panel--paper reveal"><h3 style="margin-top:0">Over de professoren</h3>
@@ -411,7 +440,6 @@ for i, c in enumerate(CH):
     page(f"hoofdstuk/{c['slug']}.html", c["vraag"], desc[:200], body, base="../", current="vragen.html")
 
 # ───────────────────────── BOEK ─────────────────────────
-rows = "".join(f'<li style="border-top:1.5px solid rgba(0,75,54,.25);padding:14px 0;font-size:18px"><a href="hoofdstuk/{c["slug"]}.html" style="color:var(--green);text-decoration:none"><b>{c["nr"]:02d}</b>&nbsp; {E(c["vraag"])} <span style="opacity:.75">· {E(c["boek"]["naam"])}, {E(c["boek"]["uni"])}</span></a></li>' for c in CH)
 boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
                "Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
@@ -429,8 +457,7 @@ boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
   <div class="panel panel--paper reveal"><h2>Zo is elk hoofdstuk opgebouwd</h2><div class="prose"><p>Elk hoofdstuk bevat een toegankelijk essay, weetjes, anekdotes of een extraatje zoals een filmtip, en een korte biografie van de auteur.</p><p>De hoofdstukken kan je afzonderlijk lezen, maar samen vormen ze een rijk overzicht van de thema’s die ons begrip van 2027 bepalen.</p></div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Alle hoofdstukken")}
-  <ol style="list-style:none;margin:0;padding:0" class="reveal">{rows}</ol>
+  {sec_head("Alle hoofdstukken", "Elk hoofdstuk begint met een vraag. Je vindt ze allemaal met hun professor bij De 23 vragen.", '<a class="btn btn--green" href="vragen.html">Naar De 23 vragen <span class="arr">→</span></a>')}
 </div></section>
 """
 page("boek.html", "Het boek", "Het boek De Vooruitblik 2027: 23 essays van 23 academici. Verschijnt op 15 november 2026, uitgegeven door Pelckmans.", boek, current="boek.html")
@@ -452,7 +479,11 @@ for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     jaar, maand = int(ym[:4]), int(ym[5:])
     eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
 vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
-             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "elementen/schakelaar.png") + f"""
+             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "foto/giselinde-kuipers.webp") + f"""
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Kijk mee", "Zodra de eerste afleveringen online staan, kijk je ze hier. Elke aflevering staat ook op de pagina van het hoofdstuk.", f'<a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a>', eyebrow="Videopodcast")}
+  <div class="reveal">{yt_embed(YT_VOORBEELD, "Voorbeeldvideo van Universiteit van Vlaanderen")}<p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen volgen vanaf 1 november.</p></div>
+</div></section>
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
   <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Van <b>1 november</b> tot en met <b>31 december</b>, ongeveer drie afleveringen per week</li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
@@ -466,7 +497,7 @@ page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2
 
 # ───────────────────────── RADIO EN LIVE ─────────────────────────
 radio_live = subhero("hero-blue", "Radio en live", "Radio en live",
-                     "Twee weken vooruitblikken op Radio 1 en live in gesprek met de professoren.", "elementen/hangslot.png") + f"""
+                     "Twee weken vooruitblikken op Radio 1 en live in gesprek met de professoren.", "img/live-prof.webp") + f"""
 <section class="section section--tight" id="radio"><div class="wrap">
   {sec_head("Twee weken vooruitblikken", "Radio 1 maakt opnieuw een programma rond De Vooruitblik, in de kerstvakantie.", eyebrow="Radio 1")}
   <ul class="facts reveal"><li><b>12–13u</b><span>elke weekdag op Radio 1</span></li><li><b>21–25 dec</b><span>maandag tot vrijdag</span></li><li><b>28 dec – 1 jan</b><span>maandag tot vrijdag</span></li></ul>
@@ -515,37 +546,27 @@ def el_card(src, title, bg):
 
 
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
-             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "elementen/gloeilamp.png") + f"""
+             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Universiteit van Vlaanderen", "Het logo van de afzender van De Vooruitblik. Groen op een lichte ondergrond, Electric Purple op een donkere.", eyebrow="Afzender")}
-  <div class="uvvl-grid">
-    <figure class="uvvl-tile uvvl-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
-    <div class="uvvl-side">
-      <figure class="uvvl-tile uvvl-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
-      <figure class="uvvl-tile uvvl-tile--paars reveal"><img class="uvvl-vierkant" src="assets/vormgeving/uvvl-logo-vierkant-groen.svg" alt="Vierkant logo Universiteit van Vlaanderen in Varsity Green op Electric Purple" width="156" height="195"></figure>
+  {sec_head("De logo’s", "Het logo van De Vooruitblik en dat van Universiteit van Vlaanderen, de afzender. Altijd naast elkaar op dezelfde hoogte: op licht groen, op donker Electric Purple.", eyebrow="Logo")}
+  <div class="pair">
+    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"></figure>
+    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
+  </div>
+  <div class="pair pair--dl">
+    <div class="stack"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
+    <div class="stack">
+      <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Logo paars (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars (SVG) <span class="arr">↓</span></a>
     </div>
   </div>
-  <div class="stack" style="margin-top:20px">
-    <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Logo paars (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars (SVG) <span class="arr">↓</span></a>
-  </div>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Het logo", "Een cursieve serif voor “DE” boven een zware grotesk voor “VOORUITBLIK”, in Electric Purple.", eyebrow="Op donker")}
-  <div class="logo-grid">
-    <figure class="logo-big reveal"><a href="assets/vormgeving/logo-op-blauw.png" download aria-label="Download het logo op blauw"><img src="assets/vormgeving/logo-op-blauw.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" loading="lazy"></a></figure>
-    <div class="logo-side">
-      <figure class="logo-sm logo-sm--green reveal"><img src="assets/vormgeving/logo-transparant.png" alt="Het logo op Varsity Green" loading="lazy"></figure>
-      <figure class="logo-sm logo-sm--ink reveal"><img src="assets/vormgeving/logo-transparant.png" alt="Het logo op Ballpoint" loading="lazy"></figure>
-    </div>
-  </div>
-  <div class="stack" style="margin-top:20px"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
-  <p class="note">Gebruik het logo in Electric Purple op een donkere ondergrond: Varsity Green, Ballpoint of Electric Blue.</p>
+  <p class="note">Gebruik het logo van De Vooruitblik in Electric Purple op een donkere ondergrond: Varsity Green, Ballpoint of Electric Blue.</p>
 </div></section>
 
 <section class="section section--tight"><div class="wrap">

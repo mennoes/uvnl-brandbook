@@ -161,7 +161,7 @@
 .cas-elec { background:var(--green-elec); } .cas-blue { background:var(--blue); } .cas-red { background:var(--red); }
 .cas-red .cas-n { font-size:clamp(34px,5.4vw,78px); }
 .cas-n { display:block; font-family:var(--font-display); text-transform:uppercase; font-size:clamp(46px,7.4vw,104px); line-height:.88; letter-spacing:-.01em; }
-.cas p { margin:16px 0 0; font-size:clamp(18px,1.7vw,22px); font-weight:700; line-height:1.3; max-width:36ch; }
+.cas p { margin:16px 0 0; font-size:clamp(18px,1.7vw,22px); font-weight:400; line-height:1.3; max-width:36ch; }
 .inset { position:relative; aspect-ratio:1; border-radius:var(--r-m); display:grid; place-items:center; overflow:hidden; background:rgba(0,0,0,.18); }
 .cas-elec .inset { background:var(--green-deep); } .cas-blue .inset { background:#4650DA; } .cas-red .inset { background:#D9483C; }
 .inset img { position:relative; width:60%; filter:drop-shadow(0 18px 24px rgba(0,0,0,.3)); transform:rotate(-6deg); transition:transform .5s var(--spring); }
@@ -197,14 +197,6 @@
 
 /* ══ vormgevingspagina ══ */
 .note { margin:18px 0 0; max-width:62ch; font-size:15px; color:var(--green); font-weight:700; }
-.logo-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:18px; }
-.logo-big,.logo-sm { margin:0; border-radius:var(--r-l); overflow:hidden; }
-.logo-big a { display:block; } .logo-big img { width:100%; transition:transform .6s var(--ease); } .logo-big:hover img { transform:scale(1.04); }
-.logo-side { display:grid; gap:18px; }
-.logo-sm { display:grid; place-items:center; }
-.logo-sm--green { background:var(--green); } .logo-sm--ink { background:var(--ballpoint); }
-.logo-sm img { width:100%; }
-@media (max-width:760px){ .logo-grid { grid-template-columns:minmax(0,1fr); } .logo-side { grid-template-columns:1fr 1fr; } }
 
 .assets { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:18px; }
 .assets--two { grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),420px)); }
@@ -282,20 +274,41 @@
   .cas .inset img { width:44%; }
 }
 
-/* ── logo Universiteit van Vlaanderen op Vormgeving ── */
-.uvvl-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:18px; }
-.uvvl-side { display:grid; gap:18px; }
-.uvvl-tile { margin:0; border-radius:var(--r-l); display:grid; place-items:center; padding:clamp(28px,5vw,64px); min-height:200px; }
-.uvvl-tile img { display:block; width:100%; max-width:520px; height:auto; }
-.uvvl-tile img.uvvl-vierkant { max-width:88px; }
-.uvvl-tile--wit { background:var(--white); }
-.uvvl-tile--groen { background:var(--green); }
-.uvvl-tile--paars { background:var(--purple); }
-.uvvl-tile--groen img { max-width:360px; }
-@media (max-width:760px){ .uvvl-grid { grid-template-columns:minmax(0,1fr); } }
 
 /* lint met kleine portretten voor de vraag */
 .tape a { display:inline-flex; align-items:center; gap:clamp(10px,1.4vw,16px); }
 .tape-av { flex:none; width:clamp(36px,3.9vw,54px); aspect-ratio:1; border-radius:50%; overflow:hidden; background:var(--purple); box-shadow:0 0 0 3px var(--purple); }
 .tape-av img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 20%; }
 .three + .partners { margin-top:18px; }
+
+/* visuals in de cijferkaarten: vragen, professoren en universiteiten */
+.cas .inset--vragen { display:flex; flex-direction:column; justify-content:center; gap:10px; padding:clamp(14px,2vw,26px); place-items:unset; aspect-ratio:auto; min-height:clamp(200px,17vw,260px); }
+.qv { display:block; background:var(--paper); color:var(--green); border-radius:16px; padding:11px 15px; font-weight:700; font-size:clamp(13px,1.1vw,16px); line-height:1.2; box-shadow:0 10px 22px rgba(0,0,0,.18); }
+.qv1 { transform:rotate(-2deg); margin-right:10%; } .qv2 { transform:rotate(1.6deg); margin-left:8%; } .qv3 { transform:rotate(-1deg); margin-right:5%; }
+.cas .inset--proffen { display:grid; grid-template-columns:repeat(4,1fr); place-items:center; align-content:center; gap:6px 0; padding:clamp(12px,1.8vw,24px); }
+.cas .inset--proffen img { width:100%; max-width:92px; height:auto; aspect-ratio:1; border-radius:50%; object-fit:cover; object-position:50% 20%; border:3px solid var(--paper); filter:none; transform:none; margin:0 -6px; position:relative; }
+.cas:hover .inset--proffen img { transform:none; }
+.cas .inset--unis { display:grid; grid-template-columns:repeat(6,1fr); align-content:center; align-items:center; gap:16px 18px; padding:clamp(16px,2.4vw,32px); place-items:unset; }
+.cas .inset--unis img { grid-column:span 2; width:100%; max-height:46px; height:auto; object-fit:contain; filter:none; transform:none; }
+.cas .inset--unis img:nth-child(4) { grid-column:2 / span 2; } .cas .inset--unis img:nth-child(5) { grid-column:4 / span 2; }
+.cas:hover .inset--unis img,.cas:hover .inset--vragen { transform:none; }
+.cas .inset { aspect-ratio:auto; min-height:clamp(200px,17vw,260px); }
+@media (min-width:1101px){ .cas .inset { height:clamp(250px,19.5vw,290px); } }
+.cas .inset--unis img { max-height:52px; }
+
+/* logo's naast elkaar op gelijke hoogte */
+.pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px; }
+.pair:first-of-type { margin-top:0; }
+.pair-tile { margin:0; border-radius:var(--r-l); display:grid; place-items:center; padding:clamp(28px,5vw,64px) clamp(20px,4vw,48px); min-height:clamp(170px,18vw,240px); }
+.pair-tile img { display:block; height:clamp(40px,5.2vw,78px); width:auto; max-width:100%; object-fit:contain; }
+.pair-tile--blauw { background:var(--blue); } .pair-tile--wit { background:var(--white); } .pair-tile--groen { background:var(--green); }
+.pair--dl { margin-top:20px; align-items:start; }
+@media (max-width:760px){ .pair { grid-template-columns:minmax(0,1fr); } }
+
+/* YouTube-speler */
+.yt { position:relative; aspect-ratio:16/9; border-radius:var(--r-m); overflow:hidden; background:var(--ballpoint); box-shadow:0 18px 40px rgba(27,7,87,.18); }
+.yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.yt-note { margin:12px 0 0; font-size:14px; opacity:.85; }
+.vid-panel { display:grid; grid-template-columns:minmax(0,1.9fr) minmax(0,1fr); gap:clamp(18px,3vw,40px); align-items:start; margin-top:18px; }
+.vid-panel .ep-line { margin-top:0; }
+@media (max-width:900px){ .vid-panel { grid-template-columns:minmax(0,1fr); } }
