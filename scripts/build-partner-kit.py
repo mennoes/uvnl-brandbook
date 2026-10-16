@@ -8,7 +8,7 @@ LOGOS = os.path.join(ROOT, "assets", "logos")
 PHOTOS = os.path.join(ROOT, "assets", "photos")
 OUT = os.path.join(ROOT, "downloads", "uvnl-partner-kit.zip")
 
-NL_LOGOS = ["uvnl-brandmark.svg", "uvnl-logo.svg", "uvnl-logo-square.svg", "uvnl-wordmark.svg"]
+NL_LOGOS = ["uvnl-beeldmerk.svg", "uvnl-logo.svg", "uvnl-logo-square.svg", "uvnl-wordmark.svg"]
 VL_LOGOS = ["uvvl-logo.svg", "uvvl-logo-square.svg", "uvvl-wordmark.svg"]
 EXCLUDE = {"poster-person1.png", "poster-person2.png", "event-u-r.jpg", "event-u-left.jpg", "artis-text.png"}
 EXTS = (".jpg", ".jpeg", ".png")
