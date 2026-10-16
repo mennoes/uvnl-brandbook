@@ -103,7 +103,7 @@ def card(c, base):
     else:
         fig = (f'<div class="card-fig card-fig--sil"><img class="f" src="{base}assets/foto/silhouet-{c["nr"] % SILHOUETTEN + 1}.webp" alt="" '
                f'width="450" height="563" loading="lazy"></div>')
-    return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]:02d}</span>'
+    return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]}</span>'
             f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
             f'data-zoek="{E((c["vraag"] + " " + c["boek"]["naam"] + " " + c["gast"]["naam"] + " " + c["boek"]["vak"]).lower())}">'
@@ -151,8 +151,8 @@ TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
-NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("visuals.html", "Visuals"), ("vormgeving.html", "Vormgeving")]
-FOOT_NAV = NAV[1:] + [("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio.html", "Radio 1"), ("live.html", "Live"), ("partners.html", "Partners")]
+NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio.html", "Radio 1"), ("live.html", "Live"), ("vormgeving.html", "Vormgeving")]
+FOOT_NAV = NAV[1:] + [("visuals.html", "Visuals"), ("partners.html", "Partners")]
 
 
 import hashlib as _h
@@ -249,7 +249,13 @@ def subhero(cls, kicker, h1, sub="", orn=None, q=False):
 SPARK = '<img src="assets/icons/spark1.png" alt="" class="tape-ic">'
 SPARK2 = '<img src="assets/icons/spark2.png" alt="" class="tape-ic">'
 tape1 = "".join(f"<span>{t}</span>{SPARK}" for t in ["23 proffen", "23 vragen", "2027", "geen glazen bol", "wel wetenschap"])
-tape2 = "".join(f'<a href="hoofdstuk/{c["slug"]}.html">{E(c["vraag"])}</a>{SPARK}' for c in CH)
+def tape_av(c):
+    f = card_foto(c)
+    src = f'assets/foto/{f["foto"]}' if f else f'assets/foto/silhouet-{c["nr"] % SILHOUETTEN + 1}.webp'
+    return f'<span class="tape-av"><img src="{src}" alt="" width="52" height="65" loading="lazy"></span>'
+
+
+tape2 = "".join(f'<a href="hoofdstuk/{c["slug"]}.html">{tape_av(c)}{E(c["vraag"])}</a>{SPARK}' for c in CH)
 tape2_copy = tape2.replace("<a ", '<a tabindex="-1" aria-hidden="true" ')
 tapes = (f'<div class="tapes"><div class="tape tape--purple" aria-hidden="true"><div class="tape-track">{tape1 * 3}{tape1 * 3}</div></div>'
          f'<div class="tape tape--green rev" aria-label="Alle 23 vragen"><div class="tape-track">{tape2}{tape2_copy}</div></div></div>')
@@ -262,7 +268,8 @@ home = f"""
       <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
     <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
       <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties.</p><p class="hero-sub">Geen glazen bol, wel context, inzichten en kennis. Elk hoofdstuk start bij één vraag, beantwoord in het boek en besproken in de videopodcast.</p>
-        <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div></div>
+</div>
+      <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
     </div>
   </div>
 </section>
@@ -297,10 +304,10 @@ home = f"""
 
 <section class="section section--tight">
   <div class="wrap">
-    {sec_head("Vier manieren om mee te kijken")}
+    {sec_head("Vier manieren te kijken")}
     <div class="formats reveal">
-      <a class="format c-purple has-book" href="boek.html"><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici. Verschijnt op 15 november.</p><span class="format-foot"><span class="big">23 essays</span><span class="go">→</span></span></a>
-      <a class="format c-yellow" href="videopodcast.html"><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p><div class="format-vis fv-duo" aria-hidden="true"><img src="assets/foto/ann-van-griensven.webp" alt="" width="450" height="563" loading="lazy"><img src="assets/foto/tim-soens.webp" alt="" width="450" height="563" loading="lazy"></div><span class="format-foot"><span class="big">3 per week</span><span class="go">→</span></span></a>
+      <a class="format c-purple has-book" href="boek.html"><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici, geschreven voor iedereen. Elk hoofdstuk heeft een toegankelijk essay, weetjes, anekdotes of een filmtip en een korte biografie van de auteur. Verschijnt op 15 november bij Pelckmans.</p><span class="format-foot"><span class="big">23 essays</span><span class="go">→</span></span></a>
+      <a class="format c-yellow" href="videopodcast.html"><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p><div class="format-vis fv-duo" aria-hidden="true"><img style="--i:0" src="assets/foto/ann-van-griensven.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:1" src="assets/foto/giselinde-kuipers.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:2" src="assets/foto/tim-soens.webp" alt="" width="450" height="563" loading="lazy"></div><span class="format-foot"><span class="big">3 per week</span><span class="go">→</span></span></a>
       <a class="format c-pink" href="radio.html"><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p><div class="format-vis fv-radio"><span class="fv-logo"><img src="assets/partners/radio1.png" alt="Radio 1" width="117" height="111"></span><svg class="fv-wave" viewBox="0 0 280 100" aria-hidden="true" fill="currentColor"><rect x="0" y="36" width="8" height="28" rx="4"/><rect x="14" y="24" width="8" height="52" rx="4"/><rect x="28" y="32" width="8" height="36" rx="4"/><rect x="42" y="15" width="8" height="70" rx="4"/><rect x="56" y="28" width="8" height="44" rx="4"/><rect x="70" y="7" width="8" height="86" rx="4"/><rect x="84" y="21" width="8" height="58" rx="4"/><rect x="98" y="1" width="8" height="98" rx="4"/><rect x="112" y="18" width="8" height="64" rx="4"/><rect x="126" y="10" width="8" height="80" rx="4"/><rect x="140" y="26" width="8" height="48" rx="4"/><rect x="154" y="4" width="8" height="92" rx="4"/><rect x="168" y="20" width="8" height="60" rx="4"/><rect x="182" y="13" width="8" height="74" rx="4"/><rect x="196" y="30" width="8" height="40" rx="4"/><rect x="210" y="17" width="8" height="66" rx="4"/><rect x="224" y="35" width="8" height="30" rx="4"/><rect x="238" y="23" width="8" height="54" rx="4"/><rect x="252" y="31" width="8" height="38" rx="4"/><rect x="266" y="37" width="8" height="26" rx="4"/></svg></div><span class="format-foot"><span class="big">12 uur</span><span class="go">→</span></span></a>
       <a class="format c-blue" href="live.html"><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p><div class="format-vis fv-live"><img src="assets/img/live-podium.webp" alt="" width="1000" height="666" loading="lazy"></div><span class="format-foot"><span class="big">Live</span><span class="go" style="color:var(--blue)">→</span></span></a>
     </div>
@@ -353,8 +360,8 @@ for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
     hero_cls = {"purple": "hero-purple", "yellow": "hero-yellow", "pink": "hero-pink", "blue": "hero-blue", "paper": "hero-paper", "red": "hero-red", "mint": "hero-mint"}[c["kleur"]]
     hero = (f'<section class="page-hero q {hero_cls}"><div class="wrap">'
-            f'{hero_shapes(hero_cls)}<div class="hero-meta"><span class="tag">Hoofdstuk {c["nr"]:02d} van {len(CH)}</span>'
-            f'<a class="btn btn--line btn--sm" href="../vragen.html">← Alle hoofdstukken</a></div>'
+            f'{hero_shapes(hero_cls)}<div class="hero-meta"><a class="btn btn--line btn--sm" href="../vragen.html">← Alle hoofdstukken</a>'
+            f'<span class="tag">Hoofdstuk {c["nr"]}/{len(CH)}</span></div>'
             f'<h1 class="q">{hl(c["vraag"])}</h1>'
             f'<p class="sub">{E(c["boek"]["naam"])} ({E(c["boek"]["uni"])}) schrijft het hoofdstuk, {E(c["gast"]["naam"])} ({E(c["gast"]["uni"])}) schuift aan in de videopodcast.</p></div>'
             f'{hero_portret(c)}</section>')
@@ -390,8 +397,8 @@ for i, c in enumerate(CH):
   </div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap"><nav class="pager" aria-label="Andere hoofdstukken">
-  {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag · Hoofdstuk {prev_c["nr"]:02d}</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
-  {f'<a class="next" href="{next_c["slug"]}.html"><small>Hoofdstuk {next_c["nr"]:02d} · Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
+  {f'<a href="{prev_c["slug"]}.html"><small>← Vorige vraag · Hoofdstuk {prev_c["nr"]}</small><b>{E(prev_c["vraag"])}</b></a>' if prev_c else '<span></span>'}
+  {f'<a class="next" href="{next_c["slug"]}.html"><small>Hoofdstuk {next_c["nr"]} · Volgende vraag →</small><b>{E(next_c["vraag"])}</b></a>' if next_c else '<span></span>'}
 </nav>
   <p class="pager-all"><a class="btn btn--green" href="../vragen.html">Alle hoofdstukken <span class="arr">→</span></a></p></div></section>
 """
