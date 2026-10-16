@@ -266,3 +266,14 @@
 .mz-d { grid-column:span 5; } .mz-e { grid-column:span 4; } .mz-f { grid-column:span 3; }
 .mosaic-more { grid-column:1 / -1; justify-self:start; margin-top:6px; font-weight:700; color:var(--uvnl-green); text-decoration:none; border-bottom:2px solid currentColor; padding-bottom:2px; }
 @media (max-width:760px){ .mz-a,.mz-b,.mz-c,.mz-d,.mz-e,.mz-f { grid-column:span 6; } .mz { height:160px; } }
+
+/* In het kort: compact, getal naast tekst, alleen groen, paars, ballpoint en electric blue */
+.about2 .a-stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.about2 .a-stat { min-height:0; padding:22px 28px; flex-direction:row !important; align-items:center; justify-content:flex-start !important; gap:22px; border-radius:999px; }
+.about2 .a-stat .n { flex:none; margin:0; font-size:clamp(40px,4.4vw,60px); line-height:.9; }
+.about2 .a-stat .l { margin:0; font-size:15px; line-height:1.3; max-width:24ch; }
+.about2 .a-stats .a-stat:nth-child(1) { background:#004B36; color:#F4F0ED; } .about2 .a-stats .a-stat:nth-child(1) .n { color:#D6ACFF; }
+.about2 .a-stats .a-stat:nth-child(2) { background:#D6ACFF; color:#004B36; } .about2 .a-stats .a-stat:nth-child(2) .n { color:#004B36; }
+.about2 .a-stats .a-stat:nth-child(3) { background:#1B0757; color:#F4F0ED; } .about2 .a-stats .a-stat:nth-child(3) .n { color:#D6ACFF; }
+.about2 .a-stats .a-stat:nth-child(4) { background:#585FF1; color:#fff; } .about2 .a-stats .a-stat:nth-child(4) .n { color:#fff; }
+@media (max-width:560px){ .about2 .a-stats { grid-template-columns:1fr; } .about2 .a-stat { border-radius:36px; } }
