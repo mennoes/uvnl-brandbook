@@ -553,14 +553,14 @@ def el_card(src, title, bg):
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
              "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("De logo’s", "Het logo van De Vooruitblik en dat van Universiteit van Vlaanderen, de afzender. Altijd naast elkaar op dezelfde hoogte: op licht groen, op donker Electric Purple.", eyebrow="Logo")}
+  {sec_head("De logo’s", "Twee logo’s met elk een eigen rol: De Vooruitblik is het project, Universiteit van Vlaanderen is de afzender.", eyebrow="Logo")}
   <div class="pair">
-    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"></figure>
-    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
-    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"></figure>
-    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
-  </div>
-  <div class="pair pair--dl">
+    <div class="pair-head pair-head--vb"><span class="pair-kicker">Het project</span><h3>De Vooruitblik</h3><p>Het logo van het boek, de videopodcast, Radio 1 en de evenementen.</p></div>
+    <div class="pair-head pair-head--uv"><span class="pair-kicker">De afzender</span><h3>Universiteit van Vlaanderen</h3><p>Het logo van de organisatie achter het project.</p></div>
+    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"><figcaption class="pair-cap">Op Electric Blue</figcaption></figure>
+    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"><figcaption class="pair-cap">Groen op wit</figcaption></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"><figcaption class="pair-cap">Op Varsity Green</figcaption></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"><figcaption class="pair-cap">Paars op Varsity Green</figcaption></figure>
     <div class="stack"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
     <div class="stack">
       <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
