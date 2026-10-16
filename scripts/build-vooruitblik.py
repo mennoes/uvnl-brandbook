@@ -575,15 +575,6 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Beeld", "Vlakken en een U in perspectief, als achtergrond of tussenbeeld.", eyebrow="Patroon en U")}
-  <div class="assets">
-    {asset("assets/vormgeving/patroon-concentrisch.png", "Concentrische vlakken", "Ineenschuivende rechthoeken in de huisstijlkleuren.", "")}
-    {asset("assets/vormgeving/u-tunnel-1.png", "U in de tunnel, versie 1", "De U in 3D in het midden van een kamer van kleurvlakken.", "")}
-    {asset("assets/vormgeving/u-tunnel-2.png", "U in de tunnel, versie 2", "Dezelfde U, dichterbij en met andere vlakken.", "")}
-  </div>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
   {sec_head("Het boek", "De cover van De Vooruitblik 2027, uitgegeven door Pelckmans.", eyebrow="Cover")}
   <div class="assets assets--two">
     {asset("assets/vormgeving/boek-2d-voorkant.jpg", "Voorkant", "Platte voorkant van het boek.", "", "asset--tall")}
@@ -607,27 +598,29 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Kleuren", "Klik op een kleur om de code te kopiëren.", eyebrow="Palet")}
-  <div class="swatches reveal">{sw}</div>
-  <div class="rules reveal">
-    <div class="rule rule--ok" style="background:var(--green);color:var(--purple)"><span class="tag">Wel</span><b>Paars op groen</b></div>
-    <div class="rule rule--ok" style="background:var(--paper-mid);color:var(--green)"><span class="tag">Wel</span><b>Groen op licht</b></div>
-    <div class="rule rule--no" style="background:var(--red);color:var(--green)"><span class="tag">Niet</span><b>Groen op rood</b></div>
-    <div class="rule rule--no" style="background:var(--yellow);color:var(--green)"><span class="tag">Niet</span><b>Groen op geel</b></div>
+  <div class="mini-two">
+    <div>
+      <h2 class="mini-h">Kleuren</h2><p class="mini-p">Klik op een kleur om de code te kopiëren.</p>
+      <div class="swatches swatches--mini reveal">{sw}</div>
+      <div class="rules rules--mini reveal">
+        <div class="rule rule--ok" style="background:var(--green);color:var(--purple)"><span class="tag">Wel</span><b>Paars op groen</b></div>
+        <div class="rule rule--ok" style="background:var(--paper-mid);color:var(--green)"><span class="tag">Wel</span><b>Groen op licht</b></div>
+        <div class="rule rule--no" style="background:var(--red);color:var(--green)"><span class="tag">Niet</span><b>Groen op rood</b></div>
+        <div class="rule rule--no" style="background:var(--yellow);color:var(--green)"><span class="tag">Niet</span><b>Groen op geel</b></div>
+      </div>
+      <p class="note">Kies per uiting één verzadigde accentkleur. Rood of geel combineer je met paars in plaats van met groen.</p>
+    </div>
+    <div>
+      <h2 class="mini-h">Lettertypes</h2><p class="mini-p">Drie lettertypes, elk met een eigen rol. Gelicentieerd, dus hier niet te downloaden.</p>
+      <div class="type type--mini reveal">
+        <div class="type-c"><small>Koppen en cijfers</small><p class="t1">Oldschool Grotesk Condensed</p></div>
+        <div class="type-c"><small>Tekst</small><p class="t2">Oldschool Grotesk</p></div>
+        <div class="type-c"><small>Accenten</small><p class="t3">Tiempos Text Italic</p></div>
+      </div>
+    </div>
   </div>
-  <p class="note">Kies per uiting één verzadigde accentkleur. Rood of geel combineer je met paars in plaats van met groen.</p>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Lettertypes", "Drie lettertypes, elk met een eigen rol.", eyebrow="Typografie")}
-  <div class="type reveal">
-    <div class="type-c"><small>Koppen en cijfers</small><p class="t1">Oldschool Grotesk Condensed</p><p class="t1s">ZWAAR VERSAAL, STRAK</p></div>
-    <div class="type-c"><small>Tekst</small><p class="t2">Oldschool Grotesk</p><p class="t2s">Eén vraag per hoofdstuk, beantwoord door een professor.</p></div>
-    <div class="type-c"><small>Accenten</small><p class="t3">Tiempos Text Italic</p><p class="t3s">Alleen voor korte regels en citaten.</p></div>
-  </div>
-  <p class="note">De lettertypes zijn gelicentieerd en hier niet te downloaden.</p>
 </div></section>
 """
-page("vormgeving.html", "Vormgeving", "Logo, beeld, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
+page("vormgeving.html", "Vormgeving", "Logo’s, banners, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
 
 print(f"{len(CH)} hoofdstukken + pagina's gebouwd in {ROOT}")
