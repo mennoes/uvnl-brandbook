@@ -253,3 +253,16 @@
 .dl-opt--both { font-family:var(--font-sans); font-weight:700; font-size:22px; min-width:150px; }
 @media (max-width:560px){ .dl-opt { min-width:0; width:100%; } }
 .dl-choose { padding-top:clamp(28px,4vw,56px); }
+
+/* Wat we doen + Voor wie: gewone tekst zonder balken, daaronder een mozaïek van ons werk */
+.about2 #wat-we-doen, .about2 #voor-wie { background:transparent !important; padding:0 !important; border-radius:0 !important; }
+.about2 #wat-we-doen h2, .about2 #voor-wie h2 { margin-bottom:6px; }
+.about2 #wat-we-doen p, .about2 #voor-wie p { color:var(--fg-dim) !important; font-size:clamp(17px,1.5vw,20px); max-width:46ch; }
+.mosaic { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:12px; align-items:stretch; }
+.mz { display:block; position:relative; border-radius:28px; overflow:hidden; height:clamp(180px,22vw,290px); background:var(--paper-mid); }
+.mz img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); }
+.mz:hover img { transform:scale(1.06); }
+.mz-a { grid-column:span 4; } .mz-b { grid-column:span 5; } .mz-c { grid-column:span 3; }
+.mz-d { grid-column:span 5; } .mz-e { grid-column:span 4; } .mz-f { grid-column:span 3; }
+.mosaic-more { grid-column:1 / -1; justify-self:start; margin-top:6px; font-weight:700; color:var(--uvnl-green); text-decoration:none; border-bottom:2px solid currentColor; padding-bottom:2px; }
+@media (max-width:760px){ .mz-a,.mz-b,.mz-c,.mz-d,.mz-e,.mz-f { grid-column:span 6; } .mz { height:160px; } }
