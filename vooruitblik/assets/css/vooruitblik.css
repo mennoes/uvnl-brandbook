@@ -344,7 +344,7 @@ p { margin:0 0 1em; }
 .nav a { white-space:nowrap; }
 @media (max-width:420px){ .hero .orn--book { width:64px; top:16px; } }
 .page-hero .orn[src$="boek-3d.webp"] { width:clamp(130px,19vw,290px); bottom:-50px; right:clamp(12px,7vw,120px); }
-.page-hero .orn.orn--foto[src$="live-prof.webp"] { object-position:68% 30%; }
+.page-hero .orn.orn--foto[src$="live-vlaanderen.webp"] { object-position:50% 30%; }
 .page-hero .orn[src$=".svg"] { width:clamp(110px,15vw,220px); bottom:auto; top:50%; transform:translateY(-50%) rotate(-4deg); right:clamp(18px,9vw,160px); filter:none; }
 @media (min-width:641px){ .page-hero:not(.q) .orn.orn--foto { width:clamp(120px,15vw,215px); } }
 
