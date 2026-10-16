@@ -117,7 +117,7 @@
     #nl-grid .lg-card .vis, #vl-grid .lg-card .vis { height:220px; flex-basis:220px; }
   }
 </style>
-<link rel="stylesheet" href="../assets/css/fun.css?v=20261038">
+<link rel="stylesheet" href="../assets/css/fun.css?v=20261039">
 </head>
 <body>
 
@@ -170,6 +170,42 @@
     <p class="ls-sub">De originele U Studio-logo’s in lila en antraciet. Varianten zonder achtergrond download je als PNG of SVG; varianten op een kleurvlak standaard als JPG.</p>
     <div class="logo-grid" id="studio-grid"></div>
   </section>
+
+  <section class="logo-section hs-sec" id="kleuren">
+    <h2>Kleuren</h2>
+    <p class="ls-sub">Klik op een kleur om de code te kopiëren.</p>
+    <div class="hs-swatches"><button class="hs-sw" type="button" data-hex="#004B36" style="background:#004B36;color:#fff"><b>Varsity Green</b><span>#004B36</span><small>Basiskleur, logo en tekst op licht</small></button><button class="hs-sw" type="button" data-hex="#D6ACFF" style="background:#D6ACFF;color:#004B36"><b>Electric Purple</b><span>#D6ACFF</span><small>Logo en kopjes op donker</small></button><button class="hs-sw" type="button" data-hex="#1B0757" style="background:#1B0757;color:#fff"><b>Ballpoint</b><span>#1B0757</span><small>Donker accent</small></button><button class="hs-sw" type="button" data-hex="#585FF1" style="background:#585FF1;color:#fff"><b>Electric Blue</b><span>#585FF1</span><small>Accent</small></button><button class="hs-sw" type="button" data-hex="#F4F0ED" style="background:#F4F0ED;color:#004B36"><b>Paper</b><span>#F4F0ED</span><small>Lichte achtergrond</small></button><button class="hs-sw" type="button" data-hex="#FFC9D7" style="background:#FFC9D7;color:#004B36"><b>Pink</b><span>#FFC9D7</span><small>Accent</small></button><button class="hs-sw" type="button" data-hex="#FBF07A" style="background:#FBF07A;color:#004B36"><b>Electric Yellow</b><span>#FBF07A</span><small>Accent, tape en driehoeken</small></button><button class="hs-sw" type="button" data-hex="#EE5245" style="background:#EE5245;color:#fff"><b>Electric Red</b><span>#EE5245</span><small>Accent</small></button><button class="hs-sw" type="button" data-hex="#2B2B2B" style="background:#2B2B2B;color:#fff"><b>Printer Ink</b><span>#2B2B2B</span><small>Lopende tekst</small></button><button class="hs-sw" type="button" data-hex="#00A879" style="background:#00A879;color:#fff"><b>Electric Green</b><span>#00A879</span><small>Felgroene kaarten op de website</small></button></div>
+    <div class="hs-rules">
+      <div class="hs-rule" style="background:#004B36;color:#D6ACFF"><span class="hs-tag">Wel</span><b>Paars op groen</b></div>
+      <div class="hs-rule" style="background:#ECE4DF;color:#004B36"><span class="hs-tag">Wel</span><b>Groen op licht</b></div>
+      <div class="hs-rule hs-no" style="background:#EE5245;color:#004B36"><span class="hs-tag">Niet</span><b>Groen op rood</b></div>
+      <div class="hs-rule hs-no" style="background:#FBF07A;color:#004B36"><span class="hs-tag">Niet</span><b>Groen op geel</b></div>
+    </div>
+    <p class="hs-note">Kies per uiting één verzadigde accentkleur. Rood of geel combineer je met paars in plaats van met groen.</p>
+  </section>
+
+  <section class="logo-section hs-sec" id="lettertypes">
+    <h2>Lettertypes</h2>
+    <p class="ls-sub">Drie lettertypes, elk met een eigen rol.</p>
+    <div class="hs-type">
+      <div class="hs-type-c"><small>Koppen en cijfers</small><p class="t1">Oldschool Grotesk Condensed</p><p class="t1s">Wat weet jij over stress?</p></div>
+      <div class="hs-type-c"><small>Tekst</small><p class="t2">Oldschool Grotesk</p><p class="t2s">Eerlijk, echt, een beetje rommelig. Kennis in wording, geen corporate glanslaag.</p></div>
+      <div class="hs-type-c"><small>Accenten</small><p class="t3">Tiempos Text Italic</p><p class="t3s">Alleen voor korte regels en citaten.</p></div>
+    </div>
+    <p class="hs-note">De lettertypes zijn gelicentieerd en hier niet te downloaden.</p>
+  </section>
+
+<script>
+(function(){
+  document.querySelectorAll('.hs-sw').forEach(function(b){
+    b.addEventListener('click',function(){
+      var hex=b.getAttribute('data-hex');
+      try{ navigator.clipboard.writeText(hex); }catch(e){}
+      b.classList.add('copied'); setTimeout(function(){ b.classList.remove('copied'); },1400);
+    });
+  });
+})();
+</script>
 
   <div class="index-col" style="margin:24px 0 6px"><h2>De huisstijl in beeld</h2></div>
   <p class="ls-sub" style="max-width:660px">Scroll omlaag om door de huisstijl te bladeren. Omhoog scrollen brengt je direct terug door de pagina. Je kunt ook de pijlen gebruiken of opzij swipen. Klik een slide om groot te bekijken.</p>
