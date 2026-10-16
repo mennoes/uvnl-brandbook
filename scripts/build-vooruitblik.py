@@ -151,7 +151,7 @@ TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
-NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio-en-live.html", "Radio en live"), ("vormgeving.html", "Vormgeving")]
+NAV = [("index.html", "Vooruitblik"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio-en-live.html", "Radio en live"), ("vormgeving.html", "Vormgeving")]
 FOOT_NAV = NAV[1:]
 
 
@@ -377,6 +377,15 @@ vragen = subhero("hero-yellow", "De 23 vragen", "De Vooruitblik 2027 in 23 vrage
 """
 page("vragen.html", "De 23 vragen", "Alle 23 vragen uit De Vooruitblik 2027, met de professoren van de vijf Vlaamse universiteiten.", vragen, current="vragen.html")
 
+YT_VOORBEELD = "E70O2_dd97M"   # voorlopige video van het kanaal van Universiteit van Vlaanderen; vervang per hoofdstuk via "youtube" in hoofdstukken.json
+
+
+def yt_embed(vid, titel):
+    return (f'<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" title="{E(titel)}" loading="lazy" '
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
+            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>')
+
+
 # ───────────────────────── HOOFDSTUKKEN ─────────────────────────
 for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
@@ -390,22 +399,25 @@ for i, c in enumerate(CH):
     kort = f'<p><strong>{E(c["kort"])}</strong></p>' if c["kort"] else ""
     meer = "".join(f"<p>{E(p)}</p>" for p in c["meer"].split("\n") if p) if c["meer"] else ""
     v = c["video"]
+    yt_id = v.get("youtube", "")
     spk = "".join(person(sp, f"Spreker {i}") for i, sp in enumerate(speakers(c), 1))
     if not c["kort"] and not c["meer"]:
         kort = '<div class="todo"><strong>Tekst volgt binnenkort.</strong>De samenvatting van dit hoofdstuk wordt nog aangeleverd.</div>'
     body = hero + f"""
 <section class="section section--tight"><div class="wrap">
-  <div class="two">
-    <article class="panel panel--purple reveal"><h2>Het hoofdstuk</h2>
-      <div class="prose">{kort}{meer}</div>
-      <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
-    </article>
-    <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
-      <div class="video" style="margin-bottom:18px"><div><div class="play"></div><p>Verschijnt {lang(v["datum"])}</p></div></div>
-      <p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
-      <div class="people">{spk}</div>
-    </article>
-  </div>
+  <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
+    <div class="vid-panel">
+      <div>{yt_embed(yt_id or YT_VOORBEELD, c["vraag"])}{"" if yt_id else f'<p class="yt-note">Voorlopige video van Universiteit van Vlaanderen. Aflevering {v["afl"]} verschijnt {lang(v["datum"])}.</p>'}</div>
+      <div><p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
+      <div class="people">{spk}</div></div>
+    </div>
+  </article>
+</div></section>
+<section class="section section--tight"><div class="wrap">
+  <article class="panel panel--purple reveal"><h2>Het hoofdstuk</h2>
+    <div class="prose">{kort}{meer}</div>
+    <div class="people" style="margin-top:24px">{person(c["boek"], "Auteur van het hoofdstuk")}</div>
+  </article>
 </div></section>
 <section class="section section--tight"><div class="wrap">
   <div class="panel panel--paper reveal"><h3 style="margin-top:0">Over de professoren</h3>
@@ -428,7 +440,6 @@ for i, c in enumerate(CH):
     page(f"hoofdstuk/{c['slug']}.html", c["vraag"], desc[:200], body, base="../", current="vragen.html")
 
 # ───────────────────────── BOEK ─────────────────────────
-rows = "".join(f'<li style="border-top:1.5px solid rgba(0,75,54,.25);padding:14px 0;font-size:18px"><a href="hoofdstuk/{c["slug"]}.html" style="color:var(--green);text-decoration:none"><b>{c["nr"]:02d}</b>&nbsp; {E(c["vraag"])} <span style="opacity:.75">· {E(c["boek"]["naam"])}, {E(c["boek"]["uni"])}</span></a></li>' for c in CH)
 boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
                "Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
@@ -446,8 +457,7 @@ boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
   <div class="panel panel--paper reveal"><h2>Zo is elk hoofdstuk opgebouwd</h2><div class="prose"><p>Elk hoofdstuk bevat een toegankelijk essay, weetjes, anekdotes of een extraatje zoals een filmtip, en een korte biografie van de auteur.</p><p>De hoofdstukken kan je afzonderlijk lezen, maar samen vormen ze een rijk overzicht van de thema’s die ons begrip van 2027 bepalen.</p></div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Alle hoofdstukken")}
-  <ol style="list-style:none;margin:0;padding:0" class="reveal">{rows}</ol>
+  {sec_head("Alle hoofdstukken", "Elk hoofdstuk begint met een vraag. Je vindt ze allemaal met hun professor bij De 23 vragen.", '<a class="btn btn--green" href="vragen.html">Naar De 23 vragen <span class="arr">→</span></a>')}
 </div></section>
 """
 page("boek.html", "Het boek", "Het boek De Vooruitblik 2027: 23 essays van 23 academici. Verschijnt op 15 november 2026, uitgegeven door Pelckmans.", boek, current="boek.html")
@@ -470,6 +480,10 @@ for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
 vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
              "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "foto/giselinde-kuipers.webp") + f"""
+<section class="section section--tight"><div class="wrap">
+  {sec_head("Kijk mee", "Zodra de eerste afleveringen online staan, kijk je ze hier. Elke aflevering staat ook op de pagina van het hoofdstuk.", f'<a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a>', eyebrow="Videopodcast")}
+  <div class="reveal">{yt_embed(YT_VOORBEELD, "Voorbeeldvideo van Universiteit van Vlaanderen")}<p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen volgen vanaf 1 november.</p></div>
+</div></section>
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
   <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Van <b>1 november</b> tot en met <b>31 december</b>, ongeveer drie afleveringen per week</li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
