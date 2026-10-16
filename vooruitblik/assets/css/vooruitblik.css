@@ -327,7 +327,8 @@ p { margin:0 0 1em; }
 
 /* visuals op de formatkaarten */
 .format-vis { flex:1; min-height:170px; margin-top:20px; position:relative; }
-.fv-live img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:18px; }
+.fv-live { min-height:220px; }
+.fv-live img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 36%; border-radius:18px; }
 .fv-duo img { position:absolute; bottom:0; width:min(23%,140px); aspect-ratio:4/5; height:auto; object-fit:cover; object-position:50% 22%; border-radius:16px; box-shadow:0 16px 28px rgba(27,7,87,.22); left:calc(clamp(6px,4%,32px) + var(--i,0) * min(20%,112px)); }
 .fv-duo img:nth-child(1) { transform:rotate(-6deg); }
 .fv-duo img:nth-child(2) { transform:rotate(2deg) translateY(-18px); z-index:1; }
