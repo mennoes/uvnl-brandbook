@@ -155,3 +155,36 @@
 .about2 > #wat-we-doen, .about2 > #voor-wie { grid-column:auto; grid-template-columns:1fr !important; align-items:start; align-content:start; grid-auto-rows:min-content; gap:18px; }
 .about2 #voor-wie { background:var(--uvnl-yellow); }
 @media (max-width:760px){ .about2 > #wat-we-doen, .about2 > #voor-wie { grid-column:1 / -1; } }
+
+/* ── Persoonlijkheid: waaier van fotokaarten (zoals de kaarten op de Vooruitblik-site) ── */
+.tf-stage { display:flex; justify-content:center; padding:clamp(24px,3vw,44px) 0 clamp(30px,4vw,56px); }
+.tf-slot { position:relative; flex:0 0 clamp(236px,23.6vw,300px); margin-left:clamp(-16px,-1.1vw,-10px); transform:translateY(calc(var(--dy,0px) + var(--sy,0px))) rotate(var(--rot,0deg)); transform-origin:50% 120%; transition:transform .45s var(--spring); }
+.tf-slot.is-first { margin-left:0; }
+.tf-slot:hover, .tf-slot:focus-within { z-index:5; transform:translateY(-18px) rotate(0deg) scale(1.03); }
+.tf-wrap { display:flex; flex-direction:column; gap:10px; }
+.tf-nr { font-size:13px; font-weight:700; color:var(--uvnl-green); padding-left:6px; }
+.tf-card { position:relative; padding:10px; border-radius:32px; display:flex; flex-direction:column; min-height:100%; box-shadow:0 14px 34px rgba(27,7,87,.16); isolation:isolate; transition:box-shadow .3s var(--ease); }
+.tf-slot:hover .tf-card { box-shadow:0 26px 48px rgba(27,7,87,.24); transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); }
+.tf-fig { position:relative; aspect-ratio:1/1.12; border-radius:22px; overflow:hidden; background:rgba(255,255,255,.3); }
+.tf-fig img { position:absolute; inset:-6%; width:112%; height:112%; max-width:none; object-fit:cover; translate:var(--tx,0px) var(--ty,0px); transition:translate .15s linear, transform .5s var(--ease); }
+.tf-slot:hover .tf-fig img { transform:scale(1.06); }
+.tf-card h3 { font-family:var(--font-sans); font-size:clamp(21px,2vw,25px); font-weight:700; text-transform:none; letter-spacing:0; line-height:1.1; margin:0; padding:16px 10px 0; color:inherit; translate:calc(var(--tx,0px) * .5) calc(var(--ty,0px) * .5); transition:translate .15s linear; }
+.tf-card p { margin:0; padding:8px 10px 10px; font-size:14px; line-height:1.4; opacity:.9; }
+.c-purple { background:var(--uvnl-purple); color:var(--uvnl-green); }
+.c-green { background:var(--uvnl-green); color:var(--uvnl-purple); } .c-green p { color:rgba(244,240,237,.9); }
+.c-yellow { background:var(--uvnl-yellow); color:var(--uvnl-green); }
+.c-blue { background:var(--uvnl-blue); color:var(--uvnl-green); }
+@media (prefers-reduced-motion:no-preference) {
+  .tf-wait:not(.tf-in) .tf-slot { opacity:0; }
+  .tf-in .tf-slot { animation:tf-pop .85s var(--spring) backwards; }
+  .tf-in .tf-slot:nth-child(2) { animation-delay:.08s; } .tf-in .tf-slot:nth-child(3) { animation-delay:.16s; } .tf-in .tf-slot:nth-child(4) { animation-delay:.24s; }
+  @keyframes tf-pop { from { opacity:0; transform:translateY(60px) rotate(calc(var(--rot,0deg) + 8deg)) scale(.9); } }
+}
+@media (max-width:900px){
+  .tf-stage { justify-content:flex-start; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:14px 2px 30px; }
+  .tf-slot, .tf-slot.is-first { flex:0 0 min(78%,320px); margin-left:0; transform:none !important; scroll-snap-align:start; }
+}
+.tf { overflow-x:clip; overflow-y:visible; }
+.tf { margin:0 -28px; padding:0 28px; overflow-x:clip; }
+.tf-slot { flex-basis:clamp(220px,22vw,280px); }
+@media (max-width:900px){ .tf { margin:0 -16px; padding:0 16px; overflow-x:visible; } .tf-slot, .tf-slot.is-first { flex:0 0 min(78%,320px); } }
