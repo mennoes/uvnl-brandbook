@@ -446,11 +446,12 @@ for i, c in enumerate(CH):
     page(f"hoofdstuk/{c['slug']}.html", c["vraag"], desc[:200], body, base="../", current="vragen.html")
 
 # ───────────────────────── BOEK ─────────────────────────
-boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
-               "Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.", "img/boek-3d.webp") + f"""
-<section class="section section--tight"><div class="wrap">
+boek = f"""
+<section class="section section--tight boek-top"><div class="wrap">
   <div class="elec"><div class="buy">
-    <div class="buy-t"><p class="serif-lead">Verschijnt 15 november 2026</p><div class="price">€24,50</div>
+    <div class="buy-t"><h1 class="boek-h">23 essays, één jaar vooruit</h1>
+      <p class="boek-intro">Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.</p>
+      <p class="serif-lead">Verschijnt 15 november 2026</p><div class="price">€24,50</div>
       <p>Officiële lancering op Dag van de Wetenschap, 15 november, op Boektopia in Antwerp Expo.</p>
       <div class="stack"><a class="btn btn--white" href="{URL["standaard"]}" rel="noopener">Bestel bij Standaard Boekhandel <span class="arr">→</span></a><a class="btn btn--line-w" href="{URL["pelckmans"]}" rel="noopener">Bij Pelckmans</a></div></div>
     <div class="inset inset--book"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy"></div>
