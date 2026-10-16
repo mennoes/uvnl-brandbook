@@ -41,7 +41,7 @@
   .pack .d { font-size:13.5px; color:rgba(244,240,237,.85); margin-top:10px; }
   .dl-note { margin:30px 0 80px; font-size:13px; color:var(--fg-mute); border-left:3px solid var(--line-strong); padding:6px 0 6px 14px; max-width:70ch; }
 </style>
-<link rel="stylesheet" href="../assets/css/fun.css?v=20261039">
+<link rel="stylesheet" href="../assets/css/fun.css?v=20261040">
 </head>
 <body>
 
@@ -66,17 +66,65 @@
     <svg class="bgu" viewBox="0 0 156 140" aria-hidden="true"><path d="M0 0H44V92H111V0H156V138H112V98H105.629C102.676 121.678 82.4777 140 52 140C22.4903 140 0 117.5 0 85.5V0Z"/></svg>
     <div class="info">
       <h1>Partnerkit</h1>
-      <p data-region-lock>Logo's en fotografie voor partners, apart voor Nederland en Vlaanderen.</p>
+      <p data-region-lock>Logo's en fotografie voor partners. Kies eerst voor welk merk je materiaal nodig hebt.</p>
       <p class="meta">ZIP · logo's (SVG) · foto's (JPG) · gebruiksnotitie</p>
     </div>
-    <div class="cta-wrap"><a class="bigbtn" href="../downloads/uvnl-partner-kit.zip" download>Download partnerkit ↓</a></div>
   </div>
 
-  <div class="index-col" style="margin:8px 0 14px"><h2>Download per onderdeel</h2></div>
-  <div class="dl-packs" data-region-lock>
-    <a class="pack" href="../downloads/uvnl-logo-pack.zip" download><span class="t">Logo pack</span><span class="d">Nederland en Vlaanderen</span></a>
-    <a class="pack" href="../downloads/uvnl-foto-pack.zip" download><span class="t">Foto-pack</span><span class="d">Nederland en Vlaanderen, op volledige resolutie</span></a>
-  </div>
+  <section class="dl-choose" data-region-lock>
+    <div class="index-col" style="margin:8px 0 14px"><h2>Voor welk merk?</h2></div>
+    <div class="dl-opts" role="radiogroup" aria-label="Kies een merk">
+      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="nl">
+        <span class="dl-opt-img"><img src="../assets/photos/entrance-u.jpg" alt="" loading="lazy"></span>
+        <span class="dl-opt-t">Universiteit van Nederland</span><span class="dl-opt-d">Logo’s en foto’s van UvNL</span>
+      </button>
+      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="vl">
+        <span class="dl-opt-img"><img src="../assets/photos/vlaanderen/vl-theater-en-podium.jpg" alt="" loading="lazy"></span>
+        <span class="dl-opt-t">Universiteit van Vlaanderen</span><span class="dl-opt-d">Logo’s en foto’s van UvVL</span>
+      </button>
+      <button class="dl-opt" type="button" role="radio" aria-checked="false" data-brand="both">
+        <span class="dl-opt-img dl-opt-img--two"><img src="../assets/photos/entrance-u.jpg" alt="" loading="lazy"><img src="../assets/photos/vlaanderen/vl-theater-en-podium.jpg" alt="" loading="lazy"></span>
+        <span class="dl-opt-t">Beide merken</span><span class="dl-opt-d">Netjes gescheiden per merk</span>
+      </button>
+    </div>
+
+    <div class="dl-group" data-group="nl">
+      <div class="dlp">
+        <div class="dlp-img"><img src="../assets/photos/globe-talk.jpg" alt="" loading="lazy"></div>
+        <div class="dlp-b"><h3>Partnerkit</h3><p>Logo’s (SVG) en foto’s van Universiteit van Nederland.</p><a class="dlp-btn" href="../downloads/uvnl-partner-kit-nederland.zip" download>Download ↓</a></div>
+      </div>
+      <div class="dlp">
+        <div class="dlp-img dlp-img--logo"><span class="dlp-logo" style="-webkit-mask-image:url('../assets/logos/uvnl-logo.svg');mask-image:url('../assets/logos/uvnl-logo.svg')"></span></div>
+        <div class="dlp-b"><h3>Logo pack</h3><p>Alle logo’s van UvNL als SVG en PNG, in groen, wit en zwart.</p><a class="dlp-btn" href="../downloads/uvnl-logo-pack-nederland.zip" download>Download ↓</a></div>
+      </div>
+    </div>
+
+    <div class="dl-group" data-group="vl">
+      <div class="dlp">
+        <div class="dlp-img"><img src="../assets/photos/vlaanderen/vl-spreker-met-u.jpg" alt="" loading="lazy"></div>
+        <div class="dlp-b"><h3>Partnerkit</h3><p>Logo’s (SVG) en foto’s van Universiteit van Vlaanderen.</p><a class="dlp-btn" href="../downloads/uvnl-partner-kit-vlaanderen.zip" download>Download ↓</a></div>
+      </div>
+      <div class="dlp">
+        <div class="dlp-img dlp-img--logo"><span class="dlp-logo" style="-webkit-mask-image:url('../assets/logos/uvvl-logo.svg');mask-image:url('../assets/logos/uvvl-logo.svg')"></span></div>
+        <div class="dlp-b"><h3>Logo pack</h3><p>Alle logo’s van UvVL als SVG en PNG, in groen, wit en zwart.</p><a class="dlp-btn" href="../downloads/uvnl-logo-pack-vlaanderen.zip" download>Download ↓</a></div>
+      </div>
+    </div>
+
+    <div class="dl-group" data-group="both">
+      <div class="dlp">
+        <div class="dlp-img dlp-img--two"><img src="../assets/photos/stage-green.jpg" alt="" loading="lazy"><img src="../assets/photos/vlaanderen/vl-college-op-podium.jpg" alt="" loading="lazy"></div>
+        <div class="dlp-b"><h3>Partnerkit</h3><p>Logo’s en foto’s van beide merken, in aparte mappen.</p><a class="dlp-btn" href="../downloads/uvnl-partner-kit.zip" download>Download ↓</a></div>
+      </div>
+      <div class="dlp">
+        <div class="dlp-img dlp-img--logo dlp-img--two"><span class="dlp-logo" style="-webkit-mask-image:url('../assets/logos/uvnl-logo.svg');mask-image:url('../assets/logos/uvnl-logo.svg')"></span><span class="dlp-logo" style="-webkit-mask-image:url('../assets/logos/uvvl-logo.svg');mask-image:url('../assets/logos/uvvl-logo.svg')"></span></div>
+        <div class="dlp-b"><h3>Logo pack</h3><p>Alle logo’s van UvNL en UvVL als SVG en PNG.</p><a class="dlp-btn" href="../downloads/uvnl-logo-pack.zip" download>Download ↓</a></div>
+      </div>
+      <div class="dlp">
+        <div class="dlp-img dlp-img--two"><img src="../assets/photos/event-globe.jpg" alt="" loading="lazy"><img src="../assets/photos/vlaanderen/vl-onderzoeker-in-gesprek.jpg" alt="" loading="lazy"></div>
+        <div class="dlp-b"><h3>Foto-pack</h3><p>De volledige beeldbank van beide merken, op volledige resolutie.</p><a class="dlp-btn" href="../downloads/uvnl-foto-pack.zip" download>Download ↓</a></div>
+      </div>
+    </div>
+  </section>
 
   <p class="dl-note">Vragen over merkgebruik? <a href="mailto:info@studioyoko.nl" style="color:var(--uvnl-green-bright)">info@studioyoko.nl</a></p>
 </div>
@@ -101,5 +149,21 @@
 </footer>
 
 <script src="../assets/js/uvnl.js?v=20260827"></script>
+<script>
+(function(){
+  var opts=[].slice.call(document.querySelectorAll('.dl-opt')), groups=[].slice.call(document.querySelectorAll('.dl-group'));
+  if(!opts.length) return;
+  function pick(b,focus){
+    opts.forEach(function(o){var on=o.getAttribute('data-brand')===b;o.classList.toggle('on',on);o.setAttribute('aria-checked',on?'true':'false');o.tabIndex=on?0:-1;});
+    groups.forEach(function(g){g.hidden=g.getAttribute('data-group')!==b;});
+    try{sessionStorage.setItem('dl-brand',b);}catch(e){}
+  }
+  opts.forEach(function(o){o.addEventListener('click',function(){pick(o.getAttribute('data-brand'));});});
+  var start='';
+  try{start=sessionStorage.getItem('dl-brand')||'';}catch(e){}
+  if(!start) start=(document.documentElement.getAttribute('data-region')==='vl')?'vl':'nl';
+  pick(start);
+})();
+</script>
 </body>
 </html>
