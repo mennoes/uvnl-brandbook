@@ -4,6 +4,7 @@
 Bron:    downloads/uvnl-partner-kit.zip, downloads/uvnl-logo-pack.zip
 Uitvoer: downloads/uvnl-partner-kit-{nederland,vlaanderen}.zip
          downloads/uvnl-logo-pack-{nederland,vlaanderen}.zip
+         downloads/uvnl-foto-pack-{nederland,vlaanderen}.zip
 Eerst scripts/build-partner-kit.py en scripts/build-logo-pack.py draaien.
 """
 import os
@@ -56,7 +57,21 @@ def logos(brand, cfg):
     print("Wrote", out, os.path.getsize(out) // 1024, "KB")
 
 
+def photos(brand, cfg):
+    src = os.path.join(DL, "uvnl-foto-pack.zip")
+    out = os.path.join(DL, f"uvnl-foto-pack-{brand}.zip")
+    prefix = f"uvnl-foto-pack/{cfg['map']}/"
+    with zipfile.ZipFile(src) as zin, zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zout:
+        zout.writestr("uvnl-foto-pack/LEES-MIJ.txt", f"{cfg['naam']} — foto-pack\n\nDe merkfoto's van {cfg['naam']} op volledige resolutie.\nBeeldgebruik in overleg met de redactie.\n")
+        for info in zin.infolist():
+            if info.filename.startswith(prefix) and not info.is_dir():
+                info.filename = "uvnl-foto-pack/" + info.filename[len(prefix):]
+                zout.writestr(info, zin.read(info.orig_filename if hasattr(info, "orig_filename") else info.filename))
+    print("Wrote", out, os.path.getsize(out) // 1024, "KB")
+
+
 if __name__ == "__main__":
     for b, c in BRANDS.items():
         kit(b, c)
         logos(b, c)
+        photos(b, c)
