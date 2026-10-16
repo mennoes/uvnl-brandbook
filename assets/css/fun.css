@@ -252,3 +252,4 @@
 .dl-opt.on .dl-logo { background:var(--uvnl-purple); }
 .dl-opt--both { font-family:var(--font-sans); font-weight:700; font-size:22px; min-width:150px; }
 @media (max-width:560px){ .dl-opt { min-width:0; width:100%; } }
+.dl-choose { padding-top:clamp(28px,4vw,56px); }
