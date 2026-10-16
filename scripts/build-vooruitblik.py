@@ -239,10 +239,27 @@ def sec_head(h2, p="", btn="", eyebrow=""):
 
 
 def subhero(cls, kicker, h1, sub="", orn=None, q=False):
-    o = (f'<img class="orn" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
+    foto = bool(orn) and orn.startswith(("foto/", "img/live"))
+    o = (f'<img class="orn{" orn--foto" if foto else ""}" src="assets/{orn if "/" in orn else "3d/" + orn + ".png"}" alt="">') if orn else ""
     return (f'<section class="page-hero {cls}{" q" if q else ""}"><div class="wrap">'
             f'{hero_shapes(cls)}<h1 class="q">{hl(h1)}</h1>'
             f'{f"<p class=sub>{sub}</p>" if sub else ""}</div>{o}</section>')
+
+
+def inset_vragen():
+    kies = ["wie-wordt-de-opvolger-van-trump", "drinkbaar-water-uit-de-kraan", "non-stop-vlucht-van-22-uur"]
+    vr = {c["slug"]: c["vraag"] for c in CH}
+    return '<div class="inset inset--vragen">' + "".join(f'<span class="qv qv{i}">{E(vr[k])}</span>' for i, k in enumerate(kies, 1)) + '</div>'
+
+
+def inset_proffen():
+    namen = ["ann-van-griensven", "britt-weyts", "giselinde-kuipers", "ike-picone", "jelle-habay", "laura-sels", "philip-blondeel", "tim-soens"]
+    return '<div class="inset inset--proffen">' + "".join(f'<img src="assets/foto/{n}.webp" alt="" width="450" height="563" loading="lazy">' for n in namen) + '</div>'
+
+
+def inset_unis():
+    logos = [("antwerpen", "Universiteit Antwerpen"), ("hasselt", "Universiteit Hasselt"), ("kuleuven", "KU Leuven"), ("gent", "Universiteit Gent"), ("vub-brussel", "Vrije Universiteit Brussel")]
+    return '<div class="inset inset--unis">' + "".join(f'<img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy">' for f, n in logos) + '</div>'
 
 
 # ───────────────────────── HOME ─────────────────────────
@@ -280,11 +297,11 @@ home = f"""
   <div class="wrap">
     <div class="cascade">
       <div class="cas cas-elec reveal"><div class="cas-t"><b class="cas-n"><span data-count="23">23</span> vragen</b><p>Van ruimtevaart tot relaties, van gezondheid tot mobiliteit: elk hoofdstuk vertrekt vanuit een concrete vraag die laat zien hoe wetenschap helpt begrijpen wat er in 2027 op ons afkomt.</p></div>
-        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/informatie.png" alt="" loading="lazy"></div></div>
+        {inset_vragen()}</div>
       <div class="cas cas-blue reveal"><div class="cas-t"><b class="cas-n"><span data-count="46">46</span> proffen</b><p>Per hoofdstuk schrijft een professor een toegankelijk essay. In de videopodcast schuift een tweede expert aan die het onderwerp vanuit een andere invalshoek bekijkt.</p></div>
-        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/techniek.png" alt="" loading="lazy"></div></div>
+        {inset_proffen()}</div>
       <div class="cas cas-red reveal"><div class="cas-t"><b class="cas-n"><span data-count="5">5</span> universiteiten</b><p>UAntwerpen, UHasselt, KU Leuven, UGent en de VUB leveren de experten en dragen bij aan de wetenschappelijke kwaliteit.</p></div>
-        <div class="inset"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/3d/recht-bestuur.png" alt="" loading="lazy"></div></div>
+        {inset_unis()}</div>
     </div>
   </div>
 </section>
@@ -350,7 +367,7 @@ page("index.html", "De Vooruitblik 2027",
 chips = '<button class="chip" data-uni="alle" aria-pressed="true">Alle</button>' + "".join(
     f'<button class="chip" data-uni="{u}" aria-pressed="false">{u}</button>' for u in UNIS)
 vragen = subhero("hero-yellow", "De 23 vragen", "De Vooruitblik 2027 in 23 vragen",
-                 "Eén vraag per hoofdstuk, beantwoord door een professor in het boek en besproken met een tweede expert in de videopodcast.", "informatie") + f"""
+                 "Eén vraag per hoofdstuk, beantwoord door een professor in het boek en besproken met een tweede expert in de videopodcast.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
   <div class="filters" role="group" aria-label="Filter op universiteit">{chips}<label class="sr" for="zoek">Zoek in de vragen</label><input id="zoek" class="search" type="search" placeholder="Zoek op vraag of professor…"></div>
   <p aria-live="polite" style="font-weight:700;color:var(--green)" id="telling">23 vragen</p>
@@ -452,7 +469,7 @@ for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     jaar, maand = int(ym[:4]), int(ym[5:])
     eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
 vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
-             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "elementen/schakelaar.png") + f"""
+             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "foto/giselinde-kuipers.webp") + f"""
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
   <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Van <b>1 november</b> tot en met <b>31 december</b>, ongeveer drie afleveringen per week</li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
@@ -466,7 +483,7 @@ page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2
 
 # ───────────────────────── RADIO EN LIVE ─────────────────────────
 radio_live = subhero("hero-blue", "Radio en live", "Radio en live",
-                     "Twee weken vooruitblikken op Radio 1 en live in gesprek met de professoren.", "elementen/hangslot.png") + f"""
+                     "Twee weken vooruitblikken op Radio 1 en live in gesprek met de professoren.", "img/live-prof.webp") + f"""
 <section class="section section--tight" id="radio"><div class="wrap">
   {sec_head("Twee weken vooruitblikken", "Radio 1 maakt opnieuw een programma rond De Vooruitblik, in de kerstvakantie.", eyebrow="Radio 1")}
   <ul class="facts reveal"><li><b>12–13u</b><span>elke weekdag op Radio 1</span></li><li><b>21–25 dec</b><span>maandag tot vrijdag</span></li><li><b>28 dec – 1 jan</b><span>maandag tot vrijdag</span></li></ul>
@@ -515,7 +532,7 @@ def el_card(src, title, bg):
 
 
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
-             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "elementen/gloeilamp.png") + f"""
+             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
   {sec_head("Universiteit van Vlaanderen", "Het logo van de afzender van De Vooruitblik. Groen op een lichte ondergrond, Electric Purple op een donkere.", eyebrow="Afzender")}
   <div class="uvvl-grid">
