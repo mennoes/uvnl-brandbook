@@ -30,6 +30,20 @@
   }
 
 
+  /* ── beeld in de cijferkaarten deinst mee met de muis ── */
+  if (fine && !reduce) {
+    [].slice.call(d.querySelectorAll('[data-react]')).forEach(function (el) {
+      var card = el.closest('.cas') || el;
+      card.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var x = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - .5) * 2));
+        var y = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - .5) * 2));
+        el.style.setProperty('--mx', (-x).toFixed(2)); el.style.setProperty('--my', (-y).toFixed(2));
+      });
+      card.addEventListener('pointerleave', function () { el.style.removeProperty('--mx'); el.style.removeProperty('--my'); });
+    });
+  }
+
   /* ── waaier: 4 kaarten, schudden ── */
   var fan = d.getElementById('fan'), sh = d.getElementById('fan-shuffle');
   if (fan) {
