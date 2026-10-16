@@ -284,3 +284,8 @@
 .dl-group { grid-template-columns:repeat(3,minmax(0,1fr)); }
 @media (max-width:900px){ .dl-group { grid-template-columns:1fr; } }
 .logo-section:nth-of-type(3) .lg-card { border:1px solid var(--line); }
+
+/* kleuren en combinaties: duidelijk gescheiden */
+.hs-rules { margin-top:clamp(48px,6vw,80px); padding-top:clamp(28px,3vw,40px); border-top:1px solid var(--line-strong); position:relative; }
+.hs-rules::before { content:"Combinaties"; position:absolute; top:-1px; left:0; transform:translateY(-50%); background:var(--bg); padding-right:14px; font-family:var(--font-display); font-size:clamp(26px,3vw,36px); text-transform:uppercase; color:var(--uvnl-green); line-height:1; }
+.hs-rules { padding-top:clamp(40px,4vw,56px); }
