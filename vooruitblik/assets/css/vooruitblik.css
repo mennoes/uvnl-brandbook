@@ -299,7 +299,7 @@ p { margin:0 0 1em; }
 
 /* ── afleveringsschema ──────────────────────────────────── */
 .sched { display:grid; gap:12px; margin-bottom:8px; }
-.ep { display:grid; grid-template-columns:96px minmax(0,1fr) auto; gap:8px 24px; align-items:center; padding:20px 26px; border-radius:var(--r-m); text-decoration:none; transition:transform var(--dur) var(--ease); }
+.ep { display:grid; grid-template-columns:96px minmax(0,1fr) auto auto; gap:8px 24px; align-items:center; padding:20px 26px; border-radius:var(--r-m); text-decoration:none; transition:transform var(--dur) var(--ease); background:var(--white); color:var(--green); }
 .ep:hover { transform:translateX(6px); }
 .ep-date { display:grid; justify-items:center; line-height:1; text-transform:uppercase; font-weight:700; font-size:13px; letter-spacing:.08em; }
 .ep-date b { font-family:var(--font-display); font-size:58px; letter-spacing:-.01em; margin:2px 0; }
@@ -347,3 +347,14 @@ p { margin:0 0 1em; }
 .page-hero .orn.orn--foto[src$="live-prof.webp"] { object-position:68% 30%; }
 .page-hero .orn[src$=".svg"] { width:clamp(110px,15vw,220px); bottom:auto; top:50%; transform:translateY(-50%) rotate(-4deg); right:clamp(18px,9vw,160px); filter:none; }
 @media (min-width:641px){ .page-hero:not(.q) .orn.orn--foto { width:clamp(120px,15vw,215px); } }
+
+/* afleveringen: wit met een rustige datumtegel in de tunnelkleuren */
+.ep-date { padding:12px 6px 10px; border-radius:var(--r-s); }
+.ep--lav .ep-date { background:#DFBEFF; color:var(--green); }
+.ep--blauw .ep-date { background:#6A79F3; color:var(--white); }
+.ep--indigo .ep-date { background:#251268; color:#DFBEFF; }
+.ep-avs { display:flex; justify-content:flex-end; min-width:92px; }
+.ep-av { width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:50% 20%; border:3px solid var(--white); box-shadow:0 0 0 1px rgba(0,75,54,.12); background:#DFBEFF; }
+.ep-av + .ep-av { margin-left:-14px; }
+.ep-av--sil { object-position:50% 38%; }
+@media (max-width:760px){ .ep { grid-template-columns:70px minmax(0,1fr); } .ep-avs { grid-column:2; } }

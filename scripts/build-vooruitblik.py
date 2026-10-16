@@ -382,6 +382,7 @@ vragen = subhero("hero-yellow", "De 23 vragen", "De Vooruitblik 2027 in 23 vrage
 """
 page("vragen.html", "De 23 vragen", "Alle 23 vragen uit De Vooruitblik 2027, met de professoren van de vijf Vlaamse universiteiten.", vragen, current="vragen.html")
 
+YT_TRAILER = "jnG-dNSbQ4I"   # voorlopige trailer
 YT_VOORBEELD = "E70O2_dd97M"   # voorlopige video van het kanaal van Universiteit van Vlaanderen; vervang per hoofdstuk via "youtube" in hoofdstukken.json
 
 
@@ -468,26 +469,51 @@ boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
 page("boek.html", "Het boek", "Het boek De Vooruitblik 2027: 23 essays van 23 academici. Verschijnt op 15 november 2026, uitgegeven door Pelckmans.", boek, current="boek.html")
 
 # ───────────────────────── VIDEOPODCAST ─────────────────────────
-def ep_row(c):
+EP_KLEUR = ["lav", "blauw", "indigo"]   # tunnelkleuren, rustig afwisselend
+
+
+def sp_icons(c):
+    out = ""
+    for k, sp in enumerate(speakers(c)):
+        if sp.get("foto"):
+            out += f'<img class="ep-av" src="assets/foto/{sp["foto"]}" alt="{E(sp["naam"])}" width="52" height="52" loading="lazy">'
+        else:
+            out += f'<img class="ep-av ep-av--sil" src="assets/foto/silhouet-{(c["nr"] + k * 3) % SILHOUETTEN + 1}.webp" alt="" width="52" height="52" loading="lazy">'
+    return f'<span class="ep-avs">{out}</span>'
+
+
+def ep_row(c, i=0):
     v = c["video"]
-    return (f'<a class="ep c-{c["kleur"]}" href="hoofdstuk/{c["slug"]}.html" data-date="{v["datum"]}">'
+    return (f'<a class="ep ep--{EP_KLEUR[i % 3]}" href="hoofdstuk/{c["slug"]}.html" data-date="{v["datum"]}">'
             f'<div class="ep-date"><span>{DAGEN[dt(v["datum"]).weekday()][:2]}</span><b>{dt(v["datum"]).day}</b><span>{MAANDEN[dt(v["datum"]).month - 1][:3]}</span></div>'
             f'<div class="ep-body"><div class="ep-nr">Aflevering {v["afl"]:02d}</div><h3>{E(v["titel"])}</h3>'
             f'<p>Met {E(" en ".join(sp["naam"] for sp in speakers(c)))}</p>'
             f'<p class="ep-book">In het boek: {E(c["vraag"])}</p></div>'
-            f'<span class="ep-status tag"></span></a>')
+            f'{sp_icons(c)}<span class="ep-status tag"></span></a>')
 
 
 by_ep = sorted(CH, key=lambda c: c["video"]["datum"])
 eps = ""
 for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     jaar, maand = int(ym[:4]), int(ym[5:])
-    eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
+    eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c, by_ep.index(c)) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
 vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
              "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "foto/giselinde-kuipers.webp") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Kijk mee", "Zodra de eerste afleveringen online staan, kijk je ze hier. Elke aflevering staat ook op de pagina van het hoofdstuk.", f'<a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a>', eyebrow="Videopodcast")}
-  <div class="reveal">{yt_embed(YT_VOORBEELD, "Voorbeeldvideo van Universiteit van Vlaanderen")}<p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen volgen vanaf 1 november.</p></div>
+  <div class="watch">
+    <div class="watch-t reveal">
+      <span class="eyebrow">Videopodcast</span><h2>Kijk mee</h2>
+      <p>Zodra de eerste afleveringen online staan, kijk je ze hier. Elke aflevering staat ook op de pagina van het hoofdstuk.</p>
+      <p class="watch-last"><b>Laatste aflevering</b><br>{E(by_ep[0]["video"]["titel"])}</p>
+      <div class="people watch-people">{"".join(person(sp, "Spreker") for sp in speakers(by_ep[0]))}</div>
+      <a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a>
+    </div>
+    <div class="watch-v reveal">
+      <figure><span class="watch-l">Laatste aflevering</span>{yt_embed(YT_VOORBEELD, "Laatste aflevering (voorlopige video van Universiteit van Vlaanderen)")}</figure>
+      <figure><span class="watch-l">Trailer</span>{yt_embed(YT_TRAILER, "Trailer (voorlopige video van Universiteit van Vlaanderen)")}</figure>
+      <p class="yt-note">Voorlopige video’s van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen en de trailer volgen.</p>
+    </div>
+  </div>
 </div></section>
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
