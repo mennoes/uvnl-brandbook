@@ -534,35 +534,25 @@ def el_card(src, title, bg):
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
              "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Universiteit van Vlaanderen", "Het logo van de afzender van De Vooruitblik. Groen op een lichte ondergrond, Electric Purple op een donkere.", eyebrow="Afzender")}
-  <div class="uvvl-grid">
-    <figure class="uvvl-tile uvvl-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
-    <div class="uvvl-side">
-      <figure class="uvvl-tile uvvl-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
-      <figure class="uvvl-tile uvvl-tile--paars reveal"><img class="uvvl-vierkant" src="assets/vormgeving/uvvl-logo-vierkant-groen.svg" alt="Vierkant logo Universiteit van Vlaanderen in Varsity Green op Electric Purple" width="156" height="195"></figure>
+  {sec_head("De logo’s", "Het logo van De Vooruitblik en dat van Universiteit van Vlaanderen, de afzender. Altijd naast elkaar op dezelfde hoogte: op licht groen, op donker Electric Purple.", eyebrow="Logo")}
+  <div class="pair">
+    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"></figure>
+    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
+  </div>
+  <div class="pair pair--dl">
+    <div class="stack"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
+    <div class="stack">
+      <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Logo paars (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen (SVG) <span class="arr">↓</span></a>
+      <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars (SVG) <span class="arr">↓</span></a>
     </div>
   </div>
-  <div class="stack" style="margin-top:20px">
-    <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Logo paars (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen (SVG) <span class="arr">↓</span></a>
-    <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars (SVG) <span class="arr">↓</span></a>
-  </div>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Het logo", "Een cursieve serif voor “DE” boven een zware grotesk voor “VOORUITBLIK”, in Electric Purple.", eyebrow="Op donker")}
-  <div class="logo-grid">
-    <figure class="logo-big reveal"><a href="assets/vormgeving/logo-op-blauw.png" download aria-label="Download het logo op blauw"><img src="assets/vormgeving/logo-op-blauw.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" loading="lazy"></a></figure>
-    <div class="logo-side">
-      <figure class="logo-sm logo-sm--green reveal"><img src="assets/vormgeving/logo-transparant.png" alt="Het logo op Varsity Green" loading="lazy"></figure>
-      <figure class="logo-sm logo-sm--ink reveal"><img src="assets/vormgeving/logo-transparant.png" alt="Het logo op Ballpoint" loading="lazy"></figure>
-    </div>
-  </div>
-  <div class="stack" style="margin-top:20px"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
-  <p class="note">Gebruik het logo in Electric Purple op een donkere ondergrond: Varsity Green, Ballpoint of Electric Blue.</p>
+  <p class="note">Gebruik het logo van De Vooruitblik in Electric Purple op een donkere ondergrond: Varsity Green, Ballpoint of Electric Blue.</p>
 </div></section>
 
 <section class="section section--tight"><div class="wrap">

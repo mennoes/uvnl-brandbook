@@ -197,14 +197,6 @@
 
 /* ══ vormgevingspagina ══ */
 .note { margin:18px 0 0; max-width:62ch; font-size:15px; color:var(--green); font-weight:700; }
-.logo-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:18px; }
-.logo-big,.logo-sm { margin:0; border-radius:var(--r-l); overflow:hidden; }
-.logo-big a { display:block; } .logo-big img { width:100%; transition:transform .6s var(--ease); } .logo-big:hover img { transform:scale(1.04); }
-.logo-side { display:grid; gap:18px; }
-.logo-sm { display:grid; place-items:center; }
-.logo-sm--green { background:var(--green); } .logo-sm--ink { background:var(--ballpoint); }
-.logo-sm img { width:100%; }
-@media (max-width:760px){ .logo-grid { grid-template-columns:minmax(0,1fr); } .logo-side { grid-template-columns:1fr 1fr; } }
 
 .assets { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:18px; }
 .assets--two { grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),420px)); }
@@ -282,17 +274,6 @@
   .cas .inset img { width:44%; }
 }
 
-/* ── logo Universiteit van Vlaanderen op Vormgeving ── */
-.uvvl-grid { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:18px; }
-.uvvl-side { display:grid; gap:18px; }
-.uvvl-tile { margin:0; border-radius:var(--r-l); display:grid; place-items:center; padding:clamp(28px,5vw,64px); min-height:200px; }
-.uvvl-tile img { display:block; width:100%; max-width:520px; height:auto; }
-.uvvl-tile img.uvvl-vierkant { max-width:88px; }
-.uvvl-tile--wit { background:var(--white); }
-.uvvl-tile--groen { background:var(--green); }
-.uvvl-tile--paars { background:var(--purple); }
-.uvvl-tile--groen img { max-width:360px; }
-@media (max-width:760px){ .uvvl-grid { grid-template-columns:minmax(0,1fr); } }
 
 /* lint met kleine portretten voor de vraag */
 .tape a { display:inline-flex; align-items:center; gap:clamp(10px,1.4vw,16px); }
@@ -314,3 +295,12 @@
 .cas .inset { aspect-ratio:auto; min-height:clamp(200px,17vw,260px); }
 @media (min-width:1101px){ .cas .inset { height:clamp(250px,19.5vw,290px); } }
 .cas .inset--unis img { max-height:52px; }
+
+/* logo's naast elkaar op gelijke hoogte */
+.pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px; }
+.pair:first-of-type { margin-top:0; }
+.pair-tile { margin:0; border-radius:var(--r-l); display:grid; place-items:center; padding:clamp(28px,5vw,64px) clamp(20px,4vw,48px); min-height:clamp(170px,18vw,240px); }
+.pair-tile img { display:block; height:clamp(40px,5.2vw,78px); width:auto; max-width:100%; object-fit:contain; }
+.pair-tile--blauw { background:var(--blue); } .pair-tile--wit { background:var(--white); } .pair-tile--groen { background:var(--green); }
+.pair--dl { margin-top:20px; align-items:start; }
+@media (max-width:760px){ .pair { grid-template-columns:minmax(0,1fr); } }
