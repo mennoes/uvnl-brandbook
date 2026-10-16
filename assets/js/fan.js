@@ -1,8 +1,8 @@
 /* fan.js — waaier van eigenschapskaarten: schikken, kantelen met de cursor en parallax bij scrollen. */
 (function () {
   var d = document;
-  var fan = d.getElementById('traits-fan');
-  if (!fan) return;
+  [].forEach.call(d.querySelectorAll('.tf'), setup);
+  function setup(fan) {
   var slots = [].slice.call(fan.querySelectorAll('.tf-slot'));
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -52,5 +52,6 @@
         ['--rx', '--ry', '--tx', '--ty'].forEach(function (k) { c.style.removeProperty(k); });
       });
     });
+  }
   }
 })();

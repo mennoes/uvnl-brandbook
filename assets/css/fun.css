@@ -277,3 +277,5 @@
 .about2 .a-stats .a-stat:nth-child(3) { background:#1B0757; color:#F4F0ED; } .about2 .a-stats .a-stat:nth-child(3) .n { color:#D6ACFF; }
 .about2 .a-stats .a-stat:nth-child(4) { background:#585FF1; color:#fff; } .about2 .a-stats .a-stat:nth-child(4) .n { color:#fff; }
 @media (max-width:560px){ .about2 .a-stats { grid-template-columns:1fr; } .about2 .a-stat { border-radius:36px; } }
+.c-deep { background:#1B0757; color:#D6ACFF; } .c-deep p { color:rgba(244,240,237,.9); }
+.c-eblue { background:#585FF1; color:#fff; }
