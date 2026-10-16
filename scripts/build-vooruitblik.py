@@ -151,8 +151,8 @@ TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
-NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio.html", "Radio 1"), ("live.html", "Live"), ("vormgeving.html", "Vormgeving")]
-FOOT_NAV = NAV[1:] + [("visuals.html", "Visuals"), ("partners.html", "Partners")]
+NAV = [("index.html", "Wat is De Vooruitblik?"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio-en-live.html", "Radio en live"), ("vormgeving.html", "Vormgeving")]
+FOOT_NAV = NAV[1:]
 
 
 import hashlib as _h
@@ -308,8 +308,8 @@ home = f"""
     <div class="formats reveal">
       <a class="format c-purple has-book" href="boek.html"><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici, geschreven voor iedereen. Elk hoofdstuk heeft een toegankelijk essay, weetjes, anekdotes of een filmtip en een korte biografie van de auteur. Verschijnt op 15 november bij Pelckmans.</p><span class="format-foot"><span class="big">23 essays</span><span class="go">→</span></span></a>
       <a class="format c-yellow" href="videopodcast.html"><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p><div class="format-vis fv-duo" aria-hidden="true"><img style="--i:0" src="assets/foto/ann-van-griensven.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:1" src="assets/foto/giselinde-kuipers.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:2" src="assets/foto/tim-soens.webp" alt="" width="450" height="563" loading="lazy"></div><span class="format-foot"><span class="big">3 per week</span><span class="go">→</span></span></a>
-      <a class="format c-pink" href="radio.html"><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p><div class="format-vis fv-radio"><span class="fv-logo"><img src="assets/partners/radio1.png" alt="Radio 1" width="117" height="111"></span><svg class="fv-wave" viewBox="0 0 280 100" aria-hidden="true" fill="currentColor"><rect x="0" y="36" width="8" height="28" rx="4"/><rect x="14" y="24" width="8" height="52" rx="4"/><rect x="28" y="32" width="8" height="36" rx="4"/><rect x="42" y="15" width="8" height="70" rx="4"/><rect x="56" y="28" width="8" height="44" rx="4"/><rect x="70" y="7" width="8" height="86" rx="4"/><rect x="84" y="21" width="8" height="58" rx="4"/><rect x="98" y="1" width="8" height="98" rx="4"/><rect x="112" y="18" width="8" height="64" rx="4"/><rect x="126" y="10" width="8" height="80" rx="4"/><rect x="140" y="26" width="8" height="48" rx="4"/><rect x="154" y="4" width="8" height="92" rx="4"/><rect x="168" y="20" width="8" height="60" rx="4"/><rect x="182" y="13" width="8" height="74" rx="4"/><rect x="196" y="30" width="8" height="40" rx="4"/><rect x="210" y="17" width="8" height="66" rx="4"/><rect x="224" y="35" width="8" height="30" rx="4"/><rect x="238" y="23" width="8" height="54" rx="4"/><rect x="252" y="31" width="8" height="38" rx="4"/><rect x="266" y="37" width="8" height="26" rx="4"/></svg></div><span class="format-foot"><span class="big">12 uur</span><span class="go">→</span></span></a>
-      <a class="format c-blue" href="live.html"><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p><div class="format-vis fv-live"><img src="assets/img/live-podium.webp" alt="" width="1000" height="666" loading="lazy"></div><span class="format-foot"><span class="big">Live</span><span class="go" style="color:var(--blue)">→</span></span></a>
+      <a class="format c-pink" href="radio-en-live.html#radio"><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p><div class="format-vis fv-radio"><span class="fv-logo"><img src="assets/partners/radio1.png" alt="Radio 1" width="117" height="111"></span><svg class="fv-wave" viewBox="0 0 280 100" aria-hidden="true" fill="currentColor"><rect x="0" y="36" width="8" height="28" rx="4"/><rect x="14" y="24" width="8" height="52" rx="4"/><rect x="28" y="32" width="8" height="36" rx="4"/><rect x="42" y="15" width="8" height="70" rx="4"/><rect x="56" y="28" width="8" height="44" rx="4"/><rect x="70" y="7" width="8" height="86" rx="4"/><rect x="84" y="21" width="8" height="58" rx="4"/><rect x="98" y="1" width="8" height="98" rx="4"/><rect x="112" y="18" width="8" height="64" rx="4"/><rect x="126" y="10" width="8" height="80" rx="4"/><rect x="140" y="26" width="8" height="48" rx="4"/><rect x="154" y="4" width="8" height="92" rx="4"/><rect x="168" y="20" width="8" height="60" rx="4"/><rect x="182" y="13" width="8" height="74" rx="4"/><rect x="196" y="30" width="8" height="40" rx="4"/><rect x="210" y="17" width="8" height="66" rx="4"/><rect x="224" y="35" width="8" height="30" rx="4"/><rect x="238" y="23" width="8" height="54" rx="4"/><rect x="252" y="31" width="8" height="38" rx="4"/><rect x="266" y="37" width="8" height="26" rx="4"/></svg></div><span class="format-foot"><span class="big">12 uur</span><span class="go">→</span></span></a>
+      <a class="format c-blue" href="radio-en-live.html#live"><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p><div class="format-vis fv-live"><img src="assets/img/live-podium.webp" alt="" width="1000" height="666" loading="lazy"></div><span class="format-foot"><span class="big">Live</span><span class="go" style="color:var(--blue)">→</span></span></a>
     </div>
   </div>
 </section>
@@ -330,9 +330,14 @@ home = f"""
 
 <section class="section section--tight">
   <div class="wrap">
-    {sec_head("Samen gemaakt", "De Vooruitblik is een gezamenlijk project van universiteiten, uitgever, omroep en overheid.", '<a class="btn btn--green" href="partners.html">Alle partners <span class="arr">→</span></a>')}
+    {sec_head("Samen gemaakt", "De Vooruitblik is een gezamenlijk project van universiteiten, uitgever, omroep en overheid.")}
+    <div class="three">
+      <div class="panel panel--green reveal"><span class="logo-mask" role="img" aria-label="Universiteit van Vlaanderen"></span><p>Maakt wetenschappelijke kennis toegankelijk voor een breed publiek, via video’s, podcasts, evenementen en publicaties.</p></div>
+      <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/radio1.png" alt="Radio 1"><p>De actualiteitszender van de VRT, met betrouwbare informatie, verdieping en duiding.</p></div>
+      <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/pelckmans.png" alt="Pelckmans Uitgevers"><p>Belgische uitgeverij met een sterke traditie in educatieve, algemene en wetenschappelijk geïnspireerde publicaties.</p></div>
+    </div>
     <div class="partners reveal">
-      {"".join(f'<div class="partner"><img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy"></div>' for f, n in [("antwerpen","Universiteit Antwerpen"),("hasselt","Universiteit Hasselt"),("kuleuven","KU Leuven"),("gent","Universiteit Gent"),("vub-brussel","Vrije Universiteit Brussel"),("radio1","Radio 1"),("vrt","VRT"),("jonge-academie","Jonge Academie"),("vlaamse-overheid","Vlaamse overheid"),("nationale-loterij","Nationale Loterij")])}
+      {"".join(f'<div class="partner"><img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy"></div>' for f, n in [("antwerpen","Universiteit Antwerpen"),("hasselt","Universiteit Hasselt"),("kuleuven","KU Leuven"),("gent","Universiteit Gent"),("vub-brussel","Vrije Universiteit Brussel"),("vrt","VRT"),("jonge-academie","Jonge Academie"),("vlaamse-overheid","Vlaamse overheid"),("nationale-loterij","Nationale Loterij")])}
     </div>
   </div>
 </section>
@@ -420,9 +425,8 @@ boek = subhero("hero-purple", "Het boek", "23 essays, één jaar vooruit",
 <section class="section section--tight"><div class="wrap">
   <ul class="facts reveal"><li><b data-count="23">23</b><span>essays van 23 academici</span></li><li><b data-count="5">5</b><span>Vlaamse universiteiten</span></li><li><b>+1</b><span>extraatje per hoofdstuk: een weetje, anekdote of filmtip</span></li></ul>
 </div></section>
-<section class="section section--tight"><div class="wrap two">
+<section class="section section--tight"><div class="wrap">
   <div class="panel panel--paper reveal"><h2>Zo is elk hoofdstuk opgebouwd</h2><div class="prose"><p>Elk hoofdstuk bevat een toegankelijk essay, weetjes, anekdotes of een extraatje zoals een filmtip, en een korte biografie van de auteur.</p><p>De hoofdstukken kan je afzonderlijk lezen, maar samen vormen ze een rijk overzicht van de thema’s die ons begrip van 2027 bepalen.</p></div></div>
-  <div class="panel panel--yellow reveal" style="background:var(--yellow)"><h2>Geen glazen bol</h2><div class="prose"><p>Het boek doet geen voorspellingen. Het geeft inzichten, context en kennis, zodat je de actualiteit van het komende jaar beter begrijpt.</p></div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
   {sec_head("Alle hoofdstukken")}
@@ -460,77 +464,30 @@ vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
 """
 page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2027: telkens twee professoren over één vraag. Van 1 november tot 31 december verschijnen 23 afleveringen, ongeveer drie per week.", vp, current="videopodcast.html")
 
-# ───────────────────────── RADIO ─────────────────────────
-radio = subhero("hero-pink", "Radio 1", "Twee weken vooruitblikken",
-                "Radio 1 maakt opnieuw een programma rond De Vooruitblik, in de kerstvakantie.", "taal-communicatie") + f"""
-<section class="section section--tight"><div class="wrap">
+# ───────────────────────── RADIO EN LIVE ─────────────────────────
+radio_live = subhero("hero-blue", "Radio en live", "Radio en live",
+                     "Twee weken vooruitblikken op Radio 1 en live in gesprek met de professoren.", "elementen/hangslot.png") + f"""
+<section class="section section--tight" id="radio"><div class="wrap">
+  {sec_head("Twee weken vooruitblikken", "Radio 1 maakt opnieuw een programma rond De Vooruitblik, in de kerstvakantie.", eyebrow="Radio 1")}
   <ul class="facts reveal"><li><b>12–13u</b><span>elke weekdag op Radio 1</span></li><li><b>21–25 dec</b><span>maandag tot vrijdag</span></li><li><b>28 dec – 1 jan</b><span>maandag tot vrijdag</span></li></ul>
 </div></section>
 <section class="section section--tight"><div class="wrap two">
   <div class="panel reveal"><h2>Het programma</h2><div class="prose"><p>Radiohost Jacotte Brokken gaat in gesprek met de wetenschappers van De Vooruitblik over de thema’s uit het boek en de maatschappelijke ontwikkelingen die ons begrip van 2027 helpen verdiepen.</p><p>Zo vormt het programma een belangrijke aanvulling op zowel het boek als de videopodcasts.</p></div></div>
   <div class="panel panel--green reveal"><h2>Luister live of terug</h2><p>Radio 1 vind je live en on demand via VRT MAX.</p><a class="btn btn--purple" href="{URL["radio1"]}" rel="noopener">Naar Radio 1 <span class="arr">→</span></a></div>
 </div></section>
-"""
-page("radio.html", "Radio 1", "Het Radio 1-programma bij De Vooruitblik 2027, met Jacotte Brokken: elke weekdag van 12 tot 13 uur van 21 december tot 1 januari.", radio, current="radio.html")
-
-# ───────────────────────── LIVE ─────────────────────────
-live = subhero("hero-blue", "Live", "Stel je vraag aan de prof",
-               "Op de live evenementen praat het publiek rechtstreeks met de professoren.", "elementen/hangslot.png") + """
-<section class="section section--tight"><div class="wrap">
+<section class="section section--tight" id="live"><div class="wrap">
+  {sec_head("Stel je vraag aan de prof", "Op de live evenementen praat het publiek rechtstreeks met de professoren.", eyebrow="Live")}
   <div class="dark" style="padding:clamp(26px,5vw,64px)"><ul class="agenda">
     <li><div class="when">15 november</div><div><h3>Boektopia, Antwerp Expo</h3><p>De Vooruitblik 2027 wordt officieel voorgesteld op Dag van de Wetenschap. Onder begeleiding van een moderator praten drie professoren over een selectie onderwerpen uit het boek.</p><p style="margin-top:10px"><b>12u – 12u45</b> gesprek in de Red Room<br><b>13u – 14u</b> signeersessie</p></div></li>
     <li><div class="when">Voorjaar 2027</div><div><h3>Panelgesprekken op vijf locaties</h3><p>Telkens vier academici gaan met elkaar en met het publiek in gesprek over thema’s uit het boek. Kobe Ilsen modereert, aangevuld met een muzikaal intermezzo. Peter Saerens van Pelckmans Uitgevers brengt een voorwoord.</p><p style="margin-top:10px">De locaties en data zijn nog in voorbereiding en komen hier zodra ze vastliggen.</p></div></li>
   </ul></div>
 </div></section>
 """
-page("live.html", "Live", "De live evenementen bij De Vooruitblik 2027: Boektopia op 15 november en panelgesprekken in het voorjaar van 2027.", live, current="live.html")
+page("radio-en-live.html", "Radio en live", "Radio 1 en live bij De Vooruitblik 2027: elke weekdag van 12 tot 13 uur van 21 december tot 1 januari, Boektopia op 15 november en panelgesprekken in het voorjaar van 2027.", radio_live, current="radio-en-live.html")
 
-# ───────────────────────── PARTNERS ─────────────────────────
-def pl(items):
-    return '<div class="partners">' + "".join(
-        f'<div class="partner">' + (f'<img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy">' if f else f'<b style="font-family:var(--font-display);font-size:26px;text-transform:uppercase;color:var(--purple)">{E(n)}</b>') + '</div>'
-        for f, n in items) + "</div>"
-
-partners = subhero("hero-paper", "Partners", "Samen gemaakt",
-                   "Een gezamenlijk project waarin auteurs, universiteiten, partners en mediaorganisaties samenwerken.", "techniek") + f"""
-<section class="section section--tight"><div class="wrap">
-  <h2 class="group-title">Initiatiefnemers</h2>
-  <div class="three">
-    <div class="panel panel--green reveal"><span class="logo-mask" role="img" aria-label="Universiteit van Vlaanderen"></span><p>Maakt wetenschappelijke kennis toegankelijk voor een breed publiek, via video’s, podcasts, evenementen en publicaties.</p></div>
-    <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/radio1.png" alt="Radio 1"><p>De actualiteitszender van de VRT, met betrouwbare informatie, verdieping en duiding.</p></div>
-    <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/pelckmans.png" alt="Pelckmans Uitgevers"><p>Belgische uitgeverij met een sterke traditie in educatieve, algemene en wetenschappelijk geïnspireerde publicaties.</p></div>
-  </div>
-  <h2 class="group-title">De vijf Vlaamse universiteiten</h2>
-  <p style="max-width:60ch">Zij leveren experten, ondersteunen de communicatie en dragen bij aan de wetenschappelijke kwaliteit.</p>
-  {pl([("antwerpen","Universiteit Antwerpen"),("hasselt","Universiteit Hasselt"),("kuleuven","KU Leuven"),("gent","Universiteit Gent"),("vub-brussel","Vrije Universiteit Brussel")])}
-  <h2 class="group-title">Met steun van</h2>
-  {pl([("jonge-academie","Jonge Academie"),("vrt","VRT"),("vlaamse-overheid","Vlaamse overheid (WEWIS)"),("nationale-loterij","Nationale Loterij")])}
-  <h2 class="group-title">Deel De Vooruitblik</h2>
-  <p style="max-width:60ch">Banners voor je e-mailhandtekening, het logo en ander beeld vind je bij Vormgeving.</p>
-  <p><a class="btn btn--green" href="vormgeving.html">Naar Vormgeving <span class="arr">→</span></a></p>
-</div></section>
-"""
-page("partners.html", "Partners", "De initiatiefnemers en partners van De Vooruitblik 2027: Universiteit van Vlaanderen, Radio 1, Pelckmans, de vijf Vlaamse universiteiten en meer.", partners, current="partners.html")
-
-# ───────────────────────── VISUALS ─────────────────────────
 def vis_card(cls, h, p, tag):
     return f'<div class="panel {cls} reveal"><h2>{h}</h2><p>{p}</p><p style="margin-top:14px"><span class="tag">{tag}</span></p></div>'
 
-visuals = subhero("hero-purple", "Visuals", "Foto’s, video’s en posts",
-                  "Alles om De Vooruitblik te delen: portretten van de professoren, video’s, sociale media en advertenties.", "elementen/schakelaar.png") + f"""
-<section class="section section--tight"><div class="wrap">
-  <div class="two">
-    {vis_card("panel--paper", "Foto’s", "Portretten van de professoren, geordend per hoofdstuk. Vrij te gebruiken, bijvoorbeeld voor een affiche.", "Komt binnenkort")}
-    {vis_card("panel--green", "Video’s", "Drie video’s per professor: het boek promoten, de inhoudsopgave voorlezen en doorverwijzen, en zichzelf voorstellen met één prikkelende zin.", "Komt binnenkort")}
-    {vis_card("panel--paper", "Sociale media", "De kant-en-klare posts om te delen.", "Komt binnenkort")}
-    {vis_card("panel--green", "Advertenties Mediahuis", "De advertenties bij het boek.", "Komt binnenkort")}
-  </div>
-</div></section>
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Logo en beeld", "Het logo, beeld, kleuren en lettertypes met downloads vind je bij Vormgeving.", '<a class="btn btn--green" href="vormgeving.html">Naar Vormgeving <span class="arr">→</span></a>')}
-</div></section>
-"""
-page("visuals.html", "Visuals", "Foto's, video's, sociale media en advertenties van De Vooruitblik 2027.", visuals, current="visuals.html")
 
 # ───────────────────────── VORMGEVING ─────────────────────────
 def lum(hexc):
@@ -558,7 +515,7 @@ def el_card(src, title, bg):
 
 
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
-             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes. Klik op een beeld of knop om te downloaden.", "elementen/gloeilamp.png") + f"""
+             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "elementen/gloeilamp.png") + f"""
 <section class="section section--tight"><div class="wrap">
   {sec_head("Universiteit van Vlaanderen", "Het logo van de afzender van De Vooruitblik. Groen op een lichte ondergrond, Electric Purple op een donkere.", eyebrow="Afzender")}
   <div class="uvvl-grid">
@@ -614,6 +571,16 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
+  {sec_head("Materiaal om te delen", "Portretten, video’s, posts en advertenties volgen. Zodra ze klaar zijn, staan ze hier.", eyebrow="Binnenkort")}
+  <div class="two">
+    {vis_card("panel--paper", "Foto’s", "Portretten van de professoren, geordend per hoofdstuk. Vrij te gebruiken, bijvoorbeeld voor een affiche.", "Komt binnenkort")}
+    {vis_card("panel--green", "Video’s", "Drie video’s per professor: het boek promoten, de inhoudsopgave voorlezen en doorverwijzen, en zichzelf voorstellen met één prikkelende zin.", "Komt binnenkort")}
+    {vis_card("panel--paper", "Sociale media", "De kant-en-klare posts om te delen.", "Komt binnenkort")}
+    {vis_card("panel--green", "Advertenties Mediahuis", "De advertenties bij het boek.", "Komt binnenkort")}
+  </div>
+</div></section>
+
+<section class="section section--tight"><div class="wrap">
   {sec_head("Kleuren", "Klik op een kleur om de code te kopiëren.", eyebrow="Palet")}
   <div class="swatches reveal">{sw}</div>
   <div class="rules reveal">
@@ -637,4 +604,4 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 """
 page("vormgeving.html", "Vormgeving", "Logo, beeld, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
 
-print(f"{len(CH)} hoofdstukken + 8 pagina's gebouwd in {ROOT}")
+print(f"{len(CH)} hoofdstukken + pagina's gebouwd in {ROOT}")
