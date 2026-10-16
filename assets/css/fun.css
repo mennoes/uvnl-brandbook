@@ -279,3 +279,7 @@
 @media (max-width:560px){ .about2 .a-stats { grid-template-columns:1fr; } .about2 .a-stat { border-radius:36px; } }
 .c-deep { background:#1B0757; color:#D6ACFF; } .c-deep p { color:rgba(244,240,237,.9); }
 .c-eblue { background:#585FF1; color:#fff; }
+.dlp-all { display:inline-block; vertical-align:middle; margin-left:12px; padding:5px 12px; border-radius:999px; background:var(--uvnl-purple); color:var(--uvnl-green); font-family:var(--font-sans); font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase; line-height:1; position:relative; top:-4px; }
+.dlp--all { box-shadow:0 0 0 3px var(--uvnl-green); }
+.dl-group { grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:900px){ .dl-group { grid-template-columns:1fr; } }
