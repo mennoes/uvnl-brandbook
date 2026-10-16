@@ -18,7 +18,7 @@ België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
 - `pages/typography.html` — typografie zonder fontdownloads
 - `pages/photography.html` — aparte Nederlandse en Vlaamse beeldbanken
 - `pages/examples.html` — toepassingen, voorbeelden en formats
-- `pages/download.html` — partnerkit, logo's en fotografie per merk
+- `pages/download.html` — eerst een merk kiezen (UvNL, UvVL of beide), daaronder de passende packs; per-merk zips komen uit `scripts/split-brand-packs.py`
 
 ## De Vooruitblik 2027 (Universiteit van Vlaanderen)
 
