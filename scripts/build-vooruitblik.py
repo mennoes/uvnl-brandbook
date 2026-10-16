@@ -553,14 +553,14 @@ def el_card(src, title, bg):
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
              "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("De logo’s", "Het logo van De Vooruitblik en dat van Universiteit van Vlaanderen, de afzender. Altijd naast elkaar op dezelfde hoogte: op licht groen, op donker Electric Purple.", eyebrow="Logo")}
+  {sec_head("De logo’s", "Twee logo’s met elk een eigen rol: De Vooruitblik is het project, Universiteit van Vlaanderen is de afzender.", eyebrow="Logo")}
   <div class="pair">
-    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"></figure>
-    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"></figure>
-    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"></figure>
-    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"></figure>
-  </div>
-  <div class="pair pair--dl">
+    <div class="pair-head pair-head--vb"><span class="pair-kicker">Het project</span><h3>De Vooruitblik</h3><p>Het logo van het boek, de videopodcast, Radio 1 en de evenementen.</p></div>
+    <div class="pair-head pair-head--uv"><span class="pair-kicker">De afzender</span><h3>Universiteit van Vlaanderen</h3><p>Het logo van de organisatie achter het project.</p></div>
+    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"><figcaption class="pair-cap">Op Electric Blue</figcaption></figure>
+    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"><figcaption class="pair-cap">Groen op wit</figcaption></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"><figcaption class="pair-cap">Op Varsity Green</figcaption></figure>
+    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"><figcaption class="pair-cap">Paars op Varsity Green</figcaption></figure>
     <div class="stack"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
     <div class="stack">
       <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
@@ -572,15 +572,6 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
     </div>
   </div>
   <p class="note">Gebruik het logo van De Vooruitblik in Electric Purple op een donkere ondergrond: Varsity Green, Ballpoint of Electric Blue.</p>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Beeld", "Vlakken en een U in perspectief, als achtergrond of tussenbeeld.", eyebrow="Patroon en U")}
-  <div class="assets">
-    {asset("assets/vormgeving/patroon-concentrisch.png", "Concentrische vlakken", "Ineenschuivende rechthoeken in de huisstijlkleuren.", "")}
-    {asset("assets/vormgeving/u-tunnel-1.png", "U in de tunnel, versie 1", "De U in 3D in het midden van een kamer van kleurvlakken.", "")}
-    {asset("assets/vormgeving/u-tunnel-2.png", "U in de tunnel, versie 2", "Dezelfde U, dichterbij en met andere vlakken.", "")}
-  </div>
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
@@ -607,27 +598,29 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Kleuren", "Klik op een kleur om de code te kopiëren.", eyebrow="Palet")}
-  <div class="swatches reveal">{sw}</div>
-  <div class="rules reveal">
-    <div class="rule rule--ok" style="background:var(--green);color:var(--purple)"><span class="tag">Wel</span><b>Paars op groen</b></div>
-    <div class="rule rule--ok" style="background:var(--paper-mid);color:var(--green)"><span class="tag">Wel</span><b>Groen op licht</b></div>
-    <div class="rule rule--no" style="background:var(--red);color:var(--green)"><span class="tag">Niet</span><b>Groen op rood</b></div>
-    <div class="rule rule--no" style="background:var(--yellow);color:var(--green)"><span class="tag">Niet</span><b>Groen op geel</b></div>
+  <div class="mini-two">
+    <div>
+      <h2 class="mini-h">Kleuren</h2><p class="mini-p">Klik op een kleur om de code te kopiëren.</p>
+      <div class="swatches swatches--mini reveal">{sw}</div>
+      <div class="rules rules--mini reveal">
+        <div class="rule rule--ok" style="background:var(--green);color:var(--purple)"><span class="tag">Wel</span><b>Paars op groen</b></div>
+        <div class="rule rule--ok" style="background:var(--paper-mid);color:var(--green)"><span class="tag">Wel</span><b>Groen op licht</b></div>
+        <div class="rule rule--no" style="background:var(--red);color:var(--green)"><span class="tag">Niet</span><b>Groen op rood</b></div>
+        <div class="rule rule--no" style="background:var(--yellow);color:var(--green)"><span class="tag">Niet</span><b>Groen op geel</b></div>
+      </div>
+      <p class="note">Kies per uiting één verzadigde accentkleur. Rood of geel combineer je met paars in plaats van met groen.</p>
+    </div>
+    <div>
+      <h2 class="mini-h">Lettertypes</h2><p class="mini-p">Drie lettertypes, elk met een eigen rol. Gelicentieerd, dus hier niet te downloaden.</p>
+      <div class="type type--mini reveal">
+        <div class="type-c"><small>Koppen en cijfers</small><p class="t1">Oldschool Grotesk Condensed</p></div>
+        <div class="type-c"><small>Tekst</small><p class="t2">Oldschool Grotesk</p></div>
+        <div class="type-c"><small>Accenten</small><p class="t3">Tiempos Text Italic</p></div>
+      </div>
+    </div>
   </div>
-  <p class="note">Kies per uiting één verzadigde accentkleur. Rood of geel combineer je met paars in plaats van met groen.</p>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Lettertypes", "Drie lettertypes, elk met een eigen rol.", eyebrow="Typografie")}
-  <div class="type reveal">
-    <div class="type-c"><small>Koppen en cijfers</small><p class="t1">Oldschool Grotesk Condensed</p><p class="t1s">ZWAAR VERSAAL, STRAK</p></div>
-    <div class="type-c"><small>Tekst</small><p class="t2">Oldschool Grotesk</p><p class="t2s">Eén vraag per hoofdstuk, beantwoord door een professor.</p></div>
-    <div class="type-c"><small>Accenten</small><p class="t3">Tiempos Text Italic</p><p class="t3s">Alleen voor korte regels en citaten.</p></div>
-  </div>
-  <p class="note">De lettertypes zijn gelicentieerd en hier niet te downloaden.</p>
 </div></section>
 """
-page("vormgeving.html", "Vormgeving", "Logo, beeld, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
+page("vormgeving.html", "Vormgeving", "Logo’s, banners, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
 
 print(f"{len(CH)} hoofdstukken + pagina's gebouwd in {ROOT}")
