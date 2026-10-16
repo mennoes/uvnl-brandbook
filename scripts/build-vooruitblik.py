@@ -498,21 +498,25 @@ eps = ""
 for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     jaar, maand = int(ym[:4]), int(ym[5:])
     eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c, by_ep.index(c)) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
-vp = subhero("hero-yellow", "Videopodcast", "Twee professoren, één vraag",
-             "Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek.", "foto/giselinde-kuipers.webp") + f"""
+vp = f"""<section class="page-hero hero-yellow vp-hero"><div class="wrap">{hero_shapes("hero-yellow")}
+  <div class="vp-hero-grid">
+    <div class="vp-hero-t"><span class="eyebrow">Videopodcast</span><h1 class="q">{hl("Kijk mee")}</h1>
+      <p class="sub">Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek. Zodra de eerste afleveringen online staan, kijk je ze hier.</p>
+      <a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a></div>
+    <figure class="vp-hero-v"><span class="watch-l">Trailer</span>{yt_embed(YT_TRAILER, "Trailer (voorlopige video van Universiteit van Vlaanderen)")}<p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen.</p></figure>
+  </div>
+</div></section>
 <section class="section section--tight"><div class="wrap">
   <div class="watch">
     <div class="watch-t reveal">
-      <span class="eyebrow">Videopodcast</span><h2>Kijk mee</h2>
-      <p>Zodra de eerste afleveringen online staan, kijk je ze hier. Elke aflevering staat ook op de pagina van het hoofdstuk.</p>
-      <p class="watch-last"><b>Laatste aflevering</b><br>{E(by_ep[0]["video"]["titel"])}</p>
+      <span class="eyebrow">Nieuw</span><h2>Laatste aflevering</h2>
+      <p class="watch-last"><b>Aflevering {by_ep[0]["video"]["afl"]:02d}</b><br>{E(by_ep[0]["video"]["titel"])}</p>
       <div class="people watch-people">{"".join(person(sp, "Spreker") for sp in speakers(by_ep[0]))}</div>
-      <a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a>
+      <a class="btn btn--line" href="hoofdstuk/{by_ep[0]["slug"]}.html" style="color:var(--green)">Naar het hoofdstuk <span class="arr">→</span></a>
     </div>
     <div class="watch-v reveal">
-      <figure><span class="watch-l">Laatste aflevering</span>{yt_embed(YT_VOORBEELD, "Laatste aflevering (voorlopige video van Universiteit van Vlaanderen)")}</figure>
-      <figure><span class="watch-l">Trailer</span>{yt_embed(YT_TRAILER, "Trailer (voorlopige video van Universiteit van Vlaanderen)")}</figure>
-      <p class="yt-note">Voorlopige video’s van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen en de trailer volgen.</p>
+      <figure>{yt_embed(YT_VOORBEELD, "Laatste aflevering (voorlopige video van Universiteit van Vlaanderen)")}</figure>
+      <p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen volgen vanaf 1 november.</p>
     </div>
   </div>
 </div></section>
