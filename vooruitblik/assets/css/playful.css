@@ -357,3 +357,8 @@
 .watch-v figure { margin:0; }
 .watch-l { display:inline-block; margin:0 0 8px; font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--green); }
 @media (max-width:900px){ .watch { grid-template-columns:minmax(0,1fr); } }
+
+/* Boek zonder hero: het groene blok staat bovenaan */
+.boek-top { padding-top:clamp(24px,3.4vw,44px); }
+.boek-h { color:#fff; font-size:clamp(40px,5.8vw,84px); line-height:.92; margin:0 0 16px; }
+.elec .buy-t .boek-intro { font-weight:400; margin:0 0 22px; }
