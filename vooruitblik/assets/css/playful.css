@@ -330,3 +330,19 @@
 .pair-tile--wit .pair-cap { background:var(--paper-mid); }
 .pair .stack { margin-top:6px; align-self:start; }
 @media (max-width:760px){ .pair { grid-template-columns:minmax(0,1fr); } .pair::before { display:none; } .pair-head--uv { margin-top:18px; } }
+
+/* kleuren en lettertypes: klein en naast elkaar */
+.mini-two { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:clamp(24px,4vw,56px); align-items:start; }
+.mini-h { font-size:clamp(24px,2.4vw,32px); margin:0 0 6px; }
+.mini-p { margin:0 0 14px; font-size:15px; }
+.swatches--mini { grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; }
+.swatches--mini .sw { min-height:78px; padding:10px 11px; border-radius:var(--r-s); }
+.swatches--mini .sw b { font-size:15px; } .swatches--mini .sw span { font-size:12px; } .swatches--mini .sw small { display:none; }
+.rules--mini { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:10px; }
+.rules--mini .rule { padding:10px 12px; gap:6px; border-radius:var(--r-s); }
+.rules--mini .rule b { font-size:17px; }
+.type--mini { grid-template-columns:minmax(0,1fr); gap:8px; }
+.type--mini .type-c { padding:14px 18px; border-radius:var(--r-m); }
+.type--mini .type-c small { margin-bottom:6px; }
+.type--mini .t1 { font-size:24px; } .type--mini .t2 { font-size:22px; } .type--mini .t3 { font-size:22px; }
+@media (max-width:960px){ .mini-two { grid-template-columns:minmax(0,1fr); } .swatches--mini { grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); } }
