@@ -38,7 +38,7 @@
 .logo-section .ls-sub { color:var(--uvnl-green); opacity:.85; font-size:clamp(16px,1.4vw,19px); }
 .logo-section:nth-of-type(1) { background:var(--uvnl-purple); }
 .logo-section:nth-of-type(2) { background:#fff; }
-.logo-section:nth-of-type(3) { background:var(--uvnl-yellow); }
+.logo-section:nth-of-type(3) { background:#fff; }
 .logo-section:nth-of-type(4) { background:#fff; }
 .lg-card, .gallery > * { border-radius:28px !important; }
 
@@ -283,3 +283,4 @@
 .dlp--all { box-shadow:0 0 0 3px var(--uvnl-green); }
 .dl-group { grid-template-columns:repeat(3,minmax(0,1fr)); }
 @media (max-width:900px){ .dl-group { grid-template-columns:1fr; } }
+.logo-section:nth-of-type(3) .lg-card { border:1px solid var(--line); }
