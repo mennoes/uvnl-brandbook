@@ -64,10 +64,20 @@ p { margin:0 0 1em; }
 .nav-toggle { display:none; background:var(--green); color:var(--paper); border:0; border-radius:var(--r-pill); padding:11px 20px; font:700 15px/1 var(--font-sans); cursor:pointer; }
 @media (max-width:1240px){
   .nav-toggle { display:inline-block; }
-  .nav { position:absolute; left:var(--gut); right:var(--gut); top:68px; flex-direction:column; align-items:stretch; background:var(--green); padding:12px; border-radius:var(--r-m); display:none; }
+  /* beeldvullend menu onder de kopbalk */
+  .nav { position:absolute; left:0; right:0; top:100%; height:calc(100vh - 72px); height:calc(100dvh - 72px); overflow-y:auto; overscroll-behavior:contain; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:4px; background:var(--green); padding:clamp(28px,7vh,72px) var(--gut) calc(32px + env(safe-area-inset-bottom)); display:none; }
   .nav.open { display:flex; }
-  .nav a { color:var(--purple); font-size:22px; padding:12px 16px; }
+  .nav a { color:var(--purple); font-size:clamp(30px,8.5vw,52px); line-height:1.05; letter-spacing:-.02em; padding:10px 18px; margin-left:-12px; align-self:flex-start; max-width:calc(100% + 12px); }
   .nav a:hover,.nav a[aria-current="page"] { background:var(--purple); color:var(--green); }
+  .nav-open, .nav-open body { overflow:hidden; }
+  .nav-open .site-head { background:var(--paper); }
+}
+@media (max-width:1240px) and (prefers-reduced-motion:no-preference){
+  .nav.open a { animation:nav-in .45s var(--ease) backwards; }
+  .nav.open a:nth-child(2) { animation-delay:.04s; } .nav.open a:nth-child(3) { animation-delay:.08s; }
+  .nav.open a:nth-child(4) { animation-delay:.12s; } .nav.open a:nth-child(5) { animation-delay:.16s; }
+  .nav.open a:nth-child(6) { animation-delay:.2s; }
+  @keyframes nav-in { from { opacity:0; transform:translateY(14px); } }
 }
 
 /* ── hero ───────────────────────────────────────────────── */
@@ -295,7 +305,7 @@ p { margin:0 0 1em; }
 .banner span { display:flex; justify-content:space-between; padding:12px 18px 16px; font-weight:700; font-size:14px; }
 
 .partner img[src*="jonge-academie"],.partner img[src*="vlaamse-overheid"] { max-height:82px; }
-@media (max-width:860px){ .hero .kicker { max-width:calc(100% - 118px); } }
+@media (max-width:860px){ .hero .kicker { max-width:calc(100% - 35vw); } }
 
 /* ── afleveringsschema ──────────────────────────────────── */
 .sched { display:grid; gap:12px; margin-bottom:8px; }
@@ -324,7 +334,7 @@ p { margin:0 0 1em; }
 .page-hero .orn.orn--sil { background:radial-gradient(120% 90% at 50% 18%,#9577C8 0%,#6C49AA 55%,#4B2E86 100%); }
 @media (max-width:640px){ .page-hero .orn.orn--foto { display:block; width:92px; right:14px; top:auto; bottom:14px; transform:rotate(4deg); opacity:1; } }
 
-@media (max-width:860px){ .vb-title { font-size:13vw; } .hero .orn--book { width:80px; top:20px; } .hero-side { max-width:none; } .hero-cta { justify-content:flex-start; } }
+@media (max-width:860px){ .vb-title { font-size:13vw; } .hero .orn--book { width:clamp(120px,31vw,210px); top:clamp(18px,4vw,36px); } .hero .vb-title { min-height:calc(clamp(120px,31vw,210px) * 1.71 - 28px); } .hero-side { max-width:none; } .hero-cta { justify-content:flex-start; } }
 
 /* visuals op de formatkaarten */
 .format-vis { flex:1; min-height:170px; margin-top:20px; position:relative; }
@@ -342,7 +352,7 @@ p { margin:0 0 1em; }
 .format.has-book .fbook { width:36%; right:4%; bottom:72px; }
 @media (min-width:641px){ .page-hero.q h1,.page-hero h1.q,.page-hero.q .sub { max-width:calc(100% - clamp(230px,40vw,640px)); } }
 .nav a { white-space:nowrap; }
-@media (max-width:420px){ .hero .orn--book { width:64px; top:16px; } }
+@media (max-width:420px){ .hero .orn--book { width:31vw; top:18px; right:10px; } }
 .page-hero .orn[src$="boek-3d.webp"] { width:clamp(130px,19vw,290px); bottom:-50px; right:clamp(12px,7vw,120px); }
 .page-hero .orn.orn--foto[src$="live-vlaanderen.webp"] { object-position:50% 30%; }
 .page-hero .orn[src$=".svg"] { width:clamp(110px,15vw,220px); bottom:auto; top:50%; transform:translateY(-50%) rotate(-4deg); right:clamp(18px,9vw,160px); filter:none; }

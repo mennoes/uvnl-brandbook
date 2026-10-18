@@ -7,13 +7,19 @@
   /* menu op mobiel */
   var btn = d.querySelector('.nav-toggle'), nav = d.getElementById('nav');
   if (btn && nav) {
-    btn.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
+    var label = btn.textContent;
+    var setOpen = function (open) {
+      nav.classList.toggle('open', open);
+      root.classList.toggle('nav-open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+      btn.textContent = open ? 'Sluiten' : label;
+    };
+    btn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
     d.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+      if (e.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); btn.focus(); }
     });
+    window.addEventListener('pageshow', function () { setOpen(false); });
+    if (window.matchMedia) matchMedia('(min-width:1241px)').addEventListener('change', function (m) { if (m.matches) setOpen(false); });
   }
 
   /* onthullen bij scrollen */
