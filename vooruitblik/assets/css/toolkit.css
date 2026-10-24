@@ -158,3 +158,8 @@
   .toolkit .person-download-head h3 { font-size:18px; }
   .toolkit .download-actions { font-size:11px;gap:12px; }
 }
+
+@media(max-width:520px) {
+  .library-header .subnav { flex-wrap:nowrap;gap:6px; }
+  .library-header .subnav a { display:flex;align-items:center;justify-content:center;flex:1 1 auto;min-height:44px;padding:10px clamp(6px,1.7vw,9px);font-size:clamp(10px,2.8vw,14px);white-space:nowrap; }
+}
