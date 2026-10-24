@@ -26,8 +26,7 @@ ORDER = [
 ]
 UNIS = ["UAntwerpen", "UHasselt", "KU Leuven", "UGent", "VUB"]
 URL = {
-    "standaard": "https://www.standaardboekhandel.be/p/de-vooruitblik-editie-2027-9789465306490",
-    "pelckmans": "https://www.pelckmansuitgevers.be/de-vooruitblik-editie-2027.html",
+    "webshop": "",
     "uvvl": "https://www.universiteitvanvlaanderen.be/",
     "vrtmax_pod": "https://www.vrt.be/vrtmax/podcasts/radio-1/u/universiteit-van-vlaanderen/",
     "vrtmax_vid": "https://www.vrt.be/vrtmax/a-z/universiteit-van-vlaanderen/",
@@ -106,7 +105,7 @@ def card(c, base):
     return (f'<div class="card-wrap"><span class="card-nr">Hoofdstuk {c["nr"]}</span>'
             f'<a class="card c-{c["kleur"]}" href="{base}hoofdstuk/{c["slug"]}.html" '
             f'data-uni="{E(c["boek"]["uni"] + " " + c["gast"]["uni"])}" '
-            f'data-zoek="{E((c["vraag"] + " " + c["boek"]["naam"] + " " + c["gast"]["naam"] + " " + c["boek"]["vak"]).lower())}">'
+            f'data-zoek="{E((c["vraag"] + " " + c["boek"]["naam"] + " " + c["gast"]["naam"] + " " + c["boek"]["vak"] + " " + " ".join(p["naam"] for p in speakers(c))).lower())}">'
             f'{fig}<h3>{E(c["vraag"])}</h3>'
             f'<div class="who">{E(c["boek"]["naam"])} <span>· {E(c["boek"]["uni"])}</span></div></a></div>')
 
@@ -151,7 +150,7 @@ TILES = [("paper", "green"), ("paper", "green")]
 EYEWALL = '<div class="eyewall" aria-hidden="true">' + "".join(
     f'<span class="ew ew-{bg} ew-r-{ring}"><i class="ew-eye"><b></b></i></span>' for bg, ring in TILES) + "</div>"
 
-NAV = [("index.html", "Vooruitblik"), ("vragen.html", "De 23 vragen"), ("boek.html", "Boek"), ("videopodcast.html", "Videopodcast"), ("radio-en-live.html", "Radio en live"), ("vormgeving.html", "Vormgeving")]
+NAV = [("index.html", "De Vooruitblik"), ("fotos-en-visuals.html", "Foto’s en visuals"), ("vragen.html", "De 23 vragen"), ("lezen-kijken-luisteren.html", "Lezen, kijken en luisteren"), ("vormgeving.html", "Vormgeving")]
 FOOT_NAV = NAV[1:]
 
 
@@ -161,6 +160,7 @@ def ver(rel):
 
 
 def page(path, title, desc, body, base="", current="", hero_class="", og_img="assets/img/boek-cover.jpg"):
+    current = "lezen-kijken-luisteren.html" if current in ("boek.html", "videopodcast.html", "radio-en-live.html") else current
     nav = "".join(f'<a href="{base}{h}"{" aria-current=page" if h == current else ""}>{t}</a>' for h, t in NAV)
     full_title = f"{title} · De Vooruitblik 2027" if title != "De Vooruitblik 2027" else "De Vooruitblik 2027 · Universiteit van Vlaanderen"
     out = f"""<!doctype html>
@@ -181,11 +181,12 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <link rel="stylesheet" href="{base}assets/css/feedback.css?v={ver('assets/css/feedback.css')}">
 <link rel="stylesheet" href="{base}assets/css/playful.css?v={ver('assets/css/playful.css')}">
 <script defer src="{base}assets/js/vooruitblik.js?v={ver('assets/js/vooruitblik.js')}"></script>
-<script defer src="{base}assets/js/feedback-config.js?v={ver('assets/js/feedback-config.js')}"></script>
-<script defer src="{base}assets/js/feedback.js?v={ver('assets/js/feedback.js')}"></script>
+
 <script defer src="{base}assets/js/playful.js?v={ver('assets/js/playful.js')}"></script>
+<link rel="stylesheet" href="{base}assets/css/toolkit.css?v={ver('assets/css/toolkit.css')}">
+<script defer src="{base}assets/js/toolkit.js?v={ver('assets/js/toolkit.js')}"></script>
 </head>
-<body>
+<body class="toolkit">
 <a class="skip" href="#main">Naar de inhoud</a>
 <header class="site-head">
   <div class="wrap">
@@ -197,15 +198,15 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <main id="main">
 {body}
 </main>
-{EYEWALL}
+
 <footer class="site-foot">
   <div class="wrap">
     <span class="brand brand--foot" role="img" aria-label="Universiteit van Vlaanderen"></span>
     <div class="foot-grid">
       <div>
         <h2>De Vooruitblik 2027</h2>
-        <p>Een kennisproject van Universiteit van Vlaanderen, Radio 1 en Pelckmans Uitgevers, met de vijf Vlaamse universiteiten.</p>
-        <a class="btn btn--purple" href="{base}boek.html">Het boek <span class="arr">→</span></a>
+        <p>Communicatiemateriaal voor wetenschappers, universiteiten en partners van De Vooruitblik 2027.</p>
+        <a class="btn btn--purple" href="{base}fotos-en-visuals.html">Naar de beeldbank <span class="arr">→</span></a>
       </div>
       <div>
         <h2>Ontdek</h2>
@@ -267,6 +268,27 @@ def inset_unis():
     return '<div class="inset inset--unis">' + "".join(f'<img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy">' for f, n in logos) + '</div>'
 
 
+
+# The inventory contains only verified Drive files and local optimized previews.
+TOOLKIT = json.loads((ROOT / "data/toolkit.json").read_text())
+import unicodedata, re
+def norm(name):
+    return re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower())
+PEOPLE = {norm(p["name"]): p for p in TOOLKIT["people"]}
+def library_person(p):
+    return PEOPLE.get(norm(p["naam"]))
+def home_photos():
+    names = ["Ann van Griensven", "Bert Op 't Eijnde", "Giselinde Kuipers"]
+    return "".join(f'<img src="{PEOPLE[norm(n)]["photos"][0]["preview"]}" alt="{E(n)}" width="240" height="300">' for n in names)
+for c in CH:
+    for p in [c["boek"],c["gast"],*c.get("podcast",[])]:
+        item = library_person(p)
+        if item:
+            p["toolkit_foto"] = item["photos"][0]["preview"]
+            # Keep existing cutouts; replace all placeholder silhouettes with real portraits.
+            if not p.get("foto"):
+                p["foto"] = "../toolkit/" + pathlib.Path(item["photos"][0]["preview"]).name
+
 # ───────────────────────── HOME ─────────────────────────
 SPARK = '<img src="assets/icons/spark1.png" alt="" class="tape-ic">'
 SPARK2 = '<img src="assets/icons/spark2.png" alt="" class="tape-ic">'
@@ -282,35 +304,16 @@ tape2_copy = tape2.replace("<a ", '<a tabindex="-1" aria-hidden="true" ')
 tapes = (f'<div class="tapes"><div class="tape tape--purple" aria-hidden="true"><div class="tape-track">{tape1 * 3}{tape1 * 3}</div></div>'
          f'<div class="tape tape--green rev" aria-label="Alle 23 vragen"><div class="tape-track">{tape2}{tape2_copy}</div></div></div>')
 home = f"""
-<section class="hero">
-    <span class="orn orn--book" data-speed="-0.05"><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027" width="753" height="1290" style="--rot:6deg"></span>
-  <a class="burst" href="boek.html" aria-label="Het boek verschijnt op 15 november"><span class="burst-star"></span><span class="burst-txt">15<br>nov</span></a>
-  <div class="wrap">
-    <h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span>
-      <span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1>
-    <div class="hero-grid" style="margin-top:clamp(22px,3vw,40px)">
-      <div class="hero-side"><p class="hero-lead">23 proffen over wat ons te wachten staat in 2027, van ruimtevaart tot relaties.</p><p class="hero-sub">Geen glazen bol, wel context, inzichten en kennis. Elk hoofdstuk start bij één vraag, beantwoord in het boek en besproken in de videopodcast.</p>
-</div>
-      <div class="hero-cta"><a class="btn btn--purple" href="vragen.html">Bekijk de 23 vragen <span class="arr">→</span></a><a class="btn btn--line" href="boek.html" style="color:var(--paper)">Het boek</a></div>
-    </div>
+<section class="toolkit-home"><div class="wrap home-layout">
+  <div class="home-intro">
+    <span class="eyebrow">Toolkit voor partners · Editie 2027</span>
+    <div class="home-brand"><h1 class="vb-title"><span class="sr">De Vooruitblik 2027</span><span class="l1" aria-hidden="true">DE</span><span class="l2" aria-hidden="true">V<span class="o">O</span><span class="o">O</span>RUIT</span><span class="l3" aria-hidden="true">BLIK</span></h1><img class="home-book" src="assets/img/boek-3d.webp" alt="De Vooruitblik 2027" width="753" height="1290"></div>
+    <p class="home-lead">Alles om De Vooruitblik te delen.</p><p>Foto’s van de wetenschappers, kant-en-klare visuals en logo’s voor je eigen communicatie. Vind je materiaal, download het en gebruik het op je kanalen.</p>
+    <a class="text-link" href="lezen-kijken-luisteren.html">Over het boek, de videopodcasts en Radio 1 →</a>
   </div>
-</section>
-
-{tapes}
-
-<section class="section">
-  <div class="wrap">
-    <div class="cascade">
-      <div class="cas cas-elec reveal"><div class="cas-t"><b class="cas-n"><span data-count="23">23</span> vragen</b><p>Van ruimtevaart tot relaties, van gezondheid tot mobiliteit: elk hoofdstuk vertrekt vanuit een concrete vraag die laat zien hoe wetenschap helpt begrijpen wat er in 2027 op ons afkomt.</p></div>
-        {inset_vragen()}</div>
-      <div class="cas cas-blue reveal"><div class="cas-t"><b class="cas-n"><span data-count="46">46</span> proffen</b><p>Per hoofdstuk schrijft een professor een toegankelijk essay. In de videopodcast schuift een tweede expert aan die het onderwerp vanuit een andere invalshoek bekijkt.</p></div>
-        {inset_proffen()}</div>
-      <div class="cas cas-red reveal"><div class="cas-t"><b class="cas-n"><span data-count="5">5</span> universiteiten</b><p>UAntwerpen, UHasselt, KU Leuven, UGent en de VUB leveren de experten en dragen bij aan de wetenschappelijke kwaliteit.</p></div>
-        {inset_unis()}</div>
-    </div>
-  </div>
-</section>
-
+  <aside class="home-library" aria-labelledby="library-title"><span class="eyebrow">Direct naar het materiaal</span><h2 id="library-title">Foto’s en visuals</h2><div class="home-preview">{home_photos()}</div><p>Zoek op naam, onderwerp of universiteit. Per wetenschapper vind je drie portretten en een sociale visual.</p><a class="btn btn--green" href="fotos-en-visuals.html">Open de beeldbank <span class="arr">→</span></a><a class="text-link" href="vormgeving.html">Logo’s, boekcovers en vormgeving →</a></aside>
+</div></section>
+<div class="wrap toolkit-summary"><span><b>23</b> vragen</span><span><b>46</b> sprekers</span><span><b>5</b> universiteiten</span><a href="https://drive.google.com/file/d/1l3OGLS7e1JL65gn7iB9ZfekHzSFefUkA/view" target="_blank" rel="noopener">Handleiding voor partners ↗</a></div>
 <section class="section section--tight">
   <div class="wrap">
     {sec_head("De vragen", "Elk hoofdstuk begint met één concrete vraag. Klik door voor de professoren erachter.", eyebrow="Eén vraag per hoofdstuk")}
@@ -324,49 +327,8 @@ home = f"""
   </div>
 </section>
 
-<section class="section section--tight">
-  <div class="wrap">
-    {sec_head("Vier manieren te kijken")}
-    <div class="formats reveal">
-      <a class="format c-purple has-book" href="boek.html"><img class="fbook" src="assets/img/boek-3d.webp" alt="" loading="lazy"><h3>Het boek</h3><p>Drieëntwintig essays van drieëntwintig academici, geschreven voor iedereen. Elk hoofdstuk heeft een toegankelijk essay, weetjes, anekdotes of een filmtip en een korte biografie van de auteur. Verschijnt op 15 november bij Pelckmans.</p><span class="format-foot"><span class="big">23 essays</span><span class="go">→</span></span></a>
-      <a class="format c-yellow" href="videopodcast.html"><h3>Videopodcast</h3><p>Twee professoren per vraag. Vanaf begin november elke week drie afleveringen.</p><div class="format-vis fv-duo" aria-hidden="true"><img style="--i:0" src="assets/foto/ann-van-griensven.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:1" src="assets/foto/giselinde-kuipers.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:2" src="assets/foto/tim-soens.webp" alt="" width="450" height="563" loading="lazy"><img style="--i:3" src="assets/foto/philip-blondeel.webp" alt="" width="450" height="563" loading="lazy"></div><span class="format-foot"><span class="big">3 per week</span><span class="go">→</span></span></a>
-      <a class="format c-pink" href="radio-en-live.html#radio"><h3>Radio 1</h3><p>Jacotte Brokken blikt twee weken lang vooruit, elke weekdag in de kerstvakantie.</p><div class="format-vis fv-radio"><span class="fv-logo"><img src="assets/partners/radio1.png" alt="Radio 1" width="117" height="111"></span><svg class="fv-wave" viewBox="0 0 280 100" aria-hidden="true" fill="currentColor"><rect x="0" y="36" width="8" height="28" rx="4"/><rect x="14" y="24" width="8" height="52" rx="4"/><rect x="28" y="32" width="8" height="36" rx="4"/><rect x="42" y="15" width="8" height="70" rx="4"/><rect x="56" y="28" width="8" height="44" rx="4"/><rect x="70" y="7" width="8" height="86" rx="4"/><rect x="84" y="21" width="8" height="58" rx="4"/><rect x="98" y="1" width="8" height="98" rx="4"/><rect x="112" y="18" width="8" height="64" rx="4"/><rect x="126" y="10" width="8" height="80" rx="4"/><rect x="140" y="26" width="8" height="48" rx="4"/><rect x="154" y="4" width="8" height="92" rx="4"/><rect x="168" y="20" width="8" height="60" rx="4"/><rect x="182" y="13" width="8" height="74" rx="4"/><rect x="196" y="30" width="8" height="40" rx="4"/><rect x="210" y="17" width="8" height="66" rx="4"/><rect x="224" y="35" width="8" height="30" rx="4"/><rect x="238" y="23" width="8" height="54" rx="4"/><rect x="252" y="31" width="8" height="38" rx="4"/><rect x="266" y="37" width="8" height="26" rx="4"/></svg></div><span class="format-foot"><span class="big">12 uur</span><span class="go">→</span></span></a>
-      <a class="format c-blue" href="radio-en-live.html#live"><h3>Evenementen</h3><p>Stel je vraag rechtstreeks aan de professoren, op Boektopia en in het voorjaar.</p><div class="format-vis fv-live"><img src="assets/img/live-vlaanderen.webp" alt="" width="1100" height="733" loading="lazy"></div><span class="format-foot"><span class="big">Live</span><span class="go" style="color:var(--blue)">→</span></span></a>
-    </div>
-  </div>
-</section>
-
-<section class="section section--tight">
-  <div class="wrap">
-    <div class="dark" style="padding:clamp(26px,5vw,64px)">
-      <div class="sec-head reveal" style="margin-bottom:24px"><h2>Wanneer</h2></div>
-      <ul class="agenda reveal">
-        <li><div class="when">1 november</div><div><h3>Eerste videopodcast</h3><p>Aflevering 1 verschijnt op zondag 1 november. Daarna komen er elke week ongeveer drie nieuwe bij, op VRT MAX, YouTube, Spotify en onze socials, tot en met 31 december.</p></div></li>
-        <li><div class="when">15 november</div><div><h3>Het boek verschijnt op Boektopia</h3><p>Dag van de Wetenschap. Drie professoren gaan in gesprek in de Red Room van Antwerp Expo, tussen 12u en 12u45. Daarna is er een signeersessie.</p></div></li>
-        <li><div class="when">21 dec – 1 jan</div><div><h3>Radio 1-programma</h3><p>Elke weekdag van 12 tot 13 uur, met Jacotte Brokken.</p></div></li>
-        <li><div class="when">Voorjaar 2027</div><div><h3>Panelgesprekken in Vlaanderen</h3><p>Vijf locaties, telkens vier academici in gesprek met het publiek. Data en locaties volgen.</p></div></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section section--tight">
-  <div class="wrap">
-    {sec_head("Samen gemaakt", "De Vooruitblik is een gezamenlijk project van universiteiten, uitgever, omroep en overheid.")}
-    <div class="three">
-      <div class="panel panel--green reveal"><span class="logo-mask" role="img" aria-label="Universiteit van Vlaanderen"></span><p>Maakt wetenschappelijke kennis toegankelijk voor een breed publiek, via video’s, podcasts, evenementen en publicaties.</p></div>
-      <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/radio1.png" alt="Radio 1"><p>De actualiteitszender van de VRT, met betrouwbare informatie, verdieping en duiding.</p></div>
-      <div class="panel panel--green reveal"><img class="init-logo" src="assets/partners/pelckmans.png" alt="Pelckmans Uitgevers"><p>Belgische uitgeverij met een sterke traditie in educatieve, algemene en wetenschappelijk geïnspireerde publicaties.</p></div>
-    </div>
-    <div class="partners reveal">
-      {"".join(f'<div class="partner"><img src="assets/partners/{f}.png" alt="{E(n)}" loading="lazy"></div>' for f, n in [("antwerpen","Universiteit Antwerpen"),("hasselt","Universiteit Hasselt"),("kuleuven","KU Leuven"),("gent","Universiteit Gent"),("vub-brussel","Vrije Universiteit Brussel"),("vrt","VRT"),("jonge-academie","Jonge Academie"),("vlaamse-overheid","Vlaamse overheid"),("nationale-loterij","Nationale Loterij")])}
-    </div>
-  </div>
-</section>
 """
-page("index.html", "De Vooruitblik 2027",
-     "23 professoren over wat ons te wachten staat in 2027: een boek, videopodcasts, een Radio 1-programma en live evenementen van Universiteit van Vlaanderen.",
-     home, current="index.html")
+page("index.html", "De Vooruitblik 2027", "Toolkit voor partners: foto’s, visuals, logo’s en informatie over De Vooruitblik 2027.", home, current="index.html")
 
 # ───────────────────────── VRAGEN ─────────────────────────
 chips = '<button class="chip" data-uni="alle" aria-pressed="true">Alle</button>' + "".join(
@@ -392,6 +354,16 @@ def yt_embed(vid, titel):
             'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>')
 
 
+def order_button():
+    if URL["webshop"]:
+        return f'<a class="btn btn--white" href="{URL["webshop"]}">Bestel in onze webshop →</a>'
+    return '<p class="order-pending">De link naar de eigen webshop wordt hier toegevoegd.</p>'
+
+def chapter_material(c):
+    people = [library_person(p) for p in speakers(c)]
+    pics = "".join(f'<img src="../{p["photos"][0]["preview"]}" alt="{E(p["name"])}" loading="lazy">' for p in people if p)
+    return f'<div class="chapter-pics">{pics}</div><p>Foto’s en visuals voor je communicatie over dit onderwerp.</p><a class="btn btn--purple" href="../fotos-en-visuals.html?onderwerp={c["nr"]}">Download het materiaal →</a>'
+
 # ───────────────────────── HOOFDSTUKKEN ─────────────────────────
 for i, c in enumerate(CH):
     prev_c, next_c = CH[i - 1] if i > 0 else None, CH[i + 1] if i < len(CH) - 1 else None
@@ -408,12 +380,12 @@ for i, c in enumerate(CH):
     yt_id = v.get("youtube", "")
     spk = "".join(person(sp, f"Spreker {i}") for i, sp in enumerate(speakers(c), 1))
     if not c["kort"] and not c["meer"]:
-        kort = '<div class="todo"><strong>Tekst volgt binnenkort.</strong>De samenvatting van dit hoofdstuk wordt nog aangeleverd.</div>'
+        kort = f'<p>{E(c["boek"]["naam"])} behandelt deze vraag in het boek De Vooruitblik 2027. In de videopodcast gaan {E(" en ".join(p["naam"] for p in speakers(c)))} erover in gesprek.</p>'
     body = hero + f"""
 <section class="section section--tight"><div class="wrap">
-  <article class="panel panel--green panel--calm reveal"><h2>Twee blikken</h2>
+  <article class="panel panel--green panel--calm reveal"><h2>De videopodcast</h2>
     <div class="vid-panel">
-      <div>{yt_embed(yt_id or YT_VOORBEELD, c["vraag"])}{"" if yt_id else f'<p class="yt-note">Voorlopige video van Universiteit van Vlaanderen. Aflevering {v["afl"]} verschijnt {lang(v["datum"])}.</p>'}</div>
+      <div>{yt_embed(yt_id, c["vraag"]) if yt_id else chapter_material(c)}</div>
       <div><p class="ep-line"><b>Aflevering {v["afl"]:02d}</b><br>{E(v["titel"])}</p>
       <div class="people">{spk}</div></div>
     </div>
@@ -426,13 +398,9 @@ for i, c in enumerate(CH):
   </article>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  <div class="panel panel--paper reveal"><h3 style="margin-top:0">Over de professoren</h3>
-    <div class="todo"><strong>Biografieën volgen.</strong>De korte biografie van de auteur staat in het boek. Op deze pagina komen ze binnenkort ook online.</div></div>
-</div></section>
-<section class="section section--tight"><div class="wrap">
   <div class="elec"><div class="buy">
     <div class="buy-t"><p class="serif-lead">Lees het volledige essay</p><h2>Dit hoofdstuk zit in het boek</h2><p>Drieëntwintig essays, weetjes, anekdotes en een filmtip per hoofdstuk. Verschijnt op 15 november 2026.</p>
-    <p class="cta-row"><em>Wil je meer lezen?</em> <a class="btn btn--white" href="../boek.html">Over het boek <span class="arr">→</span></a></p></div>
+    <p class="cta-row"><em>Het boek</em> <a class="btn btn--white" href="../boek.html">Over het boek <span class="arr">→</span></a></p></div>
     <div class="inset inset--book"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="../assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy"></div>
   </div></div>
 </div></section>
@@ -453,7 +421,7 @@ boek = f"""
       <p class="boek-intro">Drieëntwintig academici van de Vlaamse universiteiten vertellen wat je moet weten om 2027 beter te begrijpen.</p>
       <p class="serif-lead">Verschijnt 15 november 2026</p><div class="price">€24,50</div>
       <p>Officiële lancering op Dag van de Wetenschap, 15 november, op Boektopia in Antwerp Expo.</p>
-      <div class="stack"><a class="btn btn--white" href="{URL["standaard"]}" rel="noopener">Bestel bij Standaard Boekhandel <span class="arr">→</span></a><a class="btn btn--line-w" href="{URL["pelckmans"]}" rel="noopener">Bij Pelckmans</a></div></div>
+      <div class="stack">{order_button()}</div></div>
     <div class="inset inset--book"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy"></div>
   </div></div>
 </div></section>
@@ -498,37 +466,11 @@ eps = ""
 for ym in sorted({c["video"]["datum"][:7] for c in by_ep}):
     jaar, maand = int(ym[:4]), int(ym[5:])
     eps += f'<h2 class="group-title">{MAANDEN[maand - 1]} {jaar}</h2><div class="sched">' + "".join(ep_row(c, by_ep.index(c)) for c in by_ep if c["video"]["datum"].startswith(ym)) + "</div>"
-vp = f"""<section class="page-hero hero-yellow vp-hero"><div class="wrap">{hero_shapes("hero-yellow")}
-  <div class="vp-hero-grid">
-    <div class="vp-hero-t"><span class="eyebrow">Videopodcast</span><h1 class="q">{hl("Kijk mee")}</h1>
-      <p class="sub">Bij elk hoofdstuk hoort een videopodcast: de auteur en een tweede expert bekijken het onderwerp vanuit een andere invalshoek. Zodra de eerste afleveringen online staan, kijk je ze hier.</p>
-      <a class="btn btn--green" href="{URL["youtube"]}" rel="noopener">Naar YouTube <span class="arr">→</span></a></div>
-    <figure class="vp-hero-v"><span class="watch-l">Trailer</span>{yt_embed(YT_TRAILER, "Trailer (voorlopige video van Universiteit van Vlaanderen)")}<p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen.</p></figure>
-  </div>
-</div></section>
-<section class="section section--tight"><div class="wrap">
-  <div class="watch">
-    <div class="watch-t reveal">
-      <span class="eyebrow">Nieuw</span><h2>Laatste aflevering</h2>
-      <p class="watch-last"><b>Aflevering {by_ep[0]["video"]["afl"]:02d}</b><br>{E(by_ep[0]["video"]["titel"])}</p>
-      <div class="people watch-people">{"".join(person(sp, "Spreker") for sp in speakers(by_ep[0]))}</div>
-      <a class="btn btn--line" href="hoofdstuk/{by_ep[0]["slug"]}.html" style="color:var(--green)">Naar het hoofdstuk <span class="arr">→</span></a>
-    </div>
-    <div class="watch-v reveal">
-      <figure>{yt_embed(YT_VOORBEELD, "Laatste aflevering (voorlopige video van Universiteit van Vlaanderen)")}</figure>
-      <p class="yt-note">Voorlopige video van het YouTube-kanaal van Universiteit van Vlaanderen. De afleveringen volgen vanaf 1 november.</p>
-    </div>
-  </div>
-</div></section>
-<section class="section section--tight"><div class="wrap two">
-  <div class="panel reveal"><h2>Hoe werkt het?</h2><div class="prose"><p>Je ziet twee sprekers: de auteur van het hoofdstuk en een tweede expert uit het veld. Zo krijg je extra perspectieven, standpunten en reflecties bovenop het essay uit het boek.</p><p>Video en boek versterken elkaar, zonder elkaars inhoud te herhalen. Je hoort extra academische stemmen van verschillende universiteiten.</p></div></div>
-  <div class="panel panel--green reveal"><h2>Waar kijk of luister je?</h2><ul style="margin:0;padding-left:1.1em;line-height:1.9"><li>Van <b>1 november</b> tot en met <b>31 december</b>, ongeveer drie afleveringen per week</li><li><a href="{URL["vrtmax_vid"]}" rel="noopener">VRT MAX (video)</a> en <a href="{URL["vrtmax_pod"]}" rel="noopener">VRT MAX (podcast)</a></li><li><a href="{URL["youtube"]}" rel="noopener">YouTube</a></li><li><a href="{URL["spotify"]}" rel="noopener">Spotify</a> en alle andere podcastkanalen</li><li>De shortforms op onze sociale media</li></ul><p style="margin-top:14px">De longform is ongeveer 10 minuten.</p></div>
-</div></section>
-<section class="section section--tight"><div class="wrap">
-  {sec_head("Alle afleveringen", "Het schema van de 23 afleveringen. Klik door naar het hoofdstuk bij de aflevering.")}
-  <div class="reveal">{eps}</div>
-</div></section>
-"""
+vp = subhero("hero-yellow", "Videopodcast", "Kijken en luisteren", "Bij elke vraag gaan twee wetenschappers in gesprek. Vanaf begin november 2026 verschijnen ongeveer drie afleveringen per week.") + f"""
+<section class="section section--tight"><div class="wrap"><nav class="subnav" aria-label="Lezen, kijken en luisteren"><a href="boek.html">Het boek</a><a href="videopodcast.html" aria-current="page">Videopodcast</a><a href="radio-en-live.html">Radio en live</a></nav>
+<div class="panel panel--paper"><h2>Waar vind je de afleveringen?</h2><p>Video’s van ongeveer 10 minuten op VRT MAX en YouTube. De gesprekken zijn ook te beluisteren als podcast.</p><div class="stack"><a class="btn btn--green" href="{URL['vrtmax_vid']}">VRT MAX · video ↗</a><a class="btn btn--line" href="{URL['youtube']}">YouTube ↗</a><a class="btn btn--line" href="{URL['spotify']}">Spotify ↗</a><a class="btn btn--line" href="{URL['vrtmax_pod']}">VRT MAX · podcast ↗</a></div></div>
+{sec_head("Publicatieschema", "Geplande data van de 23 afleveringen. Bij elk onderwerp vind je de sprekers en het communicatiemateriaal.")}{eps}
+</div></section>"""
 page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2027: telkens twee professoren over één vraag. Van 1 november tot 31 december verschijnen 23 afleveringen, ongeveer drie per week.", vp, current="videopodcast.html")
 
 # ───────────────────────── RADIO EN LIVE ─────────────────────────
@@ -619,16 +561,6 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 </div></section>
 
 <section class="section section--tight"><div class="wrap">
-  {sec_head("Materiaal om te delen", "Portretten, video’s, posts en advertenties volgen. Zodra ze klaar zijn, staan ze hier.", eyebrow="Binnenkort")}
-  <div class="two">
-    {vis_card("panel--paper", "Foto’s", "Portretten van de professoren, geordend per hoofdstuk. Vrij te gebruiken, bijvoorbeeld voor een affiche.", "Komt binnenkort")}
-    {vis_card("panel--green", "Video’s", "Drie video’s per professor: het boek promoten, de inhoudsopgave voorlezen en doorverwijzen, en zichzelf voorstellen met één prikkelende zin.", "Komt binnenkort")}
-    {vis_card("panel--paper", "Sociale media", "De kant-en-klare posts om te delen.", "Komt binnenkort")}
-    {vis_card("panel--green", "Advertenties Mediahuis", "De advertenties bij het boek.", "Komt binnenkort")}
-  </div>
-</div></section>
-
-<section class="section section--tight"><div class="wrap">
   <div class="mini-two">
     <div>
       <h2 class="mini-h">Kleuren</h2><p class="mini-p">Klik op een kleur om de code te kopiëren.</p>
@@ -654,4 +586,5 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 """
 page("vormgeving.html", "Vormgeving", "Logo’s, banners, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
 
-print(f"{len(CH)} hoofdstukken + pagina's gebouwd in {ROOT}")
+exec((pathlib.Path(__file__).parent / "toolkit-pages.py").read_text(), globals())
+print(f"{len(CH)} hoofdstukken + toolkitpagina's gebouwd in {ROOT}")
