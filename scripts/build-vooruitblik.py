@@ -333,7 +333,7 @@ page("index.html", "De Vooruitblik 2027", "Toolkit voor partners: foto’s, visu
 # ───────────────────────── VRAGEN ─────────────────────────
 chips = '<button class="chip" data-uni="alle" aria-pressed="true">Alle</button>' + "".join(
     f'<button class="chip" data-uni="{u}" aria-pressed="false">{u}</button>' for u in UNIS)
-vragen = subhero("hero-yellow", "De 23 vragen", "De Vooruitblik 2027 in 23 vragen",
+vragen = subhero("hero-yellow questions-hero", "De 23 vragen", "De Vooruitblik 2027 in 23 vragen",
                  "Eén vraag per hoofdstuk, beantwoord door een professor in het boek en besproken met een tweede expert in de videopodcast.", "img/boek-3d.webp") + f"""
 <section class="section section--tight"><div class="wrap">
   <div class="filters" role="group" aria-label="Filter op universiteit">{chips}<label class="sr" for="zoek">Zoek in de vragen</label><input id="zoek" class="search" type="search" placeholder="Zoek op vraag of professor…"></div>

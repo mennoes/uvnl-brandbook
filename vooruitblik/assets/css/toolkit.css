@@ -206,3 +206,18 @@
 .home-material-link p { margin:0;font-size:15px; }
 .home-material-link .arr { grid-column:2;grid-row:1 / 3;align-self:center;font-size:28px; }
 .home-material-link:hover { background:#e5d4f6; }
+
+/* Keep the book fully inside the questions banner, at its natural proportions. */
+@media(min-width:801px) {
+  .toolkit .questions-hero .wrap { padding-right:260px; }
+  .toolkit .questions-hero .q,.toolkit .questions-hero .sub { max-width:none; }
+  .toolkit .questions-hero .orn[src$="boek-3d.webp"] { top:50%;bottom:auto;right:max(40px,calc((100% - var(--wrap))/2 + 40px));width:160px;height:220px;max-height:none;max-width:none;object-fit:contain;transform:translateY(-50%) rotate(5deg); }
+}
+@media(min-width:1000px) {
+  #vragen-grid { grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 14px; }
+  #vragen-grid .card h3 { font-size:18px;padding:12px 6px 0; }
+  #vragen-grid .card .who { font-size:11px;padding:12px 6px 7px; }
+}
+@media(min-width:1241px) {
+  #vragen-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+}
