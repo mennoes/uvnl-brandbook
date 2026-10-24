@@ -163,3 +163,14 @@
   .library-header .subnav { flex-wrap:nowrap;gap:6px; }
   .library-header .subnav a { display:flex;align-items:center;justify-content:center;flex:1 1 auto;min-height:44px;padding:10px clamp(6px,1.7vw,9px);font-size:clamp(10px,2.8vw,14px);white-space:nowrap; }
 }
+
+/* Slightly shorter chapter cards on phones. */
+@media(max-width:640px) {
+  #vragen-grid { gap:16px; }
+  #vragen-grid .card-wrap { gap:7px; }
+  #vragen-grid .card { padding:8px;border-radius:22px; }
+  #vragen-grid .card-fig { aspect-ratio:4/3;border-radius:16px; }
+  #vragen-grid .card h3 { font-size:18px;line-height:1.16;padding:12px 8px 0; }
+  #vragen-grid .card .who { font-size:12px;padding:10px 8px 6px; }
+  #vragen-grid .card-nr { font-size:12px; }
+}
