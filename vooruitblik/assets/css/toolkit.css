@@ -164,13 +164,14 @@
   .library-header .subnav a { display:flex;align-items:center;justify-content:center;flex:1 1 auto;min-height:44px;padding:10px clamp(6px,1.7vw,9px);font-size:clamp(10px,2.8vw,14px);white-space:nowrap; }
 }
 
-/* Compact horizontal chapter cards on phones. */
+/* Two chapter cards per row on phones. */
 @media(max-width:640px) {
-  #vragen-grid { gap:14px; }
+  #vragen-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px; }
   #vragen-grid .card-wrap { gap:5px; }
-  #vragen-grid .card { display:grid;grid-template-columns:clamp(84px,25vw,112px) minmax(0,1fr);grid-template-rows:1fr auto;gap:8px 12px;padding:8px;border-radius:18px; }
-  #vragen-grid .card-fig { grid-column:1;grid-row:1 / 3;aspect-ratio:auto;min-height:126px;border-radius:12px; }
-  #vragen-grid .card h3 { grid-column:2;grid-row:1;font-size:16px;line-height:1.16;padding:5px 3px 0 0;align-self:center; }
-  #vragen-grid .card .who { grid-column:2;grid-row:2;margin:0;font-size:11px;line-height:1.35;padding:0 3px 5px 0; }
-  #vragen-grid .card-nr { font-size:11px; }
+  #vragen-grid .card { display:flex;flex-direction:column;padding:6px;border-radius:16px; }
+  #vragen-grid .card-fig { aspect-ratio:1/1;min-height:0;border-radius:11px; }
+  #vragen-grid .card h3 { font-size:14px;line-height:1.18;padding:10px 5px 0; }
+  #vragen-grid .card .who { margin-top:auto;font-size:10px;line-height:1.35;padding:9px 5px 5px; }
+  #vragen-grid .card .who span { display:block; }
+  #vragen-grid .card-nr { font-size:10px;padding-left:4px; }
 }
