@@ -65,7 +65,7 @@
     var nextDone = false;
     eps.forEach(function (e) {
       var tag = e.querySelector('.ep-status');
-      if (new Date(e.dataset.date + 'T00:00:00') <= today) { tag.textContent = 'Verschenen'; }
+      if (new Date(e.dataset.date + 'T00:00:00') <= today) { tag.textContent = 'Volgens planning beschikbaar'; }
       else if (!nextDone) { tag.textContent = 'Eerstvolgende'; e.classList.add('is-next'); nextDone = true; }
     });
   }
