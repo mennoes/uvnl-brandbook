@@ -7,19 +7,34 @@
   /* menu op mobiel */
   var btn = d.querySelector('.nav-toggle'), nav = d.getElementById('nav');
   if (btn && nav) {
-    var label = btn.textContent;
+    var label = btn.textContent, scrollY = 0;
+    var mobile = window.matchMedia('(max-width:1240px)');
     var setOpen = function (open) {
+      open = open && mobile.matches;
+      var wasOpen = nav.classList.contains('open');
+      if (open && !wasOpen) {
+        scrollY = window.scrollY;
+        root.style.setProperty('--nav-scroll-top', -scrollY + 'px');
+        nav.scrollTop = 0;
+      }
       nav.classList.toggle('open', open);
       root.classList.toggle('nav-open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.textContent = open ? 'Sluiten' : label;
+      if (!open && wasOpen) {
+        root.style.removeProperty('--nav-scroll-top');
+        window.scrollTo({ top: scrollY, behavior: 'instant' });
+      }
     };
     btn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
     d.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); btn.focus(); }
     });
     window.addEventListener('pageshow', function () { setOpen(false); });
-    if (window.matchMedia) matchMedia('(min-width:1241px)').addEventListener('change', function (m) { if (m.matches) setOpen(false); });
+    mobile.addEventListener('change', function (m) { if (!m.matches) setOpen(false); });
   }
 
   /* onthullen bij scrollen */

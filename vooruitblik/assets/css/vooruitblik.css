@@ -63,14 +63,15 @@ p { margin:0 0 1em; }
 .nav a:hover,.nav a[aria-current="page"] { background:var(--purple); color:var(--green); }
 .nav-toggle { display:none; background:var(--green); color:var(--paper); border:0; border-radius:var(--r-pill); padding:11px 20px; font:700 15px/1 var(--font-sans); cursor:pointer; }
 @media (max-width:1240px){
-  .nav-toggle { display:inline-block; }
+  .nav-toggle { display:inline-block; flex:none; min-height:44px; }
   /* beeldvullend menu onder de kopbalk */
-  .nav { position:absolute; left:0; right:0; top:100%; height:calc(100vh - 72px); height:calc(100dvh - 72px); overflow-y:auto; overscroll-behavior:contain; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:4px; background:var(--green); padding:clamp(28px,7vh,72px) var(--gut) calc(32px + env(safe-area-inset-bottom)); display:none; }
+  .nav { position:absolute; left:0; right:0; top:100%; height:calc(100vh - 72px); height:calc(100dvh - 72px); overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:4px; background:var(--green); padding:clamp(28px,7vh,72px) var(--gut) calc(32px + env(safe-area-inset-bottom)); display:none; }
   .nav.open { display:flex; }
-  .nav a { color:var(--purple); font-size:clamp(30px,8.5vw,52px); line-height:1.05; letter-spacing:-.02em; padding:10px 18px; margin-left:-12px; align-self:flex-start; max-width:calc(100% + 12px); }
+  .nav a { color:var(--purple); font-size:clamp(30px,8.5vw,52px); line-height:1.05; letter-spacing:-.02em; padding:10px 18px; margin-left:-12px; align-self:flex-start; flex-shrink:0; max-width:calc(100% + 12px); overflow-wrap:anywhere; }
   .nav a:hover,.nav a[aria-current="page"] { background:var(--purple); color:var(--green); }
   .nav-open, .nav-open body { overflow:hidden; }
-  .nav-open .site-head { background:var(--paper); }
+  .nav-open body { position:fixed; top:var(--nav-scroll-top,0px); width:100%; }
+  .nav-open .site-head { position:fixed; inset:0 0 auto; background:var(--paper); }
 }
 @media (max-width:1240px) and (prefers-reduced-motion:no-preference){
   .nav.open a { animation:nav-in .45s var(--ease) backwards; }
@@ -351,7 +352,7 @@ p { margin:0 0 1em; }
 .fv-wave { flex:1; min-width:0; max-height:110px; color:var(--green); }
 .format.has-book .fbook { width:36%; right:4%; bottom:72px; }
 @media (min-width:641px){ .page-hero.q h1,.page-hero h1.q,.page-hero.q .sub { max-width:calc(100% - clamp(230px,40vw,640px)); } }
-.nav a { white-space:nowrap; }
+@media (min-width:1241px){ .nav a { white-space:nowrap; } }
 @media (max-width:420px){ .hero .orn--book { width:31vw; top:18px; right:10px; } }
 .page-hero .orn[src$="boek-3d.webp"] { width:clamp(130px,19vw,290px); bottom:-50px; right:clamp(12px,7vw,120px); }
 .page-hero .orn.orn--foto[src$="live-vlaanderen.webp"] { object-position:50% 30%; }

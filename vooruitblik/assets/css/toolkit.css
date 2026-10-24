@@ -44,8 +44,8 @@
 .toolkit .fan { margin-top:28px; }
 .toolkit .fan-stage { min-height:390px; }
 .toolkit .cascade { display:none; }
-.toolkit .card-fig .f { object-fit:contain; }
-.toolkit .card-fig img[src*="toolkit/"] { object-fit:cover;object-position:center 25%;border-radius:14px; }
+/* All chapter portraits fill the same rounded frame, including older photo assets. */
+.toolkit .card-fig img.f { object-fit:cover;object-position:center 25%; }
 .toolkit .chapter-pics { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px; }
 .chapter-pics img { width:100%;height:240px;object-fit:cover;object-position:center 25%;border-radius:12px; }
 .library-header { padding:52px 0 20px;background:var(--paper); }
