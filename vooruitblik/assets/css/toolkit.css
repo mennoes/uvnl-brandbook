@@ -125,3 +125,36 @@
 #professoren,#algemeen,#partners { scroll-margin-top:90px; }
 
 .partner-preview--dark { background:var(--green);border-radius:10px;padding:20px; }
+
+/* Compact topic index; open a subject to see its downloads. */
+.toolkit .topic-material { margin-top:0;padding-top:0; }
+.topic-material>summary { display:flex;align-items:center;gap:18px;padding:18px 0;cursor:pointer;list-style:none; }
+.topic-material>summary::-webkit-details-marker { display:none; }
+.topic-thumbs { display:flex;gap:5px;flex:none; }
+.topic-thumbs img { width:44px;height:54px;object-fit:cover;object-position:center 25%;border-radius:6px; }
+.topic-material .topic-heading { display:block;flex:1;min-width:0;margin:0; }
+.topic-material .topic-heading .eyebrow { font-size:10px;margin-bottom:5px; }
+.topic-material .topic-heading h2 { font-size:23px;line-height:1.08; }
+.topic-names { display:block;font-size:12px;margin-top:7px;color:#555; }
+.topic-expand { font-size:28px;color:var(--green);flex:none; }
+.topic-material[open]>summary .topic-expand { transform:rotate(45deg); }
+.topic-files { padding:0 0 12px; }
+.topic-info { display:inline-block;font-size:13px;font-weight:700;margin-bottom:14px; }
+.toolkit .person-downloads { padding:16px;margin-bottom:12px; }
+.toolkit .person-download-head { margin-bottom:12px;gap:12px; }
+.toolkit .person-media { grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.7fr);gap:10px; }
+.toolkit .person-media .download-preview { height:150px;aspect-ratio:auto; }
+.toolkit .person-media .download-tile:last-child:not(.portrait-tile) { grid-column:auto;max-width:none; }
+.toolkit .person-media .download-tile:not(.portrait-tile) img { max-height:100%;object-fit:contain; }
+.toolkit .person-media figcaption { padding-top:7px;gap:4px; }
+@media(max-width:800px) {
+  .topic-material>summary { gap:12px;padding:16px 0; }
+  .topic-thumbs { flex-direction:column;gap:4px; }
+  .topic-thumbs img { width:34px;height:38px; }
+  .topic-material .topic-heading h2 { font-size:20px; }
+  .toolkit .person-media { gap:7px; }
+  .toolkit .person-media .download-preview { height:90px; }
+  .toolkit .person-media figcaption { font-size:10px; }
+  .toolkit .person-download-head h3 { font-size:18px; }
+  .toolkit .download-actions { font-size:11px;gap:12px; }
+}

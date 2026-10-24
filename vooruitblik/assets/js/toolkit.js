@@ -16,6 +16,7 @@
     groups.forEach(group => {
       const match = words.every(word => normalize(group.dataset.search).includes(word)) && (!uni.value || group.dataset.unis.split('|').includes(uni.value)) && (!topic.value || group.dataset.topic === topic.value);
       group.hidden = !match;
+      group.open = match && (words.length > 0 || !!uni.value || !!topic.value || (!!location.hash && [...group.querySelectorAll('[id]')].some(el => '#' + el.id === location.hash)));
       if (match) { n++; people += group.querySelectorAll('.person-downloads').length; }
     });
     count.textContent = `${n} ${n === 1 ? 'onderwerp' : 'onderwerpen'} · ${people} sprekers`;
@@ -35,5 +36,12 @@
   topic.addEventListener('change', filter);
   form.addEventListener('reset', () => setTimeout(filter, 0));
   document.getElementById('media-reset').addEventListener('click', () => { form.reset(); search.focus(); });
+  function revealHash() {
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const group = target && target.closest('.topic-material');
+    if (group) { group.open = true; target.scrollIntoView({ block: 'start' }); }
+  }
+  window.addEventListener('hashchange', revealHash);
   filter();
+  revealHash();
 })();
