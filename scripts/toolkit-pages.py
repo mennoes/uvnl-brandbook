@@ -33,10 +33,10 @@ def topic_material(c):
     return f'''<details class="topic-material" data-topic="{c['nr']}" data-unis="{E(unis)}" data-search="{search}"><summary><div class="topic-thumbs" aria-hidden="true">{thumbs}</div><div class="topic-heading"><span class="eyebrow">Onderwerp {c['nr']:02d}</span><h2>{E(c['vraag'])}</h2><span class="topic-names">{E(' · '.join(p['name'] for p in ps))}</span></div><span class="topic-expand" aria-hidden="true">+</span></summary><div class="topic-files"><a class="topic-info" href="hoofdstuk/{c['slug']}.html">Over dit onderwerp →</a>{''.join(person_downloads(p) for p in ps)}</div></details>'''
 
 foto = '''<section class="library-header"><div class="wrap"><span class="eyebrow">Toolkit · Beeldbank</span><h1>Foto’s en visuals</h1><p>Download portretten en kant-en-klare visuals voor je eigen kanalen. Klap een onderwerp open en kies het materiaal dat je nodig hebt.</p><nav class="subnav" aria-label="Materiaal"><a href="#professoren">Professoren</a><a href="#algemeen">Algemeen materiaal</a><a href="vormgeving.html#partners">Partnerlogo’s</a></nav></div></section>'''
-foto += f'''<section id="professoren" class="section section--tight"><div class="wrap"><p id="media-count" aria-live="polite">23 onderwerpen · 46 sprekers</p><p class="library-help">Portretten: JPG, tot 2400 px. Sociale visuals: originele JPG. Voor de volledige resolutie en eventuele RAW-bestanden kies je ‘Originelen in Drive’.</p><div id="media-results">{''.join(topic_material(c) for c in CH)}</div></div></section>'''
+foto += f'''<section id="professoren" class="section section--tight"><div class="wrap"><p id="media-count" aria-live="polite">23 onderwerpen · 46 sprekers</p><p class="library-help">Portretten: JPG tot 2400 px. Sociale visuals: JPG. Volledige resolutie en RAW-bestanden vind je via ‘Originelen in Drive’.</p><div id="media-results">{''.join(topic_material(c) for c in CH)}</div></div></section>'''
 cover_assets=[a for a in TOOLKIT['extras'] if a['category']==COVERS]
 signature_assets=[a for a in TOOLKIT['extras'] if a['category']==SIGNATURES]
-foto+=f'''<section class="section section--tight" id="algemeen"><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Algemeen materiaal</span><h2>Boekcovers en banners</h2></div><p>Beelden voor communicatie over het hele project.</p></div><div class="general-grid">{''.join(download_tile(a,a['name']) for a in cover_assets if a.get('preview'))}</div><p class="download-line">{''.join(f'<a href="{a["download"]}" download>Volledige boekomslag · PDF ↓</a>' for a in cover_assets if not a.get('preview'))}</p><h3 class="library-subtitle">E-mailhandtekeningen</h3><p>Kies de tekst die past bij het moment waarop je communiceert.</p><div class="signature-grid">{''.join(download_tile(a,a['name'].removesuffix('.png').replace('E-mail Handtekening - ','')) for a in signature_assets)}</div><div class="material-note"><h3>Meer materiaal</h3><p>Algemene foto’s, verticale posts, promotievideo’s en advertenties zijn nog niet aangeleverd in de toolkit. Je vindt hier alleen bestanden die al beschikbaar zijn.</p><a href="https://drive.google.com/drive/folders/1rX7bUKnSCapJm47DHmx89FO_G0MZyKFS" target="_blank" rel="noopener">Bekijk de volledige toolkit in Drive ↗</a></div></div></section>'''
+foto+=f'''<section class="section section--tight" id="algemeen"><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Algemeen materiaal</span><h2>Boekcovers en banners</h2></div><p>Beelden voor communicatie over het hele project.</p></div><div class="general-grid">{''.join(download_tile(a,a['name']) for a in cover_assets if a.get('preview'))}</div><p class="download-line">{''.join(f'<a href="{a["download"]}" download>Volledige boekomslag · PDF ↓</a>' for a in cover_assets if not a.get('preview'))}</p><h3 class="library-subtitle">E-mailhandtekeningen</h3><p>Kies de tekst die past bij het moment.</p><div class="signature-grid">{''.join(download_tile(a,(lambda t:t[:1].upper()+t[1:])(a['name'].removesuffix('.png').replace('E-mail Handtekening - ',''))) for a in signature_assets)}</div><div class="material-note"><h3>Meer materiaal</h3><p>Algemene foto’s, verticale posts, promotievideo’s en advertenties volgen.</p><a href="https://drive.google.com/drive/folders/1rX7bUKnSCapJm47DHmx89FO_G0MZyKFS" target="_blank" rel="noopener">Bekijk de volledige toolkit in Drive ↗</a></div></div></section>'''
 page('fotos-en-visuals.html','Foto’s en visuals','Download drie portretten per wetenschapper, sociale visuals en algemeen communicatiemateriaal voor De Vooruitblik 2027.',foto,current='fotos-en-visuals.html')
 
 media = subhero('hero-purple','Projectinformatie','Lezen, kijken en luisteren','De Vooruitblik 2027 is een kennisproject van Universiteit van Vlaanderen, Radio 1 en Pelckmans. Wetenschappers geven context bij 23 vragen over het komende jaar.')
@@ -59,12 +59,20 @@ partners = {
  '1_4Ox352GwDvZw1UWESTzXGFQTPUMw4pf':'UGent',
  '1vlJGjWkDV26Afah92YmXTIbj8B45Ud5y':'UHasselt',
  '1PNtC2WCq-3wBamDXjKbMjwiJjjkoUV0e':'UAntwerpen'}
+def logo_label(name, n):
+    """Bestandsnaam uit Drive omzetten naar een leesbaar label."""
+    m = re.search(r'Merkbeeld_(\d)_(Zwart|Wit)', name)
+    if m:
+        return f'Logo en merkbeeld {m.group(1)} · {m.group(2).lower()}'
+    return 'Logo · PNG' if n == 1 else name.removesuffix('.png')
+
 logo_cards=''
 for category,name in partners.items():
     files=[a for a in TOOLKIT['extras'] if a['category']==category]
     a=next((x for x in files if 'Zwart' in x['name']),files[0])
-    downloads=''.join(f'<a href="{x["download"]}" download>{E(x["name"].removesuffix(".png"))} ↓</a>' for x in files)
+    downloads=''.join(f'<a href="{x["download"]}" download>{E(logo_label(x["name"], len(files)))} ↓</a>' for x in files)
     logo_cards+=f'<article class="partner-download"><div class="partner-preview {"partner-preview--dark" if name != "Pelckmans Uitgeverij" else ""}"><img src="{a["preview"]}" alt="{E(name)}" loading="lazy"></div><h3>{E(name)}</h3><details><summary>Download logo{ "’s" if len(files)>1 else ""}</summary><div class="logo-downloads">{downloads}</div></details></article>'
+
 partner_section=f'<section class="section section--tight" id="partners"><div class="wrap">{sec_head("Partnerlogo’s", "De aangeleverde logo’s van de universiteiten, initiatiefnemers en partners. Gebruik de originele bestanden en verhoudingen.")}<div class="partner-grid">{logo_cards}</div></div></section>'
 # Place partner logos immediately after project logos, before color/type foundations.
 pos=vg.find('<section class="section section--tight">',vg.find('<section class="section section--tight">')+1)

@@ -357,7 +357,7 @@ def yt_embed(vid, titel):
 def order_button():
     if URL["webshop"]:
         return f'<a class="btn btn--white" href="{URL["webshop"]}">Bestel in onze webshop →</a>'
-    return '<p class="order-pending">De link naar de eigen webshop wordt hier toegevoegd.</p>'
+    return '<p class="order-pending">Bestellen kan straks via onze eigen webshop.</p>'
 
 def chapter_material(c):
     people = [library_person(p) for p in speakers(c)]
@@ -399,7 +399,7 @@ for i, c in enumerate(CH):
 </div></section>
 <section class="section section--tight"><div class="wrap">
   <div class="elec"><div class="buy">
-    <div class="buy-t"><p class="serif-lead">Lees het volledige essay</p><h2>Dit hoofdstuk zit in het boek</h2><p>Drieëntwintig essays, weetjes, anekdotes en een filmtip per hoofdstuk. Verschijnt op 15 november 2026.</p>
+    <div class="buy-t"><p class="serif-lead">In het boek</p><h2>Lees het volledige essay</h2><p>Dit hoofdstuk staat in De Vooruitblik 2027: 23 essays, elk met een extraatje en een korte biografie van de auteur. Verschijnt op 15 november 2026.</p>
     <p class="cta-row"><em>Het boek</em> <a class="btn btn--white" href="../boek.html">Over het boek <span class="arr">→</span></a></p></div>
     <div class="inset inset--book"><i class="snap s1"></i><i class="snap s2"></i><i class="snap s3"></i><img src="../assets/img/boek-3d.webp" alt="Het boek De Vooruitblik 2027, uitgegeven door Pelckmans" width="753" height="1290" loading="lazy"></div>
   </div></div>
@@ -429,7 +429,7 @@ boek = f"""
   <ul class="facts reveal"><li><b data-count="23">23</b><span>essays van 23 academici</span></li><li><b data-count="5">5</b><span>Vlaamse universiteiten</span></li><li><b>+1</b><span>extraatje per hoofdstuk: een weetje, anekdote of filmtip</span></li></ul>
 </div></section>
 <section class="section section--tight"><div class="wrap">
-  <div class="panel panel--paper reveal"><h2>Zo is elk hoofdstuk opgebouwd</h2><div class="prose"><p>Elk hoofdstuk bevat een toegankelijk essay, weetjes, anekdotes of een extraatje zoals een filmtip, en een korte biografie van de auteur.</p><p>De hoofdstukken kan je afzonderlijk lezen, maar samen vormen ze een rijk overzicht van de thema’s die ons begrip van 2027 bepalen.</p></div></div>
+  <div class="panel panel--paper reveal"><h2>Zo is elk hoofdstuk opgebouwd</h2><div class="prose"><p>Elk hoofdstuk heeft een essay, een extraatje (een weetje, anekdote of filmtip) en een korte biografie van de auteur. Je kunt ze los van elkaar lezen.</p></div></div>
 </div></section>
 <section class="section section--tight"><div class="wrap">
   {sec_head("Alle hoofdstukken", "Elk hoofdstuk begint met een vraag. Je vindt ze allemaal met hun professor bij De 23 vragen.", '<a class="btn btn--green" href="vragen.html">Naar De 23 vragen <span class="arr">→</span></a>')}
@@ -475,13 +475,13 @@ page("videopodcast.html", "Videopodcast", "De videopodcasts bij De Vooruitblik 2
 
 # ───────────────────────── RADIO EN LIVE ─────────────────────────
 radio_live = subhero("hero-blue", "Radio en live", "Radio en live",
-                     "Twee weken vooruitblikken op Radio 1 en live in gesprek met de professoren.", "img/live-vlaanderen.webp") + f"""
+                     "Twee weken vooruitblikken op Radio 1, en live in gesprek met de professoren.", "img/live-vlaanderen.webp") + f"""
 <section class="section section--tight" id="radio"><div class="wrap">
   {sec_head("Twee weken vooruitblikken", "Radio 1 maakt opnieuw een programma rond De Vooruitblik, in de kerstvakantie.", eyebrow="Radio 1")}
   <ul class="facts reveal"><li><b>12–13u</b><span>elke weekdag op Radio 1</span></li><li><b>21–25 dec</b><span>maandag tot vrijdag</span></li><li><b>28 dec – 1 jan</b><span>maandag tot vrijdag</span></li></ul>
 </div></section>
 <section class="section section--tight"><div class="wrap two">
-  <div class="panel reveal"><h2>Het programma</h2><div class="prose"><p>Radiohost Jacotte Brokken gaat in gesprek met de wetenschappers van De Vooruitblik over de thema’s uit het boek en de maatschappelijke ontwikkelingen die ons begrip van 2027 helpen verdiepen.</p><p>Zo vormt het programma een belangrijke aanvulling op zowel het boek als de videopodcasts.</p></div></div>
+  <div class="panel reveal"><h2>Het programma</h2><div class="prose"><p>Radiohost Jacotte Brokken praat met de wetenschappers van De Vooruitblik over de thema’s uit het boek.</p></div></div>
   <div class="panel panel--green reveal"><h2>Luister live of terug</h2><p>Radio 1 vind je live en on demand via VRT MAX.</p><a class="btn btn--purple" href="{URL["radio1"]}" rel="noopener">Naar Radio 1 <span class="arr">→</span></a></div>
 </div></section>
 <section class="section section--tight" id="live"><div class="wrap">
@@ -508,8 +508,8 @@ def lum(hexc):
 SWATCHES = [("Varsity Green", "#004B36", "Basiskleur, logo en tekst op licht"), ("Electric Purple", "#D6ACFF", "Logo en kopjes op donker"),
             ("Ballpoint", "#1B0757", "Donker accent"), ("Electric Blue", "#585FF1", "Accent"),
             ("Paper", "#F4F0ED", "Lichte achtergrond"), ("Pink", "#FFC9D7", "Accent"),
-            ("Electric Yellow", "#FBF07A", "Accent, tape en driehoeken"), ("Electric Red", "#EE5245", "Accent"),
-            ("Printer Ink", "#2B2B2B", "Lopende tekst"), ("Electric Green", "#00A879", "Felgroene kaarten op de website")]
+            ("Electric Yellow", "#FBF07A", "Accent"), ("Electric Red", "#EE5245", "Accent"),
+            ("Printer Ink", "#2B2B2B", "Lopende tekst"), ("Electric Green", "#00A879", "Accent")]
 sw = "".join(f'<button class="sw" type="button" data-hex="{h}" style="background:{h};color:{"#fff" if lum(h) < .3 else "#004B36"}"><b>{E(n)}</b><span>{h}</span><small>{E(d)}</small></button>' for n, h, d in SWATCHES)
 
 
@@ -524,9 +524,9 @@ def el_card(src, title, bg):
 
 
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
-             "Alles om De Vooruitblik herkenbaar te gebruiken: logo, beeld, kleuren en lettertypes, plus het materiaal om te delen. Klik op een beeld of knop om te downloaden.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
+             "Logo’s, kleuren en lettertypes van De Vooruitblik, om herkenbaar te communiceren.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("De logo’s", "Twee logo’s met elk een eigen rol: De Vooruitblik is het project, Universiteit van Vlaanderen is de afzender.", eyebrow="Logo")}
+  {sec_head("De logo’s", "De Vooruitblik is het project, Universiteit van Vlaanderen de afzender.", eyebrow="Logo")}
   <div class="pair">
     <div class="pair-head pair-head--vb"><span class="pair-kicker">Het project</span><h3>De Vooruitblik</h3><p>Het logo van het boek, de videopodcast, Radio 1 en de evenementen.</p></div>
     <div class="pair-head pair-head--uv"><span class="pair-kicker">De afzender</span><h3>Universiteit van Vlaanderen</h3><p>Het logo van de organisatie achter het project.</p></div>
