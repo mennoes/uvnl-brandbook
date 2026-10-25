@@ -311,7 +311,10 @@ home = f"""
     <p class="home-lead">Alles om De Vooruitblik te delen.</p><p>Portretten, visuals en logo’s voor je eigen communicatie.</p>
     <a class="text-link" href="lezen-kijken-luisteren.html">Over het boek, de videopodcasts en Radio 1 →</a>
   </div>
-  <aside class="home-materials" aria-label="Communicatiemateriaal"><a class="home-material-link" href="fotos-en-visuals.html"><h2>Foto’s en visuals</h2><p>Portretten en sociale visuals.</p><span class="arr" aria-hidden="true">→</span></a><a class="home-material-link" href="vormgeving.html"><h2>Logo’s en vormgeving</h2><p>Logo’s, boekcovers en huisstijl.</p><span class="arr" aria-hidden="true">→</span></a></aside>
+  <aside class="home-materials" aria-label="Communicatiemateriaal">
+    <a class="home-material-link" href="fotos-en-visuals.html"><span class="mat-t"><h2>Foto’s en visuals</h2><p>Portretten en sociale visuals.</p></span><span class="mat-vis mat-vis--fotos" aria-hidden="true"><img src="assets/foto/ann-van-griensven.webp" alt="" width="450" height="563"><img src="assets/foto/stef-aupers.webp" alt="" width="450" height="563"><img src="assets/foto/giselinde-kuipers.webp" alt="" width="450" height="563"></span><span class="arr" aria-hidden="true">→</span></a>
+    <a class="home-material-link" href="vormgeving.html"><span class="mat-t"><h2>Logo’s en vormgeving</h2><p>Logo’s, boekcovers en huisstijl.</p></span><span class="mat-vis mat-vis--logos" aria-hidden="true"><span class="mat-logo mat-logo--vb"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="" width="1506" height="322"></span><span class="mat-logo mat-logo--uv"><img src="assets/vormgeving/uvvl-logo-vierkant-groen.svg" alt="" width="156" height="195"></span></span><span class="arr" aria-hidden="true">→</span></a>
+  </aside>
 </div></section>
 <div class="wrap toolkit-summary"><span><b>23</b> vragen</span><span><b>46</b> sprekers</span><span><b>5</b> universiteiten</span><a href="https://drive.google.com/file/d/1l3OGLS7e1JL65gn7iB9ZfekHzSFefUkA/view" target="_blank" rel="noopener">Handleiding voor partners ↗</a></div>
 <section class="section section--tight">
