@@ -3,7 +3,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
-import json, zipfile, subprocess
+import json, zipfile, subprocess, re
 ROOT=Path(__file__).resolve().parents[1]
 SITE=ROOT/'vooruitblik'
 class Page(HTMLParser):
@@ -39,13 +39,17 @@ for person in manifest['people']:
         assert (SITE/a['download']).is_file()
     with zipfile.ZipFile(SITE/person['zip']) as z:
         assert len(z.namelist())==3 and z.testzip() is None,person['name']
-# The archived site is byte-for-byte the baseline, including JS/CSS and hover effects.
+# De oorspronkelijke site staat niet meer in de publieke map, maar blijft bewaard op een branch en een tag.
 base='backup/vooruitblik-2026-10-23'
-files=subprocess.check_output(['git','ls-tree','-r','--name-only',base,'vooruitblik'],cwd=ROOT,text=True).splitlines()
-for rel in files:
-    original=subprocess.check_output(['git','show',f'{base}:{rel}'],cwd=ROOT)
-    archived=ROOT/rel.replace('vooruitblik/','vooruitblik-archief-2026-10-23/',1)
-    if archived.read_bytes()!=original:errors.append(f'Backup changed: {rel}')
+def has_ref(ref):
+    return subprocess.run(['git','rev-parse','--verify','-q',ref],cwd=ROOT,capture_output=True).returncode==0
+if not (has_ref(base) or has_ref('origin/'+base)):errors.append(f'Bewaarde versie ontbreekt: branch {base}')
+if (ROOT/'vooruitblik-archief-2026-10-23').exists():errors.append('Het archief hoort niet meer in de publieke map')
+# Metadata voor delen en zoekmachines: absoluut, met canonical.
+for path,p in pages.items():
+    h=path.read_text()
+    if not re.search(r'<link rel="canonical" href="https://[^"]+">',h):errors.append(f'{path.name}: canonical ontbreekt')
+    if not re.search(r'og:image" content="https://',h):errors.append(f'{path.name}: og:image niet absoluut')
 if errors:
     print('\n'.join(errors));raise SystemExit(1)
-print(f'PASS: {len(pages)} pages, local links/anchors, 46 speakers, 138 photos, 46 ZIPs, and {len(files)} unchanged archive files.')
+print(f'PASS: {len(pages)} pages, local links/anchors, 46 speakers, 138 photos, 46 ZIPs, and bewaarde versie op branch en tag.')

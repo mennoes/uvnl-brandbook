@@ -10,6 +10,8 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "vooruitblik"
+# Publieke basis-URL; pas aan zodra de site op een eigen (sub)domein staat. Eindigt op een slash.
+SITE_URL = "https://mennoes.github.io/uvnl-brandbook/vooruitblik/"
 E = html.escape
 
 # Volgorde zoals in de handleiding van 29 september 2026.
@@ -173,7 +175,12 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <meta property="og:title" content="{E(full_title)}">
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="{base}{og_img}">
+<meta property="og:locale" content="nl_BE">
+<meta property="og:site_name" content="De Vooruitblik 2027">
+<meta property="og:url" content="{SITE_URL}{path}">
+<meta property="og:image" content="{SITE_URL}{og_img}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{SITE_URL}{path}">
 <meta name="theme-color" content="#004B36">
 <link rel="icon" href="{base}assets/logos/uvvl-logo-square.svg" type="image/svg+xml">
 <link rel="preload" href="{base}assets/fonts/OldschoolGrotesk-Bold.woff" as="font" type="font/woff" crossorigin>
@@ -360,7 +367,7 @@ def yt_embed(vid, titel):
 def order_button():
     if URL["webshop"]:
         return f'<a class="btn btn--white" href="{URL["webshop"]}">Bestel in onze webshop →</a>'
-    return '<p class="order-pending">Bestellen kan straks via onze eigen webshop.</p>'
+    return ""   # geen link bekend: niets tonen tot URL["webshop"] is ingevuld
 
 def chapter_material(c):
     people = [library_person(p) for p in speakers(c)]
@@ -590,4 +597,14 @@ vg = subhero("hero-green", "Vormgeving", "Vormgeving",
 page("vormgeving.html", "Vormgeving", "Logo’s, banners, kleuren en lettertypes van De Vooruitblik 2027, met downloads.", vg, current="vormgeving.html")
 
 exec((pathlib.Path(__file__).parent / "toolkit-pages.py").read_text(), globals())
+
+# 404-pagina in de root van de repo (GitHub Pages toont die voor onbekende adressen). Absolute links, geen canonical.
+page("../404.html", "Pagina niet gevonden", "Deze pagina bestaat niet (meer).",
+     subhero("hero-green", "404", "Pagina niet gevonden", "Deze pagina bestaat niet (meer). Ga terug naar de toolkit.") +
+     f'<section class="section section--tight"><div class="wrap"><a class="btn btn--green" href="{SITE_URL}index.html">Naar De Vooruitblik <span class="arr">→</span></a></div></section>',
+     base=SITE_URL)
+_p = ROOT.parent / "404.html"
+_h = _p.read_text(encoding="utf-8")
+_h = re.sub(r'<link rel="canonical"[^>]*>\n?|<meta property="og:url"[^>]*>\n?', "", _h).replace("<head>", '<head>\n<meta name="robots" content="noindex">', 1)
+_p.write_text(_h, encoding="utf-8")
 print(f"{len(CH)} hoofdstukken + toolkitpagina's gebouwd in {ROOT}")
