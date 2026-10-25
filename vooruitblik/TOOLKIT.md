@@ -8,10 +8,14 @@ Voer `python3 scripts/build-vooruitblik.py` uit vanaf de repositoryroot. Daarna 
 
 ## Bewaarde oorspronkelijke versie
 
-`vooruitblik-archief-2026-10-23/` bevat de volledige oorspronkelijke site, ongewijzigd. Ook beschikbaar op Git-branch `backup/vooruitblik-2026-10-23`, uitgangscommit `693d39db5f355bcc2b700e4b282edac55494991a`. De controle vergelijkt elk archiefbestand byte voor byte met deze versie. 3D-hoverkaarten en shuffle blijven ook in de nieuwe toolkit aanwezig.
+De oorspronkelijke site (van vóór de toolkit) staat niet meer in de publieke map. Ze blijft bewaard op de Git-branch `backup/vooruitblik-2026-10-23` en de tag `vooruitblik-archief-2026-10-23` (uitgangscommit `693d39db5f355bcc2b700e4b282edac55494991a`). `scripts/check-toolkit.py` controleert dat die branch bestaat.
+
+## Publiceren
+
+De publieke basis-URL staat in `SITE_URL` in `scripts/build-vooruitblik.py`. Pas die aan zodra de site op een eigen (sub)domein staat en bouw opnieuw: canonical, `og:url` en `og:image` volgen automatisch. De GitHub Action `Controle toolkit` bouwt de site bij elke pull request, controleert of het resultaat is gecommit en draait `check-toolkit.py`.
 
 ## Nog aan te leveren
 
-De eigen webshop-URL stond niet in de bestaande site of feedback. Externe verkopers zijn conform feedback verwijderd. Vul `URL["webshop"]` in de builder in zodra de juiste link bekend is en bouw opnieuw.
+De eigen webshop-URL is nog niet bekend. Zolang `URL["webshop"]` leeg is, toont de site geen bestelknop. Externe verkopers zijn conform feedback verwijderd.
 
 De aangeleverde mappen voor verticale visuals, generieke beelden, collages, advertenties en video bevatten nog geen bestanden. De website meldt dit zonder lege downloadknoppen. Alle aangeleverde extra portretten blijven via de links naar de originele Drive-mappen beschikbaar.

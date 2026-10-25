@@ -1,0 +1,24 @@
+name: Controle toolkit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  controle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pagina's opnieuw bouwen
+        run: python3 scripts/build-vooruitblik.py
+      - name: Gebouwde bestanden zijn gecommit
+        run: |
+          git diff --exit-code -- vooruitblik 404.html || { echo "Draai python3 scripts/build-vooruitblik.py en commit het resultaat."; exit 1; }
+      - name: Links, downloads en metadata controleren
+        run: python3 scripts/check-toolkit.py
