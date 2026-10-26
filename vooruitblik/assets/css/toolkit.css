@@ -264,3 +264,16 @@
   .toolkit-summary b { font-size:26px; margin:0 0 2px; line-height:1; }
   .toolkit-summary a { flex-basis:100%; margin:0; font-size:12px; }
 }
+
+/* partnerlogo's: twee of drie naast elkaar op mobiel */
+@media(max-width:800px){ .partner-grid { grid-template-columns:repeat(3,minmax(0,1fr))!important; gap:8px!important; } }
+@media(max-width:520px){
+  .partner-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+  .partner-download { padding:10px 10px 12px; border-radius:16px; }
+  .partner-preview { height:64px; margin-bottom:10px; }
+  .partner-preview--dark { padding:10px; border-radius:10px; }
+  .partner-preview img { max-width:90%; max-height:42px; }
+  .partner-download h3 { font-size:12.5px; line-height:1.2; margin-bottom:8px; min-height:2.4em; }
+  .partner-download summary { font-size:12px; }
+  .logo-downloads { gap:8px; font-size:11.5px; padding-top:10px; }
+}
