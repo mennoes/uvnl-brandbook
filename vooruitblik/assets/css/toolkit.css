@@ -258,3 +258,9 @@
   .mat-logo { height:38px; } .mat-logo--uv { width:38px; } .mat-logo--vb img { height:17px; } .mat-logo--uv img { height:22px; }
 }
 @media(max-width:520px){ .home-intro .home-lead + p { display:none; } }
+@media(max-width:520px){
+  .toolkit-summary { flex-wrap:wrap; gap:10px 14px; padding-block:16px; justify-content:space-between; font-size:12px; }
+  .toolkit-summary span { display:flex; flex-direction:column; line-height:1.1; }
+  .toolkit-summary b { font-size:26px; margin:0 0 2px; line-height:1; }
+  .toolkit-summary a { flex-basis:100%; margin:0; font-size:12px; }
+}
