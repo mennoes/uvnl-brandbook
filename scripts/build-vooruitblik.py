@@ -536,22 +536,26 @@ def el_card(src, title, bg):
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
              "Logo’s, kleuren en lettertypes van De Vooruitblik.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("De logo’s", "De Vooruitblik is het project, Universiteit van Vlaanderen de afzender.", eyebrow="Logo")}
+  {sec_head("De logo’s", "", eyebrow="Logo")}
   <div class="pair">
-    <div class="pair-head pair-head--vb"><span class="pair-kicker">Het project</span><h3>De Vooruitblik</h3><p>Het logo van het boek, de videopodcast, Radio 1 en de evenementen.</p></div>
-    <div class="pair-head pair-head--uv"><span class="pair-kicker">De afzender</span><h3>Universiteit van Vlaanderen</h3><p>Het logo van de organisatie achter het project.</p></div>
-    <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"><figcaption class="pair-cap">Op Electric Blue</figcaption></figure>
-    <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"><figcaption class="pair-cap">Groen op wit</figcaption></figure>
-    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"><figcaption class="pair-cap">Op Varsity Green</figcaption></figure>
-    <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"><figcaption class="pair-cap">Paars op Varsity Green</figcaption></figure>
-    <div class="stack"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>Logo transparant (PNG) <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">Logo op blauw (PNG) <span class="arr">↓</span></a></div>
-    <div class="stack">
-      <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Logo groen (SVG) <span class="arr">↓</span></a>
-      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Logo paars (SVG) <span class="arr">↓</span></a>
-      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen (SVG) <span class="arr">↓</span></a>
-      <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars (SVG) <span class="arr">↓</span></a>
-      <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen (SVG) <span class="arr">↓</span></a>
-      <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars (SVG) <span class="arr">↓</span></a>
+    <div class="pair-col">
+      <div class="pair-head pair-head--vb"><span class="pair-kicker">Het project</span><h3>De Vooruitblik</h3><p>Boek, videopodcast, Radio 1 en evenementen.</p></div>
+      <figure class="pair-tile pair-tile--blauw reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Electric Blue" width="1506" height="322"><figcaption class="pair-cap">Op Electric Blue</figcaption></figure>
+      <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/logo-vooruitblik-getrimd.png" alt="Het logo De Vooruitblik in Electric Purple op Varsity Green" width="1506" height="322"><figcaption class="pair-cap">Op Varsity Green</figcaption></figure>
+      <div class="dl-row"><a class="btn btn--green" href="assets/vormgeving/logo-transparant.png" download>PNG transparant <span class="arr">↓</span></a><a class="btn btn--line" href="assets/vormgeving/logo-op-blauw.png" download style="color:var(--green)">PNG op blauw <span class="arr">↓</span></a></div>
+    </div>
+    <div class="pair-col">
+      <div class="pair-head pair-head--uv"><span class="pair-kicker">De afzender</span><h3>Universiteit van Vlaanderen</h3><p>De organisatie achter het project.</p></div>
+      <figure class="pair-tile pair-tile--wit reveal"><img src="assets/vormgeving/uvvl-logo-groen.svg" alt="Logo Universiteit van Vlaanderen in Varsity Green" width="674" height="140"><figcaption class="pair-cap">Groen op wit</figcaption></figure>
+      <figure class="pair-tile pair-tile--groen reveal"><img src="assets/vormgeving/uvvl-logo-paars.svg" alt="Logo Universiteit van Vlaanderen in Electric Purple op Varsity Green" width="674" height="140"><figcaption class="pair-cap">Paars op Varsity Green</figcaption></figure>
+      <div class="dl-row">
+        <a class="btn btn--green" href="assets/vormgeving/uvvl-logo-groen.svg" download>Groen (SVG) <span class="arr">↓</span></a>
+        <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-paars.svg" download style="color:var(--green)">Paars (SVG) <span class="arr">↓</span></a>
+        <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-groen.svg" download style="color:var(--green)">Vierkant groen <span class="arr">↓</span></a>
+        <a class="btn btn--line" href="assets/vormgeving/uvvl-logo-vierkant-paars.svg" download style="color:var(--green)">Vierkant paars <span class="arr">↓</span></a>
+        <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-groen.svg" download style="color:var(--green)">Woordmerk groen <span class="arr">↓</span></a>
+        <a class="btn btn--line" href="assets/vormgeving/uvvl-wordmark-paars.svg" download style="color:var(--green)">Woordmerk paars <span class="arr">↓</span></a>
+      </div>
     </div>
   </div>
   <p class="note">Logo in Electric Purple op Varsity Green, Ballpoint of Electric Blue.</p>

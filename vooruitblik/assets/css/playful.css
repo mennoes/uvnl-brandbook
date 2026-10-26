@@ -328,8 +328,19 @@
 .pair-tile--blauw { background:var(--blue); } .pair-tile--wit { background:var(--white); } .pair-tile--groen { background:var(--green); }
 .pair-cap { position:absolute; left:16px; bottom:14px; font-size:13px; font-weight:700; padding:5px 11px; border-radius:var(--r-pill); background:rgba(255,255,255,.85); color:var(--green); }
 .pair-tile--wit .pair-cap { background:var(--paper-mid); }
-.pair .stack { margin-top:6px; align-self:start; }
-@media (max-width:760px){ .pair { grid-template-columns:minmax(0,1fr); } .pair::before { display:none; } .pair-head--uv { margin-top:18px; } }
+.pair-col { display:grid; gap:18px; align-content:start; min-width:0; }
+.dl-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:2px; }
+.dl-row .btn { padding:11px 16px; font-size:14.5px; }
+@media (max-width:760px){
+  .pair { grid-template-columns:minmax(0,1fr); row-gap:36px; } .pair::before { display:none; }
+  .pair-col { gap:12px; }
+  .pair-head h3 { font-size:30px; margin:10px 0 4px; }
+  .pair-tile { min-height:112px; padding:22px 18px 44px; border-radius:26px; }
+  .pair-tile img { height:34px; }
+  .pair-cap { left:12px; bottom:10px; font-size:12px; padding:4px 10px; }
+  .dl-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .dl-row .btn { justify-content:space-between; padding:11px 13px; font-size:13.5px; }
+}
 
 /* kleuren en lettertypes: klein en naast elkaar */
 .mini-two { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:clamp(24px,4vw,56px); align-items:start; }
