@@ -541,15 +541,24 @@ def logo_card(img, alt, bg, label, dl, fmt, w, h, cls=""):
 vg = subhero("hero-green", "Vormgeving", "Vormgeving",
              "Logo’s, kleuren en lettertypes van De Vooruitblik.", "vormgeving/uvvl-logo-vierkant-paars.svg") + f"""
 <section class="section section--tight"><div class="wrap">
-  {sec_head("De logo’s", "", eyebrow="Logo")}
-  <div class="lgroup">
-    <div class="lg-head lg-head--vb"><h3>De Vooruitblik</h3><p>Boek, videopodcast, Radio 1 en evenementen.</p></div>
-    <div class="lgrid">{logo_card("logo-vooruitblik-getrimd.png", "Het logo De Vooruitblik in Electric Purple", "blauw", "Op Electric Blue", "logo-op-blauw.png", "PNG", 1506, 322)}{logo_card("logo-vooruitblik-getrimd.png", "Het logo De Vooruitblik in Electric Purple", "groen", "Transparant", "logo-transparant.png", "PNG", 1506, 322)}</div>
+  {sec_head("Logo’s", "Stel je logo samen en download het.", eyebrow="Logo")}
+  <div class="lcfg" id="lcfg" data-ver="1">
+    <div class="lcfg-stage"><div class="lcfg-prev" id="lcfg-prev"><span class="lcfg-logo" id="lcfg-logo" role="img" aria-label="Voorbeeld van het gekozen logo"></span></div><p class="lcfg-warn" id="lcfg-warn" hidden>Logo en achtergrond hebben dezelfde kleur. Kies een andere combinatie.</p></div>
+    <div class="lcfg-ctl">
+      <fieldset class="lcfg-f"><legend>Logo</legend><div class="lcfg-chips" data-key="logo">
+        <label><input type="radio" name="logo" value="vb" checked><span>De Vooruitblik</span></label>
+        <label><input type="radio" name="logo" value="uv"><span>Universiteit van Vlaanderen</span></label>
+        <label><input type="radio" name="logo" value="sq"><span>Vierkant</span></label>
+        <label><input type="radio" name="logo" value="wm"><span>Woordmerk</span></label></div></fieldset>
+      <fieldset class="lcfg-f"><legend>Kleur van het logo</legend><div class="lcfg-sw" data-key="fg"></div></fieldset>
+      <fieldset class="lcfg-f"><legend>Achtergrond</legend><div class="lcfg-sw" data-key="bg"></div></fieldset>
+      <fieldset class="lcfg-f"><legend>Formaat</legend><div class="lcfg-chips" data-key="fmt">
+        <label><input type="radio" name="fmt" value="png" checked><span>PNG</span></label>
+        <label><input type="radio" name="fmt" value="svg"><span>SVG</span></label></div><p class="lcfg-hint" id="lcfg-hint" hidden>Van De Vooruitblik bestaat alleen een PNG.</p></fieldset>
+      <button class="btn btn--green btn--lg lcfg-dl" type="button" id="lcfg-dl">Download logo <span class="arr">↓</span></button>
+    </div>
   </div>
-  <div class="lgroup">
-    <div class="lg-head lg-head--uv"><h3>Universiteit van Vlaanderen</h3><p>De afzender van het project.</p></div>
-    <div class="lgrid">{logo_card("uvvl-logo-groen.svg", "Logo Universiteit van Vlaanderen in Varsity Green", "wit", "Logo, groen", "uvvl-logo-groen.svg", "SVG", 674, 140)}{logo_card("uvvl-logo-paars.svg", "Logo Universiteit van Vlaanderen in Electric Purple", "groen", "Logo, paars", "uvvl-logo-paars.svg", "SVG", 674, 140)}{logo_card("uvvl-logo-vierkant-groen.svg", "Vierkant logo Universiteit van Vlaanderen, groen", "wit", "Vierkant, groen", "uvvl-logo-vierkant-groen.svg", "SVG", 156, 195, "sq")}{logo_card("uvvl-logo-vierkant-paars.svg", "Vierkant logo Universiteit van Vlaanderen, paars", "groen", "Vierkant, paars", "uvvl-logo-vierkant-paars.svg", "SVG", 156, 195, "sq")}{logo_card("uvvl-wordmark-groen.svg", "Woordmerk Universiteit van Vlaanderen, groen", "wit", "Woordmerk, groen", "uvvl-wordmark-groen.svg", "SVG", 674, 120)}{logo_card("uvvl-wordmark-paars.svg", "Woordmerk Universiteit van Vlaanderen, paars", "groen", "Woordmerk, paars", "uvvl-wordmark-paars.svg", "SVG", 674, 120)}</div>
-  </div>
+  <script defer src="assets/js/logo-config.js?v={ver('assets/js/logo-config.js')}"></script>
   <p class="note">Logo in Electric Purple op Varsity Green, Ballpoint of Electric Blue.</p>
 </div></section>
 

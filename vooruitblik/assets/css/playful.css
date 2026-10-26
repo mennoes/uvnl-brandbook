@@ -402,3 +402,45 @@
 .lc-dl:hover { background:var(--green-600,#003d2c); }
 @media (max-width:860px){ .lgrid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:420px){ .lgrid { gap:10px; } .lc-prev { height:104px; padding:12px; } .logo-card figcaption { padding:9px 8px 9px 12px; font-size:13px; } .lc-dl { padding:7px 11px; } }
+
+/* ── logo-configurator ───────────────────────────────────── */
+.lcfg { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:clamp(18px,3vw,40px); align-items:start; margin-top:8px; }
+.lcfg-stage { position:sticky; top:96px; }
+.lcfg-prev { --bg:#585FF1; position:relative; display:grid; place-items:center; min-height:clamp(220px,26vw,340px); padding:clamp(22px,5vw,64px); border-radius:var(--r-l); background:var(--bg); border:1.5px solid rgba(0,75,54,.12); }
+.lcfg-prev.is-clear { background:repeating-conic-gradient(#e7e1dc 0 25%,#f7f4f1 0 50%) 0 0/20px 20px; }
+.lcfg-logo { display:block; width:min(100%,520px); -webkit-mask:no-repeat center/contain; mask:no-repeat center/contain; transition:background-color .2s; }
+.lcfg-logo--sq { width:min(46%,200px); }
+.lcfg-logo--wm { width:min(100%,460px); }
+.lcfg-warn { margin:10px 0 0; font-weight:700; color:#B3261E; }
+.lcfg-f { border:0; margin:0 0 16px; padding:0; min-width:0; }
+.lcfg-f legend { padding:0; margin-bottom:8px; font-weight:700; font-size:14px; color:var(--green); }
+.lcfg-chips,.lcfg-sw { display:flex; flex-wrap:wrap; gap:8px; }
+.lcfg-chips label,.lcfg-sw label { position:relative; cursor:pointer; }
+.lcfg input[type=radio] { position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+.lcfg-chips span { display:inline-block; padding:9px 15px; border-radius:var(--r-pill); border:2px solid var(--green); color:var(--green); font-weight:700; font-size:14.5px; }
+.lcfg-chips input:checked + span { background:var(--green); color:var(--purple); }
+.lcfg-chips input:disabled + span { opacity:.35; }
+.lcfg-chips input:focus-visible + span,.lcfg-sw input:focus-visible + i { outline:3px solid var(--blue); outline-offset:2px; }
+.lcfg-sw label { display:flex; flex-direction:column; align-items:center; gap:5px; width:62px; }
+.lcfg-sw i { display:block; width:42px; height:42px; border-radius:50%; border:2px solid rgba(0,75,54,.25); }
+.lcfg-s--t i { background:repeating-conic-gradient(#d9d3ce 0 25%,#fff 0 50%) 0 0/10px 10px; }
+.lcfg-sw input:checked + i { box-shadow:0 0 0 3px var(--paper),0 0 0 6px var(--green); }
+.lcfg-sw span { font-size:11.5px; line-height:1.1; text-align:center; color:var(--green); }
+.lcfg-hint { margin:8px 0 0; font-size:13px; }
+.lcfg-dl { width:100%; justify-content:center; margin-top:4px; }
+.lcfg-dl:disabled { opacity:.45; cursor:not-allowed; }
+@media (max-width:860px){ .lcfg-stage { position:static; } .lcfg { grid-template-columns:minmax(0,1fr); } .lcfg-prev { min-height:180px; } .lcfg-logo { width:min(100%,360px); }
+  .lcfg-sw { gap:6px; } .lcfg-sw label { width:58px; } .lcfg-sw i { width:36px; height:36px; } }
+
+/* ── sprekers compact op mobiel: twee naast elkaar ───────── */
+@media (max-width:520px){
+  .people { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .person { flex-direction:column; align-items:flex-start; gap:8px; padding:12px 12px 14px; border-radius:22px; }
+  .person .avatar { width:46px; height:46px; font-size:17px; }
+  .person .role { display:none; }
+  .person .name { font-size:19px; }
+  .person .meta { font-size:12.5px; line-height:1.25; }
+  .people:has(> .person:only-child) { grid-template-columns:minmax(0,1fr); }
+  .people:has(> .person:only-child) .person { flex-direction:row; align-items:center; gap:12px; padding:10px 14px; }
+  .people:has(> .person:only-child) .role { display:block; font-size:11px; }
+}
