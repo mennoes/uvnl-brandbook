@@ -1,0 +1,4 @@
+<!doctype html><body><pre id="o">running</pre><script>
+(async()=>{const res=[];for(const wd of [320,390,430,768,801,1024]){const f=document.createElement('iframe');f.style.cssText=`position:fixed;left:0;top:0;width:${wd}px;height:850px;border:0`;f.src='/fotos-en-visuals.html?onderwerp=2';document.body.appendChild(f);await new Promise(r=>f.onload=r);await new Promise(r=>setTimeout(r,700));const d=f.contentDocument;const dl=d.querySelector('dialog');const R=dl.getBoundingClientRect();let worst=0,who='';dl.querySelectorAll('*').forEach(e=>{const r=e.getBoundingClientRect();if(r.width&&r.right>R.right+1&&r.right-R.right>worst){worst=r.right-R.right;who=e.className||e.tagName}});res.push(wd+': dialog '+Math.round(R.left)+'-'+Math.round(R.right)+' scrollW='+dl.scrollWidth+' clientW='+dl.clientWidth+' overflow='+Math.round(worst)+' '+who);f.remove();}
+document.getElementById('o').textContent='DONE:'+res.join(' | ');})();
+</script>
