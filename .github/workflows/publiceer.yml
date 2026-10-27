@@ -1,0 +1,40 @@
+name: Publiceren naar eigen domein
+
+# Zet na elke wijziging aan de Vooruitblik de gebouwde site (zonder interne bestanden) op
+# mennoes/vooruitblik, dat via GitHub Pages bediend wordt op vooruitblik.universiteitvanvlaanderen.be.
+# Vereist het geheim DEPLOY_KEY_VOORUITBLIK (schrijfsleutel op de doelrepo).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "vooruitblik/**"
+      - "404.html"
+      - ".github/workflows/publiceer.yml"
+  workflow_dispatch:
+
+jobs:
+  publiceer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicatiemap samenstellen
+        run: |
+          mkdir uit
+          rsync -a --exclude data --exclude feedback --exclude TOOLKIT.md vooruitblik/ uit/
+          cp 404.html uit/404.html
+          echo "vooruitblik.universiteitvanvlaanderen.be" > uit/CNAME
+          touch uit/.nojekyll
+      - name: Publiceren (één commit, zodat de repo klein blijft)
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_VOORUITBLIK }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          cd uit
+          git init -q -b main
+          git add -A
+          git -c user.name="publiceren" -c user.email="noreply@github.com" commit -q -m "Publicatie van ${GITHUB_SHA::7}"
+          git remote add origin git@github.com:mennoes/vooruitblik.git
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" git push -f origin main

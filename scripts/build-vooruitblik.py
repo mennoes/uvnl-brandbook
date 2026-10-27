@@ -11,7 +11,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "vooruitblik"
 # Publieke basis-URL; pas aan zodra de site op een eigen (sub)domein staat. Eindigt op een slash.
-SITE_URL = "https://mennoes.github.io/uvnl-brandbook/vooruitblik/"
+SITE_URL = "https://vooruitblik.universiteitvanvlaanderen.be/"
 E = html.escape
 
 # Volgorde zoals in de handleiding van 29 september 2026.
