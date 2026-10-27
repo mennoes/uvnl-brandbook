@@ -50,6 +50,16 @@ for path,p in pages.items():
     h=path.read_text()
     if not re.search(r'<link rel="canonical" href="https://[^"]+">',h):errors.append(f'{path.name}: canonical ontbreekt')
     if not re.search(r'og:image" content="https://',h):errors.append(f'{path.name}: og:image niet absoluut')
+# Beveiliging: geen inline of externe scripts, CSP aanwezig, nieuwe vensters met noopener.
+for path,p in pages.items():
+    h=path.read_text()
+    for m in re.finditer(r'<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>',h,re.S):
+        if m.group(1).strip():errors.append(f'{path.name}: inline script')
+    if re.search(r'<script[^>]*src="https?://',h):errors.append(f'{path.name}: extern script')
+    if 'http-equiv="Content-Security-Policy"' not in h:errors.append(f'{path.name}: CSP ontbreekt')
+    for tag in re.findall(r'<a [^>]*target="_blank"[^>]*>',h):
+        if 'noopener' not in tag:errors.append(f'{path.name}: target=_blank zonder noopener')
+    if re.search(r'\son[a-z]+="',h):errors.append(f'{path.name}: inline event-handler')
 if errors:
     print('\n'.join(errors));raise SystemExit(1)
 print(f'PASS: {len(pages)} pages, local links/anchors, 46 speakers, 138 photos, 46 ZIPs, and bewaarde versie op branch en tag.')

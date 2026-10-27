@@ -12,6 +12,11 @@ import pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "vooruitblik"
 # Publieke basis-URL; pas aan zodra de site op een eigen (sub)domein staat. Eindigt op een slash.
 SITE_URL = "https://vooruitblik.universiteitvanvlaanderen.be/"
+# Content Security Policy (GitHub Pages kan geen headers zetten, dus via meta). Geen inline scripts en geen externe
+# scripts toegestaan. Voeg bij het activeren van de feedbackfunctie de Supabase-URL toe aan connect-src.
+CSP = ("default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; "
+       "font-src 'self'; media-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com; "
+       "object-src 'none'; base-uri 'self'; form-action 'self'")
 E = html.escape
 
 # Volgorde zoals in de handleiding van 29 september 2026.
@@ -181,6 +186,8 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 <meta property="og:image" content="{SITE_URL}{og_img}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{SITE_URL}{path}">
+<meta http-equiv="Content-Security-Policy" content="{CSP}">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#004B36">
 <link rel="icon" href="{base}assets/logos/uvvl-logo-square.svg" type="image/svg+xml">
 <link rel="preload" href="{base}assets/fonts/OldschoolGrotesk-Bold.woff" as="font" type="font/woff" crossorigin>
@@ -610,6 +617,6 @@ page("../404.html", "Pagina niet gevonden", "Deze pagina bestaat niet (meer).",
      base=SITE_URL)
 _p = ROOT.parent / "404.html"
 _h = _p.read_text(encoding="utf-8")
-_h = re.sub(r'<link rel="canonical"[^>]*>\n?|<meta property="og:url"[^>]*>\n?', "", _h).replace("<head>", '<head>\n<meta name="robots" content="noindex">', 1)
+_h = re.sub(r'<link rel="canonical"[^>]*>\n?|<meta property="og:url"[^>]*>\n?|<meta http-equiv="Content-Security-Policy"[^>]*>\n?', "", _h).replace("<head>", '<head>\n<meta name="robots" content="noindex">', 1)
 _p.write_text(_h, encoding="utf-8")
 print(f"{len(CH)} hoofdstukken + toolkitpagina's gebouwd in {ROOT}")
