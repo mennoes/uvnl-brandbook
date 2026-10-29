@@ -341,6 +341,15 @@ html.modal-open { overflow:hidden; }
   .toolkit .person-media .quote-tile .download-preview { height:180px; }
 }
 
+/* Rustige deining bovenop de bestaande positie en draaiing van het boek. */
+@keyframes home-book-float {
+  0%,100% { translate:0 0;rotate:-1deg; }
+  50% { translate:0 -7px;rotate:1deg; }
+}
+@media(prefers-reduced-motion:no-preference) {
+  .home-book { animation:home-book-float 6s ease-in-out infinite; }
+}
+
 /* Alleen de materiaalbalken compacter; oorspronkelijke hero behouden. */
 @media(min-width:1101px){
  .home-materials { width:calc(100% - 140px);min-width:240px;justify-self:end;gap:12px; }
