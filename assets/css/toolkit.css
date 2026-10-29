@@ -229,16 +229,14 @@
 .home-material-link:hover .mat-vis--fotos img + img { margin-left:-10px; }
 
 
-/* Boek en materiaalbalken hebben elk hun eigen ruimte. */
+/* brede desktop: het boek groot, deels achter de bars */
 @media(min-width:1101px){
-  .home-layout { grid-template-columns:minmax(0,1.8fr) minmax(280px,1fr);gap:40px; }
-  .home-brand { gap:24px; }
-  .toolkit .home-brand .vb-title { width:60%;font-size:clamp(48px,5vw,76px); }
-  .home-book { position:static;width:32%;height:auto;max-height:390px;transform:rotate(5deg);filter:drop-shadow(0 22px 28px #001c2877); }
-  .home-material-link { padding:18px;gap:12px;grid-template-columns:minmax(0,1fr) auto; }
-  .home-material-link h2 { font-size:26px; }
-  .home-material-link .mat-vis { display:none; }
-  .home-material-link .arr { grid-column:2; }
+  .home-layout { position:relative; grid-template-columns:minmax(0,1.25fr) minmax(380px,1fr); }
+  .home-brand { position:static; }
+  .home-book { position:absolute; z-index:0; width:auto; height:clamp(340px,31vw,440px); max-height:none; left:calc(100% - 70px); top:50%; transform:translateY(-50%) rotate(7deg); filter:drop-shadow(0 22px 28px #001c2877); }
+  .home-intro { position:relative; z-index:1; }
+  .home-intro p,.home-intro .home-lead { max-width:min(440px,100%); }
+  .home-materials { position:relative; z-index:2; }
 }
 @media(min-width:801px) and (max-width:1100px){ .mat-vis { display:none; } .home-material-link { grid-template-columns:minmax(0,1fr) auto; } .home-material-link .arr { grid-column:2; } }
 
@@ -341,4 +339,19 @@ html.modal-open { overflow:hidden; }
   .toolkit #vragen-grid .scientist-question { font-size:11px;padding:4px 5px 8px; }
   .portrait-initials { min-height:0;font-size:48px; }
   .toolkit .person-media .quote-tile .download-preview { height:180px; }
+}
+
+/* Alleen de materiaalbalken compacter; oorspronkelijke hero behouden. */
+@media(min-width:1101px){
+ .home-materials { width:calc(100% - 140px);min-width:240px;justify-self:end;gap:12px; }
+ .home-material-link { padding:16px;gap:10px; }
+ .home-material-link h2 { font-size:22px; }
+ .home-material-link .arr { font-size:22px; }
+ .home-material-link .mat-vis--fotos img { width:34px;height:34px;border-width:2px; }
+ .home-material-link .mat-vis--fotos img + img { margin-left:-14px; }
+ .home-material-link .mat-logo { height:30px;padding:0 5px;border-radius:8px; }
+ .home-material-link .mat-logo--vb img { height:14px; }
+ .home-material-link .mat-logo--uv { width:30px;padding:0; }
+ .home-material-link .mat-logo--uv img { height:20px; }
+ .home-material-link .mat-logo + .mat-logo { margin-left:4px; }
 }
