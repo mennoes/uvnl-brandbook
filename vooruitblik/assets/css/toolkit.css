@@ -314,3 +314,9 @@ html.modal-open { overflow:hidden; }
 .toolkit-notice strong { font-size:17px;line-height:1.35; }
 .toolkit-notice span { font-size:16px;line-height:1.4; }
 @media(max-width:600px) { .toolkit-notice { padding:12px 0; } .toolkit-notice .wrap { gap:4px; } .toolkit-notice strong,.toolkit-notice span { width:100%; } }
+
+.toolkit-notice[hidden],.toolkit-notice-close[hidden] { display:none; }
+.toolkit-notice .wrap { position:relative;padding-right:64px; }
+.toolkit-notice-close { position:absolute;right:16px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:inherit;font:28px/1 sans-serif;cursor:pointer; }
+.toolkit-notice-close:hover { background:#153d2e18; }
+.toolkit-notice-close:focus-visible { outline:2px solid currentColor;outline-offset:2px; }
