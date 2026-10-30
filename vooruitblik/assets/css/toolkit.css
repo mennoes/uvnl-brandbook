@@ -320,3 +320,7 @@ html.modal-open { overflow:hidden; }
 .toolkit-notice-close { position:absolute;right:16px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:inherit;font:28px/1 sans-serif;cursor:pointer; }
 .toolkit-notice-close:hover { background:#153d2e18; }
 .toolkit-notice-close:focus-visible { outline:2px solid currentColor;outline-offset:2px; }
+
+/* Override the generic green link hover on dark chapter cards. */
+.card:is(.c-blue,.c-green,.c-red):is(:hover,:focus-visible) { color:#fff; }
+.card:is(.c-blue,.c-green,.c-red):is(:hover,:focus-visible) .who span { opacity:1; }
