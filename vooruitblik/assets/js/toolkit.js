@@ -1,3 +1,17 @@
+/* Onthoud sluiten alleen binnen dit tabblad/bezoek. */
+(function () {
+  var notice = document.querySelector('.toolkit-notice');
+  if (!notice) return;
+  var close = notice.querySelector('.toolkit-notice-close');
+  var key = 'vooruitblik-notice-dismissed';
+  try { if (sessionStorage.getItem(key) === '1') notice.hidden = true; } catch (_) {}
+  close.hidden = false;
+  close.addEventListener('click', function () {
+    notice.hidden = true;
+    try { sessionStorage.setItem(key, '1'); } catch (_) {}
+  });
+})();
+
 /* Beeldbank: een onderwerp opent in een venster (dialog) in plaats van de lijst te laten verspringen.
    Directe links werken ook: fotos-en-visuals.html?onderwerp=5 en fotos-en-visuals.html#naam-van-spreker. */
 (function () {
