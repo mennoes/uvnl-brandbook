@@ -324,3 +324,11 @@ html.modal-open { overflow:hidden; }
 /* Override the generic green link hover on dark chapter cards. */
 .card:is(.c-blue,.c-green,.c-red):is(:hover,:focus-visible) { color:#fff; }
 .card:is(.c-blue,.c-green,.c-red):is(:hover,:focus-visible) .who span { opacity:1; }
+
+/* Keep the audience notice and navigation visible together while scrolling. */
+.toolkit-notice { position:sticky;top:0;z-index:51; }
+.toolkit .site-head { top:var(--toolkit-notice-height,0px); }
+.nav-open .toolkit-notice { position:fixed;inset:0 0 auto; }
+@media(max-width:1240px) {
+  .toolkit .nav { height:calc(100vh - 72px - var(--toolkit-notice-height,0px));height:calc(100dvh - 72px - var(--toolkit-notice-height,0px)); }
+}

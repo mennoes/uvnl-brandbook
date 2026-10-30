@@ -6,8 +6,15 @@
   var key = 'vooruitblik-notice-dismissed';
   try { if (sessionStorage.getItem(key) === '1') notice.hidden = true; } catch (_) {}
   close.hidden = false;
+  function syncNoticeHeight() {
+    document.documentElement.style.setProperty('--toolkit-notice-height', notice.hidden ? '0px' : notice.getBoundingClientRect().height + 'px');
+  }
+  syncNoticeHeight();
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(syncNoticeHeight).observe(notice);
+  window.addEventListener('resize', syncNoticeHeight);
   close.addEventListener('click', function () {
     notice.hidden = true;
+    syncNoticeHeight();
     try { sessionStorage.setItem(key, '1'); } catch (_) {}
   });
 })();
