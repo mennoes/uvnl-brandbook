@@ -231,7 +231,7 @@
 
 /* Desktop: reserve space between the introduction and compact links for the book. */
 @media(min-width:1101px){
-  .home-layout { position:relative;grid-template-columns:minmax(0,1fr) 340px;gap:330px;min-height:440px; }
+  .home-layout { position:relative;grid-template-columns:minmax(0,1fr) 340px;gap:330px; }
   .home-intro { position:relative;min-width:0; }
   .home-brand { position:static; }
   .toolkit .home-brand .vb-title { font-size:clamp(48px,5.4vw,76px);width:100%; }
