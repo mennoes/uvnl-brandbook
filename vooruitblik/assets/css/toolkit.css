@@ -235,7 +235,7 @@
   .home-intro { position:relative;min-width:0; }
   .home-brand { position:static; }
   .toolkit .home-brand .vb-title { font-size:clamp(48px,5.4vw,76px);width:100%; }
-  .home-book { position:absolute;width:250px;height:428px;max-height:none;left:calc(100% + 34px);top:50%;transform:translateY(-50%) rotate(5deg);filter:drop-shadow(0 16px 20px #001c2855); }
+  .home-book { position:absolute;width:250px;height:428px;max-height:none;left:calc(100% + 34px);top:calc(50% + 20px);transform:translateY(-50%) rotate(5deg);filter:drop-shadow(0 16px 20px #001c2855); }
   .home-materials { position:relative;width:340px;justify-self:end; }
   .home-material-link { gap:10px;padding:14px 16px; }
   .home-material-link h2 { font-size:24px; }
