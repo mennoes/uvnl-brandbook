@@ -196,8 +196,8 @@
 }
 
 .home-materials { display:grid;gap:14px; }
-.home-material-link { display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 18px;padding:24px;background:var(--paper);color:var(--green);border-radius:18px;text-decoration:none; }
-.home-material-link h2 { font-size:clamp(26px,2.5vw,34px); }
+.home-material-link { display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 14px;padding:16px 20px;background:var(--paper);color:var(--green);border-radius:18px;text-decoration:none; }
+.home-material-link h2 { font-size:clamp(24px,2.1vw,29px);line-height:1.05; }
 .home-material-link p { margin:0;font-size:15px; }
 .home-material-link .arr { grid-column:3;font-size:28px; }
 .home-material-link:hover { background:#e5d4f6; }
