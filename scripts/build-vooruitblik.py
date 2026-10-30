@@ -202,6 +202,7 @@ def page(path, title, desc, body, base="", current="", hero_class="", og_img="as
 </head>
 <body class="toolkit">
 <a class="skip" href="#main">Naar de inhoud</a>
+<aside class="toolkit-notice" aria-label="Enkel voor betrokkenen"><div class="wrap"><strong>Enkel voor betrokken medewerkers en partners</strong><span>Deel deze websitelink niet met het grote publiek.</span></div></aside>
 <header class="site-head">
   <div class="wrap">
     <a href="{base}index.html" aria-label="Universiteit van Vlaanderen — De Vooruitblik, naar de homepage"><span class="brand"></span></a>

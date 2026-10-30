@@ -183,7 +183,7 @@
   "kleur": "yellow",
   "boek": {
    "naam": "Annelien Smets",
-   "vak": "filosoof",
+   "vak": "media-econoom",
    "uni": "VUB",
    "foto": "annelien-smets.webp"
   },
@@ -402,7 +402,7 @@
   "kleur": "purple",
   "boek": {
    "naam": "Stijn Joye",
-   "vak": "cultuurwetenschapper",
+   "vak": "communicatiewetenschapper",
    "uni": "UGent",
    "foto": "stijn-joye.webp"
   },

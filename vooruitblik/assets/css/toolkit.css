@@ -307,3 +307,10 @@ html.modal-open { overflow:hidden; }
   .topic-dialog .person-media .download-tile:not(.portrait-tile) { grid-column:1 / -1; }
 }
 @media(prefers-reduced-motion:reduce){ .topic-dialog[open] { animation:none; } .topic-material { transition:none; } .topic-material:hover { transform:none; } }
+
+/* Prominent audience notice on every toolkit page. */
+.toolkit-notice { background:#ffe66a;color:#153d2e;border-bottom:2px solid #153d2e;padding:14px 0;text-align:center; }
+.toolkit-notice .wrap { display:flex;justify-content:center;align-items:center;gap:8px 20px;flex-wrap:wrap; }
+.toolkit-notice strong { font-size:17px;line-height:1.35; }
+.toolkit-notice span { font-size:16px;line-height:1.4; }
+@media(max-width:600px) { .toolkit-notice { padding:12px 0; } .toolkit-notice .wrap { gap:4px; } .toolkit-notice strong,.toolkit-notice span { width:100%; } }
