@@ -30,15 +30,28 @@ for path,p in pages.items():
             if u.fragment not in target.ids:errors.append(f'{path.name}: missing anchor {link}')
     if 'standaardboekhandel.be' in path.read_text() or 'pelckmansuitgevers.be/de-vooruitblik' in path.read_text():errors.append(f'{path.name}: retailer order link')
     if 'Voorlopige video' in path.read_text():errors.append(f'{path.name}: unrelated video placeholder')
-manifest=json.loads((SITE/'data/toolkit.json').read_text())
-assert len(manifest['people'])==46
-for person in manifest['people']:
-    assert len(person['photos'])==3,person['name']
-    for a in person['photos']:
-        assert (SITE/a['preview']).is_file()
-        assert (SITE/a['download']).is_file()
-    with zipfile.ZipFile(SITE/person['zip']) as z:
-        assert len(z.namelist())==3 and z.testzip() is None,person['name']
+# Validate the actual published downloads, not the retired 46-person import manifest.
+zip_paths = { (path.parent / unquote(urlsplit(link).path)).resolve()
+              for path, page in pages.items() for link in page.links
+              if not urlsplit(link).scheme and urlsplit(link).path.endswith('.zip') }
+for path in zip_paths:
+    if path.is_file():
+        with zipfile.ZipFile(path) as z:
+            if not z.namelist() or z.testzip() is not None:
+                errors.append(f'{path.name}: invalid ZIP')
+# Regression checks for the editorial content recovered on 2026-11-03.
+questions=(SITE/'vragen.html').read_text()
+if len(re.findall(r'class="card [^"]*scientist-card', questions)) != 47:
+    errors.append('vragen.html: expected 47 scientist cards')
+for path in pages:
+    if path.name != '404.html' and 'videopodcast.html#publicatieschema' not in path.read_text():
+        errors.append(f'{path.name}: publication schedule navigation missing')
+home=(SITE/'index.html').read_text()
+for filename in ('handleiding-vooruitblik-2027.pdf', 'persbericht-vooruitblik-2027.pdf'):
+    if filename not in home: errors.append(f'index.html: missing {filename}')
+for path in pages:
+    if re.search(r'^(<<<<<<<|=======|>>>>>>>)', path.read_text(), re.M):
+        errors.append(f'{path.name}: unresolved merge conflict')
 # De oorspronkelijke site staat niet meer in de publieke map, maar blijft bewaard op een branch en een tag.
 base='backup/vooruitblik-2026-10-23'
 def has_ref(ref):
@@ -62,4 +75,4 @@ for path,p in pages.items():
     if re.search(r'\son[a-z]+="',h):errors.append(f'{path.name}: inline event-handler')
 if errors:
     print('\n'.join(errors));raise SystemExit(1)
-print(f'PASS: {len(pages)} pages, local links/anchors, 46 speakers, 138 photos, 46 ZIPs, and bewaarde versie op branch en tag.')
+print(f'PASS: {len(pages)} pages, 47 scientist cards, {len(zip_paths)} ZIPs, links, partner PDFs, schedule, security and backup.')
