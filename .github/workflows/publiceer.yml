@@ -1,9 +1,7 @@
 name: Publiceren naar eigen domein
 
-# Zet na elke wijziging aan de Vooruitblik de gebouwde site (zonder interne bestanden) op
-# mennoes/vooruitblik, dat via GitHub Pages bediend wordt op vooruitblik.universiteitvanvlaanderen.be.
-# Vereist het geheim DEPLOY_KEY_VOORUITBLIK (schrijfsleutel op de doelrepo).
-
+# uvnl-brandbook/vooruitblik is de bron; de doelrepo is uitsluitend de publicatie.
+# Bewaar historie en stop als iemand de gepubliceerde versie rechtstreeks heeft aangepast.
 on:
   push:
     branches: [main]
@@ -12,36 +10,32 @@ on:
       - "404.html"
       - ".github/workflows/publiceer.yml"
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: publiceren
   cancel-in-progress: false
-
 jobs:
   publiceer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - name: Publicatiemap samenstellen
-        run: |
-          mkdir uit
-          rsync -a --exclude data --exclude feedback --exclude TOOLKIT.md vooruitblik/ uit/
-          cp 404.html uit/404.html
-          echo "vooruitblik.universiteitvanvlaanderen.be" > uit/CNAME
-          touch uit/.nojekyll
-      - name: Publiceren (één commit, zodat de repo klein blijft)
+        with:
+          fetch-depth: 0
+      - name: Publiceren met controle op rechtstreekse wijzigingen
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_VOORUITBLIK }}
         run: |
+          set -euo pipefail
           mkdir -p ~/.ssh
           printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          cd uit
-          git init -q -b main
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new"
+          git clone --depth 1 git@github.com:mennoes/vooruitblik.git "$RUNNER_TEMP/publicatie"
+          python3 scripts/publish-toolkit.py "$RUNNER_TEMP/publicatie"
+          cd "$RUNNER_TEMP/publicatie"
           git add -A
-          git -c user.name="publiceren" -c user.email="noreply@github.com" commit -q -m "Publicatie van ${GITHUB_SHA::7}"
-          git remote add origin git@github.com:mennoes/vooruitblik.git
-          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" git push -f origin main
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name="publiceren" -c user.email="noreply@github.com" commit -m "Publicatie van ${GITHUB_SHA::7}"
+          # Geen force-push: een gelijktijdige wijziging moet de publicatie stoppen.
+          git push origin HEAD:main
