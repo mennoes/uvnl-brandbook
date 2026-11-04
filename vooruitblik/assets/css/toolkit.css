@@ -380,3 +380,10 @@ html.modal-open { overflow:hidden; }
   .portrait-initials { min-height:0;font-size:48px; }
   .toolkit .person-media .quote-tile .download-preview { height:180px; }
 }
+
+/* Duo pictures retain the complete approved crop. */
+.duo-downloads { grid-column:1 / -1; }
+.duo-tile { max-width:480px; }
+.duo-tile .download-preview { height:320px; }
+.duo-tile .download-preview img { width:100%;height:100%;object-fit:contain; }
+@media(max-width:640px){ .duo-tile .download-preview { height:260px; } }
