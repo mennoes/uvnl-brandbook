@@ -171,3 +171,46 @@
 }
 @media(max-width:360px) { .brandbook .bbnav .home .navlogo { width:130px; } .brandbook .bbnav-inner { padding-inline:16px; gap:8px; } .nav-toggle { padding:11px; } .nav-toggle span { display:none; } }
 @media(prefers-reduced-motion:reduce) { .action { transition:none; } .action:hover { transform:none; } }
+
+/* Four concrete entrances; each image belongs to its destination. */
+.home-intro { padding-top:52px; }
+.home-choices { max-width:1120px; padding:40px 4px 64px; }
+.home-choices > h2 { font:700 clamp(30px,3.4vw,44px)/1 var(--font-display); text-transform:uppercase; letter-spacing:0; margin:0 0 32px; }
+.choice-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 26px; }
+.choice-bar { display:grid; grid-template-columns:120px minmax(0,1fr) 24px; gap:22px; align-items:center; min-height:172px; padding:16px; border-radius:26px; color:var(--uvnl-green); text-decoration:none; transform:rotate(-1.2deg); transition:transform .2s; }
+.choice-bar:nth-child(even) { transform:rotate(1.2deg); }
+.choice-bar:hover { transform:rotate(0); }
+.choice-merk { background:var(--uvnl-purple); }
+.choice-style { background:var(--uvnl-green); color:var(--uvnl-paper); }
+.choice-style h3 { color:var(--uvnl-purple); }
+.choice-photo { background:var(--uvnl-yellow); }
+.choice-examples { background:var(--uvnl-blue); color:white; }
+.choice-image { display:block; width:100%; aspect-ratio:1; border-radius:18px; overflow:hidden; }
+.choice-image img { display:block; width:100%; height:100%; object-fit:cover; }
+.choice-mark { background:var(--uvnl-purple); -webkit-mask:url('../logos/uvnl-beeldmerk.svg') center/65% no-repeat; mask:url('../logos/uvnl-beeldmerk.svg') center/65% no-repeat; border-radius:0; }
+.choice-copy h3 { font:700 clamp(30px,3vw,38px)/1 var(--font-display); text-transform:uppercase; letter-spacing:0; margin:0 0 12px; }
+.choice-copy p { font-size:15px; line-height:1.4; margin:0; max-width:25ch; }
+.choice-arrow { font-size:26px; }
+.style-download-kit { display:flex; align-items:center; justify-content:space-between; gap:28px; margin:40px 0; padding:28px 32px; border-radius:28px; background:var(--uvnl-purple); }
+.style-download-kit h2 { font:700 38px/1 var(--font-display); text-transform:uppercase; margin:0 0 12px; }
+.style-download-kit p { max-width:48ch; margin:0; font-size:16px; line-height:1.5; }
+.style-download-kit .action { flex:none; }
+@media(max-width:760px) {
+  .home-intro { padding-top:32px; }
+  .home-choices { padding-top:32px; padding-bottom:32px; }
+  .home-choices > h2 { font-size:30px; margin-bottom:24px; }
+  .choice-grid { grid-template-columns:1fr; gap:18px; }
+  .choice-bar { grid-template-columns:88px minmax(0,1fr) 18px; gap:16px; min-height:138px; padding:14px; border-radius:22px; transform:rotate(-.8deg); }
+  .choice-bar:nth-child(even) { transform:rotate(.8deg); }
+  .choice-image { border-radius:14px; }
+  .choice-copy h3 { font-size:29px; margin-bottom:8px; }
+  .choice-copy p { font-size:14px; line-height:1.35; }
+  .choice-arrow { font-size:22px; }
+  .style-download-kit { flex-direction:column; align-items:stretch; gap:20px; margin:28px 0; padding:24px; }
+  .style-download-kit h2 { font-size:32px; }
+}
+@media(max-width:360px) {
+ .choice-bar { grid-template-columns:70px minmax(0,1fr) 16px; gap:12px; padding:12px; }
+ .choice-copy h3 { font-size:26px; }
+}
+@media(prefers-reduced-motion:reduce) { .choice-bar { transition:none; } }
