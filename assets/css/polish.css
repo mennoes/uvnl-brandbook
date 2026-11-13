@@ -154,3 +154,10 @@
  .book-footer-bottom{gap:20px;align-items:flex-start;flex-direction:column}
  .book-footer-bottom>span{margin-left:0}
 }
+
+/* Region is a small preference inside the open menu and in the footer. */
+.brandbook .bbnav .region-menu{align-self:flex-end;margin:18px 20px 4px 0}
+.brandbook .book-footer .region-footer{flex:none;border-color:#ffffff55!important;margin:0}
+.brandbook .book-footer .region-footer button{border:0;min-width:30px;min-height:30px;padding:7px 8px!important;font:700 10px/1 var(--font-sans);background:transparent!important;color:var(--uvnl-paper)!important}
+.brandbook .book-footer .region-footer button[aria-pressed="true"]{background:var(--uvnl-purple)!important;color:var(--uvnl-green)!important}
+@media(min-width:961px){.brandbook .bbnav .links .region-menu{display:none!important}}

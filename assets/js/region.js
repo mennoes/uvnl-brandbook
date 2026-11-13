@@ -115,12 +115,19 @@
   }
 
   function buildToggle(active) {
-    if (document.querySelector('.region-toggle')) return;
-    var nav = document.querySelector('.bbnav-inner');
-    if (!nav) return;
-    var toggle = makeToggle(active);
-    var menu = nav.querySelector('.nav-toggle');
-    nav.insertBefore(toggle, menu || null);
+    var menu = document.querySelector('#brandbook-menu');
+    if (menu && !menu.querySelector('.region-menu')) {
+      var menuToggle = makeToggle(active);
+      menuToggle.classList.add('region-menu');
+      menu.appendChild(menuToggle);
+    }
+    var footer = document.querySelector('.book-footer-bottom');
+    if (footer && !footer.querySelector('.region-footer')) {
+      var footerToggle = makeToggle(active);
+      footerToggle.classList.add('region-footer');
+      var copyright = footer.querySelector(':scope > span');
+      footer.insertBefore(footerToggle, copyright || null);
+    }
   }
 
   function run() {
