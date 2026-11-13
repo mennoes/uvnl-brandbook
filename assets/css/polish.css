@@ -1,0 +1,156 @@
+/* Feedback round: taller cards, calm page layouts and Vooruitblik hover depth. */
+.brandbook .home-intro{padding-top:60px}
+.brandbook .home-intro h1{line-height:1.02}
+.brandbook .nav-toggle{background:var(--uvnl-green);color:var(--uvnl-paper);padding:12px 18px}
+.brandbook .bbnav .region-toggle button{min-width:28px;min-height:32px;padding:8px 6px!important;font-size:10px}
+.brandbook .choice-bar{position:relative;--card-angle:-1.2deg}
+.brandbook .choice-bar:nth-child(even){--card-angle:1.2deg}
+@media(min-width:980px){
+ .brandbook .home-choices{max-width:1280px}
+ .brandbook .choice-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+ .brandbook .choice-bar{display:flex;flex-direction:column;align-items:stretch;gap:20px;min-height:360px;padding:14px 14px 24px}
+ .brandbook .choice-image{aspect-ratio:4/3;flex:none}
+ .brandbook .choice-copy{padding:0 8px;flex:1}
+ .brandbook .choice-copy h3{font-size:34px}
+ .brandbook .choice-copy p{font-size:15px;max-width:24ch}
+ .brandbook .choice-arrow{align-self:flex-end;padding-right:8px;line-height:1}
+}
+@media(max-width:960px){
+ .brandbook.nav-ready .bbnav.nav-open .links{left:auto;right:16px;width:min(440px,calc(100vw - 32px));padding:24px;min-height:300px;gap:6px;border-radius:28px}
+ .brandbook.nav-ready .bbnav.nav-open .links a{text-align:right;font-size:26px;padding:18px 20px}
+}
+/* The film opens About; photographs no longer compete with overlaid labels. */
+.brandbook .about-opening{margin-top:32px;aspect-ratio:16/9;border-radius:28px;background:var(--uvnl-green)}
+.brandbook .about-opening img{object-fit:contain;background:var(--uvnl-green)}
+.brandbook .about-intro{display:block!important;max-width:960px;padding-top:36px!important}
+.brandbook .about-intro .lead{max-width:64ch!important}
+.brandbook .about2 #missie .a-big{font:400 clamp(19px,2vw,26px)/1.55 var(--font-sans);color:white;max-width:68ch}
+.brandbook .about2 .a-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.brandbook .about2 .a-stat{border-radius:24px;display:flex!important;flex-direction:column!important;align-items:flex-start;justify-content:flex-start!important;gap:16px;padding:24px}
+.brandbook .about2 .a-stat .n{font-size:52px}
+.brandbook .about2 .a-stat .l{font-size:14px;max-width:none}
+.brand-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:32px 0 40px;padding:10px 4px}
+.brand-photo{position:relative;min-width:0;aspect-ratio:4/5;padding:8px;background:var(--uvnl-purple);border-radius:26px;transform:rotate(-2deg);--card-angle:-2deg;overflow:hidden}
+.brand-photo:nth-child(even){background:var(--uvnl-yellow);transform:rotate(2deg);--card-angle:2deg}
+.brand-photo img{width:100%;height:100%;display:block;object-fit:cover;border-radius:19px}
+.voice-principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 40px;margin:28px 0}
+.voice-principles p{margin:0;font-size:17px;line-height:1.55}
+.brandbook #tone .a-sub{max-width:70ch}
+.brandbook #tone .vs-table td{font-size:15px;padding:16px}
+.brandbook #tone .vs-table th{font-size:24px!important}
+/* Compact house-style reference. */
+.brandbook #general-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.brandbook .hs-swatches{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.brandbook .hs-sw{min-height:116px;padding:16px;border-radius:20px;gap:3px}
+.brandbook .hs-sw b{font-size:23px}
+.brandbook .hs-sw span{font-size:13px}
+.brandbook .hs-sw small{font-size:12px}
+.brandbook .hs-rules{margin-top:40px;padding-top:30px;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.brandbook .hs-rules::before{font-size:24px}
+.brandbook .hs-rule{padding:16px;border-radius:20px;gap:10px}
+.brandbook .hs-rule b{font-size:24px}
+.brandbook .hs-tag{font-size:11px;padding:4px 10px}
+.brandbook .hs-note{font-size:14px;font-weight:400}
+.brandbook .compact-fonts{padding:16px 0;margin:20px 0 32px;background:transparent;border-radius:0;border-block:1px solid var(--line-strong)}
+.compact-fonts summary{cursor:pointer;font:700 16px/1.4 var(--font-sans)}
+.brandbook .compact-fonts .font-help-content>p{font-size:14px;max-width:70ch;margin:14px 0;line-height:1.5}
+.brandbook .compact-fonts .font-alternatives{margin:16px 0 4px;gap:10px}
+.brandbook .compact-fonts .font-alternatives a{padding:14px;gap:7px;border:1px solid var(--line);border-radius:14px}
+.brandbook .compact-fonts .font-alternatives strong{font-size:17px}
+.brandbook .compact-fonts .font-alternatives small,.brandbook .compact-fonts .font-alternatives a>span{font-size:12px}
+.page-next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:40px 0 48px}
+.page-next a{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px;border-radius:24px;background:var(--uvnl-purple);color:var(--uvnl-green);font:700 28px/1.1 var(--font-display);text-transform:uppercase;text-decoration:none}
+.page-next a:hover{background:var(--uvnl-green);color:var(--uvnl-paper)}
+/* Only the silent opening loop autoplays. */
+.brandbook .examples-banner{width:100%;overflow:hidden;background:var(--uvnl-green);border-radius:28px;margin:32px 0 0}
+.examples-banner video{display:block;width:100%;aspect-ratio:21/8;object-fit:cover}
+.brandbook .examples-intro{padding-top:36px}
+.brandbook .examples-page #brand>h2{font:700 clamp(28px,3vw,40px)/1 var(--font-display);text-transform:uppercase;margin:0 0 24px}
+.brandbook .example-film{max-width:920px;margin:36px auto 52px}
+.brandbook .example-film video{width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--uvnl-green);border-radius:24px}
+.brandbook .example-still{max-width:620px;margin:32px auto}
+.brandbook .case-media-grid+.example-film,.brandbook .example-film+.case-media-grid{margin-top:44px}
+.brandbook .examples-page>.page-next{margin:32px 28px 48px}
+.brandbook .examples-page>.page-next a{grid-column:1/-1}
+/* The album options are the photography page's opening images. */
+.brandbook .photography-intro{display:block!important;max-width:900px;margin-bottom:28px!important}
+.brandbook .photography-intro .lead{font-size:16px;max-width:65ch!important}
+.brandbook .album-covers{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.brandbook .album-cover{border-radius:26px;background:white;border:1px solid var(--line-strong)}
+.brandbook .album-cover .ac-thumb{aspect-ratio:16/10}
+.brandbook .album-cover .ac-meta{padding:20px 22px 6px;align-items:center}
+.brandbook .album-cover .ac-title{font-size:19px;line-height:1.2}
+.brandbook .album-cover .ac-open{display:block;padding:8px 22px 22px;font-size:15px;font-weight:700;color:var(--uvnl-green)}
+.brandbook #album-view{scroll-margin-top:104px;margin-top:36px}
+/* Main-site footer language: large links, purple U, practical bottom row. */
+.brandbook .book-footer{width:calc(100% - 32px);margin:64px auto 16px!important;padding:52px 48px 30px;border-radius:32px;background:var(--uvnl-green)}
+.book-footer-content{max-width:1280px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.book-footer-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.brandbook .book-footer-links a{font:700 clamp(28px,3.2vw,46px)/1.1 var(--font-sans);color:var(--uvnl-paper);text-decoration:none}
+.brandbook .book-footer-links a:hover{color:var(--uvnl-purple)!important}
+.book-footer-mark{display:block;justify-self:end;width:min(100%,300px);aspect-ratio:156/140;background:var(--uvnl-purple);-webkit-mask:url('../logos/uvnl-beeldmerk.svg') center/contain no-repeat;mask:url('../logos/uvnl-beeldmerk.svg') center/contain no-repeat}
+.book-footer-bottom{grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:24px 36px;border-top:1px solid #ffffff30;padding-top:24px}
+.book-footer-bottom .footer-logo{width:170px;height:auto;aspect-ratio:638/140}
+.book-footer-bottom p{margin:0;font-size:13px;line-height:1.5}
+.book-footer-bottom>a:not(:first-child){font-size:14px;font-weight:700}
+.book-footer-bottom>span{font-size:11px;margin-left:auto;color:var(--uvnl-paper)}
+/* Preserve each resting angle while image and copy move on separate depths. */
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .brandbook .has-depth{transform:perspective(1000px) rotateX(var(--depth-rx,0deg)) rotateY(var(--depth-ry,0deg)) rotateZ(var(--card-angle,0deg));transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease}
+ .brandbook .depth-active{z-index:3;box-shadow:0 20px 40px #004b3620}
+ .brandbook .has-depth .choice-copy{transform:translate3d(var(--depth-small-x,0px),var(--depth-small-y,0px),12px)}
+ .brandbook .has-depth .choice-image img,.brandbook .has-depth.brand-photo img,.brandbook .has-depth .preview img{transform:translate(var(--depth-x,0px),var(--depth-y,0px)) scale(1.1)}
+ .brandbook .has-depth .ac-thumb{background-position:calc(50% + var(--depth-x,0px)) calc(50% + var(--depth-y,0px))}
+ .brandbook .has-depth.choice-style .choice-mark{transform:translate3d(var(--depth-x,0px),var(--depth-y,0px),18px)}
+ .brandbook .has-depth .vis img,.brandbook .has-depth.media-link img{transform:translate(var(--depth-small-x,0px),var(--depth-small-y,0px))}
+}
+@media(max-width:980px){
+ .brandbook .hs-swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .brandbook .home-intro{padding-top:36px}
+ .brandbook .home-intro h1{line-height:1.04}
+ .brandbook .about-opening{margin-top:20px;border-radius:20px}
+ .brandbook .about-intro{padding-top:28px!important}
+ .brandbook .about2 #missie{padding:26px!important}
+ .brandbook .about2 #missie .a-big{font-size:18px;line-height:1.55}
+ .brandbook .about2 .a-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .brandbook .about2 .a-stat{padding:20px;border-radius:20px;gap:12px}
+ .brandbook .about2 .a-stat .n{font-size:42px}
+ .brandbook .about2 .a-stat .l{font-size:12px}
+ .brand-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 30px}
+ .brand-photo{border-radius:20px;padding:6px}
+ .brand-photo img{border-radius:14px}
+ .voice-principles{grid-template-columns:1fr;gap:16px}
+ .voice-principles p{font-size:16px}
+ .brandbook #general-grid{grid-template-columns:1fr}
+ .brandbook .hs-swatches{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .brandbook .hs-sw{min-height:86px;padding:12px;border-radius:16px}
+ .brandbook .hs-sw b{font-size:21px}
+ .brandbook .hs-sw span{font-size:12px}
+ .brandbook .hs-sw small{display:none}
+ .brandbook .hs-rules{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:32px;padding-top:26px}
+ .brandbook .hs-rule{padding:12px;border-radius:16px;gap:8px}
+ .brandbook .hs-rule b{font-size:21px}
+ .brandbook .compact-fonts .font-alternatives{grid-template-columns:1fr}
+ .brandbook .compact-fonts .font-alternatives a{padding:12px;gap:4px}
+ .page-next{grid-template-columns:1fr;gap:10px;margin:28px 0}
+ .page-next a{padding:22px;font-size:26px;border-radius:20px}
+ .brandbook .examples-banner{width:calc(100% - 40px);margin:20px auto 0;border-radius:20px}
+ .examples-banner video{aspect-ratio:16/8}
+ .brandbook .examples-intro{padding-top:28px}
+ .brandbook .example-film{margin:28px auto 36px}
+ .brandbook .example-film video{border-radius:18px}
+ .brandbook .examples-page>.page-next{margin:24px 20px 32px}
+ .brandbook .album-covers{grid-template-columns:1fr;gap:18px}
+ .brandbook .album-cover .ac-thumb{aspect-ratio:16/8}
+ .brandbook .album-cover .ac-title{font-size:18px}
+ .brandbook .album-cover .ac-meta{padding:16px 18px 4px}
+ .brandbook .album-cover .ac-open{padding:8px 18px 18px;font-size:14px}
+ .brandbook .book-footer{width:calc(100% - 24px);margin:40px auto 12px!important;padding:32px 24px 24px;border-radius:26px}
+ .book-footer-content{gap:28px 16px;grid-template-columns:1.3fr 1fr}
+ .brandbook .book-footer-links a{font-size:26px}
+ .book-footer-mark{width:100%}
+ .book-footer-bottom{gap:20px;align-items:flex-start;flex-direction:column}
+ .book-footer-bottom>span{margin-left:0}
+}
