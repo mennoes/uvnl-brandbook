@@ -106,7 +106,7 @@
           ? 'background:var(--uvnl-green-bright,#16a34a);color:#fff'
           : 'background:transparent;color:var(--fg-mute,#666)');
       b.addEventListener('click', function () {
-        localStorage.setItem('uvnl-region', opt[0]);
+        try { localStorage.setItem('uvnl-region', opt[0]); } catch (e) { return; }
         location.reload();
       });
       wrap.appendChild(b);
@@ -116,15 +116,11 @@
 
   function buildToggle(active) {
     if (document.querySelector('.region-toggle')) return;
-    // In de nav
-    var links = document.querySelector('.bbnav .links');
-    if (links) links.insertBefore(makeToggle(active), links.firstChild);
-    // En in de homepage-hero (gecentreerd, onder het logo)
-    var heroLogo = document.querySelector('.bb-hero .hero-logo');
-    if (heroLogo && heroLogo.parentNode) {
-      var t = makeToggle(active, 'margin:18px auto 4px');
-      heroLogo.parentNode.insertBefore(t, heroLogo.nextSibling);
-    }
+    var nav = document.querySelector('.bbnav-inner');
+    if (!nav) return;
+    var toggle = makeToggle(active);
+    var menu = nav.querySelector('.nav-toggle');
+    nav.insertBefore(toggle, menu || null);
   }
 
   function run() {
@@ -159,3 +155,4 @@
     run();
   }
 })();
+

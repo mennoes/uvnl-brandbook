@@ -2,23 +2,6 @@
    Taal van de Vooruitblik-site: ronde vlakken, paars op groen, zware koppen, springerige hovers. */
 :root { --spring:cubic-bezier(.34,1.56,.64,1); --paper-mid:#ECE4DF; --r-xl:36px; }
 
-/* ── Navigatie: pillen met paars ── */
-.bbnav { background:color-mix(in srgb,var(--uvnl-paper) 90%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:0; }
-.bbnav .links a { font-family:var(--font-sans); font-weight:700; font-size:16px; text-transform:none; letter-spacing:0; color:var(--uvnl-green); border-radius:var(--r-pill); padding:7px 14px; transition:background .25s var(--ease),transform .25s var(--spring); }
-.bbnav .links a:hover { background:var(--uvnl-purple); color:var(--uvnl-green); transform:translateY(-1px); }
-.bbnav .links a.cta { background:var(--uvnl-green); color:var(--uvnl-paper); font-size:16px; letter-spacing:0; text-transform:none; }
-.bbnav .links a.cta:hover { background:var(--uvnl-green-bright); color:var(--uvnl-paper); }
-@media (max-width:900px){
-  .bbnav-inner { gap:10px; }
-  .bbnav .links { min-width:0; flex:1; overflow-x:auto; scrollbar-width:none; justify-content:flex-start; }
-  .bbnav .links::-webkit-scrollbar { display:none; }
-  .bbnav .links a { white-space:nowrap; flex:none; }
-}
-
-/* ── Homepage-hero: afgeronde onderkant, tekst in het midden, logo bovenin ── */
-.bb-hero { border-radius:0 0 var(--r-xl) var(--r-xl); justify-content:center !important; padding-top:clamp(80px,12vh,120px) !important; padding-bottom:clamp(80px,12vh,120px) !important; }
-.bb-hero .hero-logo .navlogo { color:#fff !important; }
-
 /* ── Pagina-kop: reuzenkop en een gekleurd vlak over de foto ── */
 .page-hero .ph-visual { border-radius:0 0 var(--r-xl) var(--r-xl) !important; overflow:hidden; }
 .page-hero .ph-text { background:var(--uvnl-purple); border-radius:var(--r-xl); max-width:calc(1440px - 56px) !important; width:calc(100% - 56px) !important; margin:-64px auto 0 !important; padding:clamp(26px,4vw,52px) clamp(24px,4vw,56px) !important; position:relative; z-index:2; box-sizing:border-box; }
@@ -289,3 +272,4 @@
 .hs-rules { margin-top:clamp(48px,6vw,80px); padding-top:clamp(28px,3vw,40px); border-top:1px solid var(--line-strong); position:relative; }
 .hs-rules::before { content:"Combinaties"; position:absolute; top:-1px; left:0; transform:translateY(-50%); background:var(--bg); padding-right:14px; font-family:var(--font-display); font-size:clamp(26px,3vw,36px); text-transform:uppercase; color:var(--uvnl-green); line-height:1; }
 .hs-rules { padding-top:clamp(40px,4vw,56px); }
+
