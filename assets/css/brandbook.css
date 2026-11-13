@@ -169,5 +169,5 @@
  .brandbook .footer-inner > div:last-child { margin-left:0 !important; text-align:left !important; }
  .brandbook .footer .footer-logo { width:190px; }
 }
-@media(max-width:360px) { .brandbook .bbnav .home .navlogo { width:130px; } .brandbook .bbnav-inner { padding-inline:16px; gap:8px; } .nav-toggle { padding:11px; } }
+@media(max-width:360px) { .brandbook .bbnav .home .navlogo { width:130px; } .brandbook .bbnav-inner { padding-inline:16px; gap:8px; } .nav-toggle { padding:11px; } .nav-toggle span { display:none; } }
 @media(prefers-reduced-motion:reduce) { .action { transition:none; } .action:hover { transform:none; } }
