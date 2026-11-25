@@ -13,7 +13,7 @@ België; de NL/VL-schakelaar blijft beschikbaar als handmatige correctie.
 
 - `index.html` — originele homepage met cover en fotocarrousel
 - `pages/about.html` — merk, missie, persoonlijkheid en tone of voice
-- `pages/logos.html` — Nederlandse en Vlaamse logo's, kleuren, lettertypes en de sectie Beweging (principes voor animatie, `assets/css/motion.css`)
+- `pages/logos.html` — Nederlandse en Vlaamse logo's
 - `pages/colors.html` — kleuren
 - `pages/typography.html` — typografie zonder fontdownloads
 - `pages/photography.html` — aparte Nederlandse en Vlaamse beeldbanken
