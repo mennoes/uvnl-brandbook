@@ -60,6 +60,22 @@ accentkleur. De herkenbaarste combinatie is **Electric Purple op Varsity Green**
 Echte foto's, strak gecropt, eventueel met een merkkleur-wash (multiply).
 Redactioneel en eerlijk — geen gladde SaaS-stockbeelden.
 
+## Beweging en animatie
+Animatie is uitleg. Ze heeft per moment één taak: **verhelderen**, **sfeer
+geven**, of **laten zien waar geen opname van bestaat**.
+- **Volle vlakken.** Geen transparantie, geen verlopen, geen schaduwen.
+- **Scherp.** Vectorvormen; geen blur, vervaging of nagloeien op tekst.
+- **Kort en beslist.** Een element komt snel binnen en staat dan stil. Een
+  balk mag licht wiebelen, in stapjes.
+- **Over de opname.** Bij voorkeur grafiek over het beeld; de wetenschapper
+  blijft in beeld. Vol scherm alleen als de uitleg ruimte nodig heeft.
+- **Eén beeldwereld per verhaal**, uit het onderwerp, die terugkeert.
+- **Tekst op een gekleurde balk**, één begrip. Niet in de ondertitelzone.
+- **Pijlen** zijn dik, recht of in één bocht, met een dichte driehoekige punt.
+- **Kaarten:** land Varsity Green, water lila, dunne grenzen, geen
+  plaatsnamen, één label.
+- **Niet:** een titelkaart om de spreker voor te stellen.
+
 ## Iconen & ornamenten
 **Geen emoji in het merk.** Gebruik de merkiconen (bliksem, pijl, pijn, snaps,
 spark) als emotionele grammatica — herkleurbare ornamenten, 8–20° gedraaid.
